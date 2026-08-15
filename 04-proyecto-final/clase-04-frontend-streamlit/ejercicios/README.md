@@ -1,7 +1,7 @@
-# 🏋️ Ejercicios y Retos Prácticos: clase-08-proyecto-integrador-basico
+# 🏋️ Ejercicios y Retos Prácticos: clase-04-frontend-streamlit
 
-> **Curso:** `01-fundamentos-python`  
-> **Ubicación:** `01-fundamentos-python/clase-08-proyecto-integrador-basico/ejercicios`  
+> **Curso:** `04-proyecto-final`  
+> **Ubicación:** `04-proyecto-final/clase-04-frontend-streamlit/ejercicios`  
 
 Esta carpeta contiene el reto práctico de la sesión para consolidar tus conocimientos y poner a prueba tu lógica.
 

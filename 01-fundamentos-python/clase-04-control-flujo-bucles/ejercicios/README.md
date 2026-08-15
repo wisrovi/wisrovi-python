@@ -1,7 +1,14 @@
-# 🏋️ Ejercicio Práctico de la 🔄 Clase 04
+# 🏋️ Ejercicios y Retos Prácticos: clase-04-control-flujo-bucles
 
-Aplica los conocimientos de esta clase resolviendo el reto en [`ejercicio_04_tabla_multiplicar.py`](ejercicio_04_tabla_multiplicar.py).
+> **Curso:** `01-fundamentos-python`  
+> **Ubicación:** `01-fundamentos-python/clase-04-control-flujo-bucles/ejercicios`  
 
-```bash
-python 01-fundamentos-python/clase-04-control-flujo-bucles/ejercicios/ejercicio_04_tabla_multiplicar.py
-```
+Esta carpeta contiene el reto práctico de la sesión para consolidar tus conocimientos y poner a prueba tu lógica.
+
+## 🎯 Instrucciones para el Estudiante
+1. Abre el archivo [`reto.py`](reto.py) en Visual Studio Code.
+2. Lee el enunciado y completa la implementación requerida.
+3. Para validar que tu solución sea correcta, ejecuta la suite de pruebas desde la terminal:
+   ```bash
+   pytest tests/
+   ```

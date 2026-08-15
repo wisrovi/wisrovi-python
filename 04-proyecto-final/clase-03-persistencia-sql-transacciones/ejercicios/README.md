@@ -1,7 +1,7 @@
-# 🏋️ Ejercicios y Retos Prácticos: clase-08-proyecto-integrador-basico
+# 🏋️ Ejercicios y Retos Prácticos: clase-03-persistencia-sql-transacciones
 
-> **Curso:** `01-fundamentos-python`  
-> **Ubicación:** `01-fundamentos-python/clase-08-proyecto-integrador-basico/ejercicios`  
+> **Curso:** `04-proyecto-final`  
+> **Ubicación:** `04-proyecto-final/clase-03-persistencia-sql-transacciones/ejercicios`  
 
 Esta carpeta contiene el reto práctico de la sesión para consolidar tus conocimientos y poner a prueba tu lógica.
 

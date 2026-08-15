@@ -1,7 +1,7 @@
-# 🏋️ Ejercicios y Retos Prácticos: clase-08-proyecto-integrador-basico
+# 🏋️ Ejercicios y Retos Prácticos: clase-05-algoritmos-ordenamiento
 
-> **Curso:** `01-fundamentos-python`  
-> **Ubicación:** `01-fundamentos-python/clase-08-proyecto-integrador-basico/ejercicios`  
+> **Curso:** `02-algoritmos-estructuras`  
+> **Ubicación:** `02-algoritmos-estructuras/clase-05-algoritmos-ordenamiento/ejercicios`  
 
 Esta carpeta contiene el reto práctico de la sesión para consolidar tus conocimientos y poner a prueba tu lógica.
 
