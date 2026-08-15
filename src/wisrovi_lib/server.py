@@ -151,15 +151,23 @@ def generate_certificate(req: CertificateRequest):
         "badge_markdown": f"[![Wisrovi Certified](https://img.shields.io/badge/Wisrovi%20Academy-Certified%20AI%20Engineer-gold.svg)](https://academy_python.wisrovi.dev)"
     }
 
+from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
+from .embedded_ui import get_embedded_html
+
 # ------------------------------------------------------------------------------
-# SERVIR FRONTEND SPA ESTÁTICO
+# SERVIR FRONTEND SPA REACTIVO
 # ------------------------------------------------------------------------------
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def serve_index():
+    """Sirve la Single-Page Application completa del Tutor Virtual."""
     index_file = os.path.join(STATIC_DIR, "index.html")
     if os.path.exists(index_file):
-        return FileResponse(index_file)
-    return {"status": "Wisrovi Virtual Tutor Server Running"}
+        try:
+            with open(index_file, "r", encoding="utf-8") as f:
+                return HTMLResponse(f.read())
+        except Exception:
+            pass
+    return HTMLResponse(get_embedded_html())
 
 if os.path.exists(STATIC_DIR):
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")

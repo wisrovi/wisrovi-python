@@ -1,0 +1,5 @@
+recursive-include src/wisrovi_lib/static *
+recursive-include src/wisrovi_lib *.html *.css *.js
+include README.md
+include LICENSE
+include pyproject.toml
