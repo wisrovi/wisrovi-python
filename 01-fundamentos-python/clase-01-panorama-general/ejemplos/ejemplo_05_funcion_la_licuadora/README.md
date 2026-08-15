@@ -1,15 +1,15 @@
-# 📖 Inspección del Entorno de Ejecución
+# 📖 La Licuadora (Primer Vistazo a Funciones)
 
-> **Clase:** Clase 01: Panorama General y Filosofía de Python  
+> **Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
 > **Curso:** Curso 1: Fundamentos Básicos de Python  
 
 ## 🎯 Propósito del Ejemplo
-Uso de los módulos estándar sys y platform para validar la versión de Python.
+Modularizar código: recibe ingredientes (entradas), procesa y entrega un jugo (salida).
 
 ## 💻 Cómo Ejecutar este Ejemplo
 Desde la terminal de VS Code en la raíz del repositorio, ejecuta:
 ```bash
-python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_03_informacion_sistema/main.py
+python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_05_funcion_la_licuadora/main.py
 ```
 
 ## 🔍 Código Fuente

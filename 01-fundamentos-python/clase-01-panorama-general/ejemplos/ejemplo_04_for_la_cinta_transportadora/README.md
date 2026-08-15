@@ -1,15 +1,15 @@
-# 📖 Indentación y Estructura de Bloques
+# 📖 La Cinta Transportadora (Bucle for)
 
-> **Clase:** Clase 01: Panorama General y Filosofía de Python  
+> **Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
 > **Curso:** Curso 1: Fundamentos Básicos de Python  
 
 ## 🎯 Propósito del Ejemplo
-Muestra cómo la indentación de 4 espacios define la jerarquía lógica del código.
+Recorrer colecciones elemento a elemento repitiendo instrucciones automáticamente.
 
 ## 💻 Cómo Ejecutar este Ejemplo
 Desde la terminal de VS Code en la raíz del repositorio, ejecuta:
 ```bash
-python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_04_bloques_indentacion/main.py
+python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_04_for_la_cinta_transportadora/main.py
 ```
 
 ## 🔍 Código Fuente

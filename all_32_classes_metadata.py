@@ -69,41 +69,45 @@ ALL_CLASSES = [
         "course_num": 1,
         "class_code": "CLASE 01",
         "folder_name": "clase-01-panorama-general",
-        "class_title": "Clase 01: Panorama General y Filosofía de Python",
+        "class_title": "Clase 01: Primer Vistazo Práctico (print, variables, if, for)",
         "level": "Nivel 1 - Principiante",
-        "metaphor": "Python como Lenguaje de Comunicación Humano-Máquina",
+        "metaphor": "El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)",
         "pdf_filename": "clase-01-panorama-general.pdf",
         "diagram_type": "flow",
-        "obj_conceptual": "Entender cómo el intérprete de Python procesa el código fuente y lo convierte en bytecode.",
-        "obj_practical": "Escribir, depurar y ejecutar tu primer script en Python 3.10+ en VS Code.",
-        "p4_intro": "Python es un lenguaje interpretado de alto nivel diseñado para maximizar la legibilidad y productividad del programador.",
-        "p4_metaphor_desc": "Escribir en Python es como redactar instrucciones claras en un cuaderno que un asistente ejecuta al instante.",
-        "p4_theory_1": "El intérprete de Python lee el código de arriba a abajo, lo compila a bytecode y lo ejecuta en la máquina virtual (PVM).",
-        "p4_theory_2": "El 'Zen de Python' (PEP 20) establece que lo explícito es mejor que lo implícito y la legibilidad es prioritaria.",
-        "p4_golden_rule": "La indentación define la jerarquía lógica del código en Python.",
-        "p5_desc": "Flujo de lectura, compilación a bytecode en tiempo de ejecución y salida estándar.",
-        "p5_step1_action": "Carga del archivo .py en memoria.",
-        "p5_step1_state": "Código fuente en buffer de texto.",
-        "p5_step2_action": "Generación de Bytecode (.pyc).",
-        "p5_step2_state": "Opcodes cargados en memoria.",
-        "p5_step3_action": "Ejecución en la Máquina Virtual (PVM).",
-        "p5_step3_state": "Pila de evaluación activa.",
-        "p5_step4_action": "Emisión a stdout (consola).",
-        "p5_step4_state": "Buffer vaciado tras imprimir.",
-        "p5_mental_tip": "Imagina una cinta transportadora que valida cada línea antes de autorizar su ejecución.",
-        "p6_desc": "Script inicial con validación de entorno y formateo f-string:",
-        "p6_code": 'import sys\n\nnombre = "Wisrovi Developer"\nversion = sys.version_info\n\nprint(f"Bienvenido {nombre} a Python {version.major}.{version.minor}")\nprint("Filosofía: Lo simple es mejor que lo complejo.")',
-        "p6_code_analysis": "Uso del módulo estándar sys y formateo moderno con f-strings (PEP 498).",
-        "p7_intro": "Evita errores típicos de principiante al estructurar tu primer archivo Python.",
-        "p7_gotcha": "Mezclar espacios y tabulaciones genera un IndentationError silencioso.",
-        "p7_bad_code": "def inicio():\n\tprint('Tab')\n    print('Espacios')  # ❌ IndentationError",
-        "p7_good_code": "def inicio():\n    print('Consistente')\n    print('4 espacios')  # ✅ PEP 8",
-        "p7_pro_tip": "Configura VS Code con 'Editor: Insert Spaces' en true para evitar inconsistencias.",
-        "p9_challenge": "Crea un script que imprima tu nombre, tu meta de aprendizaje y valide que estás usando Python >= 3.10.",
-        "test_logic": '''import subprocess, sys
-def test_c1_clase_01():
-    res = subprocess.run([sys.executable, "-c", "print('Hola Python!')"], capture_output=True, text=True)
-    assert res.returncode == 0
+        "obj_conceptual": "Comprender los 4 pilares fundamentales de la programación en Python: salida estándar, memoria, decisiones lógicas e iteración.",
+        "obj_practical": "Escribir un script completo en Python que combine print(), variables, condicionales if/else y bucles for.",
+        "p4_intro": "En esta primera clase inaugural abordamos el panorama completo de los 4 pilares fundamentales de Python: cómo mostrar mensajes con print(), cómo almacenar datos en variables, cómo tomar decisiones lógicas con if/else y cómo procesar colecciones con bucles for.",
+        "p4_metaphor_desc": "Aprender a programar es como dominar 4 herramientas esenciales: el Megáfono (print) anuncia resultados, las Cajas (variables) guardan datos, el Semáforo (if) decide qué camino tomar y la Cinta Transportadora (for) procesa elementos uno tras otro.",
+        "p4_theory_1": "1. print() muestra texto y valores numéricos en consola. 2. Las variables reservan espacios con nombre en memoria mediante el operador de asignación '='.",
+        "p4_theory_2": "3. if/else evalúa expresiones booleanas (True/False) para bifurcar la ejecución. 4. for recorre secuencias ejecutando el mismo bloque de código para cada elemento.",
+        "p4_golden_rule": "Todo programa real en Python combina datos (variables), decisiones (if), repetición (for) y salida por pantalla (print).",
+        "p5_desc": "Flujo de ejecución secuencial, almacenamiento en variables, evaluación de condición y bucle de repetición.",
+        "p5_step1_action": "Ejecución de print() y reserva de variables en memoria.",
+        "p5_step1_state": "Variables creadas en la tabla de símbolos.",
+        "p5_step2_action": "Evaluación del condicional if / else.",
+        "p5_step2_state": "Rama seleccionada según resultado booleano.",
+        "p5_step3_action": "Iteración del bucle for sobre la colección.",
+        "p5_step3_state": "Variable iteradora actualizada paso a paso.",
+        "p5_step4_action": "Impresión final del resumen en consola.",
+        "p5_step4_state": "Ejecución completada con éxito.",
+        "p5_mental_tip": "Visualiza la ejecución paso a paso: primero declaras datos, luego decides y finalmente iteras sobre tus elementos.",
+        "p6_desc": "Demostración integral de los 4 pilares fundamentales (print, variables, if, for):",
+        "p6_code": '# 1. El Megáfono (print)\nprint("¡Bienvenido al curso de Python!")\n\n# 2. Las Cajas Etiquetadas (variables)\nusuario = "Wisrovi"\nedad = 25\nprint(f"Usuario: {usuario} | Edad: {edad} años")\n\n# 3. El Semáforo de Decisiones (if / else)\nif edad >= 18:\n    print("🚦 Acceso permitido: Eres mayor de edad.")\nelse:\n    print("🚦 Acceso restringido.")\n\n# 4. La Cinta Transportadora (bucle for)\nherramientas = ["VS Code", "Terminal", "Git", "Python"]\nfor item in herramientas:\n    print("-> Herramienta configurada:", item)',
+        "p6_code_analysis": "Uso coordinado de print para salida, variables para memoria, if/else para control de flujo y for para iteración limpia.",
+        "p7_intro": "Errores frecuentes al iniciar con los 4 pilares.",
+        "p7_gotcha": "Olvidar los dos puntos (:) al final de if o for, o intentar concatenar texto y números con '+' en lugar de usar f-strings.",
+        "p7_bad_code": "edad = 25\nprint('Edad: ' + edad)  # ❌ TypeError: can only concatenate str to str\nif edad >= 18          # ❌ Falta los dos puntos (:)",
+        "p7_good_code": "edad = 25\nprint(f'Edad: {edad}')  # ✅ F-string formatea automáticamente\nif edad >= 18:         # ✅ Sintaxis correcta con dos puntos\n    print('Acceso OK')",
+        "p7_pro_tip": "Usa siempre f-strings f'{variable}' para interpolar texto y números sin errores de tipado.",
+        "p9_challenge": "Crea un script que defina una lista de 3 alumnos con sus notas, use un for para recorrerlos y un if/else para imprimir si cada uno aprobó (nota >= 60) o reprobó.",
+        "test_logic": '''def test_c1_clase_01():
+    usuario = "Wisrovi"
+    edad = 25
+    es_mayor = edad >= 18
+    herramientas = ["VS Code", "Terminal", "Git", "Python"]
+    assert usuario == "Wisrovi"
+    assert es_mayor is True
+    assert len(herramientas) == 4
 '''
     },
     {

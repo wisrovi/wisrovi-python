@@ -1,15 +1,15 @@
-# 📖 Primer Script y Salida Estándar
+# 📖 El Semáforo de Decisiones (if / else)
 
-> **Clase:** Clase 01: Panorama General y Filosofía de Python  
+> **Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
 > **Curso:** Curso 1: Fundamentos Básicos de Python  
 
 ## 🎯 Propósito del Ejemplo
-Demuestra la función print(), salida por consola y uso de comentarios.
+Bifurcaciones de código basadas en condiciones booleanas y sangría (indentación).
 
 ## 💻 Cómo Ejecutar este Ejemplo
 Desde la terminal de VS Code en la raíz del repositorio, ejecuta:
 ```bash
-python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_01_hola_mundo/main.py
+python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_03_if_el_semaforo_de_decisiones/main.py
 ```
 
 ## 🔍 Código Fuente

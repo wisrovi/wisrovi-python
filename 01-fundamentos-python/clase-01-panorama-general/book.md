@@ -1,8 +1,8 @@
-# 📚 Clase 01: Panorama General y Filosofía de Python
+# 📚 Clase 01: Primer Vistazo Práctico (print, variables, if, for)
 
 > **Programa:** Curso 1: Fundamentos Básicos de Python  
 > **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Python como Lenguaje de Comunicación Humano-Máquina»*  
+> **Metáfora Central:** *«El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)»*  
 > **Documento Oficial PDF:** [clase-01-panorama-general.pdf](clase-01-panorama-general.pdf)  
 > **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
@@ -42,25 +42,25 @@ Ingeniero y arquitecto de software especializado en Inteligencia Artificial Gene
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Python es un lenguaje interpretado de alto nivel diseñado para maximizar la legibilidad y productividad del programador.
+En esta primera clase inaugural abordamos el panorama completo de los 4 pilares fundamentales de Python: cómo mostrar mensajes con print(), cómo almacenar datos en variables, cómo tomar decisiones lógicas con if/else y cómo procesar colecciones con bucles for.
 
 > [!NOTE]
-> **🌟 Metáfora Didáctica:** Escribir en Python es como redactar instrucciones claras en un cuaderno que un asistente ejecuta al instante.
+> **🌟 Metáfora Didáctica:** Aprender a programar es como dominar 4 herramientas esenciales: el Megáfono (print) anuncia resultados, las Cajas (variables) guardan datos, el Semáforo (if) decide qué camino tomar y la Cinta Transportadora (for) procesa elementos uno tras otro.
 
 ### Principios Fundamentales
 
-El intérprete de Python lee el código de arriba a abajo, lo compila a bytecode y lo ejecuta en la máquina virtual (PVM).
+1. print() muestra texto y valores numéricos en consola. 2. Las variables reservan espacios con nombre en memoria mediante el operador de asignación '='.
 
-El 'Zen de Python' (PEP 20) establece que lo explícito es mejor que lo implícito y la legibilidad es prioritaria.
+3. if/else evalúa expresiones booleanas (True/False) para bifurcar la ejecución. 4. for recorre secuencias ejecutando el mismo bloque de código para cada elemento.
 
 > [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** La indentación define la jerarquía lógica del código en Python.
+> **⚡ Regla de Oro en Python:** Todo programa real en Python combina datos (variables), decisiones (if), repetición (for) y salida por pantalla (print).
 
 ---
 
 ## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Flujo de lectura, compilación a bytecode en tiempo de ejecución y salida estándar.
+Flujo de ejecución secuencial, almacenamiento en variables, evaluación de condición y bucle de repetición.
 
 ```mermaid
 flowchart LR
@@ -81,13 +81,13 @@ flowchart LR
 
 | Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | Carga del archivo .py en memoria. | `Código fuente en buffer de texto.` |
-| **2. Evaluación** | Generación de Bytecode (.pyc). | `Opcodes cargados en memoria.` |
-| **3. Transformación** | Ejecución en la Máquina Virtual (PVM). | `Pila de evaluación activa.` |
-| **4. Retorno / Salida** | Emisión a stdout (consola). | `Buffer vaciado tras imprimir.` |
+| **1. Inicialización** | Ejecución de print() y reserva de variables en memoria. | `Variables creadas en la tabla de símbolos.` |
+| **2. Evaluación** | Evaluación del condicional if / else. | `Rama seleccionada según resultado booleano.` |
+| **3. Transformación** | Iteración del bucle for sobre la colección. | `Variable iteradora actualizada paso a paso.` |
+| **4. Retorno / Salida** | Impresión final del resumen en consola. | `Ejecución completada con éxito.` |
 
 > [!TIP]
-> **🔍 Visualización Mental:** Imagina una cinta transportadora que valida cada línea antes de autorizar su ejecución.
+> **🔍 Visualización Mental:** Visualiza la ejecución paso a paso: primero declaras datos, luego decides y finalmente iteras sobre tus elementos.
 
 ---
 
@@ -95,46 +95,58 @@ flowchart LR
 
 ```python
 # CLASE 01 - Código de Demostración
-import sys
+# 1. El Megáfono (print)
+print("¡Bienvenido al curso de Python!")
 
-nombre = "Wisrovi Developer"
-version = sys.version_info
+# 2. Las Cajas Etiquetadas (variables)
+usuario = "Wisrovi"
+edad = 25
+print(f"Usuario: {usuario} | Edad: {edad} años")
 
-print(f"Bienvenido {nombre} a Python {version.major}.{version.minor}")
-print("Filosofía: Lo simple es mejor que lo complejo.")
+# 3. El Semáforo de Decisiones (if / else)
+if edad >= 18:
+    print("🚦 Acceso permitido: Eres mayor de edad.")
+else:
+    print("🚦 Acceso restringido.")
+
+# 4. La Cinta Transportadora (bucle for)
+herramientas = ["VS Code", "Terminal", "Git", "Python"]
+for item in herramientas:
+    print("-> Herramienta configurada:", item)
 ```
 
-*Uso del módulo estándar sys y formateo moderno con f-strings (PEP 498).*
+*Uso coordinado de print para salida, variables para memoria, if/else para control de flujo y for para iteración limpia.*
 
 ---
 
 ## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
 > [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Mezclar espacios y tabulaciones genera un IndentationError silencioso.
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Olvidar los dos puntos (:) al final de if o for, o intentar concatenar texto y números con '+' en lugar de usar f-strings.
 
 *   **❌ Antipatrón:**
     ```python
-def inicio():
-	print('Tab')
-    print('Espacios')  # ❌ IndentationError
+edad = 25
+print('Edad: ' + edad)  # ❌ TypeError: can only concatenate str to str
+if edad >= 18          # ❌ Falta los dos puntos (:)
     ```
 
 *   **✅ Patrón Correcto:**
     ```python
-def inicio():
-    print('Consistente')
-    print('4 espacios')  # ✅ PEP 8
+edad = 25
+print(f'Edad: {edad}')  # ✅ F-string formatea automáticamente
+if edad >= 18:         # ✅ Sintaxis correcta con dos puntos
+    print('Acceso OK')
     ```
 
 > [!TIP]
-> **💡 Consejo Profesional:** Configura VS Code con 'Editor: Insert Spaces' en true para evitar inconsistencias.
+> **💡 Consejo Profesional:** Usa siempre f-strings f'{variable}' para interpolar texto y números sin errores de tipado.
 
 ---
 
 ## 5. 🏋️ Desafío de Práctica
 
-> **Desafío:** Crea un script que imprima tu nombre, tu meta de aprendizaje y valide que estás usando Python >= 3.10.
+> **Desafío:** Crea un script que defina una lista de 3 alumnos con sus notas, use un for para recorrerlos y un if/else para imprimir si cada uno aprobó (nota >= 60) o reprobó.
 
 Para ejecutar la verificación automática con pytest:
 ```bash

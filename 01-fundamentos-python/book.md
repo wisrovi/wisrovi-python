@@ -12,7 +12,7 @@
 
 | Semana / Clase | Título | Metáfora Central | Carpeta |
 | :---: | :--- | :--- | :---: |
-| **CLASE 01** | Clase 01: Panorama General y Filosofía de Python | *«Python como Lenguaje de Comunicación Humano-Máquina»* | [`clase-01-panorama-general/`](clase-01-panorama-general/) |
+| **CLASE 01** | Clase 01: Primer Vistazo Práctico (print, variables, if, for) | *«El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)»* | [`clase-01-panorama-general/`](clase-01-panorama-general/) |
 | **CLASE 02** | Clase 02: Variables, Tipos de Datos y Operadores | *«Variables como Cajas Etiquetadas en Memoria»* | [`clase-02-variables-y-tipos/`](clase-02-variables-y-tipos/) |
 | **CLASE 03** | Clase 03: Control de Flujo: Condicionales (if / elif / else) | *«Condicionales como Semáforos y Bifurcaciones en un Tren»* | [`clase-03-control-flujo-condicionales/`](clase-03-control-flujo-condicionales/) |
 | **CLASE 04** | Clase 04: Control de Flujo: Bucles (for / while) | *«Bucles como una Cinta Transportadora de Fábrica»* | [`clase-04-control-flujo-bucles/`](clase-04-control-flujo-bucles/) |
@@ -24,21 +24,21 @@
 ---
 
 
-# 📖 CLASE 01: Clase 01: Panorama General y Filosofía de Python
+# 📖 CLASE 01: Clase 01: Primer Vistazo Práctico (print, variables, if, for)
 
-> **Metáfora:** *«Python como Lenguaje de Comunicación Humano-Máquina»*  
-> **Objetivo:** Entender cómo el intérprete de Python procesa el código fuente y lo convierte en bytecode.  
+> **Metáfora:** *«El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)»*  
+> **Objetivo:** Comprender los 4 pilares fundamentales de la programación en Python: salida estándar, memoria, decisiones lógicas e iteración.  
 
 ### 1. Fundamentos Teóricos
-Python es un lenguaje interpretado de alto nivel diseñado para maximizar la legibilidad y productividad del programador.
+En esta primera clase inaugural abordamos el panorama completo de los 4 pilares fundamentales de Python: cómo mostrar mensajes con print(), cómo almacenar datos en variables, cómo tomar decisiones lógicas con if/else y cómo procesar colecciones con bucles for.
 
 > [!NOTE]
-> **Metáfora Didáctica:** Escribir en Python es como redactar instrucciones claras en un cuaderno que un asistente ejecuta al instante.
+> **Metáfora Didáctica:** Aprender a programar es como dominar 4 herramientas esenciales: el Megáfono (print) anuncia resultados, las Cajas (variables) guardan datos, el Semáforo (if) decide qué camino tomar y la Cinta Transportadora (for) procesa elementos uno tras otro.
 
-El intérprete de Python lee el código de arriba a abajo, lo compila a bytecode y lo ejecuta en la máquina virtual (PVM).
+1. print() muestra texto y valores numéricos en consola. 2. Las variables reservan espacios con nombre en memoria mediante el operador de asignación '='.
 
 > [!IMPORTANT]
-> **Regla de Oro:** La indentación define la jerarquía lógica del código en Python.
+> **Regla de Oro:** Todo programa real en Python combina datos (variables), decisiones (if), repetición (for) y salida por pantalla (print).
 
 ### 2. Diagrama de Arquitectura
 ```mermaid
@@ -59,30 +59,42 @@ flowchart LR
 ### 3. Implementación en Python
 ```python
 # CLASE 01
-import sys
+# 1. El Megáfono (print)
+print("¡Bienvenido al curso de Python!")
 
-nombre = "Wisrovi Developer"
-version = sys.version_info
+# 2. Las Cajas Etiquetadas (variables)
+usuario = "Wisrovi"
+edad = 25
+print(f"Usuario: {usuario} | Edad: {edad} años")
 
-print(f"Bienvenido {nombre} a Python {version.major}.{version.minor}")
-print("Filosofía: Lo simple es mejor que lo complejo.")
+# 3. El Semáforo de Decisiones (if / else)
+if edad >= 18:
+    print("🚦 Acceso permitido: Eres mayor de edad.")
+else:
+    print("🚦 Acceso restringido.")
+
+# 4. La Cinta Transportadora (bucle for)
+herramientas = ["VS Code", "Terminal", "Git", "Python"]
+for item in herramientas:
+    print("-> Herramienta configurada:", item)
 ```
 
 ### 4. Gotchas y Buenas Prácticas
 > [!WARNING]
-> **Gotcha:** Mezclar espacios y tabulaciones genera un IndentationError silencioso.
+> **Gotcha:** Olvidar los dos puntos (:) al final de if o for, o intentar concatenar texto y números con '+' en lugar de usar f-strings.
 
 *   **❌ Antipatrón:**
     ```python
-def inicio():
-	print('Tab')
-    print('Espacios')  # ❌ IndentationError
+edad = 25
+print('Edad: ' + edad)  # ❌ TypeError: can only concatenate str to str
+if edad >= 18          # ❌ Falta los dos puntos (:)
     ```
 *   **✅ Patrón Correcto:**
     ```python
-def inicio():
-    print('Consistente')
-    print('4 espacios')  # ✅ PEP 8
+edad = 25
+print(f'Edad: {edad}')  # ✅ F-string formatea automáticamente
+if edad >= 18:         # ✅ Sintaxis correcta con dos puntos
+    print('Acceso OK')
     ```
 
 ---

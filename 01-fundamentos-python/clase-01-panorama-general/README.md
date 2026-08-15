@@ -1,8 +1,8 @@
-# 📘 Clase 01: Panorama General y Filosofía de Python
+# 📘 Clase 01: Primer Vistazo Práctico (print, variables, if, for)
 
 > **Curso:** Curso 1: Fundamentos Básicos de Python  
 > **Nivel:** Nivel 1 - Principiante  
-> **Metáfora:** *«Python como Lenguaje de Comunicación Humano-Máquina»*  
+> **Metáfora:** *«El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)»*  
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-01-panorama-general/notebook/clase-01-panorama-general.ipynb)
 

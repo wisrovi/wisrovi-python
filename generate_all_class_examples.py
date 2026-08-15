@@ -25,59 +25,102 @@ def reg_ex(course_num: int, folder_name: str, examples_list: List[Dict[str, Any]
 # ==============================================================================
 reg_ex(1, "clase-01-panorama-general", [
     {
-        "dir": "ejemplo_01_hola_mundo",
-        "title": "Primer Script y Salida Estándar",
-        "desc": "Demuestra la función print(), salida por consola y uso de comentarios.",
-        "code": '''"""Ejemplo 01: Primer Script en Python."""
-# Imprimir texto simple en consola
-print("¡Hola Mundo! Bienvenido a la programación en Python.")
+        "dir": "ejemplo_01_print_y_mensajes",
+        "title": "El Megáfono (La función print)",
+        "desc": "Muestra texto en pantalla, líneas decorativas, números sin comillas y uso de comentarios.",
+        "code": '''"""Ejemplo 01: El Megáfono (La función print)."""
+# 1. Mostrar texto simple en pantalla
+print("¡Hola mundo! Hoy es mi primer día aprendiendo Python 🔥")
 
-# Separadores y finales de línea personalizados
-print("Python", "es", "increíble", sep=" - ", end=" 🚀\\n")
+# 2. Mostrar líneas decorativas
+print("-" * 50)
+print("Bienvenido al Curso 1: Fundamentos de Programación")
+print("-" * 50)
+
+# 3. Imprimir números directamente (sin comillas)
+print("Año de inicio del curso:")
+print(2026)
+
+print("\\n" + "="*50)
+print("💡 Resumen: print() muestra información en pantalla.")
+print("="*50)
 '''
     },
     {
-        "dir": "ejemplo_02_zen_python",
-        "title": "El Zen de Python (PEP 20)",
-        "desc": "Lectura de los principios rectores del diseño de Python.",
-        "code": '''"""Ejemplo 02: El Zen de Python (PEP 20)."""
-import this
+        "dir": "ejemplo_02_variables_cajas_etiquetadas",
+        "title": "Las Cajas Etiquetadas (Variables)",
+        "desc": "Almacenar datos en memoria, asignación con '=' y actualización de valores.",
+        "code": '''"""Ejemplo 02: Las Cajas Etiquetadas (Variables)."""
+# Guardamos texto en la variable 'mi_nombre'
+mi_nombre = "Ana María"
 
-# Los principios fundamentales:
-# - Bello es mejor que feo.
-# - Explícito es mejor que implícito.
-# - Simple es mejor que complejo.
-# - La legibilidad cuenta.
+# Guardamos un número en la variable 'mi_edad'
+mi_edad = 28
+
+# Mostramos el contenido de las variables
+print("Nombre guardado:", mi_nombre)
+print("Edad guardada:", mi_edad)
+
+# Las variables pueden cambiar de valor
+mi_edad = 29
+print("Nueva edad actualizada:", mi_edad)
+
+print("\\n" + "="*50)
+print("💡 Resumen: Una variable es una caja en memoria con nombre.")
+print("="*50)
 '''
     },
     {
-        "dir": "ejemplo_03_informacion_sistema",
-        "title": "Inspección del Entorno de Ejecución",
-        "desc": "Uso de los módulos estándar sys y platform para validar la versión de Python.",
-        "code": '''"""Ejemplo 03: Inspección del Entorno del Intérprete."""
-import sys
-import platform
+        "dir": "ejemplo_03_if_el_semaforo_de_decisiones",
+        "title": "El Semáforo de Decisiones (if / else)",
+        "desc": "Bifurcaciones de código basadas en condiciones booleanas y sangría (indentación).",
+        "code": '''"""Ejemplo 03: El Semáforo de Decisiones (if / else)."""
+estatura_visitante = 1.55
+estatura_minima = 1.40
 
-print(f"Versión de Python: {platform.python_version()}")
-print(f"Sistema Operativo: {platform.system()} ({platform.machine()})")
-print(f"Ruta del ejecutable: {sys.executable}")
+print(f"Estatura del visitante: {estatura_visitante} m")
+
+if estatura_visitante >= estatura_minima:
+    print("🚦 SEMÁFORO VERDE: ¡Adelante! Puedes subir a la montaña rusa. 🎢")
+else:
+    print("🚦 SEMÁFORO ROJO: Aún eres un poco bajo para este juego. 🛑")
+
+print("\\n" + "="*50)
+print("💡 Resumen: 'if' evalúa condiciones booleanas para decidir.")
+print("="*50)
 '''
     },
     {
-        "dir": "ejemplo_04_bloques_indentacion",
-        "title": "Indentación y Estructura de Bloques",
-        "desc": "Muestra cómo la indentación de 4 espacios define la jerarquía lógica del código.",
-        "code": '''"""Ejemplo 04: Indentación y Jerarquía de Bloques."""
-activo = True
+        "dir": "ejemplo_04_for_la_cinta_transportadora",
+        "title": "La Cinta Transportadora (Bucle for)",
+        "desc": "Recorrer colecciones elemento a elemento repitiendo instrucciones automáticamente.",
+        "code": '''"""Ejemplo 04: La Cinta Transportadora (Bucle for)."""
+lista_compras = ["Manzanas 🍎", "Leche 🥛", "Pan 🍞", "Café ☕"]
 
-if activo:
-    # Bloque nivel 1 (4 espacios)
-    print("Nivel 1: El sistema está activo.")
-    if True:
-        # Bloque nivel 2 (8 espacios)
-        print("    Nivel 2: Verificación secundaria aprobada.")
+print("📦 Iniciando empaque automático de productos...")
 
-print("Fuera del bloque condicional (Nivel 0).")
+for producto in lista_compras:
+    print("-> Empacando:", producto)
+
+print("✅ Todos los productos han sido empacados.")
+
+print("\\n" + "="*50)
+print("💡 Resumen: 'for' itera sobre colecciones sin repetir código.")
+print("="*50)
+'''
+    },
+    {
+        "dir": "ejemplo_05_funcion_la_licuadora",
+        "title": "La Licuadora (Primer Vistazo a Funciones)",
+        "desc": "Modularizar código: recibe ingredientes (entradas), procesa y entrega un jugo (salida).",
+        "code": '''"""Ejemplo 05: La Licuadora (Funciones con def)."""
+def licuadora(fruta1: str, fruta2: str) -> str:
+    """Recibe ingredientes y devuelve un batido preparado."""
+    return f"Batido refrescante de {fruta1} con {fruta2} 🥤"
+
+# Invocamos la función
+resultado = licuadora("Fresa 🍓", "Plátano 🍌")
+print(resultado)
 '''
     }
 ])
