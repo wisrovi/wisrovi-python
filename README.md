@@ -3,7 +3,7 @@
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
 [![CI / Tests](https://github.com/wisrovi/wisrovi-python/actions/workflows/ci.yml/badge.svg)](https://github.com/wisrovi/wisrovi-python/actions/workflows/ci.yml)
-[![Documentación Web](https://img.shields.io/badge/Docs-MkDocs_Material-indigo.svg)](https://wisrovi.github.io/wisrovi-python/)
+[![Documentación Web](https://img.shields.io/badge/Docs-academy__python.wisrovi.dev-indigo.svg)](https://academy_python.wisrovi.dev/)
 [![Nivel](https://img.shields.io/badge/Nivel-Principiante_a_Avanzado-brightgreen.svg)]()
 [![Licencia](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 
