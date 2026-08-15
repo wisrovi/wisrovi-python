@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wisrovi-python"
+version = "1.0.0"
+description = "Programa Integral de Formación en Python: De Cero a Agentes de IA"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "William Rodriguez (Wisrovi)", email = "wisrovi.rodriguez@gmail.com" }
+]
+keywords = ["python", "ai-agents", "rag", "fastapi", "streamlit", "algorithms", "education"]
+dependencies = [
+    "pydantic>=2.5.0",
+    "rich>=13.0.0"
+]
+
+[project.optional-dependencies]
+ia = [
+    "pydantic>=2.5.0",
+    "numpy>=1.24.0"
+]
+web = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "streamlit>=1.28.0",
+    "requests>=2.31.0"
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "black>=23.0.0"
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.4.0",
+    "pymdown-extensions>=10.3"
+]
+all = [
+    "pydantic>=2.5.0",
+    "rich>=13.0.0",
+    "numpy>=1.24.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "streamlit>=1.28.0",
+    "requests>=2.31.0",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.4.0",
+    "pymdown-extensions>=10.3"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "01-fundamentos-python", "02-algoritmos-estructuras", "03-agentes-ia", "04-proyecto-final"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]

@@ -1,0 +1,84 @@
+site_name: "🐍 Programa Integral de Formación en Python"
+site_description: "De Cero a Agentes de Inteligencia Artificial - Manual Oficial por Wisrovi Rodríguez"
+site_author: "William Rodríguez (Wisrovi)"
+site_url: "https://wisrovi.github.io/wisrovi-python/"
+repo_url: "https://github.com/wisrovi/wisrovi-python"
+repo_name: "wisrovi/wisrovi-python"
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Modo Oscuro
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Modo Claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+
+nav:
+  - 🏠 Inicio: index.md
+  - 🎯 Curso 1 (Fundamentos):
+      - 📘 Libro del Curso 1: curso-01/book.md
+      - Clase 01 (Panorama General): curso-01/clase-01.md
+      - Clase 02 (Variables y Tipos): curso-01/clase-02.md
+      - Clase 03 (Condicionales): curso-01/clase-03.md
+      - Clase 04 (Bucles): curso-01/clase-04.md
+      - Clase 05 (Listas y Colecciones): curso-01/clase-05.md
+      - Clase 06 (Diccionarios): curso-01/clase-06.md
+      - Clase 07 (Funciones): curso-01/clase-07.md
+      - Clase 08 (Proyecto Integrador): curso-01/clase-08.md
+  - 🚀 Curso 2 (Algoritmos):
+      - 📘 Libro del Curso 2: curso-02/book.md
+      - Módulo 01 (Estructuras de Datos): curso-02/modulo-01.md
+      - Módulo 02 (Ordenamiento y Big-O): curso-02/modulo-02.md
+      - Módulo 03 (Recursividad y DP): curso-02/modulo-03.md
+  - 🤖 Curso 3 (Agentes de IA):
+      - 📘 Libro del Curso 3: curso-03/book.md
+      - Módulo 01 (Fundamentos LLM): curso-03/modulo-01.md
+      - Módulo 02 (Tool Calling & RAG): curso-03/modulo-02.md
+      - Módulo 03 (Agentes Autónomos): curso-03/modulo-03.md
+  - 🛠️ Curso 4 (Proyecto Final):
+      - 📘 Libro del Curso 4: curso-04/book.md
+      - Track 01 (Web App FastAPI + Streamlit): curso-04/track-01.md
+      - Track 02 (Chatbot Inteligente): curso-04/track-02.md
+      - Track 03 (Sistema de Gestión DB): curso-04/track-03.md
+  - 📚 Guías de Onboarding:
+      - 💻 Guía VS Code: guia-vscode.md
+      - 🐙 Guía GitHub: guia-github.md
+      - 📜 Reglas de Comunidad: reglas-comunidad.md
+      - ❓ Preguntas Frecuentes: faq.md

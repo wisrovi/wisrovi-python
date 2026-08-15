@@ -1,23 +1,40 @@
 # 🐍 Programa Integral de Formación en Python: De Cero a Agentes de IA
 
-![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
-![Nivel](https://img.shields.io/badge/Nivel-Principiante_a_Avanzado-brightgreen.svg)
-![Modalidad](https://img.shields.io/badge/Modalidad-En_Vivo_%2B_Grabaciones-orange.svg)
-![Licencia](https://img.shields.io/badge/Licencia-MIT-green.svg)
+[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
+[![CI / Tests](https://github.com/wisrovi/wisrovi-python/actions/workflows/ci.yml/badge.svg)](https://github.com/wisrovi/wisrovi-python/actions/workflows/ci.yml)
+[![Documentación Web](https://img.shields.io/badge/Docs-MkDocs_Material-indigo.svg)](https://wisrovi.github.io/wisrovi-python/)
+[![Nivel](https://img.shields.io/badge/Nivel-Principiante_a_Avanzado-brightgreen.svg)]()
+[![Licencia](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 
-Bienvenido/a al repositorio oficial del **Programa de Formación en Python**. Este espacio está estructurado de forma intuitiva, profesional y progresiva para guiarte desde tus primeros pasos en la programación hasta la creación de tus propios Agentes de Inteligencia Artificial y aplicaciones del mundo real.
-
----
-
-## 🎯 1. Objetivo del Programa
-
-Este programa inicia desde el nivel de **principiantes absolutos** (personas que nunca han escrito una sola línea de código). El objetivo principal del **Curso 1** es perderle el miedo a la programación, desarrollar el pensamiento lógico de un programador y construir una base sólida para afrontar retos de mayor complejidad.
+Bienvenido/a al repositorio oficial del **Programa de Formación en Python**. Este espacio está estructurado de forma profesional, modular y progresiva para guiarte desde tus primeros pasos en la programación hasta el diseño, desarrollo y despliegue de **Agentes de Inteligencia Artificial** y aplicaciones del mundo real.
 
 ---
 
-## 🚀 2. La Ruta de Aprendizaje (4 Niveles)
+## 👤 Acerca del Autor y Mentor
 
-El programa se compone de 4 cursos secuenciales diseñados para potenciar tus habilidades paso a paso:
+### **William Rodríguez (Wisrovi)**
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre **wisrovi SUITE** en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+
+* 🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
+* 💼 **LinkedIn:** [linkedin.com/in/wisrovi-rodriguez](https://www.linkedin.com/in/wisrovi-rodriguez/)
+* 🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
+* 🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
+* 📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
+
+---
+
+## 🚲 Filosofía Pedagógica: La Regla de la Bicicleta
+
+> *"Por más libros que leas o explicaciones que escuches sobre cómo guardar el equilibrio, si no te subes a la bicicleta y pedaleas por ti mismo, nunca vas a aprender a andar en bici."*
+
+Aprender a programar es una habilidad 100% práctica. Tu verdadero aprendizaje ocurrirá cuando abras Visual Studio Code, escribas el código con tus propias manos, ejecutes las suites de tests y resuelvas los ejercicios. ¡Súbete a la bici y pedalea! 🚴‍♂️
+
+---
+
+## 🚀 La Ruta de Aprendizaje (4 Niveles)
 
 ```mermaid
 flowchart TD
@@ -31,82 +48,81 @@ flowchart TD
     style C4 fill:#c05621,color:#fff,stroke:#fff,stroke-width:2px
 ```
 
-### 📚 Detalle de los Cursos
+---
 
-| Curso | Nombre | Enlace al Material | Descripción |
-| :---: | :--- | :---: | :--- |
-| **1** | **Fundamentos básicos de Python (8 Clases)** | [📁 Ver Curso 1](01-fundamentos-python/) | 8 Clases con metáforas, 5 ejemplos cada una: variables, `if`, `for`, `def`, colecciones y proyecto. |
-| **2** | **Algoritmos avanzados y estructuras de datos** | [📁 Ver Curso 2](02-algoritmos-estructuras/) | Optimización, notación Big-O, listas avanzadas, árboles, búsqueda y ordenamiento. |
-| **3** | **Creación y desarrollo de Agentes de IA** | [📁 Ver Curso 3](03-agentes-ia/) | LLMs, Prompt Engineering, Prompt/Tool Calling, RAG y agentes autónomos. |
-| **4** | **Proyecto Final Personalizado** | [📁 Ver Curso 4](04-proyecto-final/) | Taller práctico donde construirás tu propia solución real (Web, Chatbot o BD). |
+## 📚 Mapa Detallado de Cursos y Manuales
 
-> 💡 **¿Qué podrás crear en el Curso 4?** Lo que tú decidas: desde una página web interactiva o un chatbot para atención a clientes, hasta un sistema de gestión con base de datos. Contarás con **acompañamiento paso a paso**, ayuda en la arquitectura y revisión directa de tu código.
+| Curso | Nivel | Manual Digital | PDF Oficial | Descripción |
+| :---: | :--- | :---: | :---: | :--- |
+| **1** | **Fundamentos Básicos** (8 Clases) | [📖 Ver Libro](01-fundamentos-python/book.md) | [📄 PDF Completo](01-fundamentos-python/curso-01-fundamentos-python.pdf) | Variables, condicionales `if`, bucles `for`/`while`, colecciones, funciones y proyecto CLI. |
+| **2** | **Algoritmos y Estructuras** | [📖 Ver Libro](02-algoritmos-estructuras/book.md) | [📄 PDF Completo](02-algoritmos-estructuras/curso-02-algoritmos-estructuras.pdf) | Pilas, colas `deque`, sets, Big-O, búsqueda binaria, QuickSort y recursión con memoización. |
+| **3** | **Agentes de IA** | [📖 Ver Libro](03-agentes-ia/book.md) | [📄 PDF Completo](03-agentes-ia/curso-03-agentes-ia.pdf) | LLMs, salidas estructuradas Pydantic, Tool Calling, memoria vectorial, RAG y ciclo ReAct. |
+| **4** | **Proyecto Final Integrador** | [📖 Ver Libro](04-proyecto-final/book.md) | [📄 PDF Completo](04-proyecto-final/curso-04-proyecto-final.pdf) | Aplicación Web Full-Stack (FastAPI + Streamlit), Chatbot con memoria y BD relacional SQLite. |
 
 ---
 
-## 💻 3. Formato de las Clases y Grabaciones
+## ⚡ Inicio Rápido (Quickstart)
 
-- 🗓️ **Días y Horario:** Todos los sábados de **20:00 a 21:00 h**.
-- 🎥 **Plataforma:** Transmisión en vivo por **Zoom**.
-- 📺 **Grabaciones:** Cada clase será grabada y subida a **YouTube**. Si algún día no puedes conectarte en directo o necesitas repasar un tema, podrás ver la grabación las veces que sean necesarias.
+### Opción A: En la Nube con 1 Clic (Recomendado)
+Haz clic en el botón de abajo para abrir todo el repositorio listo para programar en tu navegador con GitHub Codespaces:
 
----
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
 
-## 🚲 4. Tu Compromiso: La regla de la bicicleta
+### Opción B: En tu Máquina Local
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/wisrovi/wisrovi-python.git
+cd wisrovi-python
 
-> *"Por más libros que leas o explicaciones que escuches sobre cómo guardar el equilibrio, si no te subes a la bicicleta y pedaleas por ti mismo, nunca vas a aprender a andar en bici."*
+# 2. Crear y activar entorno virtual
+python3 -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
 
-Aprender a programar es una habilidad 100% práctica. Tu verdadero aprendizaje ocurrirá cuando abras Visual Studio Code, escribas el código con tus propias manos y resuelvas los ejercicios. Si no practicas, no desarrollarás la habilidad. ¡Súbete a la bici y pedalea! 🚴‍♂️
+# 3. Instalar dependencias con soporte para tests e IA
+pip install -e ".[all]"
 
----
-
-## 🛠️ 5. Tarea Obligatoria ANTES de la Primera Clase
-
-Para no perder tiempo configurando herramientas durante la primera sesión, todos deben completar estos dos pasos previos:
-
-1. **Instalar Visual Studio Code (VS Code) + Python Extension Pack:**
-   - Descarga e instala [VS Code](https://code.visualstudio.com/).
-   - Instala la extensión **Python Extension Pack** desde la pestaña de extensiones dentro de VS Code.
-   - 📄 [Ver Guía Paso a Paso de VS Code](docs/guia-vscode.md)
-
-2. **Crear tu cuenta en GitHub:**
-   - Entra a [https://github.com](https://github.com) y regístrate con tu correo.
-   - Elije un nombre de usuario sencillo y profesional (ej: `nombre-apellido`).
-   - 📄 [Ver Guía Paso a Paso de GitHub](docs/guia-github.md)
-
----
-
-## 📜 6. Reglas de Convivencia en el Grupo
-
-- **Respeto y cordialidad:** No hay preguntas tontas. Todos estamos aquí para aprender.
-- **Uso del grupo:** Mantendremos el chat enfocado exclusivamente en temas del curso, dudas de código y avisos.
-- **Apoyo mutuo:** Si alguien plantea una duda en el grupo y sabes la respuesta, ¡siéntete libre de ayudar!
-- 📄 [Leer documento completo de convivencia](docs/reglas-comunidad.md)
-
----
-
-## 🗺️ 7. Estructura del Repositorio
-
-```text
-wisrovi-python/
-├── 📁 01-fundamentos-python/           # 🎯 Curso 1: Fundamentos Básicos (8 Clases)
-│   ├── 📁 clase-01-panorama-general/   # Clase 1: El Panorama General (Variables, if, for, def)
-│   ├── 📁 clase-02-variables-y-tipos/  # Clase 2: El Almacén de Datos (str, int, float, bool, input)
-│   ├── 📁 clase-03-control-flujo-condicionales/ # Clase 3: Toma de Decisiones (if, elif, else)
-│   ├── 📁 clase-04-control-flujo-bucles/        # Clase 4: Repetición Inteligente (for, while)
-│   ├── 📁 clase-05-listas-y-colecciones/        # Clase 5: La Mochila del Programador (list, tuple)
-│   ├── 📁 clase-06-diccionarios/                # Clase 6: La Agenda Clave-Valor (dict)
-│   ├── 📁 clase-07-funciones/                   # Clase 7: Fábricas Reutilizables (def, return)
-│   ├── 📁 clase-08-proyecto-integrador-basico/  # Clase 8: Integración Total y Gestor de Tareas
-│   └── 📁 recursos/                             # Cheatsheet de sintaxis
-├── 📁 02-algoritmos-estructuras/       # 🚀 Curso 2: Algoritmos Avanzados y Data Structures
-├── 📁 03-agentes-ia/                   # 🤖 Curso 3: Desarrollo de Agentes de IA
-├── 📁 04-proyecto-final/               # 🛠️ Curso 4: Taller Práctico y Proyecto Integrador
-├── 📁 docs/                            # 📚 Guías de onboarding
-└── 📄 README.md                        # Portal principal del repositorio
+# 4. Ejecutar la suite completa de pruebas
+pytest -v
 ```
 
 ---
 
-## ❓ ¿Dudas o preguntas?
-Si tienes algún inconveniente configurando tu entorno o con los ejercicios, revisa la sección de [Preguntas Frecuentes (FAQ)](docs/faq.md) o escríbenos directamente en el grupo del curso. ¡Nos vemos en la primera sesión! 💻🔥
+## 🧪 Autoevaluación y Tests de Código
+
+Cada clase y módulo incluye ejercicios prácticos con tests unitarios automatizados (`pytest`). Puedes validar tus soluciones en cualquier momento ejecutando:
+
+```bash
+# Ejecutar todos los tests del repositorio
+pytest
+
+# Ejecutar los tests de un curso o clase específica
+pytest 01-fundamentos-python/clase-01-panorama-general/ejercicios/
+pytest 02-algoritmos-estructuras/
+pytest 03-agentes-ia/
+```
+
+---
+
+## 🗺️ Estructura del Repositorio
+
+```text
+wisrovi-python/
+├── 📁 .devcontainer/                   # 💻 Configuración de Codespaces y VS Code Containers
+├── 📁 .github/workflows/               # ⚙️ CI/CD (Pytest, Ruff, Deploy MkDocs)
+├── 📁 01-fundamentos-python/           # 🎯 Curso 1: Fundamentos (8 Clases con PDFs, ejemplos y tests)
+├── 📁 02-algoritmos-estructuras/       # 🚀 Curso 2: Algoritmos y Data Structures (3 Módulos)
+├── 📁 03-agentes-ia/                   # 🤖 Curso 3: Desarrollo de Agentes de IA (3 Módulos)
+├── 📁 04-proyecto-final/               # 🛠️ Curso 4: Plantillas Web, Chatbot y BD SQL
+├── 📁 docs/                            # 🌐 Portal web con MkDocs Material y guías
+├── 📄 mkdocs.yml                       # 📑 Configuración del sitio web documental
+├── 📄 pyproject.toml                   # 📦 Configuración moderna de dependencias Python
+└── 📄 README.md                        # 📌 Portal principal
+```
+
+---
+
+## 📜 Licencia y Comunidad
+
+Este proyecto se distribuye bajo licencia **MIT**. Eres libre de usarlo, estudiarlo y adaptarlo para tu formación académica y profesional.
+
+Si este material te resulta útil para tu aprendizaje, ¡te agradecemos una ⭐️ en GitHub!
