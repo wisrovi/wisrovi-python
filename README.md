@@ -1,13 +1,19 @@
 # 🐍 Programa Integral de Formación en Python: De Cero a Agentes de IA
 
-[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+<div align="center">
+
+[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
 [![CI / Tests](https://github.com/wisrovi/wisrovi-python/actions/workflows/ci.yml/badge.svg)](https://github.com/wisrovi/wisrovi-python/actions/workflows/ci.yml)
-[![Documentación Web](https://img.shields.io/badge/Docs-academy__python.wisrovi.dev-indigo.svg)](https://academy_python.wisrovi.dev/)
-[![Nivel](https://img.shields.io/badge/Nivel-Principiante_a_Avanzado-brightgreen.svg)]()
-[![Licencia](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
+[![Web Documentation](https://img.shields.io/badge/Docs-academy__python.wisrovi.dev-6366f1.svg?logo=materialformkdocs&logoColor=white)](https://academy_python.wisrovi.dev/)
+[![Test Suite](https://img.shields.io/badge/Pytest-34%20Passing%20100%25-brightgreen.svg?logo=pytest&logoColor=white)](tests/)
+[![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 
-Bienvenido/a al repositorio oficial del **Programa de Formación en Python**. Este espacio está estructurado de forma profesional, modular y progresiva para guiarte desde tus primeros pasos en la programación hasta el diseño, desarrollo y despliegue de **Agentes de Inteligencia Artificial** y aplicaciones del mundo real.
+**Un ecosistema académico y profesional diseñado para transformar a estudiantes sin experiencia previa en ingenieros capaces de concebir, programar y desplegar aplicaciones reales y Agentes de Inteligencia Artificial.**
+
+[🌐 Explorar Portal Web Interactivo](https://academy_python.wisrovi.dev/) &bull; [🚀 Abrir en Codespaces con 1 Clic](https://codespaces.new/wisrovi/wisrovi-python) &bull; [📚 Ver Cursos](#-la-ruta-maestra-de-formación-4-cursos--32-semanas)
+
+</div>
 
 ---
 
@@ -16,115 +22,118 @@ Bienvenido/a al repositorio oficial del **Programa de Formación en Python**. Es
 ### **William Rodríguez (Wisrovi)**
 *AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre **wisrovi SUITE** en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+Ingeniero y arquitecto de software especializado en **Inteligencia Artificial Generativa**, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Diseñador del currículo integral y mantenedor del ecosistema de software libre **wisrovi SUITE** en PyPI con más de 26 bibliotecas enfocadas en orquestación de flujos de datos, bases de datos y algoritmos de alto rendimiento.
 
-* 🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-* 💼 **LinkedIn:** [linkedin.com/in/wisrovi-rodriguez](https://www.linkedin.com/in/wisrovi-rodriguez/)
-* 🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-* 🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-* 📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
+<div align="center">
 
----
+[![GitHub](https://img.shields.io/badge/GitHub-wisrovi-181717?logo=github&logoColor=white)](https://github.com/wisrovi)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Wisrovi%20Rodríguez-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wisrovi-rodriguez/)
+[![PyPI](https://img.shields.io/badge/PyPI-26%2B%20Packages-3775A9?logo=pypi&logoColor=white)](https://pypi.org/user/wisrovi/)
+[![DockerHub](https://img.shields.io/badge/DockerHub-wisrovi-2496ED?logo=docker&logoColor=white)](https://hub.docker.com/u/wisrovi)
+[![Website](https://img.shields.io/badge/Website-wisrovi.dev-000000?logo=google-chrome&logoColor=white)](https://wisrovi.dev)
 
-## 🚲 Filosofía Pedagógica: La Regla de la Bicicleta
-
-> *"Por más libros que leas o explicaciones que escuches sobre cómo guardar el equilibrio, si no te subes a la bicicleta y pedaleas por ti mismo, nunca vas a aprender a andar en bici."*
-
-Aprender a programar es una habilidad 100% práctica. Tu verdadero aprendizaje ocurrirá cuando abras Visual Studio Code, escribas el código con tus propias manos, ejecutes las suites de tests y resuelvas los ejercicios. ¡Súbete a la bici y pedalea! 🚴‍♂️
+</div>
 
 ---
 
-## 🌀 Metodología Didáctica: Aprendizaje en Espiral *(Spiral Learning)*
+## 🌀 Modelo Pedagógico: Aprendizaje en Espiral *(Spiral Learning)*
 
-El diseño curricular del programa está estructurado bajo el principio pedagógico del **Aprendizaje en Espiral**, garantizando que el estudiante nunca memorice conceptos aislados, sino que los asimile mediante ciclos iterativos de complejidad creciente:
-
-1. **🎯 1. Visión Global y Gratificación Inmediata (Semana 1):**  
-   Desde la primera clase, el alumno experimenta los **4 pilares fundamentales de Python** trabajando en armonía: salida estándar con `print()`, almacenamiento en memoria con `variables`, toma de decisiones con `if / else` y automatización con bucles `for`. Comprende *para qué sirve programar* desde el minuto uno.
-2. **🔍 2. Profundización y Rigor de Ingeniería (Semanas 2 a 7):**  
-   Cada pilar se retoma y profundiza con precisión: modelos de memoria (heap y referencias), tipado fuerte, mutabilidad vs inmutabilidad, operadores lógicos avanzados, colecciones lineales y asociativas (`list`, `tuple`, `dict`, `set`), alcance léxico (LEGB) y prevención de errores frecuentes (*gotchas*).
-3. **🛠️ 3. Síntesis y Creación de Producto (Semana 8):**  
-   El estudiante consolida todo lo aprendido construyendo un **Proyecto Integrador CLI** completo con interfaz de consola, validación robusta de datos con `try/except` y arquitectura modular.
-
-```mermaid
-flowchart LR
-    Fase1["🎯 1. Visión Global (Semana 1)<br/>print, variables, if, for"] --> Fase2["🔍 2. Profundización (Semanas 2-7)<br/>Tipos, Colecciones, Funciones, Gotchas"]
-    Fase2 --> Fase3["🛠️ 3. Síntesis (Semana 8)<br/>Proyecto CLI + Manejo de Errores"]
-
-    style Fase1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style Fase2 fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style Fase3 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-```
-
----
-
-## 🚀 La Ruta de Aprendizaje (4 Niveles &bull; 32 Semanas)
+El diseño curricular de este programa no enseña conceptos de forma aislada ni se apoya en la memorización de sintaxis abstracta. En su lugar, implementa el **Aprendizaje en Espiral**, un modelo pedagógico donde el conocimiento se adquiere a través de iteraciones progresivas de complejidad y profundidad técnica:
 
 ```mermaid
 flowchart TD
-    C1["🎯 Curso 1: Fundamentos de Python<br/>(8 Clases - 100% Principiantes)"] --> C2["🚀 Curso 2: Algoritmos Avanzados<br/>y Estructuras de Datos (8 Clases)"]
-    C2 --> C3["🤖 Curso 3: Creación y Desarrollo<br/>de Agentes de IA (8 Clases)"]
-    C3 --> C4["🛠️ Curso 4: Taller Práctico & Proyecto<br/>Final Integrador (8 Clases)"]
+    subgraph Espiral["🌀 Ciclo de Aprendizaje en Espiral (32 Semanas)"]
+        F1["🎯 Fase 1: Visión Holística & Gancho Temprano (Semana 1)<br/>El alumno experimenta los 4 pilares en conjunto (print, variables, if, for)<br/>Comprende de inmediato para qué sirve el software."]
+        F2["🔍 Fase 2: Profundización & Rigor de Ingeniería (Semanas 2 a 24)<br/>Estructuras en memoria, tipos inmutables, Big-O, grafos, LLMs, Tool Calling y RAG.<br/>Análisis de complejidad, gotchas y prevención de errores."]
+        F3["🛠️ Fase 3: Síntesis & Creación de Producto (Semanas 25 a 32)<br/>Integración Full-Stack: FastAPI + Streamlit + SQLite ACID + Agente IA.<br/>Testing automatizado, Dockerización y despliegue CI/CD."]
+        F1 ==> F2
+        F2 ==> F3
+    end
 
-    style C1 fill:#2b5c8f,color:#fff,stroke:#fff,stroke-width:2px
-    style C2 fill:#3b7a57,color:#fff,stroke:#fff,stroke-width:2px
-    style C3 fill:#6b4c9a,color:#fff,stroke:#fff,stroke-width:2px
-    style C4 fill:#c05621,color:#fff,stroke:#fff,stroke-width:2px
+    style Espiral fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style F1 fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style F2 fill:#312e81,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style F3 fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
+```
+
+### 🚲 La Regla de la Bicicleta *(Pedaleo Activo en Código)*
+> *"Por más conferencias que escuches o libros que leas sobre cómo guardar el equilibrio, si no te subes a la bicicleta y pedaleas por ti mismo, jamás aprenderás a montar."*
+
+Cada clase está concebida para la acción inmediata:
+1. **Modelos Mentales:** Metáforas físicas del mundo real (El Megáfono, Las Cajas, El Semáforo, La Licuadora).
+2. **Ejemplos Vivos:** Al menos 4 carpetas con scripts ejecutables y comentados por clase.
+3. **Autoevaluación:** Pruebas unitarias automatizadas (`pytest`) que validan la solución del alumno en milisegundos.
+
+---
+
+## 🚀 La Ruta Maestra de Formación (4 Cursos &bull; 32 Semanas)
+
+```mermaid
+flowchart LR
+    C1["🎯 Curso 1: Fundamentos<br/>(8 Semanas &bull; 0 a 100)"] --> C2["⚡ Curso 2: Algoritmos<br/>(8 Semanas &bull; Big-O & Data)"]
+    C2 --> C3["🤖 Curso 3: Agentes IA<br/>(8 Semanas &bull; LLM & RAG)"]
+    C3 --> C4["🛠️ Curso 4: Proyecto Final<br/>(8 Semanas &bull; Full-Stack & Deploy)"]
+
+    style C1 fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style C2 fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style C3 fill:#581c87,color:#ffffff,stroke:#c084fc,stroke-width:2px
+    style C4 fill:#9a3412,color:#ffffff,stroke:#fb923c,stroke-width:2px
 ```
 
 ---
 
-## 📚 Mapa Detallado de Cursos y Manuales
+## 📚 Mapa Detallado del Programa Académico
 
-| Curso | Nivel | Manual Digital | PDF Oficial | Descripción |
-| :---: | :--- | :---: | :---: | :--- |
-| **1** | **Fundamentos Básicos** (8 Clases) | [📖 Ver Libro](01-fundamentos-python/book.md) | [📄 PDF Completo](01-fundamentos-python/curso-01-fundamentos-python.pdf) | Variables, condicionales `if`, bucles `for`/`while`, colecciones, funciones y proyecto CLI. |
-| **2** | **Algoritmos y Estructuras** (8 Clases) | [📖 Ver Libro](02-algoritmos-estructuras/book.md) | [📄 PDF Completo](02-algoritmos-estructuras/curso-02-algoritmos-estructuras.pdf) | Pilas, colas `deque`, sets, Big-O, búsqueda binaria, QuickSort y recursión con memoización. |
-| **3** | **Agentes de IA** (8 Clases) | [📖 Ver Libro](03-agentes-ia/book.md) | [📄 PDF Completo](03-agentes-ia/curso-03-agentes-ia.pdf) | LLMs, salidas estructuradas Pydantic, Tool Calling, memoria vectorial, RAG y ciclo ReAct. |
-| **4** | **Proyecto Final Integrador** (8 Clases) | [📖 Ver Libro](04-proyecto-final/book.md) | [📄 PDF Completo](04-proyecto-final/curso-04-proyecto-final.pdf) | Aplicación Web Full-Stack (FastAPI + Streamlit), Chatbot con memoria y BD relacional SQLite. |
+| Curso | Enfoque Principal | Manual PDF Oficial | Libro Digital | Cuadernos | Hito de Graduación |
+| :---: | :--- | :---: | :---: | :---: | :--- |
+| **1** | [**Fundamentos Básicos de Python**](01-fundamentos-python/)<br/>8 Clases &bull; 33 Ejemplos | [📄 PDF Completo](01-fundamentos-python/curso-01-fundamentos-python.pdf) | [📖 book.md](01-fundamentos-python/book.md) | 8 Notebooks (Colab) | Construcción de una aplicación interactiva CLI con validación robusta y control de excepciones. |
+| **2** | [**Algoritmos y Estructuras de Datos**](02-algoritmos-estructuras/)<br/>8 Clases &bull; 32 Ejemplos | [📄 PDF Completo](02-algoritmos-estructuras/curso-02-algoritmos-estructuras.pdf) | [📖 book.md](02-algoritmos-estructuras/book.md) | 8 Notebooks (Colab) | Dominio de complejidad Big-O, pilas, colas, BST, grafos y recursión dinámica con `@lru_cache`. |
+| **3** | [**Desarrollo de Agentes de IA**](03-agentes-ia/)<br/>8 Clases &bull; 32 Ejemplos | [📄 PDF Completo](03-agentes-ia/curso-03-agentes-ia.pdf) | [📖 book.md](03-agentes-ia/book.md) | 8 Notebooks (Colab) | Creación de pipelines RAG, Tool Calling con Pydantic, embeddings vectoriales y ciclo ReAct. |
+| **4** | [**Proyecto Integrador & Taller Full-Stack**](04-proyecto-final/)<br/>8 Clases &bull; 32 Ejemplos | [📄 PDF Completo](04-proyecto-final/curso-04-proyecto-final.pdf) | [📖 book.md](04-proyecto-final/book.md) | 8 Notebooks (Colab) | Aplicación Web en producción (FastAPI + Streamlit + SQLite ACID + Docker Compose + CI/CD). |
 
 ---
 
 ## ⚡ Inicio Rápido (Quickstart)
 
-### Opción A: En la Nube con 1 Clic (Recomendado)
-Haz clic en el botón de abajo para abrir todo el repositorio listo para programar en tu navegador con GitHub Codespaces:
+### Opción A: Programar en la Nube con 1 Clic (Sin Instalaciones)
+Haz clic en el siguiente botón para desplegar tu entorno completo de Visual Studio Code en la nube con Python, extensiones y dependencias preconfiguradas:
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
 
-### Opción B: En tu Máquina Local
+### Opción B: Configuración en tu Máquina Local
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/wisrovi/wisrovi-python.git
 cd wisrovi-python
 
-# 2. Crear y activar entorno virtual
+# 2. Crear y activar el entorno virtual
 python3 -m venv venv
 source venv/bin/activate  # En Windows: venv\Scripts\activate
 
-# 3. Instalar dependencias con soporte para tests e IA
+# 3. Instalar paquetes y herramientas en modo editable
 pip install -e ".[all]"
 
-# 4. Ejecutar la suite completa de pruebas
-pytest -v
+# 4. Validar el entorno ejecutando la suite completa de pruebas
+pytest
 ```
 
 ---
 
-## 🧪 Autoevaluación y Tests de Código
+## 🧪 Verificación Automatizada de Calidad (Pytest)
 
-Toda la infraestructura de pruebas automatizadas está centralizada en la carpeta [`/tests`](tests/) para mantener las carpetas de clase de los alumnos limpias y enfocadas exclusivamente en el código pedagógico:
+Toda la infraestructura de pruebas está centralizada en la carpeta [`/tests`](tests/) para mantener el código de los alumnos limpio y libre de archivos secundarios:
 
 ```bash
-# Ejecutar todos los tests del repositorio (34 tests en < 0.5s)
+# Ejecutar todas las pruebas del repositorio (34 tests en < 0.3s)
 pytest
 
-# Ejecutar los tests de un curso específico
+# Ejecutar pruebas por módulo específico
 pytest tests/curso_01/
 pytest tests/curso_02/
 pytest tests/curso_03/
 pytest tests/curso_04/
 
-# O usar la herramienta CLI oficial de wisrovi
+# O utilizar la herramienta CLI oficial
 wisrovi test 1
 ```
 
@@ -134,24 +143,25 @@ wisrovi test 1
 
 ```text
 wisrovi-python/
-├── 📁 .devcontainer/                   # 💻 Configuración de Codespaces y VS Code Containers
-├── 📁 .github/workflows/               # ⚙️ CI/CD (Pytest, Ruff, Deploy MkDocs)
-├── 📁 01-fundamentos-python/           # 🎯 Curso 1: Fundamentos (8 Clases con PDFs, libros, notebooks y ejemplos)
-├── 📁 02-algoritmos-estructuras/       # 🚀 Curso 2: Algoritmos y Data Structures (8 Clases)
-├── 📁 03-agentes-ia/                   # 🤖 Curso 3: Desarrollo de Agentes de IA (8 Clases)
-├── 📁 04-proyecto-final/               # 🛠️ Curso 4: Taller Práctico & Proyecto Integrador (8 Clases)
-├── 📁 docs/                            # 🌐 Portal web con MkDocs Material (academy_python.wisrovi.dev)
-├── 📁 tests/                           # 🧪 Suite centralizada de pruebas unitarias (Pytest)
-├── 📁 src/                             # 📦 Herramienta CLI wisrovi de línea de comandos
-├── 📄 mkdocs.yml                       # 📑 Configuración del sitio web documental
-├── 📄 pyproject.toml                   # 📦 Configuración moderna de dependencias Python
-└── 📄 README.md                        # 📌 Portal principal
+├── 📁 .devcontainer/                   # 💻 Entorno reproducible para Codespaces y contenedores
+├── 📁 .github/                         # ⚙️ Workflows CI/CD, issue templates y automatizaciones
+├── 📁 01-fundamentos-python/           # 🎯 Curso 1: Fundamentos (8 Clases con PDF, libro, notebook y ejemplos)
+├── 📁 02-algoritmos-estructuras/       # ⚡ Curso 2: Algoritmos & Estructuras (8 Clases)
+├── 📁 03-agentes-ia/                   # 🤖 Curso 3: Agentes de Inteligencia Artificial (8 Clases)
+├── 📁 04-proyecto-final/               # 🛠️ Curso 4: Proyecto Integrador Full-Stack (8 Clases)
+├── 📁 docs/                            # 🌐 Portal web oficial (academy_python.wisrovi.dev)
+├── 📁 scripts/                         # 🔧 Herramientas internas de compilación y mantenimiento
+├── 📁 src/                             # 📦 Código fuente de la CLI oficial wisrovi
+├── 📁 tests/                           # 🧪 Suites de pruebas unitarias centralizadas
+├── 📄 mkdocs.yml                       # 📑 Configuración del portal web documental
+├── 📄 pyproject.toml                   # 📦 Especificación estándar de dependencias Python
+└── 📄 README.md                        # 📌 Portal principal de navegación
 ```
 
 ---
 
 ## 📜 Licencia y Comunidad
 
-Este proyecto se distribuye bajo licencia **MIT**. Eres libre de usarlo, estudiarlo y adaptarlo para tu formación académica y profesional.
+Este proyecto se publica bajo los términos de la **Licencia MIT**. Puedes usarlo, estudiarlo, compartirlo y adaptarlo con total libertad tanto para fines académicos como comerciales.
 
-Si este material te resulta útil para tu aprendizaje, ¡te agradecemos una ⭐️ en GitHub!
+Si este programa de formación aporta valor a tu carrera profesional, **te invitamos a dejar una ⭐️ en GitHub** para apoyar el desarrollo de software libre en español.

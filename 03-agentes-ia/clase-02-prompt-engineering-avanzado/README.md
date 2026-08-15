@@ -1,30 +1,63 @@
 # 📘 Clase 02: Prompt Engineering Avanzado y Few-Shot Learning
 
-> **Curso:** Curso 3: Creación y Desarrollo de Agentes de IA (CLASE 02)  
-> **Nivel:** Nivel 3 - Avanzado &bull; **Metáfora:** *«Prompts como Especificaciones Precisas para un Consultor Experto»*  
+<div align="center">
+
+**Curso 3: Creación y Desarrollo de Agentes de IA** &bull; **Semana CLASE 02**  
+*Nivel:* `Nivel 3 - Avanzado` &bull; *Metáfora Central:* **«Prompts como Especificaciones Precisas para un Consultor Experto»**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/03-agentes-ia/clase-02-prompt-engineering-avanzado/notebook/clase-02-prompt-engineering-avanzado.ipynb)
+[![PDF Oficial](https://img.shields.io/badge/Manual-PDF%209%20Páginas-red.svg?logo=adobeacrobatreader&logoColor=white)](clase-02-prompt-engineering-avanzado.pdf)
+[![Libro Digital](https://img.shields.io/badge/Libro-book.md-blue.svg?logo=markdown&logoColor=white)](book.md)
+
+</div>
 
 ---
 
-## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
+## 🎯 Objetivos de Aprendizaje de la Sesión
+
+*   **Competencia Conceptual:** Comprender el modelo mental de *«Prompts como Especificaciones Precisas para un Consultor Experto»* (El System Prompt es como el contrato de trabajo de un empleado: define su rol, límites, tono y reglas inquebrantables.).
+*   **Competencia Práctica:** Escribir, ejecutar y depurar scripts en Python aplicando buenas prácticas (PEP 8) y tipado.
+*   **Competencia de Ingeniería:** Resolver el reto práctico de la sesión y verificar su correcto funcionamiento con la suite de pruebas automatizadas.
+
+---
+
+## 🗺️ Mapa de Arquitectura y Flujo de Ejecución
 
 ```mermaid
 flowchart LR
-    A["📥 1. Entrada de Datos<br/>(Prompts como Especificaciones ...)"] --> B["⚙️ 2. Motor de Ejecución<br/>Prompt Engineering Avanzado y Few-Shot Learning"]
-    B --> C["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
+    IN["📥 1. Datos de Entrada<br/>(Prompts como Especificaciones ...)"] --> ENG["⚙️ 2. Motor de Procesamiento<br/>Prompt Engineering Avanzado y Few-Shot Learning"]
+    ENG --> OUT["🎯 3. Salida Verificada<br/>Estado en Memoria / Retorno"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 📑 Recursos Disponibles en esta Clase
+## 📂 Organización de Materiales en esta Clase
 
-*   📄 [`clase-02-prompt-engineering-avanzado.pdf`](clase-02-prompt-engineering-avanzado.pdf): Manual técnico oficial en PDF (9 páginas).
-*   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
-*   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
-*   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.
+```text
+clase-02-prompt-engineering-avanzado/
+├── 📄 clase-02-prompt-engineering-avanzado.pdf       # Manual técnico oficial de estudio (9 páginas)
+├── 📖 book.md                     # Libro digital interactivo con diagramas Mermaid
+├── 📝 README.md                   # Esta guía general de la clase
+├── 📁 notebook/                   # Cuaderno Jupyter interactivo
+│   ├── 📓 clase-02-prompt-engineering-avanzado.ipynb
+│   └── 📝 README.md               # Guía con badge a Google Colab
+├── 📁 ejemplos/                   # Carpetas de código estructurado paso a paso
+│   └── 📝 README.md               # Catálogo de ejemplos con comandos de ejecución
+└── 📁 ejercicios/                 # Reto práctico para el estudiante
+    ├── 🐍 reto.py                 # Enunciado y plantilla del ejercicio
+    └── 📝 README.md               # Instrucciones de resolución y comandos pytest
+```
+
+---
+
+## 🏋️ Desafío Práctico de la Sesión
+> **Enunciado:** Diseña un prompt que evalúe y extraiga la información de un CV en formato JSON sin alucinar datos ausentes.
+
+Abre el archivo [`ejercicios/reto.py`](ejercicios/reto.py), completa tu implementación y valida tu código ejecutando:
+```bash
+pytest tests/curso_03/test_clase_02_prompt_engineering_avanzado.py
+```

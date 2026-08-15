@@ -1,28 +1,44 @@
 # 📖 01 Basemodel Pydantic
 
-> **Clase:** Clase 03: Salidas Estructuradas y Validación Tipada con Pydantic V2  
-> **Script:** [`main.py`](main.py)  
+<div align="center">
 
+**Clase:** Clase 03: Salidas Estructuradas y Validación Tipada con Pydantic V2  
+*Script de Ejecución:* [`main.py`](main.py)
+
+</div>
+
+---
+
+## 🎯 Propósito del Ejemplo
 Modelo BaseModel de Pydantic.
 
 ---
 
-## 🗺️ Flujo de Ejecución del Ejemplo
+## 🗺️ Diagrama de Flujo del Script
 
 ```mermaid
 flowchart LR
-    DICT["{'id': 1, 'name': 'Ana'}"] --> MODEL["User(BaseModel)"]
-    MODEL --> VAL["Validación estricta de tipos"]
-    VAL --> DUMP["user.model_dump() ➔ Dict sanitizado"]
+    A["📥 Entrada de Parámetros<br/>(01 Basemodel Pydantic)"] --> B["⚙️ Transformación Lógica<br/>Ejecución en Python"]
+    B --> C["🎯 Salida por Consola<br/>print() / Retorno Seguro"]
 
-    style DICT fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style MODEL fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
-    style DUMP fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 💻 Ejecución desde Terminal
+## 🔍 Aspectos Clave a Observar en el Código
+
+1. **Claridad Sintáctica:** Estructura modular, tipado explícito y apego a la guía de estilo oficial PEP 8.
+2. **Transformación de Datos:** Cómo se declaran las entradas, se procesan en memoria y se devuelven al usuario.
+3. **Robustez:** Prevención de comportamientos inesperados mediante nombres expresivos y control lógico.
+
+---
+
+## 💻 Ejecución desde la Terminal
+
+Desde la raíz del proyecto, ejecuta:
 
 ```bash
 python 03-agentes-ia/clase-03-salidas-estructuradas-pydantic/ejemplos/ejemplo_01_basemodel_pydantic/main.py

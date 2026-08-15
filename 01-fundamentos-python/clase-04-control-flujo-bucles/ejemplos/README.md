@@ -1,25 +1,40 @@
-# 💻 Ejemplos de Código: Clase 04: Control de Flujo: Bucles (for / while)
+# 💻 Catálogo de Ejemplos Prácticos: Clase 04: Control de Flujo: Bucles (for / while)
 
-> **Ubicación:** `01-fundamentos-python/clase-04-control-flujo-bucles/ejemplos`  
-
-Esta carpeta contiene los scripts prácticos diseñados para demostrar el funcionamiento en vivo de cada concepto.
+> **Ubicación:** `curso/clase-04-control-flujo-bucles/ejemplos`  
+> **Filosofía:** *Aprender programando mediante casos de uso aislados, legibles y comentados.*
 
 ---
 
-## 🗺️ Índice de Ejemplos
+## 🗺️ Flujo de Estudio Recomendado
 
-| Subcarpeta | Descripción | Archivo |
+```mermaid
+flowchart LR
+    A["📂 1. Selecciona un Ejemplo<br/>(Del caso más simple al más avanzado)"] --> B["📖 2. Revisa su README.md<br/>Comprende el objetivo y el diagrama"]
+    B --> C["🐍 3. Ejecuta main.py<br/>Observa el comportamiento en terminal"]
+    C --> D["🔧 4. Modifica y Experimenta<br/>Cambia variables y analiza los efectos"]
+
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style D fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+```
+
+---
+
+## 📑 Ejemplos Disponibles en esta Clase
+
+| Directorio | Caso de Uso Demostrado | Script Principal |
 | :--- | :--- | :---: |
-| [`ejemplo_01_for_range/`](ejemplo_01_for_range/) | Demostración comentada | [`main.py`](ejemplo_01_for_range/main.py) |
-| [`ejemplo_02_for_secuencias/`](ejemplo_02_for_secuencias/) | Demostración comentada | [`main.py`](ejemplo_02_for_secuencias/main.py) |
-| [`ejemplo_03_while_acumulador/`](ejemplo_03_while_acumulador/) | Demostración comentada | [`main.py`](ejemplo_03_while_acumulador/main.py) |
-| [`ejemplo_04_break_continue/`](ejemplo_04_break_continue/) | Demostración comentada | [`main.py`](ejemplo_04_break_continue/main.py) |
+| [`ejemplo_01_for_range/`](ejemplo_01_for_range/) | 01 For Range | [`main.py`](ejemplo_01_for_range/main.py) |
+| [`ejemplo_02_for_secuencias/`](ejemplo_02_for_secuencias/) | 02 For Secuencias | [`main.py`](ejemplo_02_for_secuencias/main.py) |
+| [`ejemplo_03_while_acumulador/`](ejemplo_03_while_acumulador/) | 03 While Acumulador | [`main.py`](ejemplo_03_while_acumulador/main.py) |
+| [`ejemplo_04_break_continue/`](ejemplo_04_break_continue/) | 04 Break Continue | [`main.py`](ejemplo_04_break_continue/main.py) |
 
 
 ---
 
-## 🚀 Cómo Ejecutar los Ejemplos
-Desde la terminal en la raíz del repositorio:
+## 🚀 Cómo Ejecutar Cualquier Ejemplo
+Abre tu terminal en la raíz del repositorio y ejecuta:
 ```bash
-python 01-fundamentos-python/clase-04-control-flujo-bucles/ejemplos/<nombre_carpeta>/main.py
+python 01-fundamentos-python/clase-04-control-flujo-bucles/ejemplos/<nombre_del_ejemplo>/main.py
 ```

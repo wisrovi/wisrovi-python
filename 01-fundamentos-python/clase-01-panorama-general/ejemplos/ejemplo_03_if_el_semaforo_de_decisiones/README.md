@@ -1,13 +1,20 @@
 # 📖 03 If El Semaforo De Decisiones
 
-> **Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
-> **Archivo de Código:** [`main.py`](main.py)  
+<div align="center">
 
-Demostración práctica y ejecutable de este concepto fundamental de Python.
+**Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
+*Script de Ejecución:* [`main.py`](main.py)
+
+</div>
 
 ---
 
-## 🗺️ Flujo de Ejecución del Ejemplo
+## 🎯 Propósito del Ejemplo
+Ejemplo 03: El Semáforo de Decisiones (if / else).
+
+---
+
+## 🗺️ Diagrama de Flujo del Script
 
 ```mermaid
 flowchart TD
@@ -23,7 +30,18 @@ flowchart TD
 
 ---
 
-## 💻 Ejecución desde Terminal
+## 🔍 Aspectos Clave a Observar en el Código
+
+1. **Claridad Sintáctica:** Estructura modular, tipado explícito y apego a la guía de estilo oficial PEP 8.
+2. **Transformación de Datos:** Cómo se declaran las entradas, se procesan en memoria y se devuelven al usuario.
+3. **Robustez:** Prevención de comportamientos inesperados mediante nombres expresivos y control lógico.
+
+---
+
+## 💻 Ejecución desde la Terminal
+
+Desde la raíz del proyecto, ejecuta:
+
 ```bash
 python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_03_if_el_semaforo_de_decisiones/main.py
 ```

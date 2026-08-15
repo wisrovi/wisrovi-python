@@ -1,30 +1,63 @@
 # 📘 Clase 01: Arquitectura de Software y Planificación del Proyecto
 
-> **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 01)  
-> **Nivel:** Nivel 4 - Integrador &bull; **Metáfora:** *«Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»*  
+<div align="center">
+
+**Curso 4: Taller Práctico & Proyecto Final Integrador** &bull; **Semana CLASE 01**  
+*Nivel:* `Nivel 4 - Integrador` &bull; *Metáfora Central:* **«Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-01-arquitectura-y-planificacion/notebook/clase-01-arquitectura-y-planificacion.ipynb)
+[![PDF Oficial](https://img.shields.io/badge/Manual-PDF%209%20Páginas-red.svg?logo=adobeacrobatreader&logoColor=white)](clase-01-arquitectura-y-planificacion.pdf)
+[![Libro Digital](https://img.shields.io/badge/Libro-book.md-blue.svg?logo=markdown&logoColor=white)](book.md)
+
+</div>
 
 ---
 
-## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
+## 🎯 Objetivos de Aprendizaje de la Sesión
+
+*   **Competencia Conceptual:** Comprender el modelo mental de *«Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»* (Diseñar el software es como dibujar los planos estructurales de una casa: define dónde irán las tuberías (APIs) y los cimientos (BD).).
+*   **Competencia Práctica:** Escribir, ejecutar y depurar scripts en Python aplicando buenas prácticas (PEP 8) y tipado.
+*   **Competencia de Ingeniería:** Resolver el reto práctico de la sesión y verificar su correcto funcionamiento con la suite de pruebas automatizadas.
+
+---
+
+## 🗺️ Mapa de Arquitectura y Flujo de Ejecución
 
 ```mermaid
 flowchart LR
-    A["📥 1. Entrada de Datos<br/>(Diseñar los Planos de un Edifi...)"] --> B["⚙️ 2. Motor de Ejecución<br/>Arquitectura de Software y Planificación del Proyecto"]
-    B --> C["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
+    IN["📥 1. Datos de Entrada<br/>(Diseñar los Planos de un Edifi...)"] --> ENG["⚙️ 2. Motor de Procesamiento<br/>Arquitectura de Software y Planificación del Proyecto"]
+    ENG --> OUT["🎯 3. Salida Verificada<br/>Estado en Memoria / Retorno"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 📑 Recursos Disponibles en esta Clase
+## 📂 Organización de Materiales en esta Clase
 
-*   📄 [`clase-01-arquitectura-y-planificacion.pdf`](clase-01-arquitectura-y-planificacion.pdf): Manual técnico oficial en PDF (9 páginas).
-*   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
-*   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
-*   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.
+```text
+clase-01-arquitectura-y-planificacion/
+├── 📄 clase-01-arquitectura-y-planificacion.pdf       # Manual técnico oficial de estudio (9 páginas)
+├── 📖 book.md                     # Libro digital interactivo con diagramas Mermaid
+├── 📝 README.md                   # Esta guía general de la clase
+├── 📁 notebook/                   # Cuaderno Jupyter interactivo
+│   ├── 📓 clase-01-arquitectura-y-planificacion.ipynb
+│   └── 📝 README.md               # Guía con badge a Google Colab
+├── 📁 ejemplos/                   # Carpetas de código estructurado paso a paso
+│   └── 📝 README.md               # Catálogo de ejemplos con comandos de ejecución
+└── 📁 ejercicios/                 # Reto práctico para el estudiante
+    ├── 🐍 reto.py                 # Enunciado y plantilla del ejercicio
+    └── 📝 README.md               # Instrucciones de resolución y comandos pytest
+```
+
+---
+
+## 🏋️ Desafío Práctico de la Sesión
+> **Enunciado:** Dibuja el diagrama de arquitectura y redacta las 5 rutas principales de tu API.
+
+Abre el archivo [`ejercicios/reto.py`](ejercicios/reto.py), completa tu implementación y valida tu código ejecutando:
+```bash
+pytest tests/curso_04/test_clase_01_arquitectura_y_planificacion.py
+```
