@@ -1,0 +1,16 @@
+# 📖 Estructura de Nodo en Python
+
+> **Clase:** Clase 06: Árboles Binarios de Búsqueda (BST) y Recorridos  
+> **Curso:** Curso 2: Algoritmos Avanzados y Estructuras de Datos  
+
+## 🎯 Propósito del Ejemplo
+Demostración técnica de Estructura de Nodo en Python.
+
+## 💻 Cómo Ejecutar este Ejemplo
+Desde la terminal de VS Code en la raíz del repositorio, ejecuta:
+```bash
+python 02-algoritmos-estructuras/clase-06-arboles-binarios-busqueda/ejemplos/ejemplo_01_clase_nodo/main.py
+```
+
+## 🔍 Código Fuente
+Revisa el archivo [`main.py`](main.py) en esta carpeta para ver la implementación comentada paso a paso.
