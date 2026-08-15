@@ -36,13 +36,19 @@ def cmd_status():
 def cmd_test(args):
     target = args.target
     print(BANNER)
+    test_folders = {
+        "1": "tests/curso_01",
+        "2": "tests/curso_02",
+        "3": "tests/curso_03",
+        "4": "tests/curso_04"
+    }
     if not target or target == "all":
-        print("🧪 Ejecutando TODAS las suites de pruebas...")
-        cmd = ["pytest", "-v"]
-    elif target in COURSES:
-        name, path = COURSES[target]
-        print(f"🧪 Ejecutando pruebas para {name}...")
-        cmd = ["pytest", "-v", path]
+        print("🧪 Ejecutando TODAS las suites de pruebas en /tests...")
+        cmd = ["pytest", "-v", "tests/"]
+    elif target in test_folders:
+        name, _ = COURSES[target]
+        print(f"🧪 Ejecutando pruebas para {name} ({test_folders[target]}/)...")
+        cmd = ["pytest", "-v", test_folders[target]]
     else:
         print(f"🧪 Ejecutando pruebas en: {target}...")
         cmd = ["pytest", "-v", target]

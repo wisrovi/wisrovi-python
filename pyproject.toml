@@ -74,6 +74,6 @@ select = ["E", "F", "I", "W"]
 ignore = ["E501"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "01-fundamentos-python", "02-algoritmos-estructuras", "03-agentes-ia", "04-proyecto-final"]
+testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
