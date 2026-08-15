@@ -10,10 +10,13 @@ permissions:
 
 jobs:
   deploy:
+    name: Build & Deploy MkDocs to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,6 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[docs]"
 
-      - name: Deploy to GitHub Pages
+      - name: Configure Git Bot Credentials
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy to GitHub Pages (gh-pages branch)
         run: |
           mkdocs gh-deploy --force

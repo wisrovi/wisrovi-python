@@ -1,0 +1,35 @@
+name: Package / Build & Distribution Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Wheel & Validate Package Metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Build Tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: Build Source Distribution & Wheel
+        run: |
+          python -m build
+
+      - name: Check Package Artifacts with Twine
+        run: |
+          twine check dist/*
