@@ -34,13 +34,36 @@ Aprender a programar es una habilidad 100% práctica. Tu verdadero aprendizaje o
 
 ---
 
-## 🚀 La Ruta de Aprendizaje (4 Niveles)
+## 🌀 Metodología Didáctica: Aprendizaje en Espiral *(Spiral Learning)*
+
+El diseño curricular del programa está estructurado bajo el principio pedagógico del **Aprendizaje en Espiral**, garantizando que el estudiante nunca memorice conceptos aislados, sino que los asimile mediante ciclos iterativos de complejidad creciente:
+
+1. **🎯 1. Visión Global y Gratificación Inmediata (Semana 1):**  
+   Desde la primera clase, el alumno experimenta los **4 pilares fundamentales de Python** trabajando en armonía: salida estándar con `print()`, almacenamiento en memoria con `variables`, toma de decisiones con `if / else` y automatización con bucles `for`. Comprende *para qué sirve programar* desde el minuto uno.
+2. **🔍 2. Profundización y Rigor de Ingeniería (Semanas 2 a 7):**  
+   Cada pilar se retoma y profundiza con precisión: modelos de memoria (heap y referencias), tipado fuerte, mutabilidad vs inmutabilidad, operadores lógicos avanzados, colecciones lineales y asociativas (`list`, `tuple`, `dict`, `set`), alcance léxico (LEGB) y prevención de errores frecuentes (*gotchas*).
+3. **🛠️ 3. Síntesis y Creación de Producto (Semana 8):**  
+   El estudiante consolida todo lo aprendido construyendo un **Proyecto Integrador CLI** completo con interfaz de consola, validación robusta de datos con `try/except` y arquitectura modular.
+
+```mermaid
+flowchart LR
+    Fase1["🎯 1. Visión Global (Semana 1)<br/>print, variables, if, for"] --> Fase2["🔍 2. Profundización (Semanas 2-7)<br/>Tipos, Colecciones, Funciones, Gotchas"]
+    Fase2 --> Fase3["🛠️ 3. Síntesis (Semana 8)<br/>Proyecto CLI + Manejo de Errores"]
+
+    style Fase1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style Fase2 fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style Fase3 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
+
+---
+
+## 🚀 La Ruta de Aprendizaje (4 Niveles &bull; 32 Semanas)
 
 ```mermaid
 flowchart TD
-    C1["🎯 Curso 1: Fundamentos de Python\n(8 Clases - 100% Principiantes)"] --> C2["🚀 Curso 2: Algoritmos Avanzados\ny Estructuras de Datos"]
-    C2 --> C3["🤖 Curso 3: Creación y Desarrollo\nde Agentes de IA"]
-    C3 --> C4["🛠️ Curso 4: Taller Práctico &\nProyecto Final Personalizado"]
+    C1["🎯 Curso 1: Fundamentos de Python<br/>(8 Clases - 100% Principiantes)"] --> C2["🚀 Curso 2: Algoritmos Avanzados<br/>y Estructuras de Datos (8 Clases)"]
+    C2 --> C3["🤖 Curso 3: Creación y Desarrollo<br/>de Agentes de IA (8 Clases)"]
+    C3 --> C4["🛠️ Curso 4: Taller Práctico & Proyecto<br/>Final Integrador (8 Clases)"]
 
     style C1 fill:#2b5c8f,color:#fff,stroke:#fff,stroke-width:2px
     style C2 fill:#3b7a57,color:#fff,stroke:#fff,stroke-width:2px
@@ -55,9 +78,9 @@ flowchart TD
 | Curso | Nivel | Manual Digital | PDF Oficial | Descripción |
 | :---: | :--- | :---: | :---: | :--- |
 | **1** | **Fundamentos Básicos** (8 Clases) | [📖 Ver Libro](01-fundamentos-python/book.md) | [📄 PDF Completo](01-fundamentos-python/curso-01-fundamentos-python.pdf) | Variables, condicionales `if`, bucles `for`/`while`, colecciones, funciones y proyecto CLI. |
-| **2** | **Algoritmos y Estructuras** | [📖 Ver Libro](02-algoritmos-estructuras/book.md) | [📄 PDF Completo](02-algoritmos-estructuras/curso-02-algoritmos-estructuras.pdf) | Pilas, colas `deque`, sets, Big-O, búsqueda binaria, QuickSort y recursión con memoización. |
-| **3** | **Agentes de IA** | [📖 Ver Libro](03-agentes-ia/book.md) | [📄 PDF Completo](03-agentes-ia/curso-03-agentes-ia.pdf) | LLMs, salidas estructuradas Pydantic, Tool Calling, memoria vectorial, RAG y ciclo ReAct. |
-| **4** | **Proyecto Final Integrador** | [📖 Ver Libro](04-proyecto-final/book.md) | [📄 PDF Completo](04-proyecto-final/curso-04-proyecto-final.pdf) | Aplicación Web Full-Stack (FastAPI + Streamlit), Chatbot con memoria y BD relacional SQLite. |
+| **2** | **Algoritmos y Estructuras** (8 Clases) | [📖 Ver Libro](02-algoritmos-estructuras/book.md) | [📄 PDF Completo](02-algoritmos-estructuras/curso-02-algoritmos-estructuras.pdf) | Pilas, colas `deque`, sets, Big-O, búsqueda binaria, QuickSort y recursión con memoización. |
+| **3** | **Agentes de IA** (8 Clases) | [📖 Ver Libro](03-agentes-ia/book.md) | [📄 PDF Completo](03-agentes-ia/curso-03-agentes-ia.pdf) | LLMs, salidas estructuradas Pydantic, Tool Calling, memoria vectorial, RAG y ciclo ReAct. |
+| **4** | **Proyecto Final Integrador** (8 Clases) | [📖 Ver Libro](04-proyecto-final/book.md) | [📄 PDF Completo](04-proyecto-final/curso-04-proyecto-final.pdf) | Aplicación Web Full-Stack (FastAPI + Streamlit), Chatbot con memoria y BD relacional SQLite. |
 
 ---
 
@@ -89,16 +112,20 @@ pytest -v
 
 ## 🧪 Autoevaluación y Tests de Código
 
-Cada clase y módulo incluye ejercicios prácticos con tests unitarios automatizados (`pytest`). Puedes validar tus soluciones en cualquier momento ejecutando:
+Toda la infraestructura de pruebas automatizadas está centralizada en la carpeta [`/tests`](tests/) para mantener las carpetas de clase de los alumnos limpias y enfocadas exclusivamente en el código pedagógico:
 
 ```bash
-# Ejecutar todos los tests del repositorio
+# Ejecutar todos los tests del repositorio (34 tests en < 0.5s)
 pytest
 
-# Ejecutar los tests de un curso o clase específica
-pytest 01-fundamentos-python/clase-01-panorama-general/ejercicios/
-pytest 02-algoritmos-estructuras/
-pytest 03-agentes-ia/
+# Ejecutar los tests de un curso específico
+pytest tests/curso_01/
+pytest tests/curso_02/
+pytest tests/curso_03/
+pytest tests/curso_04/
+
+# O usar la herramienta CLI oficial de wisrovi
+wisrovi test 1
 ```
 
 ---
@@ -109,11 +136,13 @@ pytest 03-agentes-ia/
 wisrovi-python/
 ├── 📁 .devcontainer/                   # 💻 Configuración de Codespaces y VS Code Containers
 ├── 📁 .github/workflows/               # ⚙️ CI/CD (Pytest, Ruff, Deploy MkDocs)
-├── 📁 01-fundamentos-python/           # 🎯 Curso 1: Fundamentos (8 Clases con PDFs, ejemplos y tests)
-├── 📁 02-algoritmos-estructuras/       # 🚀 Curso 2: Algoritmos y Data Structures (3 Módulos)
-├── 📁 03-agentes-ia/                   # 🤖 Curso 3: Desarrollo de Agentes de IA (3 Módulos)
-├── 📁 04-proyecto-final/               # 🛠️ Curso 4: Plantillas Web, Chatbot y BD SQL
-├── 📁 docs/                            # 🌐 Portal web con MkDocs Material y guías
+├── 📁 01-fundamentos-python/           # 🎯 Curso 1: Fundamentos (8 Clases con PDFs, libros, notebooks y ejemplos)
+├── 📁 02-algoritmos-estructuras/       # 🚀 Curso 2: Algoritmos y Data Structures (8 Clases)
+├── 📁 03-agentes-ia/                   # 🤖 Curso 3: Desarrollo de Agentes de IA (8 Clases)
+├── 📁 04-proyecto-final/               # 🛠️ Curso 4: Taller Práctico & Proyecto Integrador (8 Clases)
+├── 📁 docs/                            # 🌐 Portal web con MkDocs Material (academy_python.wisrovi.dev)
+├── 📁 tests/                           # 🧪 Suite centralizada de pruebas unitarias (Pytest)
+├── 📁 src/                             # 📦 Herramienta CLI wisrovi de línea de comandos
 ├── 📄 mkdocs.yml                       # 📑 Configuración del sitio web documental
 ├── 📄 pyproject.toml                   # 📦 Configuración moderna de dependencias Python
 └── 📄 README.md                        # 📌 Portal principal
