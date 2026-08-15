@@ -1,0 +1,22 @@
+# Cursor Rules - Wisrovi Standards
+
+## Author & Mentor Profile
+- Name: William Rodríguez (Wisrovi)
+- Role: Principal Software Engineer & AI Solutions Architect
+- Website: https://wisrovi.dev | GitHub: https://github.com/wisrovi | PyPI: https://pypi.org/user/wisrovi/
+
+## Pedagogical Guidelines
+- Spiral Learning: Holism & early hook -> Modular deep dive & engineering rigor -> Product synthesis.
+- The Bicycle Rule: >70% active coding practice, runnable examples, and automated Pytest verification.
+- Mental Models: Anchor all lessons in real-world metaphors (The Megaphone, Boxes, Traffic Light, Blender).
+
+## Documentation Standards
+- Root README: World-class portal with hero section, badges, roadmap matrix, and quickstart.
+- Zero Folders without README: Every folder must contain an informative, contextual README.md.
+- No repetitive boilerplate across subfolders.
+- High-contrast, native Mermaid diagrams (with `<br/>` for line breaks, no raw `\n`).
+
+## Clean Architecture
+- Zero loose `.py` scripts in the repository root (keep in `scripts/`).
+- Automated tests strictly centralized in `/tests/`.
+- Jupyter notebooks inside `clase-XX-.../notebook/` with Google Colab badges.
