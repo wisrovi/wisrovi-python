@@ -1,36 +1,19 @@
-# 💻 Catálogo de Ejemplos Prácticos: Clase 01: Arquitectura de Software y Planificación del Proyecto
+# 💻 Ejemplos de Código: Clase 01: Arquitectura de Software y Planificación del Proyecto
 
 > **Ubicación:** `04-proyecto-final/clase-01-arquitectura-y-planificacion/ejemplos`  
-> **Metodología:** *La Regla de la Bicicleta (Pedaleo en VS Code)*  
 
-Esta carpeta contiene los ejemplos de código interactivos y comentados diseñados para ver la teoría en acción.
-
----
-
-## 🌀 Flujo de Experimentación y Pedaleo
-
-```mermaid
-flowchart LR
-    A["📂 1. Selecciona un Ejemplo<br/>(ejemplo_01 a 04)"] --> B["📖 2. Lee su README.md<br/>Objetivo y modelo mental"]
-    B --> C["🐍 3. Ejecuta main.py<br/>Observa la salida en terminal"]
-    C --> D["🔧 4. Modifica y Experimenta<br/>Cambia variables y analiza"]
-
-    style A fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style C fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style D fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-```
+Esta carpeta contiene los scripts prácticos diseñados para demostrar el funcionamiento en vivo de cada concepto.
 
 ---
 
-## 📑 Ejemplos Disponibles
+## 🗺️ Índice de Ejemplos
 
-| Subcarpeta | Tipo de Demostración | Archivo de Código |
+| Subcarpeta | Descripción | Archivo |
 | :--- | :--- | :---: |
-| [`ejemplo_01_configuracion_app/`](ejemplo_01_configuracion_app/) | Demostración paso a paso | [`main.py`](ejemplo_01_configuracion_app/main.py) |
-| [`ejemplo_02_modelos_dominio_dto/`](ejemplo_02_modelos_dominio_dto/) | Demostración paso a paso | [`main.py`](ejemplo_02_modelos_dominio_dto/main.py) |
-| [`ejemplo_03_patron_repositorio/`](ejemplo_03_patron_repositorio/) | Demostración paso a paso | [`main.py`](ejemplo_03_patron_repositorio/main.py) |
-| [`ejemplo_04_estructura_modular/`](ejemplo_04_estructura_modular/) | Demostración paso a paso | [`main.py`](ejemplo_04_estructura_modular/main.py) |
+| [`ejemplo_01_configuracion_app/`](ejemplo_01_configuracion_app/) | Demostración comentada | [`main.py`](ejemplo_01_configuracion_app/main.py) |
+| [`ejemplo_02_modelos_dominio_dto/`](ejemplo_02_modelos_dominio_dto/) | Demostración comentada | [`main.py`](ejemplo_02_modelos_dominio_dto/main.py) |
+| [`ejemplo_03_patron_repositorio/`](ejemplo_03_patron_repositorio/) | Demostración comentada | [`main.py`](ejemplo_03_patron_repositorio/main.py) |
+| [`ejemplo_04_estructura_modular/`](ejemplo_04_estructura_modular/) | Demostración comentada | [`main.py`](ejemplo_04_estructura_modular/main.py) |
 
 
 ---
@@ -38,5 +21,5 @@ flowchart LR
 ## 🚀 Cómo Ejecutar los Ejemplos
 Desde la terminal en la raíz del repositorio:
 ```bash
-python 04-proyecto-final/clase-01-arquitectura-y-planificacion/ejemplos/<carpeta_ejemplo>/main.py
+python 04-proyecto-final/clase-01-arquitectura-y-planificacion/ejemplos/<nombre_carpeta>/main.py
 ```

@@ -1,35 +1,32 @@
 # 📖 01 For Range
 
 > **Clase:** Clase 04: Control de Flujo: Bucles (for / while)  
-> **Ubicación:** `01-fundamentos-python/clase-04-control-flujo-bucles/ejemplos/ejemplo_01_for_range`  
+> **Script:** [`main.py`](main.py)  
+
+Ejemplo 01: Bucle for con range().
 
 ---
 
-## 🌀 Modelo de Aprendizaje Activo
-
-Este ejemplo demuestra de forma práctica, directa y aislada un principio fundamental de la clase:
+## 🗺️ Flujo de Ejecución del Ejemplo
 
 ```mermaid
 flowchart LR
-    IN["📥 1. Entrada / Parámetros<br/>Definición de datos"] --> PROC["⚙️ 2. Lógica & Operación<br/>Transformación paso a paso"]
-    PROC --> OUT["🎯 3. Salida por Pantalla<br/>print() / Retorno verificado"]
+    LST["['Manzanas', 'Leche', 'Pan', 'Café']"] --> FOR["for producto in lista:"]
+    FOR --> PKG["Empacar: 'Manzanas'"]
+    PKG --> NEXT["Siguiente elemento..."]
+    NEXT --> FOR
+    NEXT --> DONE["✅ Todos los elementos empacados"]
 
-    style IN fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style PROC fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style OUT fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style LST fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style FOR fill:#0369a1,color:#fff,stroke:#38bdf8,stroke-width:2px
+    style PKG fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style DONE fill:#334155,color:#fff,stroke:#94a3b8,stroke-width:2px
 ```
 
 ---
 
-## 💻 Cómo Ejecutar este Ejemplo
-
-Abre la terminal en la raíz del repositorio y ejecuta:
+## 💻 Ejecución desde Terminal
 
 ```bash
 python 01-fundamentos-python/clase-04-control-flujo-bucles/ejemplos/ejemplo_01_for_range/main.py
 ```
-
----
-
-## 🔍 Código Fuente
-Examina el archivo [`main.py`](main.py) en esta misma carpeta para revisar la sintaxis comentada y experimentar modificando los valores.

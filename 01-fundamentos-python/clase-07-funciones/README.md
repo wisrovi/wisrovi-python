@@ -1,58 +1,37 @@
 # 📘 Clase 07: Funciones, Parámetros y Scope
 
 > **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 07)  
-> **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Funciones como Máquinas Reutilizables de una Fábrica»*  
+> **Nivel:** Nivel 1 - Principiante &bull; **Metáfora:** *«Funciones como Máquinas Reutilizables de una Fábrica»*  
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-07-funciones/notebook/clase-07-funciones.ipynb)
 
 ---
 
-## 🌀 Posición en el Aprendizaje en Espiral
-
-Esta clase aborda los conceptos clave mediante el ciclo de 3 fases:
-
-1. **💡 Modelo Mental:** Una función es como un electrodoméstico: introduces ingredientes (argumentos) y recibes el resultado (return).
-2. **💻 Experimentación Guiada:** 4+ ejemplos estructurados para correr y depurar.
-3. **🏋️ Desafío Práctico:** Reto de consolidación validado con tests.
+## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
 
 ```mermaid
-flowchart LR
-    M["💡 1. Modelo Mental<br/>«Funciones como Máquinas Reutil...»"] --> E["💻 2. Ejemplos Prácticos<br/>4 carpetas ejecutables"]
-    E --> R["🏋️ 3. Reto de Código<br/>ejercicios/reto.py"]
-    R --> T["🧪 4. Validación<br/>tests/curso_01/"]
+flowchart TD
+    CALL["Llamada: calcular(base=5, altura=3)"] --> FRAME["Push Stack Frame (Ámbito Local)"]
+    FRAME --> SCOPE{"Resolución de Nombres LEGB"}
+    SCOPE -->|1. Local| L_VAR["Variables de función"]
+    SCOPE -->|2. Global| G_VAR["Módulo global"]
+    SCOPE -->|3. Built-in| B_VAR["Funciones estándar (len, print)"]
+    L_VAR --> RET["return resultado"]
+    RET --> POP_F["Pop Stack Frame ➔ Devolver Control"]
 
-    style M fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style E fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style R fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style T fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style CALL fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style FRAME fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style SCOPE fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style RET fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style POP_F fill:#334155,color:#fff,stroke:#94a3b8,stroke-width:2px
 ```
 
 ---
 
-## 🗺️ Arquitectura de la Sesión
+## 📑 Recursos Disponibles en esta Clase
 
-```mermaid
-flowchart LR
-    A["🎬 Entrada / Contexto<br/>(Funciones como Máquinas Reutilizables de una Fábrica)"] --> B{"⚖️ Evaluación Lógica<br/>¿Condición / Regla?"}
-    B -->|Rama Verdadera| C["⚙️ Transformación en Memoria<br/>Funciones, Parámetros y Scope"]
-    B -->|Rama Alternativa| D["🔀 Flujo Secundario<br/>Manejo de Caso"]
-    C --> E["🎯 Salida / Retorno<br/>print() / Estado Actualizado"]
-    D --> E
-
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
-```
-
----
-
-## 📑 Recursos Disponibles en esta Carpeta
-
-*   📄 [`clase-07-funciones.pdf`](clase-07-funciones.pdf): Manual técnico oficial en PDF (9 páginas de estudio).
-*   📖 [`book.md`](book.md): Libro de estudio digital completo con diagramas Mermaid nativos.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
-*   📁 [`ejemplos/`](ejemplos/): 4 carpetas con código fuente funcional y comentado.
+*   📄 [`clase-07-funciones.pdf`](clase-07-funciones.pdf): Manual técnico oficial en PDF (9 páginas).
+*   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

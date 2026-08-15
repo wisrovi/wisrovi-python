@@ -1,32 +1,26 @@
-# 🧪 Suite de Pruebas Automatizadas (Pytest)
+# 🧪 Suite de Pruebas: Curso_03
 
-> **Módulo:** `curso_03`  
 > **Ubicación:** `tests/curso_03`  
 
 ---
 
-## 🌀 Pirámide y Flujo de Verificación de Calidad
+## 🗺️ Estructura de Verificación Automatizada
 
 ```mermaid
 flowchart TD
-    DEV["💻 Código del Estudiante<br/>(reto.py / funciones)"] --> PYTEST["🧪 Pytest Test Suite<br/>(tests/curso_03)"]
-    PYTEST --> CI["⚙️ GitHub Actions CI<br/>Validación en cada Commit"]
-    CI --> PASS["✅ 100% Tests Pasados<br/>Calidad Garantizada"]
+    CODE["Código del Estudiante (ejercicios/)"] --> PYTEST["Pytest Runner (curso_03)"]
+    PYTEST --> CI["GitHub Actions CI"]
+    CI --> PASS["✅ Validación de Calidad (100% Green)"]
 
-    style DEV fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style PYTEST fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style CI fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style PASS fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style CODE fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style PYTEST fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style CI fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style PASS fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
 ## 💻 Comandos de Ejecución
-
 ```bash
-# Ejecutar todas las pruebas de este módulo
 pytest tests/curso_03/
-
-# Ejecutar con reporte detallado
-pytest -v tests/curso_03/
 ```

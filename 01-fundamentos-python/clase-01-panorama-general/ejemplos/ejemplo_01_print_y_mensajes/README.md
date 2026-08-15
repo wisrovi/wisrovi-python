@@ -1,35 +1,30 @@
 # 📖 01 Print Y Mensajes
 
 > **Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
-> **Ubicación:** `01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_01_print_y_mensajes`  
+> **Script:** [`main.py`](main.py)  
+
+Ejemplo 01: El Megáfono (La función print).
 
 ---
 
-## 🌀 Modelo de Aprendizaje Activo
-
-Este ejemplo demuestra de forma práctica, directa y aislada un principio fundamental de la clase:
+## 🗺️ Flujo de Ejecución del Ejemplo
 
 ```mermaid
 flowchart LR
-    IN["📥 1. Entrada / Parámetros<br/>Definición de datos"] --> PROC["⚙️ 2. Lógica & Operación<br/>Transformación paso a paso"]
-    PROC --> OUT["🎯 3. Salida por Pantalla<br/>print() / Retorno verificado"]
+    CODE["print('¡Hola mundo!')"] --> INT["Intérprete de Python"]
+    INT --> BUF["Buffer de Salida Estándar (stdout)"]
+    BUF --> CON["Consola / Terminal"]
 
-    style IN fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style PROC fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style OUT fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style CODE fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style INT fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style BUF fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style CON fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 💻 Cómo Ejecutar este Ejemplo
-
-Abre la terminal en la raíz del repositorio y ejecuta:
+## 💻 Ejecución desde Terminal
 
 ```bash
 python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_01_print_y_mensajes/main.py
 ```
-
----
-
-## 🔍 Código Fuente
-Examina el archivo [`main.py`](main.py) en esta misma carpeta para revisar la sintaxis comentada y experimentar modificando los valores.

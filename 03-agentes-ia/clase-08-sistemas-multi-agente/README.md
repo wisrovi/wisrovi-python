@@ -1,71 +1,38 @@
 # 📘 Clase 08: Sistemas Multi-Agente, Supervisión y Guardrails
 
 > **Curso:** Curso 3: Creación y Desarrollo de Agentes de IA (CLASE 08)  
-> **Nivel:** Nivel 3 - Avanzado  
-> **Metáfora Central:** *«Una Empresa de Agentes Especializados Coordinados por un Director»*  
+> **Nivel:** Nivel 3 - Avanzado &bull; **Metáfora:** *«Una Empresa de Agentes Especializados Coordinados por un Director»*  
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/03-agentes-ia/clase-08-sistemas-multi-agente/notebook/clase-08-sistemas-multi-agente.ipynb)
 
 ---
 
-## 🌀 Posición en el Aprendizaje en Espiral
-
-Esta clase aborda los conceptos clave mediante el ciclo de 3 fases:
-
-1. **💡 Modelo Mental:** Es como una agencia de noticias: el reportero investiga los hechos, el redactor escribe la noticia y el editor jefe revisa la calidad.
-2. **💻 Experimentación Guiada:** 4+ ejemplos estructurados para correr y depurar.
-3. **🏋️ Desafío Práctico:** Reto de consolidación validado con tests.
+## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
 
 ```mermaid
-flowchart LR
-    M["💡 1. Modelo Mental<br/>«Una Empresa de Agentes Especia...»"] --> E["💻 2. Ejemplos Prácticos<br/>4 carpetas ejecutables"]
-    E --> R["🏋️ 3. Reto de Código<br/>ejercicios/reto.py"]
-    R --> T["🧪 4. Validación<br/>tests/curso_03/"]
+flowchart TD
+    USER["Petición Compleja"] --> SUP["Agente Supervisor / Orquestador"]
+    SUP -->|Delega Investigación| AG1["Agente Investigador (RAG / Web)"]
+    AG1 -->|Retorna Datos| SUP
+    SUP -->|Delega Redacción| AG2["Agente Redactor (Formateo Markdown)"]
+    AG2 -->|Retorna Borrador| SUP
+    SUP -->|Delega Validación| AG3["Agente Auditor (Guardrails & Calidad)"]
+    AG3 -->|Aprobado| OUT["Respuesta Final Consolidada"]
 
-    style M fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style E fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style R fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style T fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style USER fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style SUP fill:#4c1d95,color:#fff,stroke:#a78bfa,stroke-width:2px
+    style AG1 fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style AG2 fill:#0369a1,color:#fff,stroke:#38bdf8,stroke-width:2px
+    style AG3 fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style OUT fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 🗺️ Arquitectura de la Sesión
+## 📑 Recursos Disponibles en esta Clase
 
-```mermaid
-flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        REQ["Petición / Prompt / Input"]
-        VAL["Validación DTO & Tipos"]
-    end
-
-    subgraph Core["🧠 Núcleo del Sistema"]
-        ENG["Motor de Ejecución (Sistemas Multi-Agente, Supervisión y Guardrails)"]
-        MEM["Estado / Memoria en Heap"]
-    end
-
-    subgraph Salida["💾 Persistencia & Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Respuesta Estructurada JSON / UI"]
-    end
-
-    REQ --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
-```
-
----
-
-## 📑 Recursos Disponibles en esta Carpeta
-
-*   📄 [`clase-08-sistemas-multi-agente.pdf`](clase-08-sistemas-multi-agente.pdf): Manual técnico oficial en PDF (9 páginas de estudio).
-*   📖 [`book.md`](book.md): Libro de estudio digital completo con diagramas Mermaid nativos.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
-*   📁 [`ejemplos/`](ejemplos/): 4 carpetas con código fuente funcional y comentado.
+*   📄 [`clase-08-sistemas-multi-agente.pdf`](clase-08-sistemas-multi-agente.pdf): Manual técnico oficial en PDF (9 páginas).
+*   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

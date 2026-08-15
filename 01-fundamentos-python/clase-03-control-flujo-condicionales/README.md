@@ -1,58 +1,40 @@
 # 📘 Clase 03: Control de Flujo: Condicionales (if / elif / else)
 
 > **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 03)  
-> **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Condicionales como Semáforos y Bifurcaciones en un Tren»*  
+> **Nivel:** Nivel 1 - Principiante &bull; **Metáfora:** *«Condicionales como Semáforos y Bifurcaciones en un Tren»*  
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-03-control-flujo-condicionales/notebook/clase-03-control-flujo-condicionales.ipynb)
 
 ---
 
-## 🌀 Posición en el Aprendizaje en Espiral
-
-Esta clase aborda los conceptos clave mediante el ciclo de 3 fases:
-
-1. **💡 Modelo Mental:** Un condicional es como una aguja ferroviaria que desvía el tren según el color del semáforo.
-2. **💻 Experimentación Guiada:** 4+ ejemplos estructurados para correr y depurar.
-3. **🏋️ Desafío Práctico:** Reto de consolidación validado con tests.
+## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
 
 ```mermaid
-flowchart LR
-    M["💡 1. Modelo Mental<br/>«Condicionales como Semáforos y...»"] --> E["💻 2. Ejemplos Prácticos<br/>4 carpetas ejecutables"]
-    E --> R["🏋️ 3. Reto de Código<br/>ejercicios/reto.py"]
-    R --> T["🧪 4. Validación<br/>tests/curso_01/"]
+flowchart TD
+    IN["Entrada de Datos"] --> EVAL{"¿Condición if principal?"}
+    EVAL -->|True| B1["Bloque 1: Ejecutar código if"]
+    EVAL -->|False| ELIF{"¿Condición secundaria elif?"}
+    ELIF -->|True| B2["Bloque 2: Ejecutar código elif"]
+    ELIF -->|False| ELSE["Bloque 3: Rama por defecto else"]
+    B1 --> OUT["Continuación del Programa"]
+    B2 --> OUT
+    ELSE --> OUT
 
-    style M fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style E fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style R fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style T fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style IN fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style EVAL fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style B1 fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style ELIF fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style B2 fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style ELSE fill:#881337,color:#fff,stroke:#fb7185,stroke-width:2px
+    style OUT fill:#1e3a8a,color:#fff,stroke:#60a5fa,stroke-width:2px
 ```
 
 ---
 
-## 🗺️ Arquitectura de la Sesión
+## 📑 Recursos Disponibles en esta Clase
 
-```mermaid
-flowchart LR
-    A["🎬 Entrada / Contexto<br/>(Condicionales como Semáforos y Bifurcaciones en un Tren)"] --> B{"⚖️ Evaluación Lógica<br/>¿Condición / Regla?"}
-    B -->|Rama Verdadera| C["⚙️ Transformación en Memoria<br/>Condicionales (if / elif / else)"]
-    B -->|Rama Alternativa| D["🔀 Flujo Secundario<br/>Manejo de Caso"]
-    C --> E["🎯 Salida / Retorno<br/>print() / Estado Actualizado"]
-    D --> E
-
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
-```
-
----
-
-## 📑 Recursos Disponibles en esta Carpeta
-
-*   📄 [`clase-03-control-flujo-condicionales.pdf`](clase-03-control-flujo-condicionales.pdf): Manual técnico oficial en PDF (9 páginas de estudio).
-*   📖 [`book.md`](book.md): Libro de estudio digital completo con diagramas Mermaid nativos.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
-*   📁 [`ejemplos/`](ejemplos/): 4 carpetas con código fuente funcional y comentado.
+*   📄 [`clase-03-control-flujo-condicionales.pdf`](clase-03-control-flujo-condicionales.pdf): Manual técnico oficial en PDF (9 páginas).
+*   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

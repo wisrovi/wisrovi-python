@@ -1,35 +1,30 @@
 # 📖 01 If Else Simple
 
 > **Clase:** Clase 03: Control de Flujo: Condicionales (if / elif / else)  
-> **Ubicación:** `01-fundamentos-python/clase-03-control-flujo-condicionales/ejemplos/ejemplo_01_if_else_simple`  
+> **Script:** [`main.py`](main.py)  
+
+Ejemplo 01: Condicionales Simples.
 
 ---
 
-## 🌀 Modelo de Aprendizaje Activo
-
-Este ejemplo demuestra de forma práctica, directa y aislada un principio fundamental de la clase:
+## 🗺️ Flujo de Ejecución del Ejemplo
 
 ```mermaid
-flowchart LR
-    IN["📥 1. Entrada / Parámetros<br/>Definición de datos"] --> PROC["⚙️ 2. Lógica & Operación<br/>Transformación paso a paso"]
-    PROC --> OUT["🎯 3. Salida por Pantalla<br/>print() / Retorno verificado"]
+flowchart TD
+    DATA["Estatura = 1.55 m"] --> COND{"¿Estatura >= 1.40 m?"}
+    COND -->|True| GREEN["🚦 SEMÁFORO VERDE: Acceso Autorizado 🎢"]
+    COND -->|False| RED["🚦 SEMÁFORO ROJO: Acceso Denegado 🛑"]
 
-    style IN fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style PROC fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style OUT fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style DATA fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style COND fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style GREEN fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style RED fill:#881337,color:#fff,stroke:#fb7185,stroke-width:2px
 ```
 
 ---
 
-## 💻 Cómo Ejecutar este Ejemplo
-
-Abre la terminal en la raíz del repositorio y ejecuta:
+## 💻 Ejecución desde Terminal
 
 ```bash
 python 01-fundamentos-python/clase-03-control-flujo-condicionales/ejemplos/ejemplo_01_if_else_simple/main.py
 ```
-
----
-
-## 🔍 Código Fuente
-Examina el archivo [`main.py`](main.py) en esta misma carpeta para revisar la sintaxis comentada y experimentar modificando los valores.

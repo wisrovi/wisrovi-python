@@ -7,25 +7,23 @@
 
 ---
 
-## 🌀 Modelo de Aprendizaje Celda a Celda
-
-Los cuadernos Jupyter permiten experimentar de forma inmediata:
+## 🗺️ Formato de Trabajo Interactivo
 
 ```mermaid
 flowchart LR
-    NB["📓 Cuaderno Jupyter<br/>(clase-06-diccionarios.ipynb)"] --> COLAB["☁️ Ejecución Nube<br/>Google Colab (1 clic)"]
-    NB --> LOCAL["💻 Ejecución Local<br/>VS Code + Jupyter Extension"]
-    COLAB --> RUN["⚡ Ejecuta celdas de código<br/>y visualiza variables"]
+    NB["📓 clase-06-diccionarios.ipynb"] --> COLAB["☁️ Google Colab<br/>(1 Clic)"]
+    NB --> LOCAL["💻 VS Code Local<br/>(Jupyter Extension)"]
+    COLAB --> RUN["⚡ Ejecución Celda a Celda"]
     LOCAL --> RUN
 
-    style NB fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style COLAB fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style LOCAL fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style RUN fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style NB fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style COLAB fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style LOCAL fill:#0369a1,color:#fff,stroke:#38bdf8,stroke-width:2px
+    style RUN fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 🚀 Cómo Utilizar este Cuaderno
-*   **En la Nube:** Haz clic en el botón superior **Open in Colab** para ejecutarlo sin instalar nada.
+## 🚀 Opciones de Uso
+*   **En la Nube:** Haz clic en el botón superior **Open in Colab** para ejecutar sin instalar nada.
 *   **En Local:** Abre [`clase-06-diccionarios.ipynb`](clase-06-diccionarios.ipynb) directamente en Visual Studio Code.

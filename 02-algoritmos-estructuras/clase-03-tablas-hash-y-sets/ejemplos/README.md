@@ -1,36 +1,19 @@
-# 💻 Catálogo de Ejemplos Prácticos: Clase 03: Tablas Hash y Conjuntos (Sets) para Búsqueda O(1)
+# 💻 Ejemplos de Código: Clase 03: Tablas Hash y Conjuntos (Sets) para Búsqueda O(1)
 
 > **Ubicación:** `02-algoritmos-estructuras/clase-03-tablas-hash-y-sets/ejemplos`  
-> **Metodología:** *La Regla de la Bicicleta (Pedaleo en VS Code)*  
 
-Esta carpeta contiene los ejemplos de código interactivos y comentados diseñados para ver la teoría en acción.
-
----
-
-## 🌀 Flujo de Experimentación y Pedaleo
-
-```mermaid
-flowchart LR
-    A["📂 1. Selecciona un Ejemplo<br/>(ejemplo_01 a 04)"] --> B["📖 2. Lee su README.md<br/>Objetivo y modelo mental"]
-    B --> C["🐍 3. Ejecuta main.py<br/>Observa la salida en terminal"]
-    C --> D["🔧 4. Modifica y Experimenta<br/>Cambia variables y analiza"]
-
-    style A fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style C fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style D fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-```
+Esta carpeta contiene los scripts prácticos diseñados para demostrar el funcionamiento en vivo de cada concepto.
 
 ---
 
-## 📑 Ejemplos Disponibles
+## 🗺️ Índice de Ejemplos
 
-| Subcarpeta | Tipo de Demostración | Archivo de Código |
+| Subcarpeta | Descripción | Archivo |
 | :--- | :--- | :---: |
-| [`ejemplo_01_exploracion_hash/`](ejemplo_01_exploracion_hash/) | Demostración paso a paso | [`main.py`](ejemplo_01_exploracion_hash/main.py) |
-| [`ejemplo_02_two_sum_hashmap/`](ejemplo_02_two_sum_hashmap/) | Demostración paso a paso | [`main.py`](ejemplo_02_two_sum_hashmap/main.py) |
-| [`ejemplo_03_deduplicacion_sets/`](ejemplo_03_deduplicacion_sets/) | Demostración paso a paso | [`main.py`](ejemplo_03_deduplicacion_sets/main.py) |
-| [`ejemplo_04_defaultdict_agrupacion/`](ejemplo_04_defaultdict_agrupacion/) | Demostración paso a paso | [`main.py`](ejemplo_04_defaultdict_agrupacion/main.py) |
+| [`ejemplo_01_exploracion_hash/`](ejemplo_01_exploracion_hash/) | Demostración comentada | [`main.py`](ejemplo_01_exploracion_hash/main.py) |
+| [`ejemplo_02_two_sum_hashmap/`](ejemplo_02_two_sum_hashmap/) | Demostración comentada | [`main.py`](ejemplo_02_two_sum_hashmap/main.py) |
+| [`ejemplo_03_deduplicacion_sets/`](ejemplo_03_deduplicacion_sets/) | Demostración comentada | [`main.py`](ejemplo_03_deduplicacion_sets/main.py) |
+| [`ejemplo_04_defaultdict_agrupacion/`](ejemplo_04_defaultdict_agrupacion/) | Demostración comentada | [`main.py`](ejemplo_04_defaultdict_agrupacion/main.py) |
 
 
 ---
@@ -38,5 +21,5 @@ flowchart LR
 ## 🚀 Cómo Ejecutar los Ejemplos
 Desde la terminal en la raíz del repositorio:
 ```bash
-python 02-algoritmos-estructuras/clase-03-tablas-hash-y-sets/ejemplos/<carpeta_ejemplo>/main.py
+python 02-algoritmos-estructuras/clase-03-tablas-hash-y-sets/ejemplos/<nombre_carpeta>/main.py
 ```

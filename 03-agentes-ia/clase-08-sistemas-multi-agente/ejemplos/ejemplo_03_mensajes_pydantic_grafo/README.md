@@ -1,35 +1,29 @@
 # 📖 03 Mensajes Pydantic Grafo
 
 > **Clase:** Clase 08: Sistemas Multi-Agente, Supervisión y Guardrails  
-> **Ubicación:** `03-agentes-ia/clase-08-sistemas-multi-agente/ejemplos/ejemplo_03_mensajes_pydantic_grafo`  
+> **Script:** [`main.py`](main.py)  
+
+Paso de Mensajes Tipado.
 
 ---
 
-## 🌀 Modelo de Aprendizaje Activo
-
-Este ejemplo demuestra de forma práctica, directa y aislada un principio fundamental de la clase:
+## 🗺️ Flujo de Ejecución del Ejemplo
 
 ```mermaid
 flowchart LR
-    IN["📥 1. Entrada / Parámetros<br/>Definición de datos"] --> PROC["⚙️ 2. Lógica & Operación<br/>Transformación paso a paso"]
-    PROC --> OUT["🎯 3. Salida por Pantalla<br/>print() / Retorno verificado"]
+    DICT["{'id': 1, 'name': 'Ana'}"] --> MODEL["User(BaseModel)"]
+    MODEL --> VAL["Validación estricta de tipos"]
+    VAL --> DUMP["user.model_dump() ➔ Dict sanitizado"]
 
-    style IN fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style PROC fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style OUT fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style DICT fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style MODEL fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style DUMP fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 💻 Cómo Ejecutar este Ejemplo
-
-Abre la terminal en la raíz del repositorio y ejecuta:
+## 💻 Ejecución desde Terminal
 
 ```bash
 python 03-agentes-ia/clase-08-sistemas-multi-agente/ejemplos/ejemplo_03_mensajes_pydantic_grafo/main.py
 ```
-
----
-
-## 🔍 Código Fuente
-Examina el archivo [`main.py`](main.py) en esta misma carpeta para revisar la sintaxis comentada y experimentar modificando los valores.

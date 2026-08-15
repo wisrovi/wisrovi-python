@@ -6,14 +6,12 @@
 
 ---
 
-## 🌀 Progresión de Aprendizaje en Espiral (8 Semanas)
-
-Este curso aplica la metodología de **Aprendizaje en Espiral**, donde cada semana construye sobre la anterior, incrementando la profundidad técnica y el rigor de ingeniería:
+## 🗺️ Mapa de Ruta del Curso (8 Semanas)
 
 ```mermaid
 flowchart TD
-    W1["🌱 Semana 1-2: Fundamentación & Modelo Mental<br/>Comprensión intuitiva y sintaxis idiomática"] --> W2["⚙️ Semana 3-5: Estructuras & Control de Flujo<br/>Decisiones, bucles y gestión de memoria"]
-    W2 --> W3["🧩 Semana 6-7: Modularización & Arquitectura<br/>Funciones, colecciones y abstracción"]
+    W1["🌱 Semanas 1-2: Fundamentos & Sintaxis<br/>Estructura básica y tipos de datos"] --> W2["⚙️ Semanas 3-5: Flujo & Colecciones<br/>Condicionales, bucles y estructuras lineales"]
+    W2 --> W3["🧩 Semanas 6-7: Mapeos & Funciones<br/>Diccionarios, conjuntos y modularización"]
     W3 --> W4["🚀 Semana 8: Síntesis & Proyecto Integrador<br/>Aplicación completa y verificación con tests"]
 
     style W1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
@@ -24,9 +22,9 @@ flowchart TD
 
 ---
 
-## 📑 Hoja de Ruta de las 8 Clases Semanales
+## 📑 Clases del Curso
 
-| Semana | Carpeta | Unidad Temática | Metáfora Didáctica |
+| Semana | Directorio | Contenido Temático | Metáfora Didáctica |
 | :---: | :--- | :--- | :--- |
 | **CLASE 01** | [`clase-01-arquitectura-y-planificacion/`](clase-01-arquitectura-y-planificacion/) | Arquitectura de Software y Planificación del Proyecto | *«Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»* |
 | **CLASE 02** | [`clase-02-backend-fastapi/`](clase-02-backend-fastapi/) | APIs RESTful con FastAPI | *«FastAPI como un Centro Logístico de Alta Velocidad para Peticiones HTTP»* |
@@ -40,14 +38,8 @@ flowchart TD
 
 ---
 
-## 📦 Materiales Disponibles en este Curso
+## 📦 Materiales Oficiales del Curso
 
 *   📄 [`curso-04-proyecto-final.pdf`](curso-04-proyecto-final.pdf): Manual completo oficial en PDF compilado con estética LaTeX.
 *   📖 [`book.md`](book.md): Libro de estudio digital con explicaciones profundas y diagramas Mermaid.
 *   🧪 Suite de Pruebas Automatizadas en [`tests/curso_04/`](../tests/curso_04/).
-
----
-
-## 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a programar leyendo código ajeno. Abre cada clase, ejecuta los ejemplos en tu editor y resuelve los retos con tus propias manos."*

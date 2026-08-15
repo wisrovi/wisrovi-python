@@ -1,58 +1,38 @@
 # 📘 Clase 02: Variables, Tipos de Datos y Operadores
 
 > **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 02)  
-> **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Variables como Cajas Etiquetadas en Memoria»*  
+> **Nivel:** Nivel 1 - Principiante &bull; **Metáfora:** *«Variables como Cajas Etiquetadas en Memoria»*  
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-02-variables-y-tipos/notebook/clase-02-variables-y-tipos.ipynb)
 
 ---
 
-## 🌀 Posición en el Aprendizaje en Espiral
-
-Esta clase aborda los conceptos clave mediante el ciclo de 3 fases:
-
-1. **💡 Modelo Mental:** Una variable es una etiqueta adhesiva pegada a una caja; varias etiquetas pueden apuntar a la misma caja.
-2. **💻 Experimentación Guiada:** 4+ ejemplos estructurados para correr y depurar.
-3. **🏋️ Desafío Práctico:** Reto de consolidación validado con tests.
+## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
 
 ```mermaid
 flowchart LR
-    M["💡 1. Modelo Mental<br/>«Variables como Cajas Etiquetad...»"] --> E["💻 2. Ejemplos Prácticos<br/>4 carpetas ejecutables"]
-    E --> R["🏋️ 3. Reto de Código<br/>ejercicios/reto.py"]
-    R --> T["🧪 4. Validación<br/>tests/curso_01/"]
+    VAL["Valor Literal ('45.90')"] --> STR["str (Texto Inmutable)"]
+    STR --> CAST["Casting: float()"]
+    CAST --> FLT["float (45.90)"]
+    FLT --> TRUNC["Casting: int()"]
+    TRUNC --> INT["int (45)"]
+    INT --> MEM["Referencia en Memoria<br/>id(objeto)"]
 
-    style M fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style E fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style R fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style T fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style VAL fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style STR fill:#334155,color:#fff,stroke:#94a3b8,stroke-width:2px
+    style CAST fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style FLT fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style TRUNC fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
+    style INT fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style MEM fill:#1e3a8a,color:#fff,stroke:#60a5fa,stroke-width:2px
 ```
 
 ---
 
-## 🗺️ Arquitectura de la Sesión
+## 📑 Recursos Disponibles en esta Clase
 
-```mermaid
-flowchart LR
-    A["🎬 Entrada / Contexto<br/>(Variables como Cajas Etiquetadas en Memoria)"] --> B{"⚖️ Evaluación Lógica<br/>¿Condición / Regla?"}
-    B -->|Rama Verdadera| C["⚙️ Transformación en Memoria<br/>Variables, Tipos de Datos y Operadores"]
-    B -->|Rama Alternativa| D["🔀 Flujo Secundario<br/>Manejo de Caso"]
-    C --> E["🎯 Salida / Retorno<br/>print() / Estado Actualizado"]
-    D --> E
-
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
-```
-
----
-
-## 📑 Recursos Disponibles en esta Carpeta
-
-*   📄 [`clase-02-variables-y-tipos.pdf`](clase-02-variables-y-tipos.pdf): Manual técnico oficial en PDF (9 páginas de estudio).
-*   📖 [`book.md`](book.md): Libro de estudio digital completo con diagramas Mermaid nativos.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
-*   📁 [`ejemplos/`](ejemplos/): 4 carpetas con código fuente funcional y comentado.
+*   📄 [`clase-02-variables-y-tipos.pdf`](clase-02-variables-y-tipos.pdf): Manual técnico oficial en PDF (9 páginas).
+*   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

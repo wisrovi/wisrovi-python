@@ -1,25 +1,25 @@
-# 🌐 Documentación Web Interactiva: README.md
+# 🌐 Documentación Web: Root
 
-> **Sitio Web Oficial:** [`academy_python.wisrovi.dev`](https://academy_python.wisrovi.dev/)  
+> **Sitio Web:** [`academy_python.wisrovi.dev`](https://academy_python.wisrovi.dev/)  
 > **Ubicación:** `docs`  
 
 ---
 
-## 🌀 Arquitectura del Sitio Web de Documentación
+## 🗺️ Flujo de Publicación Web
 
 ```mermaid
 flowchart LR
-    SRC["📝 Archivos Markdown<br/>(docs/*.md)"] --> MKDOCS["⚙️ Motor MkDocs Material<br/>Pestañas, admonitions & mermaid"]
-    MKDOCS --> GHPAGES["☁️ GitHub Pages<br/>academy_python.wisrovi.dev"]
+    MD["Archivos Markdown (docs/*.md)"] --> MKD["Motor MkDocs Material"]
+    MKD --> GHP["GitHub Pages (academy_python.wisrovi.dev)"]
 
-    style SRC fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style MKDOCS fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style GHPAGES fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style MD fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style MKD fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style GHP fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 💻 Servidor Local de Previsualización
+## 💻 Servidor Local
 ```bash
 mkdocs serve
 ```

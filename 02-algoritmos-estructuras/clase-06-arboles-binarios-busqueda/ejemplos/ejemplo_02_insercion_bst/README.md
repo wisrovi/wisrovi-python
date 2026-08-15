@@ -1,35 +1,28 @@
 # 📖 02 Insercion Bst
 
 > **Clase:** Clase 06: Árboles Binarios de Búsqueda (BST) y Recorridos  
-> **Ubicación:** `02-algoritmos-estructuras/clase-06-arboles-binarios-busqueda/ejemplos/ejemplo_02_insercion_bst`  
+> **Script:** [`main.py`](main.py)  
+
+Inserción Recursiva en BST.
 
 ---
 
-## 🌀 Modelo de Aprendizaje Activo
-
-Este ejemplo demuestra de forma práctica, directa y aislada un principio fundamental de la clase:
+## 🗺️ Flujo de Ejecución del Ejemplo
 
 ```mermaid
 flowchart LR
-    IN["📥 1. Entrada / Parámetros<br/>Definición de datos"] --> PROC["⚙️ 2. Lógica & Operación<br/>Transformación paso a paso"]
-    PROC --> OUT["🎯 3. Salida por Pantalla<br/>print() / Retorno verificado"]
+    A["📥 1. Entrada de Datos<br/>(02 Insercion Bst)"] --> B["⚙️ 2. Procesamiento Python<br/>Lógica del Script"]
+    B --> C["🎯 3. Salida / Resultado<br/>Consola / Retorno"]
 
-    style IN fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style PROC fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
-    style OUT fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style A fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
-## 💻 Cómo Ejecutar este Ejemplo
-
-Abre la terminal en la raíz del repositorio y ejecuta:
+## 💻 Ejecución desde Terminal
 
 ```bash
 python 02-algoritmos-estructuras/clase-06-arboles-binarios-busqueda/ejemplos/ejemplo_02_insercion_bst/main.py
 ```
-
----
-
-## 🔍 Código Fuente
-Examina el archivo [`main.py`](main.py) en esta misma carpeta para revisar la sintaxis comentada y experimentar modificando los valores.
