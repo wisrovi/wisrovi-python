@@ -10,18 +10,13 @@
 ## 🗺️ Diagrama de Arquitectura y Flujo de la Clase
 
 ```mermaid
-flowchart TD
-    Q["Usuario: '¿Clima en Madrid?'"] --> LLM["LLM detecta Tool Call: get_weather(city='Madrid')"]
-    LLM --> DISP["Despachador de Herramientas Python"]
-    DISP --> API["Ejecución de Función Python"]
-    API --> OBS["Observación: '22°C Soleado'"]
-    OBS --> LLM_FINAL["LLM sintetiza Respuesta Final en Lenguaje Natural"]
+flowchart LR
+    A["📥 1. Entrada de Datos<br/>(Dotando de Manos y Herramienta...)"] --> B["⚙️ 2. Motor de Ejecución<br/>Tool Calling y Function Calling en Python"]
+    B --> C["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style Q fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style LLM fill:#4c1d95,color:#fff,stroke:#a78bfa,stroke-width:2px
-    style DISP fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
-    style API fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style LLM_FINAL fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
@@ -30,6 +25,6 @@ flowchart TD
 
 *   📄 [`clase-04-tool-calling-funciones.pdf`](clase-04-tool-calling-funciones.pdf): Manual técnico oficial en PDF (9 páginas).
 *   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
 *   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

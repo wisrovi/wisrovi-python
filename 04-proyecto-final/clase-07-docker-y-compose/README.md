@@ -11,18 +11,12 @@
 
 ```mermaid
 flowchart LR
-    subgraph Compose["🐳 docker-compose.yml"]
-        API["Service: FastAPI (Backend :8000)"]
-        UI["Service: Streamlit (Frontend :8501)"]
-        DB[("Service: PostgreSQL (:5432)")]
-        UI --> API
-        API --> DB
-    end
+    A["📥 1. Entrada de Datos<br/>(Docker como Contenedores Están...)"] --> B["⚙️ 2. Motor de Ejecución<br/>Containerización Profesional con Docker y Compose"]
+    B --> C["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style Compose fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style API fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style UI fill:#0369a1,color:#fff,stroke:#38bdf8,stroke-width:2px
-    style DB fill:#4c1d95,color:#fff,stroke:#a78bfa,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
@@ -31,6 +25,6 @@ flowchart LR
 
 *   📄 [`clase-07-docker-y-compose.pdf`](clase-07-docker-y-compose.pdf): Manual técnico oficial en PDF (9 páginas).
 *   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
 *   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

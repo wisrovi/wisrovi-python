@@ -11,15 +11,12 @@
 
 ```mermaid
 flowchart LR
-    subgraph Pila["🥞 Pila (Stack LIFO)"]
-        P_IN["push(X) ➔ Tope"] --> P_OUT["pop() ➔ Extrae Tope"]
-    end
-    subgraph Cola["🚶‍♂️ Cola (Queue FIFO - deque)"]
-        Q_IN["append(X) ➔ Final"] --> Q_OUT["popleft() ➔ Atiende Primero (O(1))"]
-    end
+    A["📥 1. Entrada de Datos<br/>(Pilas LIFO como Platos Apilado...)"] --> B["⚙️ 2. Motor de Ejecución<br/>Pilas (Stacks) y Colas (Queues) con collections.deque"]
+    B --> C["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style Pila fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Cola fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
@@ -28,6 +25,6 @@ flowchart LR
 
 *   📄 [`clase-02-pilas-y-colas.pdf`](clase-02-pilas-y-colas.pdf): Manual técnico oficial en PDF (9 páginas).
 *   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
 *   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

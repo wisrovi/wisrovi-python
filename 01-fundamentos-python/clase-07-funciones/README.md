@@ -11,19 +11,19 @@
 
 ```mermaid
 flowchart TD
-    CALL["Llamada: calcular(base=5, altura=3)"] --> FRAME["Push Stack Frame (Ámbito Local)"]
-    FRAME --> SCOPE{"Resolución de Nombres LEGB"}
-    SCOPE -->|1. Local| L_VAR["Variables de función"]
-    SCOPE -->|2. Global| G_VAR["Módulo global"]
-    SCOPE -->|3. Built-in| B_VAR["Funciones estándar (len, print)"]
-    L_VAR --> RET["return resultado"]
-    RET --> POP_F["Pop Stack Frame ➔ Devolver Control"]
+    CALL["🚀 Invocación: calcular_total(precio=100, iva=0.21)"] --> STACK["🥞 Call Stack: Push Frame de Función"]
+    STACK --> SCOPE{"🔍 Resolución de Ámbito LEGB"}
+    SCOPE -->|1. Local| L["Variables locales dentro de la función"]
+    SCOPE -->|2. Global| G["Constantes globales del módulo"]
+    SCOPE -->|3. Built-in| B["Funciones estándar (len, print, range)"]
+    L --> RET["🎯 return total_calculado"]
+    RET --> POP_F["🥞 Pop Frame ➔ Retornar valor al llamador"]
 
-    style CALL fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style FRAME fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style SCOPE fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
-    style RET fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
-    style POP_F fill:#334155,color:#fff,stroke:#94a3b8,stroke-width:2px
+    style CALL fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style STACK fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style SCOPE fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style RET fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style POP_F fill:#334155,color:#ffffff,stroke:#94a3b8,stroke-width:2px
 ```
 
 ---
@@ -32,6 +32,6 @@ flowchart TD
 
 *   📄 [`clase-07-funciones.pdf`](clase-07-funciones.pdf): Manual técnico oficial en PDF (9 páginas).
 *   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
 *   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

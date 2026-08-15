@@ -11,20 +11,21 @@
 
 ```mermaid
 flowchart TD
-    INIT["Colección o Rango de Datos"] --> ITER["Iterador: for item in secuencia / while condicion"]
-    ITER --> BODY["Ejecutar cuerpo del bucle"]
-    BODY --> CTRL{"¿Control de Flujo?"}
+    SEQ["📦 Secuencia o Rango<br/>range(1, 10) o lista"] --> ITER["🔄 Iterador del Bucle (for / while)"]
+    ITER --> BODY["⚡ Ejecutar Bloque del Bucle"]
+    BODY --> CTRL{"¿Instrucción Especial?"}
     CTRL -->|continue| ITER
-    CTRL -->|break| END["Salida Inmediata del Bucle"]
-    CTRL -->|Flujo normal| NEXT{"¿Quedan elementos?"}
-    NEXT -->|Sí| ITER
-    NEXT -->|No| END
+    CTRL -->|break| EXIT["🛑 Salida Inmediata del Ciclo"]
+    CTRL -->|Flujo Normal| NEXT{"¿Fin de Secuencia?"}
+    NEXT -->|No| ITER
+    NEXT -->|Sí| EXIT
 
-    style INIT fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style ITER fill:#0369a1,color:#fff,stroke:#38bdf8,stroke-width:2px
-    style BODY fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
-    style CTRL fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
-    style END fill:#334155,color:#fff,stroke:#94a3b8,stroke-width:2px
+    style SEQ fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ITER fill:#0284c7,color:#ffffff,stroke:#38bdf8,stroke-width:2px
+    style BODY fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style CTRL fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style NEXT fill:#4338ca,color:#ffffff,stroke:#818cf8,stroke-width:2px
+    style EXIT fill:#334155,color:#ffffff,stroke:#94a3b8,stroke-width:2px
 ```
 
 ---
@@ -33,6 +34,6 @@ flowchart TD
 
 *   📄 [`clase-04-control-flujo-bucles.pdf`](clase-04-control-flujo-bucles.pdf): Manual técnico oficial en PDF (9 páginas).
 *   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
 *   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.

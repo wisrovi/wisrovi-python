@@ -1,9 +1,9 @@
 # 📖 01 Print Y Mensajes
 
 > **Clase:** Clase 01: Primer Vistazo Práctico (print, variables, if, for)  
-> **Script:** [`main.py`](main.py)  
+> **Archivo de Código:** [`main.py`](main.py)  
 
-Ejemplo 01: El Megáfono (La función print).
+Demostración práctica y ejecutable de este concepto fundamental de Python.
 
 ---
 
@@ -11,20 +11,21 @@ Ejemplo 01: El Megáfono (La función print).
 
 ```mermaid
 flowchart LR
-    CODE["print('¡Hola mundo!')"] --> INT["Intérprete de Python"]
-    INT --> BUF["Buffer de Salida Estándar (stdout)"]
-    BUF --> CON["Consola / Terminal"]
+    TXT["📝 '¡Hola mundo!' (str)"] --> PRINT["📢 Función print()"]
+    NUM["🔢 2026 (int sin comillas)"] --> PRINT
+    PRINT --> STDOUT["🖥️ Buffer de Salida Estándar (stdout)"]
+    STDOUT --> CONSOLE["✨ Impresión en Pantalla / Consola"]
 
-    style CODE fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style INT fill:#b45309,color:#fff,stroke:#f59e0b,stroke-width:2px
-    style BUF fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style CON fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style TXT fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style NUM fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style PRINT fill:#0284c7,color:#ffffff,stroke:#38bdf8,stroke-width:2px
+    style STDOUT fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style CONSOLE fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
 ## 💻 Ejecución desde Terminal
-
 ```bash
 python 01-fundamentos-python/clase-01-panorama-general/ejemplos/ejemplo_01_print_y_mensajes/main.py
 ```

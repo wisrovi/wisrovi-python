@@ -11,15 +11,12 @@
 
 ```mermaid
 flowchart LR
-    G["Grafo: Lista de Adyacencia"] --> BFS["BFS: Cola deque ➔ Exploración por Niveles"]
-    G --> DFS["DFS: Pila / Recursión ➔ Exploración en Profundidad"]
-    BFS --> VIS["Conjunto de Nodos Visitados (set)"]
-    DFS --> VIS
+    A["📥 1. Entrada de Datos<br/>(Grafos como Redes de Ciudades ...)"] --> B["⚙️ 2. Motor de Ejecución<br/>Grafos, Matrices de Adyacencia y Recorridos BFS/DFS"]
+    B --> C["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style G fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style BFS fill:#0369a1,color:#fff,stroke:#38bdf8,stroke-width:2px
-    style DFS fill:#4c1d95,color:#fff,stroke:#a78bfa,stroke-width:2px
-    style VIS fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
@@ -28,6 +25,6 @@ flowchart LR
 
 *   📄 [`clase-07-grafos-y-recorridos.pdf`](clase-07-grafos-y-recorridos.pdf): Manual técnico oficial en PDF (9 páginas).
 *   📖 [`book.md`](book.md): Libro de estudio digital con teoría profunda y diagramas Mermaid.
-*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab.
+*   📁 [`notebook/`](notebook/): Cuaderno interactivo Jupyter ejecutable en local y en Google Colab con 1 clic.
 *   📁 [`ejemplos/`](ejemplos/): Carpetas de código funcional con casos prácticos comentados.
 *   📁 [`ejercicios/`](ejercicios/): Reto práctico para afianzar conceptos.
