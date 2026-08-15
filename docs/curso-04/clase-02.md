@@ -1,100 +1,55 @@
-# 📚 Clase 02: Desarrollo del Backend: APIs RESTful con FastAPI
+# 📘 Clase 02: Desarrollo del Backend: APIs RESTful con FastAPI
 
-> **Programa:** Curso 4: Taller Práctico & Proyecto Final Integrador  
-> **Nivel:** Nivel 4 - Integrador  
-> **Metáfora Central:** *«FastAPI como un Centro Logístico de Alta Velocidad para Peticiones HTTP»*  
-> **Documento Oficial PDF:** [clase-02-backend-fastapi.pdf](clase-02-backend-fastapi.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 02)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 4 - Integrador`
+-   :material-lightbulb-on: **Metáfora Central:** *«FastAPI como un Centro Logístico de Alta Velocidad para Peticiones HTTP»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-02-backend-fastapi.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/04-proyecto-final/clase-02-backend-fastapi/clase-02-backend-fastapi.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-02-backend-fastapi/notebook/clase-02-backend-fastapi.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/04-proyecto-final/clase-02-backend-fastapi)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-FastAPI es el framework web moderno de Python más rápido, diseñado para construir microservicios y APIs con tipado estricto.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** FastAPI es una ventanilla de atención ultra rápida: valida tu formulario antes de atenderte y te entrega un recibo oficial.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «FastAPI como un Centro Logístico de Alta Velocidad para Peticiones HTTP»"
+    FastAPI es una ventanilla de atención ultra rápida: valida tu formulario antes de atenderte y te entrega un recibo oficial.
 
-Validación automática de requests y responses gracias a la integración profunda con Pydantic.
+### Principios Fundamentales de la Sesión
 
-Generación automática de documentación interactiva en /docs (Swagger UI) y /redoc.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Retorna siempre códigos de estado HTTP semánticos (ej. 201 Created tras un POST exitoso).
+!!! info "⚡ Regla de Oro en Python"
+    Retorna siempre códigos de estado HTTP semánticos (ej. 201 Created tras un POST exitoso).
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Flujo de una petición HTTP en FastAPI desde el router hasta la respuesta JSON.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
-    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
-    C --> E["🎯 4. Retorno / Salida (print / return)"]
-    D --> E
+    IN["📥 1. Datos de Entrada<br/>(FastAPI como un Centro Logísti...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>APIs RESTful con FastAPI"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Cliente envía HTTP Request (JSON body + headers). | `Petición recibida en puerto 8000.` |
-| **2. Evaluación** | Validación automática del esquema Pydantic. | `DTO validado o 422 Unprocessable Entity.` |
-| **3. Transformación** | Ejecución de la función de ruta (Endpoint). | `Lógica de negocio ejecutada.` |
-| **4. Retorno / Salida** | Serialización del resultado y retorno de HTTP Response. | `JSON emitido con código 200/201.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Cada función decorada con @app.get o @app.post representa un punto de entrada para clientes.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 02 - Código de Demostración
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
@@ -121,48 +76,47 @@ def obtener_producto(item_id: int):
     return DB_ITEMS[item_id]
 ```
 
-*Manejo explícito de códigos 201 y 404, validación automática y documentación interactiva.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar funciones síncronas bloqueantes (como time.sleep) dentro de funciones async def congela todo el servidor.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Usar funciones síncronas bloqueantes (como time.sleep) dentro de funciones async def congela todo el servidor.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-async def endpoint():
+    async def endpoint():
     time.sleep(5)  # ❌ Bloquea el event loop para todos los usuarios
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-async def endpoint():
+    async def endpoint():
     await asyncio.sleep(5)  # ✅ No bloqueante
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Utiliza Depends() para inyectar conexiones de base de datos y autenticación limpia.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Añade endpoints PUT (actualizar) y DELETE a la API de productos con validación de existencia.
+!!! example "🎯 Enunciado del Reto"
+    **Añade endpoints PUT (actualizar) y DELETE a la API de productos con validación de existencia.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_04/test_clase_02_backend_fastapi.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

@@ -1,100 +1,55 @@
-# 📚 Clase 01: Análisis de Complejidad y Notación Big-O
+# 📘 Clase 01: Análisis de Complejidad y Notación Big-O
 
-> **Programa:** Curso 2: Algoritmos Avanzados y Estructuras de Datos  
-> **Nivel:** Nivel 2 - Intermedio  
-> **Metáfora Central:** *«Medir el Rendimiento de un Algoritmo a Medida que Crece la Entrada»*  
-> **Documento Oficial PDF:** [clase-01-analisis-complejidad-big-o.pdf](clase-01-analisis-complejidad-big-o.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 2: Algoritmos Avanzados y Estructuras de Datos (CLASE 01)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 2 - Intermedio`
+-   :material-lightbulb-on: **Metáfora Central:** *«Medir el Rendimiento de un Algoritmo a Medida que Crece la Entrada»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-01-analisis-complejidad-big-o.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/02-algoritmos-estructuras/clase-01-analisis-complejidad-big-o/clase-01-analisis-complejidad-big-o.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/02-algoritmos-estructuras/clase-01-analisis-complejidad-big-o/notebook/clase-01-analisis-complejidad-big-o.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/02-algoritmos-estructuras/clase-01-analisis-complejidad-big-o)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-La notación Big-O describe cómo escala el tiempo de ejecución y el uso de memoria de un algoritmo.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Big-O es como calcular cuánta gasolina consumirá un camión de carga según el número de kilómetros y peso.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Medir el Rendimiento de un Algoritmo a Medida que Crece la Entrada»"
+    Big-O es como calcular cuánta gasolina consumirá un camión de carga según el número de kilómetros y peso.
 
-Nos enfocamos en el peor caso (Worst-case scenario) y descartamos constantes y términos de menor orden.
+### Principios Fundamentales de la Sesión
 
-Un algoritmo O(n) sobre 1 millón de elementos tarda milisegundos; un O(n^2) puede tardar horas.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Evita los bucles anidados innecesarios para prevenir la degradación a O(n^2).
+!!! info "⚡ Regla de Oro en Python"
+    Evita los bucles anidados innecesarios para prevenir la degradación a O(n^2).
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Comparativa de curvas de crecimiento asintótico frente a volumen de datos n.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
-    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
-    C --> E["🎯 4. Retorno / Salida (print / return)"]
-    D --> E
+    IN["📥 1. Datos de Entrada<br/>(Medir el Rendimiento de un Alg...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Análisis de Complejidad y Notación Big-O"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Cálculo de operaciones elementales. | `Función matemática T(n).` |
-| **2. Evaluación** | Eliminación de coeficientes constantes. | `Simplificación algebraica.` |
-| **3. Transformación** | Identificación del término dominante. | `Clase de complejidad Big-O.` |
-| **4. Retorno / Salida** | Benchmarking experimental con time.perf_counter(). | `Validación empírica en ms.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Un bucle simple es O(n); dos bucles anidados son O(n^2); dividir a la mitad es O(log n).
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 01 - Código de Demostración
 import time
 
 def acceso_o1(lista: list, idx: int):
@@ -111,51 +66,50 @@ print("O(1) Acceso:", acceso_o1(datos, 500_000))
 print("O(n) Búsqueda:", busqueda_on(datos, 999_999))
 ```
 
-*El acceso por índice es inmediato O(1), mientras que recorrer secuencialmente es lineal O(n).*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar 'if x in lista:' dentro de un bucle for convierte tu código silenciosamente en O(n^2).
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Usar 'if x in lista:' dentro de un bucle for convierte tu código silenciosamente en O(n^2).
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-for elem in lista_a:
+    for elem in lista_a:
     if elem in lista_b:  # ❌ 'in' en lista es O(n), total O(n^2)
         comunes.append(elem)
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-set_b = set(lista_b)  # O(n)
+    set_b = set(lista_b)  # O(n)
 for elem in lista_a:
     if elem in set_b:    # ✅ 'in' en set es O(1), total O(n)
         comunes.append(elem)
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Convierte listas a sets antes de hacer múltiples búsquedas de pertenencia.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Escribe un script que compare el tiempo real de buscar un elemento en una lista vs un set de 500.000 elementos.
+!!! example "🎯 Enunciado del Reto"
+    **Escribe un script que compare el tiempo real de buscar un elemento en una lista vs un set de 500.000 elementos.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_02/test_clase_01_analisis_complejidad_big_o.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

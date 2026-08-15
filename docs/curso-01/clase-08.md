@@ -1,115 +1,67 @@
-# 📚 Clase 08: Proyecto Integrador: Sistema CLI Completo
+# 📘 Clase 08: Proyecto Integrador: Sistema CLI Completo
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python  
-> **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Construyendo tu Primera Aplicación Real de Consola»*  
-> **Documento Oficial PDF:** [clase-08-proyecto-integrador-basico.pdf](clase-08-proyecto-integrador-basico.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 08)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 1 - Principiante`
+-   :material-lightbulb-on: **Metáfora Central:** *«Construyendo tu Primera Aplicación Real de Consola»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-08-proyecto-integrador-basico.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/01-fundamentos-python/clase-08-proyecto-integrador-basico/clase-08-proyecto-integrador-basico.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-08-proyecto-integrador-basico/notebook/clase-08-proyecto-integrador-basico.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/01-fundamentos-python/clase-08-proyecto-integrador-basico)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-El proyecto integrador une todos los conocimientos adquiridos en el Curso 1 para crear una herramienta real.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Construir tu primera aplicación es como armar tu propia bicicleta: cada pieza encaja para ponerla en marcha.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Construyendo tu Primera Aplicación Real de Consola»"
+    Construir tu primera aplicación es como armar tu propia bicicleta: cada pieza encaja para ponerla en marcha.
 
-Arquitectura modular: Separación de la interfaz de consola de la lógica de negocio.
+### Principios Fundamentales de la Sesión
 
-Manejo de excepciones: Asegurar que entradas inválidas no detengan el programa.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Estructura siempre tu punto de entrada con el patrón estándar if __name__ == '__main__':.
+!!! info "⚡ Regla de Oro en Python"
+    Estructura siempre tu punto de entrada con el patrón estándar if __name__ == '__main__':.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Arquitectura del bucle principal de eventos del sistema CLI.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
-flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+flowchart TD
+    CLI["🖥️ Interfaz de Terminal CLI"] --> MENU["📋 Menú Interactivo de 4 Opciones"]
+    MENU --> READ["⌨️ Lectura con Validación try/except"]
+    READ -->|1. Agregar| ADD["➕ TaskManager.agregar_tarea()"]
+    READ -->|2. Listar| LST["📊 TaskManager.listar_tareas() en Tabla"]
+    READ -->|3. Completar| CMP["✅ TaskManager.marcar_hecha()"]
+    READ -->|4. Salir| EXT["👋 Cierre Seguro del Sistema"]
+    ADD --> STATE[("💾 Estado de Tareas en Memoria")]
+    LST --> STATE
+    CMP --> STATE
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON / UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style CLI fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style MENU fill:#0284c7,color:#ffffff,stroke:#38bdf8,stroke-width:2px
+    style READ fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style ADD fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style LST fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style CMP fill:#7c3aed,color:#ffffff,stroke:#a78bfa,stroke-width:2px
+    style EXT fill:#991b1b,color:#ffffff,stroke:#f87171,stroke-width:2px
+    style STATE fill:#4338ca,color:#ffffff,stroke:#818cf8,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Inicialización del estado en memoria. | `Colección de tareas activa.` |
-| **2. Evaluación** | Despliegue del menú y captura de opción. | `Espera de input en stdin.` |
-| **3. Transformación** | Despacho a la función correspondiente. | `Mutación controlada.` |
-| **4. Retorno / Salida** | Confirmación visual y repetición del ciclo. | `Bucle activo hasta salir.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Cada opción del menú debe llamar a una función especializada e independiente.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 08 - Código de Demostración
 class TaskManager:
     def __init__(self):
         self.tasks = []
@@ -125,46 +77,45 @@ tm.add_task("Aprender Python con Wisrovi")
 print("Tareas registradas:", tm.list_tasks())
 ```
 
-*Uso de clases, métodos encapsulados, listas de diccionarios y formateo de salida.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Escribir todo el código en un solo archivo plano sin funciones ni modularidad.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Escribir todo el código en un solo archivo plano sin funciones ni modularidad.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-# 500 líneas de código plano desordenado ❌
+    # 500 líneas de código plano desordenado ❌
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-# Funciones modulares y clases con responsabilidades únicas ✅
+    # Funciones modulares y clases con responsabilidades únicas ✅
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Documenta tus scripts con un README claro explicando cómo ejecutar la aplicación.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Amplía el TaskManager para permitir marcar tareas como completadas y eliminarlas por ID.
+!!! example "🎯 Enunciado del Reto"
+    **Amplía el TaskManager para permitir marcar tareas como completadas y eliminarlas por ID.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_01/test_clase_08_proyecto_integrador_basico.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

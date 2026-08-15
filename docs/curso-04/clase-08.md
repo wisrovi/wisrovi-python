@@ -1,115 +1,55 @@
-# 📚 Clase 08: Despliegue en la Nube, CI/CD y Portafolio Final
+# 📘 Clase 08: Despliegue en la Nube, CI/CD y Portafolio Final
 
-> **Programa:** Curso 4: Taller Práctico & Proyecto Final Integrador  
-> **Nivel:** Nivel 4 - Integrador  
-> **Metáfora Central:** *«Lanzamiento a Producción y Presentación de tu Proyecto ante el Mundo»*  
-> **Documento Oficial PDF:** [clase-08-despliegue-cicd-portafolio.pdf](clase-08-despliegue-cicd-portafolio.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 08)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 4 - Integrador`
+-   :material-lightbulb-on: **Metáfora Central:** *«Lanzamiento a Producción y Presentación de tu Proyecto ante el Mundo»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-08-despliegue-cicd-portafolio.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/04-proyecto-final/clase-08-despliegue-cicd-portafolio/clase-08-despliegue-cicd-portafolio.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-08-despliegue-cicd-portafolio/notebook/clase-08-despliegue-cicd-portafolio.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/04-proyecto-final/clase-08-despliegue-cicd-portafolio)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-La graduación del programa culmina con el despliegue de tu solución y la consolidación de tu portafolio profesional.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Es el corte de cinta inaugural de tu edificio de software: listo para recibir usuarios reales en todo el mundo.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Lanzamiento a Producción y Presentación de tu Proyecto ante el Mundo»"
+    Es el corte de cinta inaugural de tu edificio de software: listo para recibir usuarios reales en todo el mundo.
 
-Pipelines de CI/CD: Automatizan la ejecución de tests y el despliegue automático tras cada git push.
+### Principios Fundamentales de la Sesión
 
-Documentación README: La carta de presentación de tu proyecto para reclutadores y la comunidad.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Un proyecto sin README ni tests no está terminado; la excelencia de ingeniería se demuestra en los detalles.
+!!! info "⚡ Regla de Oro en Python"
+    Un proyecto sin README ni tests no está terminado; la excelencia de ingeniería se demuestra en los detalles.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Flujo de integración continua: Git Push -> CI Runner -> Tests -> Deploy.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+    IN["📥 1. Datos de Entrada<br/>(Lanzamiento a Producción y Pre...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Despliegue en la Nube, CI/CD y Portafolio Final"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON / UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Desarrollador hace push a la rama main. | `Commit registrado en GitHub.` |
-| **2. Evaluación** | GitHub Actions activa el runner ubuntu-latest. | `Entorno virtual aprovisionado.` |
-| **3. Transformación** | Ejecución de linter (Ruff) y suite de pruebas (Pytest). | `100% Tests verdes confirmados.` |
-| **4. Retorno / Salida** | Despliegue a producción y notificación. | `Aplicación en vivo y certificada.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Automatizar tu pipeline te da la libertad de desplegar en cualquier momento sin miedo a fallos.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 08 - Código de Demostración
 class ChecklistGraduacion:
     def __init__(self, autor: str, proyecto: str):
         self.autor = autor
@@ -132,46 +72,45 @@ for k, v in grad.items.items():
 print(f"🏆 ¿Aprobado para Certificación?: {grad.verificar()}")
 ```
 
-*Estructura de validación final para el egreso y presentación de proyectos en el repositorio.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Subir archivos temporales (__pycache__, .env, .venv) por no configurar un .gitignore limpio.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Subir archivos temporales (__pycache__, .env, .venv) por no configurar un .gitignore limpio.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-# Repositorio con 100 archivos .pyc y credenciales secretas ❌
+    # Repositorio con 100 archivos .pyc y credenciales secretas ❌
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-# Repositorio con .gitignore estándar de Python y variables en secretos de GitHub ✅
+    # Repositorio con .gitignore estándar de Python y variables en secretos de GitHub ✅
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Agrega tu proyecto final a la galería de graduados abriendo un Pull Request.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Abre tu Pull Request en '04-proyecto-final/proyectos-estudiantes/' para unirte al Cuadro de Honor.
+!!! example "🎯 Enunciado del Reto"
+    **Abre tu Pull Request en '04-proyecto-final/proyectos-estudiantes/' para unirte al Cuadro de Honor.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_04/test_clase_08_despliegue_cicd_portafolio.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

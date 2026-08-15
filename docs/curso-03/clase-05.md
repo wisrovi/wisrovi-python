@@ -1,100 +1,55 @@
-# 📚 Clase 05: Embeddings y Representación Vectorial Semántica
+# 📘 Clase 05: Embeddings y Representación Vectorial Semántica
 
-> **Programa:** Curso 3: Creación y Desarrollo de Agentes de IA  
-> **Nivel:** Nivel 3 - Avanzado  
-> **Metáfora Central:** *«Embeddings como Coordenadas GPS del Significado de las Palabras»*  
-> **Documento Oficial PDF:** [clase-05-embeddings-y-bases-vectoriales.pdf](clase-05-embeddings-y-bases-vectoriales.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 3: Creación y Desarrollo de Agentes de IA (CLASE 05)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 3 - Avanzado`
+-   :material-lightbulb-on: **Metáfora Central:** *«Embeddings como Coordenadas GPS del Significado de las Palabras»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-05-embeddings-y-bases-vectoriales.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/03-agentes-ia/clase-05-embeddings-y-bases-vectoriales/clase-05-embeddings-y-bases-vectoriales.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/03-agentes-ia/clase-05-embeddings-y-bases-vectoriales/notebook/clase-05-embeddings-y-bases-vectoriales.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/03-agentes-ia/clase-05-embeddings-y-bases-vectoriales)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Los embeddings transforman texto en vectores de números que capturan el significado semántico y contextual.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Un embedding es como la latitud y longitud de un concepto: 'Rey' y 'Reina' están muy cerca en el mapa semántico.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Embeddings como Coordenadas GPS del Significado de las Palabras»"
+    Un embedding es como la latitud y longitud de un concepto: 'Rey' y 'Reina' están muy cerca en el mapa semántico.
 
-Textos con significados similares tienen vectores que apuntan en direcciones casi idénticas en el espacio n-dimensional.
+### Principios Fundamentales de la Sesión
 
-La Similitud de Coseno mide el coseno del ángulo entre dos vectores (1.0 = idénticos, 0.0 = ortogonales).
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Los embeddings permiten búsquedas por SIGNIFICADO, no solo por coincidencia exacta de palabras clave.
+!!! info "⚡ Regla de Oro en Python"
+    Los embeddings permiten búsquedas por SIGNIFICADO, no solo por coincidencia exacta de palabras clave.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Transformación de texto a vector y cálculo de similitud espacial.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
-    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
-    C --> E["🎯 4. Retorno / Salida (print / return)"]
-    D --> E
+    IN["📥 1. Datos de Entrada<br/>(Embeddings como Coordenadas GP...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Embeddings y Representación Vectorial Semántica"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Paso del texto por el modelo de embedding. | `Vector denso de floats (ej. 768 dimensiones).` |
-| **2. Evaluación** | Almacenamiento del vector e indexación. | `Espacio vectorial poblado.` |
-| **3. Transformación** | Cálculo del producto punto y normas. | `Similitud de coseno calculada.` |
-| **4. Retorno / Salida** | Ordenamiento por ranking de relevancia. | `Top K documentos más cercanos.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Imagina una nube de puntos 3D donde los conceptos relacionados flotan juntos.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 05 - Código de Demostración
 import math
 
 def similitud_coseno(v1: list[float], v2: list[float]) -> float:
@@ -113,46 +68,45 @@ print("Similitud Python vs Código:", round(similitud_coseno(vec_python, vec_cod
 print("Similitud Python vs Cocina:", round(similitud_coseno(vec_python, vec_cocina), 4))
 ```
 
-*Fórmula matemática de coseno implementada con funciones nativas y zip().*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Comparar embeddings generados por dos modelos distintos produce resultados erróneos.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Comparar embeddings generados por dos modelos distintos produce resultados erróneos.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-similitud(emb_openai_1536, emb_bge_768)  # ❌ Incompatibilidad de dimensiones
+    similitud(emb_openai_1536, emb_bge_768)  # ❌ Incompatibilidad de dimensiones
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-# Usa SIEMPRE el mismo modelo de embedding para indexar y consultar ✅
+    # Usa SIEMPRE el mismo modelo de embedding para indexar y consultar ✅
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Normaliza tus vectores a longitud 1 para que el producto punto sea equivalente al coseno.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Crea un buscador semántico que ordene una lista de 5 frases según su parecido con una consulta.
+!!! example "🎯 Enunciado del Reto"
+    **Crea un buscador semántico que ordene una lista de 5 frases según su parecido con una consulta.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_03/test_clase_05_embeddings_y_bases_vectoriales.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

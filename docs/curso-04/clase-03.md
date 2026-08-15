@@ -1,115 +1,55 @@
-# 📚 Clase 03: Persistencia de Datos: Modelado SQL y Transacciones ACID
+# 📘 Clase 03: Persistencia de Datos: Modelado SQL y Transacciones ACID
 
-> **Programa:** Curso 4: Taller Práctico & Proyecto Final Integrador  
-> **Nivel:** Nivel 4 - Integrador  
-> **Metáfora Central:** *«La Base de Datos como una Bóveda Acorazada para la Información»*  
-> **Documento Oficial PDF:** [clase-03-persistencia-sql-transacciones.pdf](clase-03-persistencia-sql-transacciones.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 03)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 4 - Integrador`
+-   :material-lightbulb-on: **Metáfora Central:** *«La Base de Datos como una Bóveda Acorazada para la Información»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-03-persistencia-sql-transacciones.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/04-proyecto-final/clase-03-persistencia-sql-transacciones/clase-03-persistencia-sql-transacciones.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-03-persistencia-sql-transacciones/notebook/clase-03-persistencia-sql-transacciones.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/04-proyecto-final/clase-03-persistencia-sql-transacciones)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-La persistencia de datos garantiza que la información de los usuarios permanezca intacta tras apagar o reiniciar el servidor.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Una transacción ACID es como una transferencia bancaria: o se descuenta de una cuenta y se acredita en la otra, o se cancela todo.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «La Base de Datos como una Bóveda Acorazada para la Información»"
+    Una transacción ACID es como una transferencia bancaria: o se descuenta de una cuenta y se acredita en la otra, o se cancela todo.
 
-Inyección SQL: La vulnerabilidad #1 de bases de datos. Ocurre al concatenar strings en consultas.
+### Principios Fundamentales de la Sesión
 
-Consultas parametrizadas: Separan el código SQL de los datos proporcionados por el usuario.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** NUNCA concatenes variables en consultas SQL; usa siempre placeholders (?, %s o :val).
+!!! info "⚡ Regla de Oro en Python"
+    NUNCA concatenes variables en consultas SQL; usa siempre placeholders (?, %s o :val).
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Ciclo de vida de una transacción con Commit / Rollback automático.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+    IN["📥 1. Datos de Entrada<br/>(La Base de Datos como una Bóve...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Modelado SQL y Transacciones ACID"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON / UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Apertura de conexión y bloque transaccional (with conn:). | `Transacción iniciada en BD.` |
-| **2. Evaluación** | Ejecución de sentencias DML (INSERT, UPDATE, DELETE). | `Cambios en buffer transaccional.` |
-| **3. Transformación** | ¿Ocurrió algún error? Sí -> Rollback / No -> Commit. | `Persistencia en disco confirmada.` |
-| **4. Retorno / Salida** | Cierre seguro de la conexión. | `Pool liberado.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** El context manager 'with sqlite3.connect' ejecuta commit automáticamente si no hay excepciones.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 03 - Código de Demostración
 import sqlite3
 
 class RepositorioUsuarios:
@@ -138,46 +78,45 @@ uid = repo.insertar("Wisrovi Developer", "wisrovi@dev.com")
 print(f"Usuario insertado con ID: {uid}")
 ```
 
-*Uso de consultas parametrizadas con '?' para evitar SQL Injection y context manager seguro.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Formatear strings con f-strings en SQL permite a atacantes ejecutar comandos destructivos (ej. ' OR 1=1; DROP TABLE...).
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Formatear strings con f-strings en SQL permite a atacantes ejecutar comandos destructivos (ej. ' OR 1=1; DROP TABLE...).
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-cursor.execute(f'SELECT * FROM users WHERE email = '{email}'')  # ❌ Vulnerable a SQL Injection
+    cursor.execute(f'SELECT * FROM users WHERE email = \'{email}\'')  # ❌ Vulnerable a SQL Injection
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-cursor.execute('SELECT * FROM users WHERE email = ?', (email,))    # ✅ 100% Seguro
+    cursor.execute('SELECT * FROM users WHERE email = ?', (email,))    # ✅ 100% Seguro
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Usa SQLAlchemy o SQLModel para proyectos de gran escala con mapeo objeto-relacional.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Crea una tabla 'pedidos' vinculada por clave foránea (FOREIGN KEY) a la tabla de usuarios.
+!!! example "🎯 Enunciado del Reto"
+    **Crea una tabla 'pedidos' vinculada por clave foránea (FOREIGN KEY) a la tabla de usuarios.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_04/test_clase_03_persistencia_sql_transacciones.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

@@ -1,115 +1,55 @@
-# 📚 Clase 07: Agentes Autónomos y el Ciclo Cognitivo ReAct
+# 📘 Clase 07: Agentes Autónomos y el Ciclo Cognitivo ReAct
 
-> **Programa:** Curso 3: Creación y Desarrollo de Agentes de IA  
-> **Nivel:** Nivel 3 - Avanzado  
-> **Metáfora Central:** *«El Agente como un Detective que Piensa, Actúa y Observa hasta Resolver el Caso»*  
-> **Documento Oficial PDF:** [clase-07-agentes-autonomos-react.pdf](clase-07-agentes-autonomos-react.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 3: Creación y Desarrollo de Agentes de IA (CLASE 07)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 3 - Avanzado`
+-   :material-lightbulb-on: **Metáfora Central:** *«El Agente como un Detective que Piensa, Actúa y Observa hasta Resolver el Caso»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-07-agentes-autonomos-react.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/03-agentes-ia/clase-07-agentes-autonomos-react/clase-07-agentes-autonomos-react.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/03-agentes-ia/clase-07-agentes-autonomos-react/notebook/clase-07-agentes-autonomos-react.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/03-agentes-ia/clase-07-agentes-autonomos-react)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Un Agente de IA es un sistema autónomo que combina un LLM con memoria, herramientas y un bucle de razonamiento para alcanzar metas.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Un agente es como un detective: piensa qué pista necesita (Thought), busca el dato con una herramienta (Action), analiza el resultado (Observation) y repite.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «El Agente como un Detective que Piensa, Actúa y Observa hasta Resolver el Caso»"
+    Un agente es como un detective: piensa qué pista necesita (Thought), busca el dato con una herramienta (Action), analiza el resultado (Observation) y repite.
 
-Ciclo ReAct: Thought (Pensamiento) -> Action (Acción/Tool) -> Observation (Resultado) -> Final Answer.
+### Principios Fundamentales de la Sesión
 
-El agente evalúa si la observación resuelve el objetivo o si requiere ejecutar acciones adicionales.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Establece siempre un 'max_iterations = 5' para evitar que el agente quede atrapado en bucles infinitos.
+!!! info "⚡ Regla de Oro en Python"
+    Establece siempre un 'max_iterations = 5' para evitar que el agente quede atrapado en bucles infinitos.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Bucle autónomo de decisión ReAct con parada por condición de meta.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+    IN["📥 1. Datos de Entrada<br/>(El Agente como un Detective qu...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Agentes Autónomos y el Ciclo Cognitivo ReAct"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON / UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Recepción de la meta del usuario. | `Objetivo fijado en memoria de trabajo.` |
-| **2. Evaluación** | Generación de Thought y selección de Action. | `Herramienta elegida con parámetros.` |
-| **3. Transformación** | Ejecución de la herramienta y captura de Observation. | `Nuevo dato agregado al historial.` |
-| **4. Retorno / Salida** | ¿Meta alcanzada? Sí -> Final Answer / No -> Siguiente ciclo. | `Respuesta final entregada.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** El bucle ReAct le da al modelo tiempo para pensar y verificar antes de responder.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 07 - Código de Demostración
 class ReActAgent:
     def __init__(self, tools: dict, max_steps: int = 3):
         self.tools = tools
@@ -136,46 +76,45 @@ agente = ReActAgent(tools)
 print(agente.run("¿Cuánto vale el euro frente al dólar?"))
 ```
 
-*Arquitectura de agente con inyección de herramientas, bucle de ejecución y memoria de observaciones.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Si una herramienta falla o devuelve error, el agente puede reintentar la misma acción en un ciclo sin fin.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Si una herramienta falla o devuelve error, el agente puede reintentar la misma acción en un ciclo sin fin.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-while not finished: agent.step()  # ❌ Puede consumir tokens infinitos
+    while not finished: agent.step()  # ❌ Puede consumir tokens infinitos
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-for step in range(max_steps):     # ✅ Límite estricto de seguridad
+    for step in range(max_steps):     # ✅ Límite estricto de seguridad
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Guarda trazas completas de las decisiones del agente para auditoría y observabilidad.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Añade una herramienta de calculadora matemática al agente y haz que resuelva una ecuación paso a paso.
+!!! example "🎯 Enunciado del Reto"
+    **Añade una herramienta de calculadora matemática al agente y haz que resuelva una ecuación paso a paso.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_03/test_clase_07_agentes_autonomos_react.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

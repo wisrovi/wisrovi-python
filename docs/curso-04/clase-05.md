@@ -1,115 +1,55 @@
-# 📚 Clase 05: Integración del Motor de IA y Agentes en la App
+# 📘 Clase 05: Integración del Motor de IA y Agentes en la App
 
-> **Programa:** Curso 4: Taller Práctico & Proyecto Final Integrador  
-> **Nivel:** Nivel 4 - Integrador  
-> **Metáfora Central:** *«Conectar el Cerebro del Agente al Sistema Nervioso de la Aplicación»*  
-> **Documento Oficial PDF:** [clase-05-integracion-agente-ia.pdf](clase-05-integracion-agente-ia.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 05)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 4 - Integrador`
+-   :material-lightbulb-on: **Metáfora Central:** *«Conectar el Cerebro del Agente al Sistema Nervioso de la Aplicación»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-05-integracion-agente-ia.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/04-proyecto-final/clase-05-integracion-agente-ia/clase-05-integracion-agente-ia.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-05-integracion-agente-ia/notebook/clase-05-integracion-agente-ia.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/04-proyecto-final/clase-05-integracion-agente-ia)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Integrar un agente en una aplicación web requiere gestionar latencias, streaming de texto y manejo de errores de API.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Es como conectar un motor híbrido a un automóvil: debe responder con potencia suave sin tirones para el conductor.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Conectar el Cerebro del Agente al Sistema Nervioso de la Aplicación»"
+    Es como conectar un motor híbrido a un automóvil: debe responder con potencia suave sin tirones para el conductor.
 
-Streaming de respuestas: Enviar token por token al frontend para que el usuario no espere 10 segundos en blanco.
+### Principios Fundamentales de la Sesión
 
-Manejo de rate limits: Reintentos exponenciales con backoff ante errores 429 de proveedores de IA.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Muestra siempre indicadores visuales de carga (spinners) mientras el agente razona.
+!!! info "⚡ Regla de Oro en Python"
+    Muestra siempre indicadores visuales de carga (spinners) mientras el agente razona.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Flujo de streaming y comunicación de eventos agente-frontend.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+    IN["📥 1. Datos de Entrada<br/>(Conectar el Cerebro del Agente...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Integración del Motor de IA y Agentes en la App"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON / UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Usuario envía mensaje en el chat del frontend. | `Mensaje en cola de envío.` |
-| **2. Evaluación** | Backend recibe solicitud y activa el bucle ReAct del agente. | `Agente ejecutando herramientas.` |
-| **3. Transformación** | Streaming de tokens hacia el cliente (EventSource / Generator). | `Texto renderizándose en tiempo real.` |
-| **4. Retorno / Salida** | Persistencia de la conversación en base de datos. | `Historial actualizado.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** El streaming mejora drásticamente la percepción de velocidad de la aplicación.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 05 - Código de Demostración
 class AgenteService:
     def __init__(self, nombre_bot: str = "WisroviAssistant"):
         self.nombre_bot = nombre_bot
@@ -127,46 +67,45 @@ servicio = AgenteService()
 print(servicio.procesar_consulta("usr_1", "Generar balance"))
 ```
 
-*Encapsulamiento del servicio de IA en una clase desacoplada del framework web.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Escribir las claves de API (OPENAI_API_KEY, GEMINI_API_KEY) en el código del frontend expone tu cuenta.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Escribir las claves de API (OPENAI_API_KEY, GEMINI_API_KEY) en el código del frontend expone tu cuenta.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-API_KEY = 'sk-123456789'  # ❌ Expuesto en el repositorio
+    API_KEY = 'sk-123456789'  # ❌ Expuesto en el repositorio
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-API_KEY = os.environ.get('GEMINI_API_KEY')  # ✅ Variable de entorno segura
+    API_KEY = os.environ.get('GEMINI_API_KEY')  # ✅ Variable de entorno segura
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Usa archivos .env ignorados en .gitignore y la librería python-dotenv.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Implementa un generador 'def stream_respuesta()' que entregue palabras una a una simulando streaming.
+!!! example "🎯 Enunciado del Reto"
+    **Implementa un generador 'def stream_respuesta()' que entregue palabras una a una simulando streaming.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_04/test_clase_05_integracion_agente_ia.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

@@ -1,164 +1,102 @@
-# 📚 Clase 02: Pilas (Stacks) y Colas (Queues) con collections.deque
+# 📘 Clase 02: Pilas (Stacks) y Colas (Queues) con collections.deque
 
-> **Programa:** Curso 2: Algoritmos Avanzados y Estructuras de Datos  
-> **Nivel:** Nivel 2 - Intermedio  
-> **Metáfora Central:** *«Pilas LIFO como Platos Apilados y Colas FIFO como la Fila del Supermercado»*  
-> **Documento Oficial PDF:** [clase-02-pilas-y-colas.pdf](clase-02-pilas-y-colas.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 2: Algoritmos Avanzados y Estructuras de Datos (CLASE 02)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 2 - Intermedio`
+-   :material-lightbulb-on: **Metáfora Central:** *«Pilas LIFO como Platos Apilados y Colas FIFO como la Fila del Supermercado»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-02-pilas-y-colas.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/02-algoritmos-estructuras/clase-02-pilas-y-colas/clase-02-pilas-y-colas.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/02-algoritmos-estructuras/clase-02-pilas-y-colas/notebook/clase-02-pilas-y-colas.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/02-algoritmos-estructuras/clase-02-pilas-y-colas)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Las pilas y colas son estructuras de datos lineales que restringen la inserción y extracción según una disciplina estricta.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Una pila es como una torre de platos (el último que pones es el primero que lavas); una cola es la fila del banco (el primero en llegar es el primero en ser atendido).
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Pilas LIFO como Platos Apilados y Colas FIFO como la Fila del Supermercado»"
+    Una pila es como una torre de platos (el último que pones es el primero que lavas); una cola es la fila del banco (el primero en llegar es el primero en ser atendido).
 
-Una lista de Python como cola es ineficiente: lista.pop(0) es O(n) porque desplaza todos los elementos en memoria.
+### Principios Fundamentales de la Sesión
 
-collections.deque implementa una lista doblemente enlazada con inserción y extracción O(1) en ambos extremos.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Nunca uses lista.pop(0) para colas; usa siempre collections.deque().popleft().
+!!! info "⚡ Regla de Oro en Python"
+    Nunca uses lista.pop(0) para colas; usa siempre collections.deque().popleft().
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Mecanismo de inserción y extracción LIFO (Stack) vs FIFO (Queue).
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
-    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
-    C --> E["🎯 4. Retorno / Salida (print / return)"]
-    D --> E
+    IN["📥 1. Datos de Entrada<br/>(Pilas LIFO como Platos Apilado...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Pilas (Stacks) y Colas (Queues) con collections.deque"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Inserción de elementos (append / push). | `Elemento en el extremo derecho.` |
-| **2. Evaluación** | Operación de consulta del tope (peek). | `Lectura sin extracción.` |
-| **3. Transformación** | Extracción LIFO (pop) o FIFO (popleft). | `Puntero de nodo actualizado en O(1).` |
-| **4. Retorno / Salida** | Verificación de estructura vacía. | `Longitud 0 confirmada.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Para deshacer cambios (Ctrl+Z) usa una Pila; para procesar mensajes de cola usa una Cola.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 02 - Código de Demostración
-from collections import deque
-
-# 1. Pila (Stack LIFO)
-def balanceado(expr: str) -> bool:
-    pila = []
-    mapa = {")": "(", "}": "{", "]": "["}
-    for char in expr:
-        if char in mapa.values(): pila.append(char)
-        elif char in mapa:
-            if not pila or pila.pop() != mapa[char]: return False
-    return len(pila) == 0
-
-# 2. Cola (Queue FIFO)
-cola = deque(["Ticket 1", "Ticket 2", "Ticket 3"])
-cola.append("Ticket 4")
-print("Atendido:", cola.popleft())  # Ticket 1
-print("Es valido:", balanceado("{[()]}"))
+from collections import deque\n\n# 1. Pila (Stack LIFO)\ndef balanceado(expr: str) -> bool:\n    pila = []\n    mapa = {")": "(", "}": "{", "]": "["}\n    for char in expr:\n        if char in mapa.values(): pila.append(char)\n        elif char in mapa:\n            if not pila or pila.pop() != mapa[char]: return False\n    return len(pila) == 0\n\n# 2. Cola (Queue FIFO)\ncola = deque(["Ticket 1", "Ticket 2", "Ticket 3"])\ncola.append("Ticket 4")\nprint("Atendido:", cola.popleft())  # Ticket 1\nprint("Es valido:", balanceado("{[()]}"))
 ```
-
-*Uso de lista nativa como Pila LIFO y deque para Colas FIFO con rendimiento O(1).*
 
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar list.pop(0) en colas con miles de elementos colapsa el rendimiento de la CPU.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Usar list.pop(0) en colas con miles de elementos colapsa el rendimiento de la CPU.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-cola = []
+    cola = []
 cola.append(x)
 primero = cola.pop(0)  # ❌ O(n) movimiento de bloques en memoria
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-from collections import deque
+    from collections import deque
 cola = deque()
 cola.append(x)
 primero = cola.popleft()  # ✅ O(1) instantáneo
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** deque también permite definir maxlen para crear buffers circulares de tamaño fijo.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Implementa un historial de navegación web con funciones ir_a(url), atras() y adelante() usando dos pilas.
+!!! example "🎯 Enunciado del Reto"
+    **Implementa un historial de navegación web con funciones ir_a(url), atras() y adelante() usando dos pilas.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_02/test_clase_02_pilas_y_colas.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

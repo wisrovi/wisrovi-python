@@ -1,150 +1,111 @@
-# 📚 Clase 04: Control de Flujo: Bucles (for / while)
+# 📘 Clase 04: Control de Flujo: Bucles (for / while)
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python  
-> **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Bucles como una Cinta Transportadora de Fábrica»*  
-> **Documento Oficial PDF:** [clase-04-control-flujo-bucles.pdf](clase-04-control-flujo-bucles.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 04)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 1 - Principiante`
+-   :material-lightbulb-on: **Metáfora Central:** *«Bucles como una Cinta Transportadora de Fábrica»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-04-control-flujo-bucles.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/01-fundamentos-python/clase-04-control-flujo-bucles/clase-04-control-flujo-bucles.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-04-control-flujo-bucles/notebook/clase-04-control-flujo-bucles.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/01-fundamentos-python/clase-04-control-flujo-bucles)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Los bucles permiten ejecutar un bloque de código múltiples veces sobre secuencias o hasta cumplir una condición.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** El bucle 'for' es como una cinta transportadora donde inspeccionas cada paquete uno a uno hasta terminar.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Bucles como una Cinta Transportadora de Fábrica»"
+    El bucle 'for' es como una cinta transportadora donde inspeccionas cada paquete uno a uno hasta terminar.
 
-El bucle 'for' en Python itera directamente sobre los elementos de cualquier objeto iterable.
+### Principios Fundamentales de la Sesión
 
-El bucle 'while' evalúa una condición antes de cada ciclo y se detiene cuando la condición es False.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** En bucles while, asegúrate siempre de modificar la variable de control para evitar bucles infinitos.
+!!! info "⚡ Regla de Oro en Python"
+    En bucles while, asegúrate siempre de modificar la variable de control para evitar bucles infinitos.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Ciclo de vida de una iteración con range e interrupción controlada.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
-flowchart LR
-    A["📦 Colección / Rango"] --> B["🔄 Iterador (for / while)"]
-    B --> C["⚡ Ejecuta Cuerpo del Bucle"]
-    C -->|Siguiente Iteración| B
-    C -->|break / Fin de Rango| D["🏁 Fin del Ciclo"]
+flowchart TD
+    SEQ["📦 Secuencia o Rango<br/>range(1, 10) o lista"] --> ITER["🔄 Iterador del Bucle (for / while)"]
+    ITER --> BODY["⚡ Ejecutar Bloque del Bucle"]
+    BODY --> CTRL{"¿Instrucción Especial?"}
+    CTRL -->|continue| ITER
+    CTRL -->|break| EXIT["🛑 Salida Inmediata del Ciclo"]
+    CTRL -->|Flujo Normal| NEXT{"¿Fin de Secuencia?"}
+    NEXT -->|No| ITER
+    NEXT -->|Sí| EXIT
 
-    style A fill:#1e293b,color:#ffffff,stroke:#38bdf8,stroke-width:2px
-    style B fill:#0369a1,color:#ffffff,stroke:#7dd3fc,stroke-width:2px
-    style C fill:#047857,color:#ffffff,stroke:#6ee7b7,stroke-width:2px
-    style D fill:#334155,color:#ffffff,stroke:#94a3b8,stroke-width:2px
+    style SEQ fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ITER fill:#0284c7,color:#ffffff,stroke:#38bdf8,stroke-width:2px
+    style BODY fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style CTRL fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style NEXT fill:#4338ca,color:#ffffff,stroke:#818cf8,stroke-width:2px
+    style EXIT fill:#334155,color:#ffffff,stroke:#94a3b8,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Instanciación del objeto iterable (range). | `Puntero en el primer índice.` |
-| **2. Evaluación** | Extracción del elemento actual (next()). | `Variable de iteración asignada.` |
-| **3. Transformación** | Ejecución del cuerpo y evaluación de break/continue. | `Variables actualizadas.` |
-| **4. Retorno / Salida** | Fin de colección o StopIteration. | `Liberación del iterador.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Visualiza a 'continue' como saltar al siguiente turno y a 'break' como parar la máquina.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 04 - Código de Demostración
 ventas = [120.0, 45.5, 300.0, 89.9]
 total = 0.0
 
 for venta in ventas:
-    if venta < 50.0:
-        continue
-    total += venta
-
-print(f"Total de ventas > $50: ${total:.2f}")
+    if venta  $50: ${total:.2f}")
 ```
-
-*Uso idiomático de continue para filtrar elementos sin anidar estructuras if.*
 
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Hacer .remove() en una lista dentro de un bucle for provoca saltos de elementos.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Hacer .remove() en una lista dentro de un bucle for provoca saltos de elementos.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-for n in numeros:
+    for n in numeros:
     if n % 2 == 0: numeros.remove(n)  # ❌ Muta la colección
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-impares = [n for n in numeros if n % 2 != 0]  # ✅ List comprehension
+    impares = [n for n in numeros if n % 2 != 0]  # ✅ List comprehension
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Prefiere List Comprehensions para filtrar y transformar datos.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Escribe un programa que imprima la tabla de multiplicar de un número del 1 al 10.
+!!! example "🎯 Enunciado del Reto"
+    **Escribe un programa que imprima la tabla de multiplicar de un número del 1 al 10.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_01/test_clase_04_control_flujo_bucles.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

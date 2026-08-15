@@ -1,100 +1,61 @@
-# 📚 Clase 03: Control de Flujo: Condicionales (if / elif / else)
+# 📘 Clase 03: Control de Flujo: Condicionales (if / elif / else)
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python  
-> **Nivel:** Nivel 1 - Principiante  
-> **Metáfora Central:** *«Condicionales como Semáforos y Bifurcaciones en un Tren»*  
-> **Documento Oficial PDF:** [clase-03-control-flujo-condicionales.pdf](clase-03-control-flujo-condicionales.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 03)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 1 - Principiante`
+-   :material-lightbulb-on: **Metáfora Central:** *«Condicionales como Semáforos y Bifurcaciones en un Tren»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-03-control-flujo-condicionales.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/01-fundamentos-python/clase-03-control-flujo-condicionales/clase-03-control-flujo-condicionales.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-03-control-flujo-condicionales/notebook/clase-03-control-flujo-condicionales.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/01-fundamentos-python/clase-03-control-flujo-condicionales)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Las estructuras condicionales permiten que tu programa tome decisiones autónomas basadas en condiciones booleanas.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Un condicional es como una aguja ferroviaria que desvía el tren según el color del semáforo.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Condicionales como Semáforos y Bifurcaciones en un Tren»"
+    Un condicional es como una aguja ferroviaria que desvía el tren según el color del semáforo.
 
-Python evalúa las condiciones de forma secuencial; la primera rama que resulte True ejecuta su bloque.
+### Principios Fundamentales de la Sesión
 
-Cortocircuito booleano: En 'A and B', si A es False, B ni siquiera se evalúa.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Mantén las condiciones planas: evita anidar más de 3 niveles de if.
+!!! info "⚡ Regla de Oro en Python"
+    Mantén las condiciones planas: evita anidar más de 3 niveles de if.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Evaluación condicional de ramas múltiples (if - elif - else).
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
-flowchart LR
-    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
-    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
-    C --> E["🎯 4. Retorno / Salida (print / return)"]
-    D --> E
+flowchart TD
+    COND["⚖️ Evaluación de Expresión Booleana"] --> IF{"¿Condición Principal<br/>if edad >= 18?"}
+    IF -->|True (Verdadero)| B1["🟢 Semáforo Verde<br/>Acceso Autorizado al Sistema"]
+    IF -->|False (Falso)| ELIF{"¿Condición Secundaria<br/>elif tiene_permiso?"}
+    ELIF -->|True (Verdadero)| B2["🟡 Semáforo Amarillo<br/>Acceso con Supervisión"]
+    ELIF -->|False (Falso)| ELSE["🔴 Semáforo Rojo<br/>Acceso Denegado por Defecto"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style COND fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style IF fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style B1 fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style ELIF fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style B2 fill:#0284c7,color:#ffffff,stroke:#38bdf8,stroke-width:2px
+    style ELSE fill:#991b1b,color:#ffffff,stroke:#f87171,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Evaluación de la condición primaria (if). | `Valor de verdad True/False.` |
-| **2. Evaluación** | Desvío a rama elif en caso de False. | `Paso a la siguiente condición.` |
-| **3. Transformación** | Ejecución del bloque correspondiente. | `Ejecución del scope indentado.` |
-| **4. Retorno / Salida** | Salida de la estructura hacia el flujo principal. | `Continuación lineal.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Lee las condiciones en voz alta como preguntas de 'Sí o No'.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 03 - Código de Demostración
 puntaje = 85
 
 if puntaje >= 90:
@@ -109,46 +70,45 @@ else:
 print(f"Resultado final: {calificacion}")
 ```
 
-*Uso de elif para evaluar rangos mutuamente excluyentes en orden descendente.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar 'is' para comparar números o strings; 'is' compara direcciones de memoria.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Usar 'is' para comparar números o strings; 'is' compara direcciones de memoria.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-if nombre is 'Juan':  # ❌ SyntaxWarning
+    if nombre is 'Juan':  # ❌ SyntaxWarning
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-if nombre == 'Juan':  # ✅ Comparación correcta
+    if nombre == 'Juan':  # ✅ Comparación correcta
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Usa 'is' únicamente para comparar con None (ej. if valor is None:).
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Diseña un clasificador de acceso por edad y membresía VIP.
+!!! example "🎯 Enunciado del Reto"
+    **Diseña un clasificador de acceso por edad y membresía VIP.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_01/test_clase_03_control_flujo_condicionales.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

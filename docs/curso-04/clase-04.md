@@ -1,100 +1,55 @@
-# 📚 Clase 04: Desarrollo del Frontend: Dashboards con Streamlit
+# 📘 Clase 04: Desarrollo del Frontend: Dashboards con Streamlit
 
-> **Programa:** Curso 4: Taller Práctico & Proyecto Final Integrador  
-> **Nivel:** Nivel 4 - Integrador  
-> **Metáfora Central:** *«Streamlit como el Salón de Control Visual para tu Backend de Python»*  
-> **Documento Oficial PDF:** [clase-04-frontend-streamlit.pdf](clase-04-frontend-streamlit.pdf)  
-> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
+<div class="grid cards" markdown>
 
----
+-   :material-bookmark: **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 04)
+-   :material-signal-cellular-outline: **Nivel:** `Nivel 4 - Integrador`
+-   :material-lightbulb-on: **Metáfora Central:** *«Streamlit como el Salón de Control Visual para tu Backend de Python»*
+-   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-04-frontend-streamlit.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/04-proyecto-final/clase-04-frontend-streamlit/clase-04-frontend-streamlit.pdf)
 
-## 👤 Perfil del Autor y Mentor
+</div>
 
-### **William Rodríguez (Wisrovi)**
-*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+<div align="center" style="margin: 1rem 0;" markdown>
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-04-frontend-streamlit/notebook/clase-04-frontend-streamlit.ipynb)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/04-proyecto-final/clase-04-frontend-streamlit)
 
-*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
-*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
-*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
-*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
-*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
-
----
-
-### 🚲 La Regla de la Bicicleta
-
-> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
-
----
-
-## 📑 Tabla de Contenidos de la Sesión
-
-1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
-2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
-3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
-4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
-5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
-6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+</div>
 
 ---
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-Streamlit permite transformar scripts de Python en aplicaciones web interactivas para ciencia de datos e Inteligencia Artificial.
 
-> [!NOTE]
-> **🌟 Metáfora Didáctica:** Es como un tablero de mandos de automóvil donde cada botón y pantalla se conecta directamente al motor de tu backend.
 
-### Principios Fundamentales
+!!! note "🌟 Modelo Mental de la Sesión: «Streamlit como el Salón de Control Visual para tu Backend de Python»"
+    Es como un tablero de mandos de automóvil donde cada botón y pantalla se conecta directamente al motor de tu backend.
 
-Modelo Reactivo: Cada vez que el usuario interactúa con un control (botón, slider), Streamlit reejecuta el script de arriba a abajo.
+### Principios Fundamentales de la Sesión
 
-st.session_state: Permite preservar variables y estados entre reejecuciones del script.
 
-> [!IMPORTANT]
-> **⚡ Regla de Oro en Python:** Usa st.session_state para almacenar sesiones de chat o datos de formularios sin perderlos al hacer clic.
+!!! info "⚡ Regla de Oro en Python"
+    Usa st.session_state para almacenar sesiones de chat o datos de formularios sin perderlos al hacer clic.
 
 ---
 
-## 2. 🗺️ Arquitectura y Diagrama de Flujo
-
-Ciclo reactivo de eventos en Streamlit e invocación a la API.
+## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
 flowchart LR
-    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
-    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
-    C --> E["🎯 4. Retorno / Salida (print / return)"]
-    D --> E
+    IN["📥 1. Datos de Entrada<br/>(Streamlit como el Salón de Con...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Dashboards con Streamlit"]
+    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
-
-### Desglose Paso a Paso del Flujo
-
-| Fase | Acción del Intérprete | Estado en Memoria |
-| :--- | :--- | :--- |
-| **1. Inicialización** | Renderizado de componentes visuales (título, inputs). | `DOM generado en el navegador.` |
-| **2. Evaluación** | Interacción del usuario (clic en botón). | `Evento disparado hacia el servidor.` |
-| **3. Transformación** | Petición HTTP hacia el backend FastAPI (requests.post). | `Respuesta JSON recibida.` |
-| **4. Retorno / Salida** | Actualización de st.session_state y mensaje de éxito. | `Interfaz actualizada instantáneamente.` |
-
-> [!TIP]
-> **🔍 Visualización Mental:** Todo lo que guardes en st.session_state sobrevive a la recarga de página.
 
 ---
 
-## 3. 💻 Implementación en Python 3.10+
+## 3. 💻 Código de Implementación Práctica
 
 ```python
-# CLASE 04 - Código de Demostración
 import streamlit as st
 
 st.set_page_config(page_title="Panel de Control", page_icon="🚀")
@@ -115,47 +70,46 @@ with st.form("form_lead"):
 st.write(f"Total registrados: {len(st.session_state.leads)}")
 ```
 
-*Uso de st.form para agrupar inputs y st.session_state para persistencia de sesión.*
-
 ---
 
-## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
+## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
 
-> [!WARNING]
-> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Cargar modelos pesados o archivos grandes en cada interacción ralentiza la aplicación.
+!!! warning "⚠️ Trampa Frecuente (Gotcha)"
+    Cargar modelos pesados o archivos grandes en cada interacción ralentiza la aplicación.
 
-*   **❌ Antipatrón:**
+=== "❌ Antipatrón / Código Inadecuado"
     ```python
-modelo = cargar_modelo_pesado_2gb()  # ❌ Se recarga en cada clic
+    modelo = cargar_modelo_pesado_2gb()  # ❌ Se recarga en cada clic
     ```
 
-*   **✅ Patrón Correcto:**
+=== "✅ Patrón Recomendado / Pythonic"
     ```python
-@st.cache_resource
+    @st.cache_resource
 def get_model(): return cargar_modelo()  # ✅ Se ejecuta una sola vez en caché
     ```
 
-> [!TIP]
-> **💡 Consejo Profesional:** Usa @st.cache_data para llamadas a APIs y @st.cache_resource para objetos de conexión.
+!!! tip "🔧 Consejo de Ingeniería"
+    
 
 ---
 
-## 5. 🏋️ Desafío de Práctica
+## 5. 🏋️ Desafío Práctico de la Clase
 
-> **Desafío:** Crea una vista con st.tabs para alternar entre el formulario de registro y la tabla de datos.
+!!! example "🎯 Enunciado del Reto"
+    **Crea una vista con st.tabs para alternar entre el formulario de registro y la tabla de datos.**
 
-Para ejecutar la verificación automática con pytest:
-```bash
-pytest ejercicios/
-```
+Para resolver este ejercicio en tu entorno:
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+3. Valida tus resultados ejecutando las pruebas unitarias:
+   ```bash
+   pytest tests/curso_04/test_clase_04_frontend_streamlit.py
+   ```
 
 ---
 
-## 6. 📚 Bibliografía y Enlaces Canónicos
+## 6. 📚 Fuentes y Bibliografía Recomendada
 
-| Fuente / Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
+*   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
+*   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)
