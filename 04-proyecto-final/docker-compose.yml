@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # 1. Base de datos PostgreSQL
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: wisrovi_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: user_wisrovi
+      POSTGRES_PASSWORD: password_secure_2026
+      POSTGRES_DB: app_production_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user_wisrovi -d app_production_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Backend API FastAPI
+  backend-api:
+    build:
+      context: ./plantillas/01-aplicacion-web/backend
+      dockerfile: Dockerfile
+    container_name: wisrovi_fastapi
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://user_wisrovi:password_secure_2026@postgres-db:5432/app_production_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+
+  # 3. Frontend Interactivo Streamlit
+  frontend-ui:
+    build:
+      context: ./plantillas/01-aplicacion-web/frontend
+      dockerfile: Dockerfile
+    container_name: wisrovi_streamlit
+    restart: unless-stopped
+    environment:
+      BACKEND_API_URL: http://backend-api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend-api
+
+volumes:
+  postgres_data:
