@@ -1,18 +1,19 @@
-# 📖 Clase 03: Control de Flujo - Condicionales
+# 📚 Clase 03: Control de Flujo: Condicionales (if / elif / else)
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python (Nivel 1 (Principiantes))  
-> **Nivel de Dificultad:** Principiante Absoluto  
-> **Metáfora Central:** *«El Guardia de la Puerta y el Menú de Opciones»*  
-> **Python Version:** 3.10+ | **Licencia:** MIT  
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Condicionales como Semáforos y Bifurcaciones en un Tren»*  
+> **Documento Oficial PDF:** [clase-03-control-flujo-condicionales.pdf](clase-03-control-flujo-condicionales.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 👤 Acerca del Autor y Mentor
+## 👤 Perfil del Autor y Mentor
 
 ### **William Rodríguez (Wisrovi)**
-**AI Solutions Architect & Principal Software Engineer** &bull; *Badajoz, España*
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre <strong>wisrovi SUITE</strong> en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
 
 *   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
 *   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
@@ -22,170 +23,132 @@ Ingeniero y arquitecto de software especializado en Inteligencia Artificial Gene
 
 ---
 
-### 🚲 Metodología de Aprendizaje: La Regla de la Bicicleta
+### 🚲 La Regla de la Bicicleta
 
 > *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-> [!TIP]
-> **El Compromiso Activo del Estudiante:** Abre Visual Studio Code en cada sesión. Escribe cada ejemplo con tus propias manos. Cambia los números, rompe el código deliberadamente para ver el mensaje de error de Python, y luego arréglalo.
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
 
 ---
 
-## 📑 Tabla de Contenidos
+## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-| Capítulo | Tema | Enfoque Principal |
-| :--- | :--- | :--- |
-| **01** | **Fundamentos & Metáfora** | Bifurcaciones Lógicas y Toma de Decisiones |
-| **02** | **Arquitectura de Flujo** | Árbol de Decisión y Evaluación de Condiciones |
-| **03** | **Implementación Práctica** | Sistema de Clasificación de Préstamos Bancarios |
-| **04** | **Patrones & Debugging** | Errores Frecuentes con Condicionales |
-| **05** | **Conclusiones & Cierre** | Resumen ejecutivo, notas del mentor y agradecimiento |
-| **06** | **Bibliografía & Recursos** | Fuentes oficiales y retos de autoestudio |
-
-### 🎯 Objetivos de Aprendizaje
-
-*   **Competencia Conceptual:** Comprender la evaluación de expresiones booleanas y la exclusión mutua en cadenas if-elif-else.
-*   **Competencia Práctica:** Implementar sistemas de validación de reglas de negocio, control de acceso y árboles de decisión.
-
----
-
-## 1. 💡 Bifurcaciones Lógicas y Toma de Decisiones
-
-Un programa no es una línea recta; es un camino con encrucijadas donde el flujo toma una dirección según las condiciones.
+Las estructuras condicionales permiten que tu programa tome decisiones autónomas basadas en condiciones booleanas.
 
 > [!NOTE]
-> ### 🌟 Metáfora Central: El Guardia de la Puerta y el Menú de Opciones
-> Imagina un guardia en la entrada de un club: revisa tu entrada (if). Si tienes pase VIP entra gratis (if), si tienes entrada general paga boleto (elif), y si no tienes entrada se le deniega el acceso (else).
+> **🌟 Metáfora Didáctica:** Un condicional es como una aguja ferroviaria que desvía el tren según el color del semáforo.
 
-### Principios Teóricos y Modelo Mental
+### Principios Fundamentales
 
-Operadores relacionales: == (igualdad), != (diferente), > (mayor), < (menor), >= (mayor o igual), <= (menor o igual).
+Python evalúa las condiciones de forma secuencial; la primera rama que resulte True ejecuta su bloque.
 
-Operadores lógicos: and (ambas condiciones deben ser True), or (al menos una True), not (invierte el valor de verdad).
+Cortocircuito booleano: En 'A and B', si A es False, B ni siquiera se evalúa.
 
 > [!IMPORTANT]
-> ### ⚡ Regla de Oro en Python
-> En una cadena if-elif-else, tan pronto como una condición resulta True, se ejecuta su bloque y se omiten todas las demás.
+> **⚡ Regla de Oro en Python:** Mantén las condiciones planas: evita anidar más de 3 niveles de if.
 
 ---
 
-## 2. 🗺️ Árbol de Decisión y Evaluación de Condiciones
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Representación del flujo booleano con múltiples alternativas excluyentes.
-
-### Diagrama Visual del Flujo
+Evaluación condicional de ramas múltiples (if - elif - else).
 
 ```mermaid
 flowchart LR
     A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -- "Sí (True)" --> C["⚙️ 3. Procesamiento y Transformación"]
-    B -- "No (False / Else)" --> D["🔀 3b. Flujo Alternativo"]
+    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
+    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
     C --> E["🎯 4. Retorno / Salida (print / return)"]
     D --> E
 
-    style A fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#fff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#fff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
+    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | Evalúa la primera condición del if principal. | `Condición 1: ¿edad >= 18?` |
-| **2. Evaluación** | Si es True, entra al bloque if y salta al final de la estructura. | `Ejecuta bloque prioritario` |
-| **3. Transformación** | Si es False, evalúa secuencialmente los bloques elif. | `Condición 2: ¿tiene_permiso?` |
-| **4. Retorno / Salida** | Si ninguna condición previa fue True, se ejecuta el bloque else por defecto. | `Rama fallback de seguridad` |
+| **1. Inicialización** | Evaluación de la condición primaria (if). | `Valor de verdad True/False.` |
+| **2. Evaluación** | Desvío a rama elif en caso de False. | `Paso a la siguiente condición.` |
+| **3. Transformación** | Ejecución del bloque correspondiente. | `Ejecución del scope indentado.` |
+| **4. Retorno / Salida** | Salida de la estructura hacia el flujo principal. | `Continuación lineal.` |
 
 > [!TIP]
-> **Visualización Mental:** Ordena tus condiciones de la más específica a la más general para evitar que un caso amplio oculte casos particulares.
+> **🔍 Visualización Mental:** Lee las condiciones en voz alta como preguntas de 'Sí o No'.
 
 ---
 
-## 3. 💻 Sistema de Clasificación de Préstamos Bancarios
-
-Ejemplo práctico con operadores lógicos combinados y evaluación de reglas financieras:
+## 3. 💻 Implementación en Python 3.10+
 
 ```python
-# main.py - Python 3.10+ PEP 8 Compliant
-salario = float(input("Salario mensual ($): "))
-puntaje_credito = int(input("Puntaje crediticio (300-850): "))
-tiene_deudas = input("¿Tiene deudas activas? (s/n): ").lower() == "s"
+# CLASE 03 - Código de Demostración
+puntaje = 85
 
-if salario >= 3000.0 and puntaje_credito >= 720 and not tiene_deudas:
-    estado = "Aprobado Premium (Tasa de interés preferencial)"
-elif salario >= 1800.0 and puntaje_credito >= 650:
-    estado = "Aprobado Estándar (Sujeto a verificación)"
-elif salario >= 1200.0 or puntaje_credito >= 600:
-    estado = "Requiere Codeudor o Aval"
+if puntaje >= 90:
+    calificacion = "A - Excelente"
+elif puntaje >= 80:
+    calificacion = "B - Notable"
+elif puntaje >= 70:
+    calificacion = "C - Aprobado"
 else:
-    estado = "Rechazado (No cumple los requisitos mínimos)"
+    calificacion = "D - Refuerzo"
 
-print(f"
-Resultado de la solicitud: {estado}")
+print(f"Resultado final: {calificacion}")
 ```
 
-### Análisis del Código Fuente
-
-El código implementa lógica booleana compuesta con and, not y or, garantizando una jerarquía de evaluación limpia.
+*Uso de elif para evaluar rangos mutuamente excluyentes en orden descendente.*
 
 ---
 
-## 4. 🛡️ Errores Frecuentes con Condicionales
-
-Trampas clásicas de sintaxis y lógica booleana en Python:
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
 > [!WARNING]
-> ### ⚠️ Gotcha Frecuente (Trampa de Principiante)
-> Confundir el operador de asignación (=) con el operador de comparación (==).
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar 'is' para comparar números o strings; 'is' compara direcciones de memoria.
 
-### Comparativa: Antipatrón vs Patrón Recomendado
+*   **❌ Antipatrón:**
+    ```python
+if nombre is 'Juan':  # ❌ SyntaxWarning
+    ```
 
-#### ❌ Antipatrón / Mal Código:
-```python
-if rol = "admin": # SyntaxError
-    print("Acceso total")
-```
-
-#### ✅ Patrón Pythonic / Correcto:
-```python
-if rol == "admin": # Comparación correcta
-    print("Acceso total")
-```
+*   **✅ Patrón Correcto:**
+    ```python
+if nombre == 'Juan':  # ✅ Comparación correcta
+    ```
 
 > [!TIP]
-> **Consejo de Resiliencia en Producción:** Aprovecha la evaluación de cortocircuito (short-circuit evaluation) en Python para proteger llamadas riesgosas.
+> **💡 Consejo Profesional:** Usa 'is' únicamente para comparar con None (ej. if valor is None:).
 
 ---
 
-## 5. 🏆 Conclusiones y Resumen Ejecutivo
+## 5. 🏋️ Desafío de Práctica
 
-Has dominado el núcleo de la toma de decisiones en software mediante condicionales y lógica booleana.
+> **Desafío:** Diseña un clasificador de acceso por edad y membresía VIP.
 
-> [!NOTE]
-> ### 🎖️ Logro Alcanzado
-> Capacidad para codificar flujos lógicos complejos y reglas de negocio robustas.
-
-### 📝 Notas del Instructor
-En la próxima clase abordaremos la repetición inteligente: bucles for y while para procesar volúmenes masivos de datos.
-
-### 🤝 Mensaje de Agradecimiento
-Muchas gracias por tu entusiasmo, disciplina y dedicación al participar en este programa formativo. La programación es un superpoder que transforma vidas cuando se ejerce con constancia y curiosidad. ¡Nos vemos en la próxima sesión para seguir construyendo juntos! 💻🚀
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
+```
 
 ---
 
-## 6. 📚 Bibliografía y Fuentes de Estudio
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Python Type Checking (PEP 484)** | Anotaciones de tipo y análisis estático | [docs.python.org/typing](https://docs.python.org/3/library/typing.html) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
-
-> [!TIP]
-> ### 🏋️ Desafío de Autoestudio Recomendado
-> Diseña un sistema de tarificación de boletos de cine con descuentos por edad, día de la semana y membresía VIP.
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

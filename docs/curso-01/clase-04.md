@@ -1,45 +1,66 @@
-# Clase 04: Control de Flujo - Bucles
+# 📚 Clase 04: Control de Flujo: Bucles (for / while)
 
-<div class="grid cards" markdown>
-
--   :material-school: __Nivel:__ Principiante Absoluto
--   :material-book-open-page-variant: __Curso:__ Curso 1: Fundamentos Básicos de Python
--   :material-lightbulb-on: __Metáfora:__ *«Las Vueltas a la Pista y el Termostato»*
--   :material-file-pdf-box: __Descargar PDF:__ [clase-04-control-flujo-bucles.pdf](https://github.com/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-04-control-flujo-bucles/clase-04-control-flujo-bucles.pdf)
-
-</div>
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Bucles como una Cinta Transportadora de Fábrica»*  
+> **Documento Oficial PDF:** [clase-04-control-flujo-bucles.pdf](clase-04-control-flujo-bucles.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 🎯 Objetivos de Aprendizaje
+## 👤 Perfil del Autor y Mentor
 
-!!! abstract "Competencias Clave de la Sesión"
-    *   **Competencia Conceptual:** Diferenciar con claridad cuándo emplear una iteración acotada (for) vs una iteración gobernada por estado (while).
-    *   **Competencia Práctica:** Construir bucles eficientes con acumuladores, validaciones con reintentos y control de salida.
+### **William Rodríguez (Wisrovi)**
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+
+*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
+*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
+*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
+*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
+*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
 
 ---
 
-## 1. 💡 Fundamentos Teóricos y Modelo Mental
+### 🚲 La Regla de la Bicicleta
 
-La mayor fortaleza de una computadora es su capacidad para ejecutar una misma tarea millones de veces sin cansarse ni cometer errores.
+> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-!!! note "🌟 Metáfora Central: Las Vueltas a la Pista y el Termostato"
-    El bucle for es como un atleta que da un número exacto de vueltas a la pista de carreras (5 vueltas definidas). El bucle while es como el termostato de un calentador: funciona continuamente mientras la temperatura esté por debajo de 22 grados, y se detiene automáticamente cuando se alcanza la meta.
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+
+---
+
+## 1. 💡 Fundamentación Teórica y Modelo Mental
+
+Los bucles permiten ejecutar un bloque de código múltiples veces sobre secuencias o hasta cumplir una condición.
+
+> [!NOTE]
+> **🌟 Metáfora Didáctica:** El bucle 'for' es como una cinta transportadora donde inspeccionas cada paquete uno a uno hasta terminar.
 
 ### Principios Fundamentales
 
-Bucle for: Ideal cuando conoces de antemano el número de repeticiones o cuando recorres una colección finita.
+El bucle 'for' en Python itera directamente sobre los elementos de cualquier objeto iterable.
 
-Bucle while: Ideal cuando la repetición depende de una condición externa que puede cambiar dinámicamente durante la ejecución.
+El bucle 'while' evalúa una condición antes de cada ciclo y se detiene cuando la condición es False.
 
-!!! tip "⚡ Regla de Oro en Python"
-    Todo bucle while debe modificar en su cuerpo la variable de control; de lo contrario, se convierte en un bucle infinito que congela el programa.
+> [!IMPORTANT]
+> **⚡ Regla de Oro en Python:** En bucles while, asegúrate siempre de modificar la variable de control para evitar bucles infinitos.
 
 ---
 
-## 2. 🗺️ Diagrama de Arquitectura y Flujo de Control
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Estructura del flujo de control iterativo y mecanismos de interrupción anticipada.
+Ciclo de vida de una iteración con range e interrupción controlada.
 
 ```mermaid
 flowchart LR
@@ -56,93 +77,74 @@ flowchart LR
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | Inicializa el índice o evalúa la condición de entrada del bucle. | `Variable de control lista` |
-| **2. Evaluación** | Ejecuta las instrucciones del bloque interno. | `Cálculo en la iteración actual` |
-| **3. Transformación** | Si encuentra 'continue', salta directamente a la siguiente iteración. | `Bypass de código restante` |
-| **4. Retorno / Salida** | Si encuentra 'break', aborta el bucle inmediatamente hacia la siguiente línea externa. | `Salida forzada del ciclo` |
+| **1. Inicialización** | Instanciación del objeto iterable (range). | `Puntero en el primer índice.` |
+| **2. Evaluación** | Extracción del elemento actual (next()). | `Variable de iteración asignada.` |
+| **3. Transformación** | Ejecución del cuerpo y evaluación de break/continue. | `Variables actualizadas.` |
+| **4. Retorno / Salida** | Fin de colección o StopIteration. | `Liberación del iterador.` |
 
-!!! info "🔍 Visualización Mental"
-    Visualiza el bucle como una rueda que gira; cada vuelta procesa un dato individual hasta que se agota el combustible de la condición.
+> [!TIP]
+> **🔍 Visualización Mental:** Visualiza a 'continue' como saltar al siguiente turno y a 'break' como parar la máquina.
 
 ---
 
-## 3. 💻 Implementación Práctica en Python
+## 3. 💻 Implementación en Python 3.10+
 
-Implementación que combina bucles while, banderas booleanas y control de intentos:
+```python
+# CLASE 04 - Código de Demostración
+ventas = [120.0, 45.5, 300.0, 89.9]
+total = 0.0
 
-```python title="main.py - Python 3.10+ (PEP 8)" linenums="1"
-PASSWORD_SECRETA = "python2026"
-intentos_maximos = 3
-intentos_realizados = 0
-acceso_concedido = False
+for venta in ventas:
+    if venta < 50.0:
+        continue
+    total += venta
 
-while intentos_realizados < intentos_maximos:
-    intento = input(f"Intento [{intentos_realizados + 1}/{intentos_maximos}] - Contraseña: ")
-    if intento == PASSWORD_SECRETA:
-        acceso_concedido = True
-        print("¡Acceso exitoso al sistema! 🔓")
-        break
-    else:
-        print("❌ Contraseña incorrecta.")
-        intentos_realizados += 1
-
-if not acceso_concedido:
-    print("🚫 Sistema bloqueado por demasiados intentos fallidos.")
+print(f"Total de ventas > $50: ${total:.2f}")
 ```
 
-### Análisis Detallado del Código
-
-Demuestra el uso de contadores incrementales, la instrucción break para salida inmediata y la bandera booleana de estado.
+*Uso idiomático de continue para filtrar elementos sin anidar estructuras if.*
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Depuración
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
-Errores habituales que provocan fallos de rendimiento o bucles congelados:
+> [!WARNING]
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Hacer .remove() en una lista dentro de un bucle for provoca saltos de elementos.
 
-!!! warning "⚠️ Gotcha Frecuente (Trampa de Principiante)"
-    Olvidar incrementar el contador en un bucle while, resultando en un bucle infinito que consume el 100% de la CPU.
-
-### Comparativa: Patrón Recomendado vs Antipatrón
-
-=== "✅ Patrón Pythonic Recomendado"
+*   **❌ Antipatrón:**
     ```python
-for i in range(5):
-    print(i) # Seguro, limpio e idiomático
+for n in numeros:
+    if n % 2 == 0: numeros.remove(n)  # ❌ Muta la colección
     ```
 
-=== "❌ Antipatrón / Mal Código"
+*   **✅ Patrón Correcto:**
     ```python
-i = 0
-while i < 5:
-    print(i) # Olvido de i += 1 -> Bucle infinito
+impares = [n for n in numeros if n % 2 != 0]  # ✅ List comprehension
     ```
 
-!!! success "🛡️ Consejo de Resiliencia en Producción"
-    Prefiere siempre for sobre while cuando conozcas el número de iteraciones o trabajes sobre secuencias.
+> [!TIP]
+> **💡 Consejo Profesional:** Prefiere List Comprehensions para filtrar y transformar datos.
 
 ---
 
-## 5. 🏋️ Ejercicios y Desafío de Autoestudio
+## 5. 🏋️ Desafío de Práctica
 
-!!! example "Desafío Práctico Recomendado"
-    Escribe un programa que utilice bucles anidados para generar la tabla de multiplicar completa del 1 al 10 con formato tabular.
+> **Desafío:** Escribe un programa que imprima la tabla de multiplicar de un número del 1 al 10.
 
-???+ tip "🧪 Cómo validar tu solución con Pytest"
-    Abre tu terminal en VS Code y ejecuta:
-    ```bash
-    pytest 01-fundamentos-python/clase-04-control-flujo-bucles/ejercicios/
-    ```
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
+```
 
 ---
 
-## 6. 📚 Fuentes y Referencias Oficiales
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

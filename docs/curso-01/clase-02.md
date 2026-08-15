@@ -1,45 +1,66 @@
-# Clase 02: Variables y Tipos de Datos
+# 📚 Clase 02: Variables, Tipos de Datos y Operadores
 
-<div class="grid cards" markdown>
-
--   :material-school: __Nivel:__ Principiante Absoluto
--   :material-book-open-page-variant: __Curso:__ Curso 1: Fundamentos Básicos de Python
--   :material-lightbulb-on: __Metáfora:__ *«El Almacén, el Collar de Letras y el Micrófono»*
--   :material-file-pdf-box: __Descargar PDF:__ [clase-02-variables-y-tipos.pdf](https://github.com/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-02-variables-y-tipos/clase-02-variables-y-tipos.pdf)
-
-</div>
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Variables como Cajas Etiquetadas en Memoria»*  
+> **Documento Oficial PDF:** [clase-02-variables-y-tipos.pdf](clase-02-variables-y-tipos.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 🎯 Objetivos de Aprendizaje
+## 👤 Perfil del Autor y Mentor
 
-!!! abstract "Competencias Clave de la Sesión"
-    *   **Competencia Conceptual:** Comprender la diferencia fundamental entre tipos numéricos y texto, y cómo Python asigna memoria dinámicamente.
-    *   **Competencia Práctica:** Construir programas interactivos que soliciten datos al usuario, realicen conversiones numéricas y devuelvan mensajes formateados.
+### **William Rodríguez (Wisrovi)**
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+
+*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
+*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
+*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
+*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
+*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
 
 ---
 
-## 1. 💡 Fundamentos Teóricos y Modelo Mental
+### 🚲 La Regla de la Bicicleta
 
-Una variable es un identificador que apunta a una ubicación de memoria donde reside un valor con un tipo de dato específico.
+> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-!!! note "🌟 Metáfora Central: El Almacén, el Collar de Letras y el Micrófono"
-    Imagina un almacén con cajas etiquetadas. Una caja pequeña guarda números enteros (int), una caja de precisión con decimales guarda números reales (float), una caja larga guarda un collar de letras enhebradas (str) y un interruptor de encendido/apagado representa un valor booleano (bool).
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+
+---
+
+## 1. 💡 Fundamentación Teórica y Modelo Mental
+
+En Python, las variables no almacenan el dato directamente, sino una referencia a un objeto en el heap de memoria.
+
+> [!NOTE]
+> **🌟 Metáfora Didáctica:** Una variable es una etiqueta adhesiva pegada a una caja; varias etiquetas pueden apuntar a la misma caja.
 
 ### Principios Fundamentales
 
-Python utiliza tipado dinámico: no necesitas declarar el tipo de antemano, el intérprete lo infiere en tiempo de asignación.
+Python es fuertemente tipado: no convierte tipos automáticamente sin orden explícita.
 
-La función input() SIEMPRE devuelve una cadena de texto (str). Para operar matemáticamente con ella es imperativo hacer casting mediante int() o float().
+Los tipos primitivos (int, float, str, bool) son inmutables en memoria.
 
-!!! tip "⚡ Regla de Oro en Python"
-    Nunca sumes texto con números sin convertir; '10' + 5 genera TypeError, pero int('10') + 5 produce 15.
+> [!IMPORTANT]
+> **⚡ Regla de Oro en Python:** Convierte tipos explícitamente usando int() o float() antes de operar con entradas de usuario.
 
 ---
 
-## 2. 🗺️ Diagrama de Arquitectura y Flujo de Control
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Flujo de recepción de datos por teclado, validación de tipo y operación aritmética en memoria.
+Asignación de referencias en memoria y conversión de tipos primitivos.
 
 ```mermaid
 flowchart LR
@@ -58,89 +79,73 @@ flowchart LR
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | La función input() captura la entrada del teclado como string. | `Buffer de entrada -> '25' (str)` |
-| **2. Evaluación** | La función int() o float() transforma los caracteres en número binario. | `Casting -> 25 (int)` |
-| **3. Transformación** | La ALU del procesador realiza la operación matemática solicitada. | `25 * 2 = 50 en CPU` |
-| **4. Retorno / Salida** | f-string formatea el resultado y lo proyecta en la salida estándar. | `Render en pantalla` |
+| **1. Inicialización** | Declaración y asignación de literales. | `Creación del objeto en memoria.` |
+| **2. Evaluación** | Enlace de la variable al identificador del objeto. | `Puntero en el namespace local.` |
+| **3. Transformación** | Casting explícito (ej. float(input)). | `Nuevo objeto instanciado.` |
+| **4. Retorno / Salida** | Evaluación de expresiones aritméticas. | `Resultado en memoria temporal.` |
 
-!!! info "🔍 Visualización Mental"
-    Siempre valida y castea los datos en la frontera de entrada del programa antes de procesarlos en la lógica de negocio.
+> [!TIP]
+> **🔍 Visualización Mental:** Usa la función id(variable) para observar cómo cambia la dirección al reasignar.
 
 ---
 
-## 3. 💻 Implementación Práctica en Python
+## 3. 💻 Implementación en Python 3.10+
 
-Programa completo que solicita entradas, convierte tipos de datos y utiliza f-strings modernas:
+```python
+# CLASE 02 - Código de Demostración
+edad: int = 28
+precio: float = 19.99
+nombre: str = "Wisrovi"
+es_activo: bool = True
 
-```python title="main.py - Python 3.10+ (PEP 8)" linenums="1"
-# Entrada de datos con conversión directa
-nombre_usuario: str = input("Ingresa tu nombre: ")
-ingreso_mensual: float = float(input("Ingreso mensual ($): "))
-porcentaje_ahorro: float = float(input("Porcentaje a ahorrar (%): "))
-
-# Cálculo matemático
-monto_ahorro: float = ingreso_mensual * (porcentaje_ahorro / 100.0)
-es_meta_alta: bool = monto_ahorro >= 500.0
-
-# Salida formateada con f-strings
-print(f"
---- Reporte Financiero de {nombre_usuario} ---")
-print(f"Ahorro estimado: ${monto_ahorro:,.2f}")
-print(f"¿Es un ahorro significativo?: {es_meta_alta}")
+total = precio * 2
+print(f"Usuario: {nombre} | Total a pagar: ${total:.2f}")
 ```
 
-### Análisis Detallado del Código
-
-Se declaran variables con anotaciones de tipo, se realiza casting explícito con float() y se formatea el número a dos decimales con ${monto_ahorro:,.2f}.
+*Uso de Type Hints (PEP 484) y formateo de precisión con especificadores .2f.*
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Depuración
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
-Errores comunes de principiantes al trabajar con tipos de datos:
+> [!WARNING]
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** input() siempre retorna un string; sumarlo directamente concatena texto.
 
-!!! warning "⚠️ Gotcha Frecuente (Trampa de Principiante)"
-    Intentar convertir una cadena con caracteres alfabéticos a int (ej: int('hola')), lo cual dispara un ValueError.
-
-### Comparativa: Patrón Recomendado vs Antipatrón
-
-=== "✅ Patrón Pythonic Recomendado"
-    ```python
-edad = int(input('Edad: '))
-total = edad + 5 # Correcto: suma entera
-    ```
-
-=== "❌ Antipatrón / Mal Código"
+*   **❌ Antipatrón:**
     ```python
 edad = input('Edad: ')
-total = edad + 5 # TypeError: str + int
+total = edad + 5  # ❌ TypeError
     ```
 
-!!! success "🛡️ Consejo de Resiliencia en Producción"
-    Usa siempre f-strings (f'Texto {variable}') en lugar del operador + para concatenar texto con variables.
+*   **✅ Patrón Correcto:**
+    ```python
+edad = int(input('Edad: '))
+total = edad + 5  # ✅ Correcto
+    ```
+
+> [!TIP]
+> **💡 Consejo Profesional:** Siempre valida con bloques try/except al convertir entradas de usuario a números.
 
 ---
 
-## 5. 🏋️ Ejercicios y Desafío de Autoestudio
+## 5. 🏋️ Desafío de Práctica
 
-!!! example "Desafío Práctico Recomendado"
-    Crea un conversor de temperatura que solicite grados Celsius y devuelva Fahrenheit y Kelvin formateados a un decimal.
+> **Desafío:** Crea una calculadora de propinas que solicite el total de la cuenta y el porcentaje deseado.
 
-???+ tip "🧪 Cómo validar tu solución con Pytest"
-    Abre tu terminal en VS Code y ejecuta:
-    ```bash
-    pytest 01-fundamentos-python/clase-02-variables-y-tipos/ejercicios/
-    ```
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
+```
 
 ---
 
-## 6. 📚 Fuentes y Referencias Oficiales
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

@@ -1,18 +1,19 @@
-# 📖 Clase 05: Listas y Colecciones de Datos
+# 📚 Clase 05: Listas, Tuplas y Colecciones Básicas
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python (Nivel 1 (Principiantes))  
-> **Nivel de Dificultad:** Principiante Absoluto  
-> **Metáfora Central:** *«La Mochila del Programador y los Casilleros»*  
-> **Python Version:** 3.10+ | **Licencia:** MIT  
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Listas como Archivadores Modulares y Tuplas como Documentos Notariados»*  
+> **Documento Oficial PDF:** [clase-05-listas-y-colecciones.pdf](clase-05-listas-y-colecciones.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 👤 Acerca del Autor y Mentor
+## 👤 Perfil del Autor y Mentor
 
 ### **William Rodríguez (Wisrovi)**
-**AI Solutions Architect & Principal Software Engineer** &bull; *Badajoz, España*
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre <strong>wisrovi SUITE</strong> en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
 
 *   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
 *   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
@@ -22,174 +23,130 @@ Ingeniero y arquitecto de software especializado en Inteligencia Artificial Gene
 
 ---
 
-### 🚲 Metodología de Aprendizaje: La Regla de la Bicicleta
+### 🚲 La Regla de la Bicicleta
 
 > *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-> [!TIP]
-> **El Compromiso Activo del Estudiante:** Abre Visual Studio Code en cada sesión. Escribe cada ejemplo con tus propias manos. Cambia los números, rompe el código deliberadamente para ver el mensaje de error de Python, y luego arréglalo.
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
 
 ---
 
-## 📑 Tabla de Contenidos
+## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-| Capítulo | Tema | Enfoque Principal |
-| :--- | :--- | :--- |
-| **01** | **Fundamentos & Metáfora** | La Mochila de Datos y las Secuencias Ordenadas |
-| **02** | **Arquitectura de Flujo** | Anatomía de la Indexación y Operaciones de Slicing |
-| **03** | **Implementación Práctica** | Gestión de Carrito de Compras con Listas |
-| **04** | **Patrones & Debugging** | Gotchas Clásicos con Listas |
-| **05** | **Conclusiones & Cierre** | Resumen ejecutivo, notas del mentor y agradecimiento |
-| **06** | **Bibliografía & Recursos** | Fuentes oficiales y retos de autoestudio |
-
-### 🎯 Objetivos de Aprendizaje
-
-*   **Competencia Conceptual:** Comprender la indexación basada en cero (0-indexed), la mutabilidad de listas y la inmutabilidad de tuplas.
-*   **Competencia Práctica:** Manipular colecciones mediante append(), insert(), pop(), slicing avanzado y comprensión de listas básica.
-
----
-
-## 1. 💡 La Mochila de Datos y las Secuencias Ordenadas
-
-En el mundo real rara vez trabajamos con datos aislados; casi siempre gestionamos conjuntos de elementos como listas de clientes, precios o mediciones.
+Las listas y tuplas son secuencias ordenadas que permiten almacenar conjuntos estructurados de datos.
 
 > [!NOTE]
-> ### 🌟 Metáfora Central: La Mochila del Programador y los Casilleros
-> Imagina una fila de casilleros escolares numerados desde el 0. En cada casillero puedes guardar lo que quieras. Las listas son casilleros que puedes abrir, cambiar y reordenar (mutables). Las tuplas son cajas de cristal selladas: puedes ver lo que hay dentro, pero nadie puede alterarlo (inmutables).
+> **🌟 Metáfora Didáctica:** Una lista es un archivador modular donde agregas carpetas; una tupla es un documento sellado inmutable.
 
-### Principios Teóricos y Modelo Mental
+### Principios Fundamentales
 
-Indexación: El primer elemento está en el índice 0, y el último en el índice -1.
+Las listas son mutables (su contenido cambia en memoria sin alterar su id).
 
-Slicing: La sintaxis lista[inicio:fin:paso] permite extraer subconjuntos sin modificar la lista original.
+Las tuplas son inmutables y consumen menos memoria.
 
 > [!IMPORTANT]
-> ### ⚡ Regla de Oro en Python
-> Las listas son mutables (se modifican en el mismo lugar de memoria); las tuplas son inmutables y ofrecen mayor seguridad e integridad.
+> **⚡ Regla de Oro en Python:** Si los datos representan una entidad fija que no debe cambiar, usa una tupla.
 
 ---
 
-## 2. 🗺️ Anatomía de la Indexación y Operaciones de Slicing
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Mapeo de memoria para índices directos, inversos y sub-rangos de datos.
-
-### Diagrama Visual del Flujo
+Indexación, acceso por rebanadas (slicing) y mutabilidad.
 
 ```mermaid
 flowchart LR
     A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -- "Sí (True)" --> C["⚙️ 3. Procesamiento y Transformación"]
-    B -- "No (False / Else)" --> D["🔀 3b. Flujo Alternativo"]
+    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
+    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
     C --> E["🎯 4. Retorno / Salida (print / return)"]
     D --> E
 
-    style A fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#fff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#fff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
+    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | Python asigna un puntero de memoria ordenado a cada elemento. | `['A', 'B', 'C', 'D']` |
-| **2. Evaluación** | Índices positivos: [0]=A, [1]=B, [2]=C, [3]=D. | `Lectura hacia adelante` |
-| **3. Transformación** | Índices negativos: [-1]=D, [-2]=C, [-3]=B, [-4]=A. | `Lectura desde el final` |
-| **4. Retorno / Salida** | Slicing [1:3] extrae los índices 1 y 2 (el límite superior es excluyente). | `Nueva lista: ['B', 'C']` |
+| **1. Inicialización** | Creación del arreglo dinámico de punteros. | `Lista instanciada en el heap.` |
+| **2. Evaluación** | Acceso por índice O(1). | `Lectura instantánea de la dirección.` |
+| **3. Transformación** | Modificación in-place con append. | `Redimensionamiento dinámico.` |
+| **4. Retorno / Salida** | Extracción de subconjuntos mediante slicing. | `Nueva lista creada.` |
 
 > [!TIP]
-> **Visualización Mental:** Recuerda siempre la regla del límite superior: lista[0:3] extrae 3 elementos (índices 0, 1 y 2), el 3 queda fuera.
+> **🔍 Visualización Mental:** El slicing lista[a:b] incluye el índice 'a' pero excluye el 'b'.
 
 ---
 
-## 3. 💻 Gestión de Carrito de Compras con Listas
-
-Script que aplica operaciones CRUD sobre listas de Python con métodos nativos:
+## 3. 💻 Implementación en Python 3.10+
 
 ```python
-# main.py - Python 3.10+ PEP 8 Compliant
-carrito: list[str] = ["Laptop", "Mouse", "Teclado"]
+# CLASE 05 - Código de Demostración
+inventario = ["Laptop", "Teclado", "Mouse"]
+inventario.append("Monitor")
+inventario.sort()
 
-# 1. Agregar elementos
-carrito.append("Monitor 4K")
-carrito.insert(1, "Auriculares")
-
-# 2. Slicing (primeros 3 productos)
-prioritarios = carrito[0:3]
-print(f"Productos prioritarios: {prioritarios}")
-
-# 3. Eliminar y extraer
-eliminado = carrito.pop()
-print(f"Producto extraído: {eliminado}")
-
-# 4. Iteración elegante con enumeración
-for idx, prod in enumerate(carrito, start=1):
-    print(f"{idx}. {prod}")
+primeros_dos = inventario[:2]
+print("Inventario ordenado:", inventario)
+print("Top 2 productos:", primeros_dos)
 ```
 
-### Análisis del Código Fuente
-
-Uso de métodos nativos append, insert, pop, slicing y la función enumerate() para iteración limpia con índices.
+*Método append modifica in-place, sort ordena alfabéticamente y [:2] extrae una rebanada.*
 
 ---
 
-## 4. 🛡️ Gotchas Clásicos con Listas
-
-Errores comunes al manipular listas y colecciones mutables:
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
 > [!WARNING]
-> ### ⚠️ Gotcha Frecuente (Trampa de Principiante)
-> Copiar una lista por asignación simple (lista2 = lista1) solo copia la referencia, no los datos.
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Hacer lista_b = lista_a no crea una copia, crea otro puntero a la misma lista.
 
-### Comparativa: Antipatrón vs Patrón Recomendado
-
-#### ❌ Antipatrón / Mal Código:
-```python
+*   **❌ Antipatrón:**
+    ```python
 a = [1, 2, 3]
 b = a
-b.append(4) # ¡Modifica también la lista 'a'!
-```
+b.append(4)  # ❌ Modifica también 'a'
+    ```
 
-#### ✅ Patrón Pythonic / Correcto:
-```python
+*   **✅ Patrón Correcto:**
+    ```python
 a = [1, 2, 3]
-b = a.copy() # Copia superficial independiente
-b.append(4)
+b = a.copy()  # ✅ 'a' permanece intacta
+    ```
+
+> [!TIP]
+> **💡 Consejo Profesional:** Para listas con sublistas anidadas, usa copy.deepcopy().
+
+---
+
+## 5. 🏋️ Desafío de Práctica
+
+> **Desafío:** Crea una función que elimine duplicados de una lista manteniendo el orden original.
+
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
 ```
 
-> [!TIP]
-> **Consejo de Resiliencia en Producción:** Usa lista[:] o lista.copy() cuando quieras duplicar una lista sin afectar la original.
-
 ---
 
-## 5. 🏆 Conclusiones y Resumen Ejecutivo
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-Has dominado el uso de listas y tuplas, la indexación bidireccional y las operaciones fundamentales de colección.
-
-> [!NOTE]
-> ### 🎖️ Logro Alcanzado
-> Capacidad para estructurar y transformar conjuntos secuenciales de información.
-
-### 📝 Notas del Instructor
-En la próxima clase conoceremos los Diccionarios: la estructura clave-valor que potencia la web moderna y los formatos JSON.
-
-### 🤝 Mensaje de Agradecimiento
-Muchas gracias por tu entusiasmo, disciplina y dedicación al participar en este programa formativo. La programación es un superpoder que transforma vidas cuando se ejerce con constancia y curiosidad. ¡Nos vemos en la próxima sesión para seguir construyendo juntos! 💻🚀
-
----
-
-## 6. 📚 Bibliografía y Fuentes de Estudio
-
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Python Type Checking (PEP 484)** | Anotaciones de tipo y análisis estático | [docs.python.org/typing](https://docs.python.org/3/library/typing.html) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
-
-> [!TIP]
-> ### 🏋️ Desafío de Autoestudio Recomendado
-> Crea una función que reciba una lista de números y devuelva una tupla con (mínimo, máximo, promedio).
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

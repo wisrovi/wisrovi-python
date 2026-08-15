@@ -1,45 +1,66 @@
-# Clase 03: Control de Flujo - Condicionales
+# 📚 Clase 03: Control de Flujo: Condicionales (if / elif / else)
 
-<div class="grid cards" markdown>
-
--   :material-school: __Nivel:__ Principiante Absoluto
--   :material-book-open-page-variant: __Curso:__ Curso 1: Fundamentos Básicos de Python
--   :material-lightbulb-on: __Metáfora:__ *«El Guardia de la Puerta y el Menú de Opciones»*
--   :material-file-pdf-box: __Descargar PDF:__ [clase-03-control-flujo-condicionales.pdf](https://github.com/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-03-control-flujo-condicionales/clase-03-control-flujo-condicionales.pdf)
-
-</div>
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Condicionales como Semáforos y Bifurcaciones en un Tren»*  
+> **Documento Oficial PDF:** [clase-03-control-flujo-condicionales.pdf](clase-03-control-flujo-condicionales.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 🎯 Objetivos de Aprendizaje
+## 👤 Perfil del Autor y Mentor
 
-!!! abstract "Competencias Clave de la Sesión"
-    *   **Competencia Conceptual:** Comprender la evaluación de expresiones booleanas y la exclusión mutua en cadenas if-elif-else.
-    *   **Competencia Práctica:** Implementar sistemas de validación de reglas de negocio, control de acceso y árboles de decisión.
+### **William Rodríguez (Wisrovi)**
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+
+*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
+*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
+*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
+*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
+*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
 
 ---
 
-## 1. 💡 Fundamentos Teóricos y Modelo Mental
+### 🚲 La Regla de la Bicicleta
 
-Un programa no es una línea recta; es un camino con encrucijadas donde el flujo toma una dirección según las condiciones.
+> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-!!! note "🌟 Metáfora Central: El Guardia de la Puerta y el Menú de Opciones"
-    Imagina un guardia en la entrada de un club: revisa tu entrada (if). Si tienes pase VIP entra gratis (if), si tienes entrada general paga boleto (elif), y si no tienes entrada se le deniega el acceso (else).
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+
+---
+
+## 1. 💡 Fundamentación Teórica y Modelo Mental
+
+Las estructuras condicionales permiten que tu programa tome decisiones autónomas basadas en condiciones booleanas.
+
+> [!NOTE]
+> **🌟 Metáfora Didáctica:** Un condicional es como una aguja ferroviaria que desvía el tren según el color del semáforo.
 
 ### Principios Fundamentales
 
-Operadores relacionales: == (igualdad), != (diferente), > (mayor), < (menor), >= (mayor o igual), <= (menor o igual).
+Python evalúa las condiciones de forma secuencial; la primera rama que resulte True ejecuta su bloque.
 
-Operadores lógicos: and (ambas condiciones deben ser True), or (al menos una True), not (invierte el valor de verdad).
+Cortocircuito booleano: En 'A and B', si A es False, B ni siquiera se evalúa.
 
-!!! tip "⚡ Regla de Oro en Python"
-    En una cadena if-elif-else, tan pronto como una condición resulta True, se ejecuta su bloque y se omiten todas las demás.
+> [!IMPORTANT]
+> **⚡ Regla de Oro en Python:** Mantén las condiciones planas: evita anidar más de 3 niveles de if.
 
 ---
 
-## 2. 🗺️ Diagrama de Arquitectura y Flujo de Control
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Representación del flujo booleano con múltiples alternativas excluyentes.
+Evaluación condicional de ramas múltiples (if - elif - else).
 
 ```mermaid
 flowchart LR
@@ -58,90 +79,76 @@ flowchart LR
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | Evalúa la primera condición del if principal. | `Condición 1: ¿edad >= 18?` |
-| **2. Evaluación** | Si es True, entra al bloque if y salta al final de la estructura. | `Ejecuta bloque prioritario` |
-| **3. Transformación** | Si es False, evalúa secuencialmente los bloques elif. | `Condición 2: ¿tiene_permiso?` |
-| **4. Retorno / Salida** | Si ninguna condición previa fue True, se ejecuta el bloque else por defecto. | `Rama fallback de seguridad` |
+| **1. Inicialización** | Evaluación de la condición primaria (if). | `Valor de verdad True/False.` |
+| **2. Evaluación** | Desvío a rama elif en caso de False. | `Paso a la siguiente condición.` |
+| **3. Transformación** | Ejecución del bloque correspondiente. | `Ejecución del scope indentado.` |
+| **4. Retorno / Salida** | Salida de la estructura hacia el flujo principal. | `Continuación lineal.` |
 
-!!! info "🔍 Visualización Mental"
-    Ordena tus condiciones de la más específica a la más general para evitar que un caso amplio oculte casos particulares.
+> [!TIP]
+> **🔍 Visualización Mental:** Lee las condiciones en voz alta como preguntas de 'Sí o No'.
 
 ---
 
-## 3. 💻 Implementación Práctica en Python
+## 3. 💻 Implementación en Python 3.10+
 
-Ejemplo práctico con operadores lógicos combinados y evaluación de reglas financieras:
+```python
+# CLASE 03 - Código de Demostración
+puntaje = 85
 
-```python title="main.py - Python 3.10+ (PEP 8)" linenums="1"
-salario = float(input("Salario mensual ($): "))
-puntaje_credito = int(input("Puntaje crediticio (300-850): "))
-tiene_deudas = input("¿Tiene deudas activas? (s/n): ").lower() == "s"
-
-if salario >= 3000.0 and puntaje_credito >= 720 and not tiene_deudas:
-    estado = "Aprobado Premium (Tasa de interés preferencial)"
-elif salario >= 1800.0 and puntaje_credito >= 650:
-    estado = "Aprobado Estándar (Sujeto a verificación)"
-elif salario >= 1200.0 or puntaje_credito >= 600:
-    estado = "Requiere Codeudor o Aval"
+if puntaje >= 90:
+    calificacion = "A - Excelente"
+elif puntaje >= 80:
+    calificacion = "B - Notable"
+elif puntaje >= 70:
+    calificacion = "C - Aprobado"
 else:
-    estado = "Rechazado (No cumple los requisitos mínimos)"
+    calificacion = "D - Refuerzo"
 
-print(f"
-Resultado de la solicitud: {estado}")
+print(f"Resultado final: {calificacion}")
 ```
 
-### Análisis Detallado del Código
-
-El código implementa lógica booleana compuesta con and, not y or, garantizando una jerarquía de evaluación limpia.
+*Uso de elif para evaluar rangos mutuamente excluyentes en orden descendente.*
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Depuración
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
-Trampas clásicas de sintaxis y lógica booleana en Python:
+> [!WARNING]
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar 'is' para comparar números o strings; 'is' compara direcciones de memoria.
 
-!!! warning "⚠️ Gotcha Frecuente (Trampa de Principiante)"
-    Confundir el operador de asignación (=) con el operador de comparación (==).
-
-### Comparativa: Patrón Recomendado vs Antipatrón
-
-=== "✅ Patrón Pythonic Recomendado"
+*   **❌ Antipatrón:**
     ```python
-if rol == "admin": # Comparación correcta
-    print("Acceso total")
+if nombre is 'Juan':  # ❌ SyntaxWarning
     ```
 
-=== "❌ Antipatrón / Mal Código"
+*   **✅ Patrón Correcto:**
     ```python
-if rol = "admin": # SyntaxError
-    print("Acceso total")
+if nombre == 'Juan':  # ✅ Comparación correcta
     ```
 
-!!! success "🛡️ Consejo de Resiliencia en Producción"
-    Aprovecha la evaluación de cortocircuito (short-circuit evaluation) en Python para proteger llamadas riesgosas.
+> [!TIP]
+> **💡 Consejo Profesional:** Usa 'is' únicamente para comparar con None (ej. if valor is None:).
 
 ---
 
-## 5. 🏋️ Ejercicios y Desafío de Autoestudio
+## 5. 🏋️ Desafío de Práctica
 
-!!! example "Desafío Práctico Recomendado"
-    Diseña un sistema de tarificación de boletos de cine con descuentos por edad, día de la semana y membresía VIP.
+> **Desafío:** Diseña un clasificador de acceso por edad y membresía VIP.
 
-???+ tip "🧪 Cómo validar tu solución con Pytest"
-    Abre tu terminal en VS Code y ejecuta:
-    ```bash
-    pytest 01-fundamentos-python/clase-03-control-flujo-condicionales/ejercicios/
-    ```
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
+```
 
 ---
 
-## 6. 📚 Fuentes y Referencias Oficiales
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

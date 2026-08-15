@@ -1,18 +1,19 @@
-# 📖 Clase 07: Funciones Reutilizables y Modulares
+# 📚 Clase 07: Funciones, Parámetros y Scope
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python (Nivel 1 (Principiantes))  
-> **Nivel de Dificultad:** Principiante Absoluto  
-> **Metáfora Central:** *«El Electrodoméstico y la Entrega del Cajero»*  
-> **Python Version:** 3.10+ | **Licencia:** MIT  
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Funciones como Máquinas Reutilizables de una Fábrica»*  
+> **Documento Oficial PDF:** [clase-07-funciones.pdf](clase-07-funciones.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 👤 Acerca del Autor y Mentor
+## 👤 Perfil del Autor y Mentor
 
 ### **William Rodríguez (Wisrovi)**
-**AI Solutions Architect & Principal Software Engineer** &bull; *Badajoz, España*
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre <strong>wisrovi SUITE</strong> en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
 
 *   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
 *   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
@@ -22,194 +23,132 @@ Ingeniero y arquitecto de software especializado en Inteligencia Artificial Gene
 
 ---
 
-### 🚲 Metodología de Aprendizaje: La Regla de la Bicicleta
+### 🚲 La Regla de la Bicicleta
 
 > *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-> [!TIP]
-> **El Compromiso Activo del Estudiante:** Abre Visual Studio Code en cada sesión. Escribe cada ejemplo con tus propias manos. Cambia los números, rompe el código deliberadamente para ver el mensaje de error de Python, y luego arréglalo.
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
 
 ---
 
-## 📑 Tabla de Contenidos
+## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-| Capítulo | Tema | Enfoque Principal |
-| :--- | :--- | :--- |
-| **01** | **Fundamentos & Metáfora** | La Modularización y el Principio DRY |
-| **02** | **Arquitectura de Flujo** | Caja Negra Funcional y Ámbito de Variables (Scope) |
-| **03** | **Implementación Práctica** | Módulo de Facturación con Funciones Tipadas |
-| **04** | **Patrones & Debugging** | Gotchas Clásicos con Funciones |
-| **05** | **Conclusiones & Cierre** | Resumen ejecutivo, notas del mentor y agradecimiento |
-| **06** | **Bibliografía & Recursos** | Fuentes oficiales y retos de autoestudio |
-
-### 🎯 Objetivos de Aprendizaje
-
-*   **Competencia Conceptual:** Comprender el principio DRY (Don't Repeat Yourself), la diferencia entre print y return, y el scope local de variables.
-*   **Competencia Práctica:** Escribir funciones modulares, documentadas con docstrings y fuertemente tipadas listas para producción.
-
----
-
-## 1. 💡 La Modularización y el Principio DRY
-
-El código profesional no se escribe dos veces; cuando una lógica se necesita en múltiples lugares, se encapsula en una función.
+Las funciones son bloques de código reutilizables diseñados para realizar una tarea específica.
 
 > [!NOTE]
-> ### 🌟 Metáfora Central: El Electrodoméstico y la Entrega del Cajero
-> Una función es como un electrodoméstico: tiene una ranura de entrada (parámetros), un motor interno que realiza una tarea específica, y una bandeja de salida donde entrega el resultado terminado (return).
+> **🌟 Metáfora Didáctica:** Una función es como un electrodoméstico: introduces ingredientes (argumentos) y recibes el resultado (return).
 
-### Principios Teóricos y Modelo Mental
+### Principios Fundamentales
 
-Parámetros vs Argumentos: Los parámetros son los nombres en la firma (def), los argumentos son los valores reales que pasas al invocarla.
+Principio DRY (Don't Repeat Yourself): Si repites código, conviértelo en una función.
 
-Diferencia crucial: print() solo muestra texto en la pantalla pero devuelve None; return devuelve el valor a la variable que llamó a la función para seguir trabajando con él.
+Regla de Scope LEGB: Python busca variables en orden: Local -> Enclosing -> Global -> Built-in.
 
 > [!IMPORTANT]
-> ### ⚡ Regla de Oro en Python
-> Una función debe hacer una sola cosa y hacerla excepcionalmente bien (Principio de Responsabilidad Única).
+> **⚡ Regla de Oro en Python:** Toda función debe tener una sola responsabilidad clara.
 
 ---
 
-## 2. 🗺️ Caja Negra Funcional y Ámbito de Variables (Scope)
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Flujo de invocación, paso de argumentos, aislamiento de variables locales y retorno de valor.
-
-### Diagrama Visual del Flujo
+Pila de llamadas (Call Stack), paso de argumentos y retorno de valores.
 
 ```mermaid
 flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
+    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
+    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
+    C --> E["🎯 4. Retorno / Salida (print / return)"]
+    D --> E
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON/UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
+    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | La función es llamada y se asignan los argumentos a los parámetros. | `Creación del Call Stack Frame` |
-| **2. Evaluación** | Se ejecutan las instrucciones en un ámbito local aislado. | `Variables locales temporales` |
-| **3. Transformación** | La instrucción 'return' finaliza la ejecución de la función y emite el resultado. | `Envío del valor de retorno` |
-| **4. Retorno / Salida** | El stack frame se destruye y la memoria local se libera. | `Retorno al flujo principal` |
+| **1. Inicialización** | Definición y carga del objeto función. | `Code object en memoria.` |
+| **2. Evaluación** | Invocación y creación del Stack Frame. | `Variables locales enlazadas.` |
+| **3. Transformación** | Ejecución del cuerpo de la función. | `Expresiones evaluadas.` |
+| **4. Retorno / Salida** | Sentencia return y destrucción del frame. | `Retorno entregado.` |
 
 > [!TIP]
-> **Visualización Mental:** Las variables creadas dentro de una función mueren cuando la función termina: nunca intentes acceder a una variable local desde fuera.
+> **🔍 Visualización Mental:** Las variables locales creadas dentro de una función desaparecen cuando la función termina.
 
 ---
 
-## 3. 💻 Módulo de Facturación con Funciones Tipadas
-
-Diseño de funciones modulares con valores por defecto, docstrings y anotaciones de tipo:
+## 3. 💻 Implementación en Python 3.10+
 
 ```python
-# main.py - Python 3.10+ PEP 8 Compliant
-def calcular_total_factura(
-    subtotal: float,
-    tasa_impuesto: float = 0.21,
-    descuento: float = 0.0
-) -> dict[str, float]:
-    """Calcula el desglose final de una factura comercial."""
-    monto_descuento = subtotal * descuento
-    base_imponible = subtotal - monto_descuento
-    impuestos = base_imponible * tasa_impuesto
-    total_pagar = base_imponible + impuestos
-    
-    return {
-        "subtotal": subtotal,
-        "descuento_aplicado": monto_descuento,
-        "impuestos": impuestos,
-        "total": round(total_pagar, 2)
-    }
+# CLASE 07 - Código de Demostración
+def calcular_precio_final(base: float, descuento_pct: float = 0.0, iva_pct: float = 21.0) -> float:
+    """Calcula el importe total tras aplicar descuento e impuestos."""
+    subtotal = base * (1 - descuento_pct / 100)
+    total = subtotal * (1 + iva_pct / 100)
+    return round(total, 2)
 
-# Uso con argumentos por nombre (keyword arguments)
-factura = calcular_total_factura(subtotal=150.0, descuento=0.10)
-print(f"Total a pagar: ${factura['total']}")
+print("Total:", calcular_precio_final(100.0, descuento_pct=10.0))
 ```
 
-### Análisis del Código Fuente
-
-Función pura con parámetros opcionales con valores predeterminados, tipado formal y retorno estructurado en diccionario.
+*Uso de Type hints, valores por defecto en parámetros y docstring descriptivo.*
 
 ---
 
-## 4. 🛡️ Gotchas Clásicos con Funciones
-
-Errores comunes de diseño y sintaxis en funciones de Python:
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
 > [!WARNING]
-> ### ⚠️ Gotcha Frecuente (Trampa de Principiante)
-> Usar argumentos mutables por defecto (como def func(lista=[])); la lista se comparte entre llamadas sucesivas.
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Usar listas o diccionarios vacíos como valores por defecto en la firma.
 
-### Comparativa: Antipatrón vs Patrón Recomendado
-
-#### ❌ Antipatrón / Mal Código:
-```python
-def agregar(item, lista=[]): # ¡Peligro mutable!
+*   **❌ Antipatrón:**
+    ```python
+def agregar(item, lista=[]):  # ❌ Se comparte entre llamadas
     lista.append(item)
     return lista
-```
+    ```
 
-#### ✅ Patrón Pythonic / Correcto:
-```python
-def agregar(item, lista=None):
+*   **✅ Patrón Correcto:**
+    ```python
+def agregar(item, lista=None):  # ✅ Inmutable None
     if lista is None: lista = []
     lista.append(item)
     return lista
+    ```
+
+> [!TIP]
+> **💡 Consejo Profesional:** Mantén las funciones puras evitando modificar variables globales directamente.
+
+---
+
+## 5. 🏋️ Desafío de Práctica
+
+> **Desafío:** Escribe una función que reciba una lista de números y retorne el mínimo, el máximo y el promedio.
+
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
 ```
 
-> [!TIP]
-> **Consejo de Resiliencia en Producción:** Usa siempre None como valor predeterminado para parámetros que contengan estructuras mutables.
-
 ---
 
-## 5. 🏆 Conclusiones y Resumen Ejecutivo
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-Dominas el pilar de la abstracción y la reutilización de código mediante funciones profesionales.
-
-> [!NOTE]
-> ### 🎖️ Logro Alcanzado
-> Capacidad para escribir código limpio, modular, desacoplado y fácil de probar.
-
-### 📝 Notas del Instructor
-En la Clase 08 integraremos los 7 temas en un Proyecto Integrador completo: el Gestor de Tareas en Consola.
-
-### 🤝 Mensaje de Agradecimiento
-Muchas gracias por tu entusiasmo, disciplina y dedicación al participar en este programa formativo. La programación es un superpoder que transforma vidas cuando se ejerce con constancia y curiosidad. ¡Nos vemos en la próxima sesión para seguir construyendo juntos! 💻🚀
-
----
-
-## 6. 📚 Bibliografía y Fuentes de Estudio
-
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Python Type Checking (PEP 484)** | Anotaciones de tipo y análisis estático | [docs.python.org/typing](https://docs.python.org/3/library/typing.html) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
-
-> [!TIP]
-> ### 🏋️ Desafío de Autoestudio Recomendado
-> Escribe una función recursiva que calcule el factorial de un número entero positivo con su caso base bien definido.
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

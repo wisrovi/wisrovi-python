@@ -1,5 +1,5 @@
 site_name: "🐍 Programa Integral de Formación en Python"
-site_description: "De Cero a Agentes de Inteligencia Artificial - Manual Oficial por Wisrovi Rodríguez"
+site_description: "De Cero a Agentes de Inteligencia Artificial - 32 Semanas por Wisrovi Rodríguez"
 site_author: "William Rodríguez (Wisrovi)"
 site_url: "https://academy_python.wisrovi.dev/"
 repo_url: "https://github.com/wisrovi/wisrovi-python"
@@ -53,30 +53,45 @@ markdown_extensions:
 nav:
   - 🏠 Inicio: index.md
   - 🎯 Curso 1 (Fundamentos):
-      - 📘 Libro del Curso 1: curso-01/book.md
+      - 📘 Manual del Curso 1: curso-01/book.md
       - Clase 01 (Panorama General): curso-01/clase-01.md
       - Clase 02 (Variables y Tipos): curso-01/clase-02.md
       - Clase 03 (Condicionales): curso-01/clase-03.md
       - Clase 04 (Bucles): curso-01/clase-04.md
       - Clase 05 (Listas y Colecciones): curso-01/clase-05.md
-      - Clase 06 (Diccionarios): curso-01/clase-06.md
-      - Clase 07 (Funciones): curso-01/clase-07.md
-      - Clase 08 (Proyecto Integrador): curso-01/clase-08.md
+      - Clase 06 (Diccionarios y Sets): curso-01/clase-06.md
+      - Clase 07 (Funciones y Scope): curso-01/clase-07.md
+      - Clase 08 (Proyecto Integrador CLI): curso-01/clase-08.md
   - 🚀 Curso 2 (Algoritmos):
-      - 📘 Libro del Curso 2: curso-02/book.md
-      - Módulo 01 (Estructuras de Datos): curso-02/modulo-01.md
-      - Módulo 02 (Ordenamiento y Big-O): curso-02/modulo-02.md
-      - Módulo 03 (Recursividad y DP): curso-02/modulo-03.md
+      - 📘 Manual del Curso 2: curso-02/book.md
+      - Clase 01 (Notación Big-O): curso-02/clase-01.md
+      - Clase 02 (Pilas y Colas con deque): curso-02/clase-02.md
+      - Clase 03 (Tablas Hash y Sets O(1)): curso-02/clase-03.md
+      - Clase 04 (Búsqueda Binaria): curso-02/clase-04.md
+      - Clase 05 (QuickSort y MergeSort): curso-02/clase-05.md
+      - Clase 06 (Árboles BST): curso-02/clase-06.md
+      - Clase 07 (Grafos y Recorridos BFS/DFS): curso-02/clase-07.md
+      - Clase 08 (Recursividad y Memoización DP): curso-02/clase-08.md
   - 🤖 Curso 3 (Agentes de IA):
-      - 📘 Libro del Curso 3: curso-03/book.md
-      - Módulo 01 (Fundamentos LLM): curso-03/modulo-01.md
-      - Módulo 02 (Tool Calling & RAG): curso-03/modulo-02.md
-      - Módulo 03 (Agentes Autónomos): curso-03/modulo-03.md
+      - 📘 Manual del Curso 3: curso-03/book.md
+      - Clase 01 (Fundamentos LLM & Tokens): curso-03/clase-01.md
+      - Clase 02 (Prompt Engineering & Few-Shot): curso-03/clase-02.md
+      - Clase 03 (Structured Outputs & Pydantic): curso-03/clase-03.md
+      - Clase 04 (Tool Calling en Python): curso-03/clase-04.md
+      - Clase 05 (Embeddings & Similitud Coseno): curso-03/clase-05.md
+      - Clase 06 (Arquitecturas RAG): curso-03/clase-06.md
+      - Clase 07 (Agentes Autónomos ReAct): curso-03/clase-07.md
+      - Clase 08 (Sistemas Multi-Agente & Guardrails): curso-03/clase-08.md
   - 🛠️ Curso 4 (Proyecto Final):
-      - 📘 Libro del Curso 4: curso-04/book.md
-      - Track 01 (Web App FastAPI + Streamlit): curso-04/track-01.md
-      - Track 02 (Chatbot Inteligente): curso-04/track-02.md
-      - Track 03 (Sistema de Gestión DB): curso-04/track-03.md
+      - 📘 Manual del Curso 4: curso-04/book.md
+      - Clase 01 (Arquitectura & Planificación): curso-04/clase-01.md
+      - Clase 02 (Backend API FastAPI): curso-04/clase-02.md
+      - Clase 03 (Persistencia SQL & ACID): curso-04/clase-03.md
+      - Clase 04 (Frontend Streamlit): curso-04/clase-04.md
+      - Clase 05 (Integración del Motor de IA): curso-04/clase-05.md
+      - Clase 06 (Testing Pytest & Mocks): curso-04/clase-06.md
+      - Clase 07 (Docker & Docker Compose): curso-04/clase-07.md
+      - Clase 08 (Despliegue CI/CD & Portafolio): curso-04/clase-08.md
   - 📚 Guías de Onboarding:
       - 💻 Guía VS Code: guia-vscode.md
       - 🐙 Guía GitHub: guia-github.md

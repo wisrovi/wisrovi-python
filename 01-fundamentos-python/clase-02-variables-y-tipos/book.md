@@ -1,18 +1,19 @@
-# 📖 Clase 02: Variables y Tipos de Datos
+# 📚 Clase 02: Variables, Tipos de Datos y Operadores
 
-> **Programa:** Curso 1: Fundamentos Básicos de Python (Nivel 1 (Principiantes))  
-> **Nivel de Dificultad:** Principiante Absoluto  
-> **Metáfora Central:** *«El Almacén, el Collar de Letras y el Micrófono»*  
-> **Python Version:** 3.10+ | **Licencia:** MIT  
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Variables como Cajas Etiquetadas en Memoria»*  
+> **Documento Oficial PDF:** [clase-02-variables-y-tipos.pdf](clase-02-variables-y-tipos.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 👤 Acerca del Autor y Mentor
+## 👤 Perfil del Autor y Mentor
 
 ### **William Rodríguez (Wisrovi)**
-**AI Solutions Architect & Principal Software Engineer** &bull; *Badajoz, España*
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
 
-Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre <strong>wisrovi SUITE</strong> en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
 
 *   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
 *   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
@@ -22,169 +23,129 @@ Ingeniero y arquitecto de software especializado en Inteligencia Artificial Gene
 
 ---
 
-### 🚲 Metodología de Aprendizaje: La Regla de la Bicicleta
+### 🚲 La Regla de la Bicicleta
 
 > *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-> [!TIP]
-> **El Compromiso Activo del Estudiante:** Abre Visual Studio Code en cada sesión. Escribe cada ejemplo con tus propias manos. Cambia los números, rompe el código deliberadamente para ver el mensaje de error de Python, y luego arréglalo.
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
 
 ---
 
-## 📑 Tabla de Contenidos
+## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-| Capítulo | Tema | Enfoque Principal |
-| :--- | :--- | :--- |
-| **01** | **Fundamentos & Metáfora** | El Almacén de Datos y la Memoria de la Computadora |
-| **02** | **Arquitectura de Flujo** | Ciclo de Conversión y Entrada de Datos (Casting) |
-| **03** | **Implementación Práctica** | Calculadora de Ahorro con Conversión de Tipos |
-| **04** | **Patrones & Debugging** | Trampas Clásicas con Variables y Casting |
-| **05** | **Conclusiones & Cierre** | Resumen ejecutivo, notas del mentor y agradecimiento |
-| **06** | **Bibliografía & Recursos** | Fuentes oficiales y retos de autoestudio |
-
-### 🎯 Objetivos de Aprendizaje
-
-*   **Competencia Conceptual:** Comprender la diferencia fundamental entre tipos numéricos y texto, y cómo Python asigna memoria dinámicamente.
-*   **Competencia Práctica:** Construir programas interactivos que soliciten datos al usuario, realicen conversiones numéricas y devuelvan mensajes formateados.
-
----
-
-## 1. 💡 El Almacén de Datos y la Memoria de la Computadora
-
-Una variable es un identificador que apunta a una ubicación de memoria donde reside un valor con un tipo de dato específico.
+En Python, las variables no almacenan el dato directamente, sino una referencia a un objeto en el heap de memoria.
 
 > [!NOTE]
-> ### 🌟 Metáfora Central: El Almacén, el Collar de Letras y el Micrófono
-> Imagina un almacén con cajas etiquetadas. Una caja pequeña guarda números enteros (int), una caja de precisión con decimales guarda números reales (float), una caja larga guarda un collar de letras enhebradas (str) y un interruptor de encendido/apagado representa un valor booleano (bool).
+> **🌟 Metáfora Didáctica:** Una variable es una etiqueta adhesiva pegada a una caja; varias etiquetas pueden apuntar a la misma caja.
 
-### Principios Teóricos y Modelo Mental
+### Principios Fundamentales
 
-Python utiliza tipado dinámico: no necesitas declarar el tipo de antemano, el intérprete lo infiere en tiempo de asignación.
+Python es fuertemente tipado: no convierte tipos automáticamente sin orden explícita.
 
-La función input() SIEMPRE devuelve una cadena de texto (str). Para operar matemáticamente con ella es imperativo hacer casting mediante int() o float().
+Los tipos primitivos (int, float, str, bool) son inmutables en memoria.
 
 > [!IMPORTANT]
-> ### ⚡ Regla de Oro en Python
-> Nunca sumes texto con números sin convertir; '10' + 5 genera TypeError, pero int('10') + 5 produce 15.
+> **⚡ Regla de Oro en Python:** Convierte tipos explícitamente usando int() o float() antes de operar con entradas de usuario.
 
 ---
 
-## 2. 🗺️ Ciclo de Conversión y Entrada de Datos (Casting)
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Flujo de recepción de datos por teclado, validación de tipo y operación aritmética en memoria.
-
-### Diagrama Visual del Flujo
+Asignación de referencias en memoria y conversión de tipos primitivos.
 
 ```mermaid
 flowchart LR
     A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
-    B -- "Sí (True)" --> C["⚙️ 3. Procesamiento y Transformación"]
-    B -- "No (False / Else)" --> D["🔀 3b. Flujo Alternativo"]
+    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
+    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
     C --> E["🎯 4. Retorno / Salida (print / return)"]
     D --> E
 
-    style A fill:#1e293b,color:#fff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#fff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#1e3a8a,color:#fff,stroke:#60a5fa,stroke-width:2px
-    style D fill:#881337,color:#fff,stroke:#fb7185,stroke-width:2px
-    style E fill:#065f46,color:#fff,stroke:#34d399,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
+    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | La función input() captura la entrada del teclado como string. | `Buffer de entrada -> '25' (str)` |
-| **2. Evaluación** | La función int() o float() transforma los caracteres en número binario. | `Casting -> 25 (int)` |
-| **3. Transformación** | La ALU del procesador realiza la operación matemática solicitada. | `25 * 2 = 50 en CPU` |
-| **4. Retorno / Salida** | f-string formatea el resultado y lo proyecta en la salida estándar. | `Render en pantalla` |
+| **1. Inicialización** | Declaración y asignación de literales. | `Creación del objeto en memoria.` |
+| **2. Evaluación** | Enlace de la variable al identificador del objeto. | `Puntero en el namespace local.` |
+| **3. Transformación** | Casting explícito (ej. float(input)). | `Nuevo objeto instanciado.` |
+| **4. Retorno / Salida** | Evaluación de expresiones aritméticas. | `Resultado en memoria temporal.` |
 
 > [!TIP]
-> **Visualización Mental:** Siempre valida y castea los datos en la frontera de entrada del programa antes de procesarlos en la lógica de negocio.
+> **🔍 Visualización Mental:** Usa la función id(variable) para observar cómo cambia la dirección al reasignar.
 
 ---
 
-## 3. 💻 Calculadora de Ahorro con Conversión de Tipos
-
-Programa completo que solicita entradas, convierte tipos de datos y utiliza f-strings modernas:
+## 3. 💻 Implementación en Python 3.10+
 
 ```python
-# main.py - Python 3.10+ PEP 8 Compliant
-# Entrada de datos con conversión directa
-nombre_usuario: str = input("Ingresa tu nombre: ")
-ingreso_mensual: float = float(input("Ingreso mensual ($): "))
-porcentaje_ahorro: float = float(input("Porcentaje a ahorrar (%): "))
+# CLASE 02 - Código de Demostración
+edad: int = 28
+precio: float = 19.99
+nombre: str = "Wisrovi"
+es_activo: bool = True
 
-# Cálculo matemático
-monto_ahorro: float = ingreso_mensual * (porcentaje_ahorro / 100.0)
-es_meta_alta: bool = monto_ahorro >= 500.0
-
-# Salida formateada con f-strings
-print(f"
---- Reporte Financiero de {nombre_usuario} ---")
-print(f"Ahorro estimado: ${monto_ahorro:,.2f}")
-print(f"¿Es un ahorro significativo?: {es_meta_alta}")
+total = precio * 2
+print(f"Usuario: {nombre} | Total a pagar: ${total:.2f}")
 ```
 
-### Análisis del Código Fuente
-
-Se declaran variables con anotaciones de tipo, se realiza casting explícito con float() y se formatea el número a dos decimales con ${monto_ahorro:,.2f}.
+*Uso de Type Hints (PEP 484) y formateo de precisión con especificadores .2f.*
 
 ---
 
-## 4. 🛡️ Trampas Clásicas con Variables y Casting
-
-Errores comunes de principiantes al trabajar con tipos de datos:
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
 > [!WARNING]
-> ### ⚠️ Gotcha Frecuente (Trampa de Principiante)
-> Intentar convertir una cadena con caracteres alfabéticos a int (ej: int('hola')), lo cual dispara un ValueError.
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** input() siempre retorna un string; sumarlo directamente concatena texto.
 
-### Comparativa: Antipatrón vs Patrón Recomendado
-
-#### ❌ Antipatrón / Mal Código:
-```python
+*   **❌ Antipatrón:**
+    ```python
 edad = input('Edad: ')
-total = edad + 5 # TypeError: str + int
-```
+total = edad + 5  # ❌ TypeError
+    ```
 
-#### ✅ Patrón Pythonic / Correcto:
-```python
+*   **✅ Patrón Correcto:**
+    ```python
 edad = int(input('Edad: '))
-total = edad + 5 # Correcto: suma entera
+total = edad + 5  # ✅ Correcto
+    ```
+
+> [!TIP]
+> **💡 Consejo Profesional:** Siempre valida con bloques try/except al convertir entradas de usuario a números.
+
+---
+
+## 5. 🏋️ Desafío de Práctica
+
+> **Desafío:** Crea una calculadora de propinas que solicite el total de la cuenta y el porcentaje deseado.
+
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
 ```
 
-> [!TIP]
-> **Consejo de Resiliencia en Producción:** Usa siempre f-strings (f'Texto {variable}') en lugar del operador + para concatenar texto con variables.
-
 ---
 
-## 5. 🏆 Conclusiones y Resumen Ejecutivo
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-Dominas los 4 tipos primitivos esenciales de Python, la captura interactiva de datos y el formateo profesional.
-
-> [!NOTE]
-> ### 🎖️ Logro Alcanzado
-> Capacidad para construir programas interactivos con entradas validadas y cálculos matemáticos precisos.
-
-### 📝 Notas del Instructor
-En la siguiente clase exploraremos el control de flujo condicional: cómo dotar a la computadora de capacidad de decisión.
-
-### 🤝 Mensaje de Agradecimiento
-Muchas gracias por tu entusiasmo, disciplina y dedicación al participar en este programa formativo. La programación es un superpoder que transforma vidas cuando se ejerce con constancia y curiosidad. ¡Nos vemos en la próxima sesión para seguir construyendo juntos! 💻🚀
-
----
-
-## 6. 📚 Bibliografía y Fuentes de Estudio
-
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Python Type Checking (PEP 484)** | Anotaciones de tipo y análisis estático | [docs.python.org/typing](https://docs.python.org/3/library/typing.html) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
-
-> [!TIP]
-> ### 🏋️ Desafío de Autoestudio Recomendado
-> Crea un conversor de temperatura que solicite grados Celsius y devuelva Fahrenheit y Kelvin formateados a un decimal.
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |

@@ -1,163 +1,153 @@
-# Clase 06: Diccionarios y Mapeos Clave-Valor
+# 📚 Clase 06: Diccionarios y Conjuntos (Sets)
 
-<div class="grid cards" markdown>
-
--   :material-school: __Nivel:__ Principiante Absoluto
--   :material-book-open-page-variant: __Curso:__ Curso 1: Fundamentos Básicos de Python
--   :material-lightbulb-on: __Metáfora:__ *«La Agenda Telefónica y el Expediente Médico»*
--   :material-file-pdf-box: __Descargar PDF:__ [clase-06-diccionarios.pdf](https://github.com/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-06-diccionarios/clase-06-diccionarios.pdf)
-
-</div>
+> **Programa:** Curso 1: Fundamentos Básicos de Python  
+> **Nivel:** Nivel 1 - Principiante  
+> **Metáfora Central:** *«Diccionarios como un Casillero con Llaves Únicas»*  
+> **Documento Oficial PDF:** [clase-06-diccionarios.pdf](clase-06-diccionarios.pdf)  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 🎯 Objetivos de Aprendizaje
+## 👤 Perfil del Autor y Mentor
 
-!!! abstract "Competencias Clave de la Sesión"
-    *   **Competencia Conceptual:** Comprender la indexación por clave semántica en lugar de posición numérica y la eficiencia O(1) de las tablas hash.
-    *   **Competencia Práctica:** Construir modelos de datos complejos con diccionarios anidados y procesar registros estructurados.
+### **William Rodríguez (Wisrovi)**
+*AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*
+
+Ingeniero y arquitecto de software especializado en Inteligencia Artificial Generativa, sistemas multi-agente, Visión por Computador e infraestructuras MLOps de alta disponibilidad. Creador y mantenedor de la suite de software libre wisrovi SUITE en PyPI con más de 26 bibliotecas enfocadas en orquestación de pipelines, caching distribuido y optimización de bases de datos.
+
+*   🐙 **GitHub:** [github.com/wisrovi](https://github.com/wisrovi)
+*   💼 **LinkedIn:** [www.linkedin.com/in/wisrovi-rodriguez/](https://www.linkedin.com/in/wisrovi-rodriguez/)
+*   🐳 **DockerHub:** [hub.docker.com/u/wisrovi](https://hub.docker.com/u/wisrovi)
+*   🌐 **Website:** [wisrovi.dev](https://wisrovi.dev)
+*   📦 **PyPI:** [pypi.org/user/wisrovi/](https://pypi.org/user/wisrovi/)
 
 ---
 
-## 1. 💡 Fundamentos Teóricos y Modelo Mental
+### 🚲 La Regla de la Bicicleta
 
-Buscar un dato por su posición (índice 4) es poco intuitivo; en el mundo real buscamos por nombre, correo o ID.
+> *"Nadie aprende a montar en bicicleta viendo tutoriales. El verdadero dominio de la programación surge cuando abres tu editor, escribes código con tus propias manos, resuelves errores y construyes proyectos reales."*
 
-!!! note "🌟 Metáfora Central: La Agenda Telefónica y el Expediente Médico"
-    Un diccionario es como tu agenda del teléfono: no buscas a tu mamá por el número de orden en que la agregaste, buscas la etiqueta 'Mamá' (la clave) y obtienes su número de teléfono (el valor).
+---
+
+## 📑 Tabla de Contenidos de la Sesión
+
+1. [💡 Fundamentación Teórica y Modelo Mental](#1--fundamentación-teórica-y-modelo-mental)
+2. [🗺️ Arquitectura y Diagrama de Flujo](#2-️-arquitectura-y-diagrama-de-flujo)
+3. [💻 Implementación en Python 3.10+](#3--implementación-en-python-310)
+4. [🛡️ Buenas Prácticas y Trampas Frecuentes](#4-️-buenas-prácticas-y-trampas-frecuentes)
+5. [🏋️ Desafío de Práctica](#5-️-desafío-de-práctica)
+6. [📚 Bibliografía y Enlaces Canónicos](#6--bibliografía-y-enlaces-canónicos)
+
+---
+
+## 1. 💡 Fundamentación Teórica y Modelo Mental
+
+Los diccionarios son colecciones asociativas basadas en pares clave-valor que permiten accesos ultra rápidos.
+
+> [!NOTE]
+> **🌟 Metáfora Didáctica:** Un diccionario es como un casillero: con tu llave (clave) abres instantáneamente el compartimento (valor).
 
 ### Principios Fundamentales
 
-Las claves en un diccionario deben ser únicas e inmutables (comúnmente strings o ints). Los valores pueden ser de cualquier tipo, incluidas listas u otros diccionarios.
+Las claves deben ser objetos inmutables y hashables (strings, números, tuplas).
 
-La búsqueda en un diccionario es instantánea (tiempo constante O(1)) gracias al algoritmo interno de tabla hash.
+Los conjuntos (sets) son colecciones no ordenadas de elementos únicos.
 
-!!! tip "⚡ Regla de Oro en Python"
-    Nunca accedas a una clave con dict['clave'] si no estás 100% seguro de que existe; usa dict.get('clave', valor_por_defecto) para evitar KeyError.
+> [!IMPORTANT]
+> **⚡ Regla de Oro en Python:** Usa siempre diccionario.get('clave', default) para evitar excepciones KeyError.
 
 ---
 
-## 2. 🗺️ Diagrama de Arquitectura y Flujo de Control
+## 2. 🗺️ Arquitectura y Diagrama de Flujo
 
-Cómo Python mapea claves alfanuméricas a ubicaciones de memoria específicas.
+Hashing de claves, mapeo en tabla interna y operaciones de conjuntos.
 
 ```mermaid
 flowchart LR
-    subgraph Entrada["📥 Capa de Entrada"]
-        UI["Prompt / UI / Request"]
-        VAL["Validación DTO / Input"]
-    end
+    A["🎬 1. Entrada / Input"] --> B{"⚖️ 2. ¿Condición Booleana?"}
+    B -->|Sí / True| C["⚙️ 3. Procesamiento y Transformación"]
+    B -->|No / False| D["🔀 3b. Rama Alternativa (Else)"]
+    C --> E["🎯 4. Retorno / Salida (print / return)"]
+    D --> E
 
-    subgraph Core["🧠 Núcleo de Ejecución & Lógica"]
-        ENG["Motor / Algoritmo / LLM"]
-        MEM["Estado / Memoria"]
-        TOOL["Herramientas / Funciones"]
-    end
-
-    subgraph Salida["💾 Persistencia y Respuesta"]
-        DB[("Base de Datos / Vector Store")]
-        RES["Salida Formateada JSON / UI"]
-    end
-
-    UI --> VAL
-    VAL --> ENG
-    ENG <--> MEM
-    ENG <--> TOOL
-    TOOL --> DB
-    ENG --> RES
-
-    style Entrada fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Core fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style Salida fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style D fill:#881337,color:#ffffff,stroke:#fb7185,stroke-width:2px
+    style E fill:#065f46,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ### Desglose Paso a Paso del Flujo
 
-| Fase del Flujo | Acción del Intérprete | Estado en Memoria |
+| Fase | Acción del Intérprete | Estado en Memoria |
 | :--- | :--- | :--- |
-| **1. Inicialización** | Python aplica una función hash a la clave (ej: hash('email')). | `Clave -> Hash ID numérico` |
-| **2. Evaluación** | Localiza el casillero exacto en la tabla hash de memoria. | `Búsqueda O(1)` |
-| **3. Transformación** | Recupera o modifica el valor asociado sin recorrer toda la estructura. | `Lectura/Escritura inmediata` |
-| **4. Retorno / Salida** | Permite serialización directa hacia y desde formato JSON para APIs web. | `Compatibilidad universal` |
+| **1. Inicialización** | Cálculo del hash mediante hash(key). | `Hash entero generado.` |
+| **2. Evaluación** | Indexación en la tabla hash interna. | `Ubicación del bucket.` |
+| **3. Transformación** | Recuperación del puntero al valor. | `Acceso O(1).` |
+| **4. Retorno / Salida** | Iteración sobre items() o keys(). | `Vista dinámica generada.` |
 
-!!! info "🔍 Visualización Mental"
-    Los diccionarios son el equivalente en Python a los objetos de JavaScript o los registros de bases de datos NoSQL.
+> [!TIP]
+> **🔍 Visualización Mental:** Imagina los sets como un filtro que rechaza automáticamente cualquier duplicado.
 
 ---
 
-## 3. 💻 Implementación Práctica en Python
+## 3. 💻 Implementación en Python 3.10+
 
-Manipulación de registros de productos con métodos .get(), .items() y anidamiento:
-
-```python title="main.py - Python 3.10+ (PEP 8)" linenums="1"
-inventario = {
-    "PROD-001": {"nombre": "Teclado Mecánico", "precio": 85.0, "stock": 12},
-    "PROD-002": {"nombre": "Mouse Ergonómico", "precio": 45.0, "stock": 0}
+```python
+# CLASE 06 - Código de Demostración
+usuario = {
+    "id": 101,
+    "nombre": "Carlos Ruiz",
+    "roles": {"admin", "editor"},
+    "activo": True
 }
 
-# Acceso seguro con .get()
-sku_buscado = "PROD-001"
-producto = inventario.get(sku_buscado, None)
-
-if producto:
-    print(f"Producto: {producto['nombre']} | Stock: {producto['stock']} uds")
-
-# Iteración completa de claves y valores
-for sku, datos in inventario.items():
-    disponible = "En Stock" if datos["stock"] > 0 else "Agotado"
-    print(f"[{sku}] {datos['nombre']} -> {disponible}")
+email = usuario.get("email", "sin_correo@empresa.com")
+print(f"Usuario: {usuario['nombre']} | Email: {email}")
 ```
 
-### Análisis Detallado del Código
-
-Se utiliza una estructura anidada dict-of-dicts, acceso resiliente con get() y desempaquetado de tuplas con el método .items().
+*Uso de .get() seguro con valor por defecto y set para roles sin duplicados.*
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Depuración
+## 4. 🛡️ Buenas Prácticas y Trampas Frecuentes
 
-Errores habituales al consultar y mutar diccionarios:
+> [!WARNING]
+> **⚠️ Gotcha Frecuente (Trampa de Principiante):** Hacer data['no_existe'] lanza KeyError en lugar de devolver None.
 
-!!! warning "⚠️ Gotcha Frecuente (Trampa de Principiante)"
-    Consultar una clave inexistente con corchetes (dict['inexistente']) provoca un KeyError que detiene el programa.
-
-### Comparativa: Patrón Recomendado vs Antipatrón
-
-=== "✅ Patrón Pythonic Recomendado"
+*   **❌ Antipatrón:**
     ```python
-user = {'nombre': 'Leo'}
-print(user.get('edad', 0)) # Retorna 0 de forma segura
+data = {'a': 1}
+val = data['b']  # ❌ KeyError
     ```
 
-=== "❌ Antipatrón / Mal Código"
+*   **✅ Patrón Correcto:**
     ```python
-user = {'nombre': 'Leo'}
-print(user['edad']) # KeyError: 'edad'
+data = {'a': 1}
+val = data.get('b', 0)  # ✅ Seguro
     ```
 
-!!! success "🛡️ Consejo de Resiliencia en Producción"
-    Utiliza dictionary comprehensions ({k: v for k, v in ...}) para filtrar y transformar diccionarios en una sola línea.
+> [!TIP]
+> **💡 Consejo Profesional:** Utiliza collections.defaultdict para inicializar contadores automáticos.
 
 ---
 
-## 5. 🏋️ Ejercicios y Desafío de Autoestudio
+## 5. 🏋️ Desafío de Práctica
 
-!!! example "Desafío Práctico Recomendado"
-    Crea una función que reciba una lista de palabras y devuelva un diccionario con la frecuencia de aparición de cada palabra.
+> **Desafío:** Crea una función que reciba un texto y cuente la frecuencia de cada palabra con un diccionario.
 
-???+ tip "🧪 Cómo validar tu solución con Pytest"
-    Abre tu terminal en VS Code y ejecuta:
-    ```bash
-    pytest 01-fundamentos-python/clase-06-diccionarios/ejercicios/
-    ```
+Para ejecutar la verificación automática con pytest:
+```bash
+pytest ejercicios/
+```
 
 ---
 
-## 6. 📚 Fuentes y Referencias Oficiales
+## 6. 📚 Bibliografía y Enlaces Canónicos
 
-| Fuente / Recurso | Descripción Temática | Enlace Oficial |
+| Fuente / Recurso | Descripción | Enlace |
 | :--- | :--- | :--- |
-| **Documentación Oficial de Python** | Referencia canónica del lenguaje y librería estándar | [docs.python.org/3/](https://docs.python.org/3/) |
-| **PEP 8 — Style Guide for Python** | Guía oficial de estilo, formato e indentación | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
-| **Real Python Tutorials** | Artículos técnicos y patrones de desarrollo moderno | [realpython.com](https://realpython.com/) |
-| **Suite Open Source wisrovi** | Paquetes Python para orquestación y rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
+| **Documentación Oficial de Python** | Especificación y biblioteca estándar | [docs.python.org/3/](https://docs.python.org/3/) |
+| **PEP 8 — Style Guide for Python** | Estándar oficial de formateo y estilo | [peps.python.org/pep-0008/](https://peps.python.org/pep-0008/) |
+| **Real Python Tutorials** | Patrones de ingeniería y desarrollo | [realpython.com](https://realpython.com/) |
+| **Suite Open Source wisrovi** | Librerías de alto rendimiento | [github.com/wisrovi](https://github.com/wisrovi) |
