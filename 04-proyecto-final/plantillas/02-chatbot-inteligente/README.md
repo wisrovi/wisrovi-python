@@ -1,13 +1,22 @@
-# 🤖 Plantilla: Chatbot Inteligente
+# 📁 04-Proyecto-Final ➔ Plantillas ➔ 02-Chatbot-Inteligente
 
-Estructura sugerida para desarrollar un agente o chatbot automatizado.
+> **Ubicación en Repositorio:** `04-proyecto-final/plantillas/02-chatbot-inteligente`  
 
-## 📁 Estructura Sugerida
-```text
-mi-chatbot/
-├── main.py              # Ejecución del bot
-├── agent.py             # Lógica del agente / LLM
-├── tools.py             # Herramientas del bot
-├── requirements.txt     # Dependencias (ej: openai, langchain, python-telegram-bot)
-└── .env.example         # Variables de entorno de API Keys
+---
+
+## 🌀 Propósito en la Arquitectura del Proyecto
+
+```mermaid
+flowchart LR
+    COMP["📦 Componente<br/>02-chatbot-inteligente"] --> SYS["⚙️ Sistema wisrovi-python<br/>Infraestructura & Recursos"]
+    SYS --> USER["🎓 Experiencia del Alumno<br/>Entorno optimizado y reproducible"]
+
+    style COMP fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style SYS fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style USER fill:#ecfdf5,stroke:#10b981,stroke-width:2px
 ```
+
+---
+
+## 📑 Descripción y Recursos
+Este directorio forma parte de la infraestructura integral del programa de formación en Python.

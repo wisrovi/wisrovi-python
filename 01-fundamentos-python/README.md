@@ -1,40 +1,53 @@
-# 🎯 Curso 1: Fundamentos Básicos de Python (8 Clases)
+# 📚 Curso 1: Fundamentos Básicos de Python
 
-> **Nivel:** 100% Principiantes Absolutos  
-> **Objetivo:** Perderle el miedo a la programación, dominar la sintaxis básica de Python y construir la lógica para pensar como un programador desde cero.
-
----
-
-## 📌 Visión General del Curso
-
-Este primer nivel consta de **8 clases en vivo**. En la **Clase 01** de hoy, los estudiantes se llevarán una primera impresión intuitiva de los 4 conceptos pilares (Variables, `if`, `for`, `def`). En las 7 clases siguientes se profundizará y reforzará cada tema paso a paso con metáforas de la vida real hasta que los conceptos sean completamente claros e instintivos.
+> **De Cero a Programador: Los 4 Pilares Lógicos, Colecciones y Proyecto CLI**  
+> **Nivel:** Nivel 1 (100% Principiantes Absolutos) &bull; **Duración:** 8 Semanas Formativas  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 📚 Calendario y Temario de las 8 Clases
+## 🌀 Progresión de Aprendizaje en Espiral (8 Semanas)
 
-| Clase | Tema Principal | Metáfora Central | Estado | Enlace al Material |
-| :---: | :--- | :--- | :---: | :---: |
-| **01** | **Panorama General de la Programación** | *El Asistente, las Cajas, el Semáforo y la Licuadora* | 🟢 Disponible | [📁 Ir a Clase 01](clase-01-panorama-general/) |
-| **02** | **Variables y Tipos de Datos** | *El Almacén, el Collar de Letras y el Micrófono* | 🟢 Disponible | [📁 Ir a Clase 02](clase-02-variables-y-tipos/) |
-| **03** | **Toma de Decisiones (`if`, `elif`, `else`)** | *El Guardia de Puerta y el Menú de Opciones* | 🟢 Disponible | [📁 Ir a Clase 03](clase-03-control-flujo-condicionales/) |
-| **04** | **Repetición Inteligente (`for` y `while`)** | *Las Vueltas a la Pista y el Termostato* | 🟢 Disponible | [📁 Ir a Clase 04](clase-04-control-flujo-bucles/) |
-| **05** | **Listas y Colecciones de Datos** | *La Mochila del Programador y los Casilleros* | 🟢 Disponible | [📁 Ir a Clase 05](clase-05-listas-y-colecciones/) |
-| **06** | **Diccionarios (`clave: valor`)** | *La Agenda Telefónica y el Expediente Médico* | 🟢 Disponible | [📁 Ir a Clase 06](clase-06-diccionarios/) |
-| **07** | **Funciones (`def`)** | *El Electrodoméstico y la Entrega del Cajero* | 🟢 Disponible | [📁 Ir a Clase 07](clase-07-funciones/) |
-| **08** | **Integración Total & Proyecto Integrador** | *El Casco de Seguridad y Salir a Rodar en Bici* | 🟢 Disponible | [📁 Ir a Clase 08](clase-08-proyecto-integrador-basico/) |
+Este curso aplica la metodología de **Aprendizaje en Espiral**, donde cada semana construye sobre la anterior, incrementando la profundidad técnica y el rigor de ingeniería:
 
----
+```mermaid
+flowchart TD
+    W1["🌱 Semana 1-2: Fundamentación & Modelo Mental<br/>Comprensión intuitiva y sintaxis idiomática"] --> W2["⚙️ Semana 3-5: Estructuras & Control de Flujo<br/>Decisiones, bucles y gestión de memoria"]
+    W2 --> W3["🧩 Semana 6-7: Modularización & Arquitectura<br/>Funciones, colecciones y abstracción"]
+    W3 --> W4["🚀 Semana 8: Síntesis & Proyecto Integrador<br/>Aplicación completa y verificación con tests"]
 
-## 🛠️ Estructura Interna de Cada Clase
-
-Cada carpeta de clase incluye:
-1. `README.md`: Explicación conceptual paso a paso con diagramas y metáforas.
-2. `ejemplos/`: **Al menos 5 ejemplos de código autónomos**, extensamente comentados.
-3. `ejercicios/`: Reto práctico para que el alumno aplique **La regla de la bicicleta** 🚲.
+    style W1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style W2 fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style W3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style W4 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
 
 ---
 
-## 💡 Recordatorio de Aprendizaje
-> *"Si no te subes a la bicicleta y pedaleas por ti mismo, nunca vas a aprender a andar en bici."*
-Abre Visual Studio Code, ejecuta los archivos `.py` y modifica el código para ver cómo reacciona la computadora. ¡Disfruta el proceso!
+## 📑 Hoja de Ruta de las 8 Clases Semanales
+
+| Semana | Carpeta | Unidad Temática | Metáfora Didáctica |
+| :---: | :--- | :--- | :--- |
+| **CLASE 01** | [`clase-01-panorama-general/`](clase-01-panorama-general/) | Primer Vistazo Práctico (print, variables, if, for) | *«El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)»* |
+| **CLASE 02** | [`clase-02-variables-y-tipos/`](clase-02-variables-y-tipos/) | Variables, Tipos de Datos y Operadores | *«Variables como Cajas Etiquetadas en Memoria»* |
+| **CLASE 03** | [`clase-03-control-flujo-condicionales/`](clase-03-control-flujo-condicionales/) | Condicionales (if / elif / else) | *«Condicionales como Semáforos y Bifurcaciones en un Tren»* |
+| **CLASE 04** | [`clase-04-control-flujo-bucles/`](clase-04-control-flujo-bucles/) | Bucles (for / while) | *«Bucles como una Cinta Transportadora de Fábrica»* |
+| **CLASE 05** | [`clase-05-listas-y-colecciones/`](clase-05-listas-y-colecciones/) | Listas, Tuplas y Colecciones Básicas | *«Listas como Archivadores Modulares y Tuplas como Documentos Notariados»* |
+| **CLASE 06** | [`clase-06-diccionarios/`](clase-06-diccionarios/) | Diccionarios y Conjuntos (Sets) | *«Diccionarios como un Casillero con Llaves Únicas»* |
+| **CLASE 07** | [`clase-07-funciones/`](clase-07-funciones/) | Funciones, Parámetros y Scope | *«Funciones como Máquinas Reutilizables de una Fábrica»* |
+| **CLASE 08** | [`clase-08-proyecto-integrador-basico/`](clase-08-proyecto-integrador-basico/) | Sistema CLI Completo | *«Construyendo tu Primera Aplicación Real de Consola»* |
+
+
+---
+
+## 📦 Materiales Disponibles en este Curso
+
+*   📄 [`curso-01-fundamentos-python.pdf`](curso-01-fundamentos-python.pdf): Manual completo oficial en PDF compilado con estética LaTeX.
+*   📖 [`book.md`](book.md): Libro de estudio digital con explicaciones profundas y diagramas Mermaid.
+*   🧪 Suite de Pruebas Automatizadas en [`tests/curso_01/`](../tests/curso_01/).
+
+---
+
+## 🚲 La Regla de la Bicicleta
+
+> *"Nadie aprende a programar leyendo código ajeno. Abre cada clase, ejecuta los ejemplos en tu editor y resuelve los retos con tus propias manos."*

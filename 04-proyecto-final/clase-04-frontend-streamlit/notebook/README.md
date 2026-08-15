@@ -1,10 +1,31 @@
 # 📓 Cuaderno Interactivo: Clase 04: Desarrollo del Frontend: Dashboards con Streamlit
 
-> **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador  
-> **Metáfora:** *«Streamlit como el Salón de Control Visual para tu Backend de Python»*  
+> **Curso:** 04-proyecto-final  
+> **Archivo:** [`clase-04-frontend-streamlit.ipynb`](clase-04-frontend-streamlit.ipynb)  
 
-## ☁️ Ejecutar en la Nube con 1 Clic
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-04-frontend-streamlit/notebook/clase-04-frontend-streamlit.ipynb)
 
-## 💻 Ejecutar Localmente en VS Code
-Abre el archivo [`clase-04-frontend-streamlit.ipynb`](clase-04-frontend-streamlit.ipynb) directamente en Visual Studio Code con la extensión de Jupyter instalada.
+---
+
+## 🌀 Modelo de Aprendizaje Celda a Celda
+
+Los cuadernos Jupyter permiten experimentar de forma inmediata:
+
+```mermaid
+flowchart LR
+    NB["📓 Cuaderno Jupyter<br/>(clase-04-frontend-streamlit.ipynb)"] --> COLAB["☁️ Ejecución Nube<br/>Google Colab (1 clic)"]
+    NB --> LOCAL["💻 Ejecución Local<br/>VS Code + Jupyter Extension"]
+    COLAB --> RUN["⚡ Ejecuta celdas de código<br/>y visualiza variables"]
+    LOCAL --> RUN
+
+    style NB fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style COLAB fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style LOCAL fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style RUN fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
+
+---
+
+## 🚀 Cómo Utilizar este Cuaderno
+*   **En la Nube:** Haz clic en el botón superior **Open in Colab** para ejecutarlo sin instalar nada.
+*   **En Local:** Abre [`clase-04-frontend-streamlit.ipynb`](clase-04-frontend-streamlit.ipynb) directamente en Visual Studio Code.

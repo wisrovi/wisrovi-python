@@ -1,10 +1,31 @@
 # 📓 Cuaderno Interactivo: Clase 02: Pilas (Stacks) y Colas (Queues) con collections.deque
 
-> **Curso:** Curso 2: Algoritmos Avanzados y Estructuras de Datos  
-> **Metáfora:** *«Pilas LIFO como Platos Apilados y Colas FIFO como la Fila del Supermercado»*  
+> **Curso:** 02-algoritmos-estructuras  
+> **Archivo:** [`clase-02-pilas-y-colas.ipynb`](clase-02-pilas-y-colas.ipynb)  
 
-## ☁️ Ejecutar en la Nube con 1 Clic
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/02-algoritmos-estructuras/clase-02-pilas-y-colas/notebook/clase-02-pilas-y-colas.ipynb)
 
-## 💻 Ejecutar Localmente en VS Code
-Abre el archivo [`clase-02-pilas-y-colas.ipynb`](clase-02-pilas-y-colas.ipynb) directamente en Visual Studio Code con la extensión de Jupyter instalada.
+---
+
+## 🌀 Modelo de Aprendizaje Celda a Celda
+
+Los cuadernos Jupyter permiten experimentar de forma inmediata:
+
+```mermaid
+flowchart LR
+    NB["📓 Cuaderno Jupyter<br/>(clase-02-pilas-y-colas.ipynb)"] --> COLAB["☁️ Ejecución Nube<br/>Google Colab (1 clic)"]
+    NB --> LOCAL["💻 Ejecución Local<br/>VS Code + Jupyter Extension"]
+    COLAB --> RUN["⚡ Ejecuta celdas de código<br/>y visualiza variables"]
+    LOCAL --> RUN
+
+    style NB fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style COLAB fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style LOCAL fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style RUN fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
+
+---
+
+## 🚀 Cómo Utilizar este Cuaderno
+*   **En la Nube:** Haz clic en el botón superior **Open in Colab** para ejecutarlo sin instalar nada.
+*   **En Local:** Abre [`clase-02-pilas-y-colas.ipynb`](clase-02-pilas-y-colas.ipynb) directamente en Visual Studio Code.

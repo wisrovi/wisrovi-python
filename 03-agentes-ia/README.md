@@ -1,36 +1,53 @@
-# 🤖 Curso 3: Creación y Desarrollo de Agentes de IA
+# 📚 Curso 3: Creación y Desarrollo de Agentes de IA
 
-> **Nivel:** Avanzado  
-> **Objetivo:** Diseñar, construir y desplegar Agentes de Inteligencia Artificial capaces de razonar, utilizar herramientas externas y resolver tareas de forma autónoma.
-
----
-
-## 📌 Descripción del Curso
-
-En este tercer curso nos adentraremos en el apasionante mundo de la Inteligencia Artificial Generativa y la Arquitectura de Agentes. Aprenderás a integrar modelos de lenguaje (LLMs), dotarlos de memoria, conectar herramientas y crear sistemas capaces de tomar decisiones.
+> **Modelos LLM, Inferencia, Tool Calling, Memoria Vectorial, RAG, Arquitecturas ReAct y Multi-Agentes**  
+> **Nivel:** Nivel 3 (Avanzado) &bull; **Duración:** 8 Semanas Formativas  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 📚 Ruta de Contenidos
+## 🌀 Progresión de Aprendizaje en Espiral (8 Semanas)
 
-### 1. [Fundamentos de IA y LLMs](01-fundamentos-ia-llm/)
-- Introducción a los Modelos de Lenguaje Grande (LLMs).
-- Conexión con APIs de IA (OpenAI, Gemini, Ollama/Locales).
-- Prompt Engineering avanzado y estructuración de salidas (JSON Mode).
+Este curso aplica la metodología de **Aprendizaje en Espiral**, donde cada semana construye sobre la anterior, incrementando la profundidad técnica y el rigor de ingeniería:
 
-### 2. [Herramientas, Memoria y RAG](02-herramientas-y-memoria/)
-- Equipando agentes con herramientas (*Function Calling / Tool Use*).
-- Gestión de memoria a corto y largo plazo (Vector Databases).
-- RAG (*Retrieval-Augmented Generation*): Conectar archivos y documentos del usuario.
+```mermaid
+flowchart TD
+    W1["🌱 Semana 1-2: Fundamentación & Modelo Mental<br/>Comprensión intuitiva y sintaxis idiomática"] --> W2["⚙️ Semana 3-5: Estructuras & Control de Flujo<br/>Decisiones, bucles y gestión de memoria"]
+    W2 --> W3["🧩 Semana 6-7: Modularización & Arquitectura<br/>Funciones, colecciones y abstracción"]
+    W3 --> W4["🚀 Semana 8: Síntesis & Proyecto Integrador<br/>Aplicación completa y verificación con tests"]
 
-### 3. [Construcción de Agentes Autónomos](03-construccion-de-agentes/)
-- Ciclo de razonamiento ReAct (Reasoning + Acting).
-- Agentes multimodales y agentes colaborativos (Multi-agent Systems).
-- Despliegue e integración en aplicaciones reales.
+    style W1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style W2 fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style W3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style W4 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
 
 ---
 
-## 🛠️ Tecnologías que utilizaremos
-- **Python 3.10+**
-- **APIs:** Gemini API, OpenAI API, Ollama (Modelos locales).
-- **Frameworks:** LangChain, LlamaIndex, CrewAI o Autogen.
+## 📑 Hoja de Ruta de las 8 Clases Semanales
+
+| Semana | Carpeta | Unidad Temática | Metáfora Didáctica |
+| :---: | :--- | :--- | :--- |
+| **CLASE 01** | [`clase-01-fundamentos-llm-tokenizacion/`](clase-01-fundamentos-llm-tokenizacion/) | Fundamentos de LLMs, Tokens y Arquitectura Transformer | *«Modelos de Lenguaje como Motores de Predicción Probabilística»* |
+| **CLASE 02** | [`clase-02-prompt-engineering-avanzado/`](clase-02-prompt-engineering-avanzado/) | Prompt Engineering Avanzado y Few-Shot Learning | *«Prompts como Especificaciones Precisas para un Consultor Experto»* |
+| **CLASE 03** | [`clase-03-salidas-estructuradas-pydantic/`](clase-03-salidas-estructuradas-pydantic/) | Salidas Estructuradas y Validación Tipada con Pydantic V2 | *«Pydantic como la Aduana Estricta de Datos para Respuestas de IA»* |
+| **CLASE 04** | [`clase-04-tool-calling-funciones/`](clase-04-tool-calling-funciones/) | Tool Calling y Function Calling en Python | *«Dotando de Manos y Herramientas al Cerebro del LLM»* |
+| **CLASE 05** | [`clase-05-embeddings-y-bases-vectoriales/`](clase-05-embeddings-y-bases-vectoriales/) | Embeddings y Representación Vectorial Semántica | *«Embeddings como Coordenadas GPS del Significado de las Palabras»* |
+| **CLASE 06** | [`clase-06-arquitecturas-rag/`](clase-06-arquitecturas-rag/) | Arquitecturas RAG (Retrieval-Augmented Generation) | *«RAG como Darle al LLM un Libro Abierto con la Información Exacta»* |
+| **CLASE 07** | [`clase-07-agentes-autonomos-react/`](clase-07-agentes-autonomos-react/) | Agentes Autónomos y el Ciclo Cognitivo ReAct | *«El Agente como un Detective que Piensa, Actúa y Observa hasta Resolver el Caso»* |
+| **CLASE 08** | [`clase-08-sistemas-multi-agente/`](clase-08-sistemas-multi-agente/) | Sistemas Multi-Agente, Supervisión y Guardrails | *«Una Empresa de Agentes Especializados Coordinados por un Director»* |
+
+
+---
+
+## 📦 Materiales Disponibles en este Curso
+
+*   📄 [`curso-03-agentes-ia.pdf`](curso-03-agentes-ia.pdf): Manual completo oficial en PDF compilado con estética LaTeX.
+*   📖 [`book.md`](book.md): Libro de estudio digital con explicaciones profundas y diagramas Mermaid.
+*   🧪 Suite de Pruebas Automatizadas en [`tests/curso_03/`](../tests/curso_03/).
+
+---
+
+## 🚲 La Regla de la Bicicleta
+
+> *"Nadie aprende a programar leyendo código ajeno. Abre cada clase, ejecuta los ejemplos en tu editor y resuelve los retos con tus propias manos."*

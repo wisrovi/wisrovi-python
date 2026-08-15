@@ -1,19 +1,32 @@
-# 📁 curso_04
+# 🧪 Suite de Pruebas Automatizadas (Pytest)
 
+> **Módulo:** `curso_04`  
 > **Ubicación:** `tests/curso_04`  
 
-Directorio de recursos y materiales del programa de formación en Python.
+---
 
-## 📄 Archivos Destacados
-*   📄 [`__init__.py`](__init__.py)
-*   📄 [`test_clase_01.py`](test_clase_01.py)
-*   📄 [`test_clase_02.py`](test_clase_02.py)
-*   📄 [`test_clase_03.py`](test_clase_03.py)
-*   📄 [`test_clase_04.py`](test_clase_04.py)
-*   📄 [`test_clase_05.py`](test_clase_05.py)
-*   📄 [`test_clase_06.py`](test_clase_06.py)
-*   📄 [`test_clase_07.py`](test_clase_07.py)
-*   📄 [`test_clase_08.py`](test_clase_08.py)
-*   📄 [`test_integracion_chatbot.py`](test_integracion_chatbot.py)
-*   📄 [`test_integracion_database.py`](test_integracion_database.py)
+## 🌀 Pirámide y Flujo de Verificación de Calidad
 
+```mermaid
+flowchart TD
+    DEV["💻 Código del Estudiante<br/>(reto.py / funciones)"] --> PYTEST["🧪 Pytest Test Suite<br/>(tests/curso_04)"]
+    PYTEST --> CI["⚙️ GitHub Actions CI<br/>Validación en cada Commit"]
+    CI --> PASS["✅ 100% Tests Pasados<br/>Calidad Garantizada"]
+
+    style DEV fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style PYTEST fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style CI fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style PASS fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
+
+---
+
+## 💻 Comandos de Ejecución
+
+```bash
+# Ejecutar todas las pruebas de este módulo
+pytest tests/curso_04/
+
+# Ejecutar con reporte detallado
+pytest -v tests/curso_04/
+```

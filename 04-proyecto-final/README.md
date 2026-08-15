@@ -1,46 +1,53 @@
-# 🛠️ Curso 4: Taller Práctico & Proyecto Final Personalizado
+# 📚 Curso 4: Taller Práctico & Proyecto Final Integrador
 
-> **Nivel:** Integrador / Práctico  
-> **Objetivo:** Construir un proyecto real completo de principio a fin, aplicando todo lo aprendido durante los 3 cursos anteriores con acompañamiento paso a paso.
-
----
-
-## 📌 Descripción del Taller
-
-¡Llegó el momento de poner a prueba todo lo aprendido! En este nivel **tú decides qué construir**. No habrá ejercicios abstractos: trabajarás en una solución real que podrás agregar a tu portafolio personal o utilizar en tu día a día / trabajo.
+> **Construcción de Soluciones Reales: Full-Stack Web con FastAPI + Streamlit, Chatbot Inteligente y BD SQL ACID**  
+> **Nivel:** Nivel 4 (Integrador / Profesional) &bull; **Duración:** 8 Semanas Formativas  
+> **Instructor:** **William Rodríguez (Wisrovi)** (AI Solutions Architect & Principal Software Engineer)  
 
 ---
 
-## 💡 Opciones de Proyectos que puedes desarrollar
+## 🌀 Progresión de Aprendizaje en Espiral (8 Semanas)
 
-### 1. 🌐 Aplicación Web con Python
-- Desarrollo con **Streamlit**, **Flask** o **FastAPI**.
-- Interfaces interactivas para visualizar datos o interactuar con usuarios.
-- Revisa las [Plantillas de Aplicación Web](plantillas/01-aplicacion-web/).
+Este curso aplica la metodología de **Aprendizaje en Espiral**, donde cada semana construye sobre la anterior, incrementando la profundidad técnica y el rigor de ingeniería:
 
-### 2. 🤖 Chatbot Inteligente para Atención al Cliente
-- Integración con WhatsApp, Telegram o Web.
-- Respuestas automáticas con IA y consultas a bases de datos.
-- Revisa las [Plantillas de Chatbot](plantillas/02-chatbot-inteligente/).
+```mermaid
+flowchart TD
+    W1["🌱 Semana 1-2: Fundamentación & Modelo Mental<br/>Comprensión intuitiva y sintaxis idiomática"] --> W2["⚙️ Semana 3-5: Estructuras & Control de Flujo<br/>Decisiones, bucles y gestión de memoria"]
+    W2 --> W3["🧩 Semana 6-7: Modularización & Arquitectura<br/>Funciones, colecciones y abstracción"]
+    W3 --> W4["🚀 Semana 8: Síntesis & Proyecto Integrador<br/>Aplicación completa y verificación con tests"]
 
-### 3. 🗄️ Sistema de Gestión con Base de Datos
-- Gestión de inventarios, usuarios o citas.
-- Conexión con **SQLite** / **PostgreSQL**.
-- Revisa las [Plantillas de Sistema de Gestión](plantillas/03-sistema-gestion-bd/).
-
----
-
-## 🤝 Acompañamiento Personalizado
-
-Durante todo el desarrollo de tu proyecto final contarás con guía paso a paso:
-- 🏗️ **Diseño de Arquitectura:** Te indicaremos la mejor estructura y herramientas según la complejidad de tu idea.
-- ✍️ **Eritura de Código:** Te ayudaremos a desbloquear errores, revisar Pull Requests y escribir código de nivel profesional.
-- 🚀 **Despliegue:** Aprenderás a subir tu proyecto a la nube para que esté disponible en vivo.
+    style W1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style W2 fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style W3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style W4 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
 
 ---
 
-## 📋 Entregables del Proyecto
+## 📑 Hoja de Ruta de las 8 Clases Semanales
 
-1. **Repositorio personal en GitHub** con el código fuente estructurado.
-2. **Archivo `README.md` del proyecto** explicando el problema resuelto y cómo ejecutarlo.
-3. **Presentación/Demostración breve (5 min)** en la sesión final.
+| Semana | Carpeta | Unidad Temática | Metáfora Didáctica |
+| :---: | :--- | :--- | :--- |
+| **CLASE 01** | [`clase-01-arquitectura-y-planificacion/`](clase-01-arquitectura-y-planificacion/) | Arquitectura de Software y Planificación del Proyecto | *«Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»* |
+| **CLASE 02** | [`clase-02-backend-fastapi/`](clase-02-backend-fastapi/) | APIs RESTful con FastAPI | *«FastAPI como un Centro Logístico de Alta Velocidad para Peticiones HTTP»* |
+| **CLASE 03** | [`clase-03-persistencia-sql-transacciones/`](clase-03-persistencia-sql-transacciones/) | Modelado SQL y Transacciones ACID | *«La Base de Datos como una Bóveda Acorazada para la Información»* |
+| **CLASE 04** | [`clase-04-frontend-streamlit/`](clase-04-frontend-streamlit/) | Dashboards con Streamlit | *«Streamlit como el Salón de Control Visual para tu Backend de Python»* |
+| **CLASE 05** | [`clase-05-integracion-agente-ia/`](clase-05-integracion-agente-ia/) | Integración del Motor de IA y Agentes en la App | *«Conectar el Cerebro del Agente al Sistema Nervioso de la Aplicación»* |
+| **CLASE 06** | [`clase-06-testing-y-calidad/`](clase-06-testing-y-calidad/) | Testing Riguroso con Pytest, Mocks y Calidad | *«Los Tests como el Control de Calidad y Pruebas de Choque de un Vehículo»* |
+| **CLASE 07** | [`clase-07-docker-y-compose/`](clase-07-docker-y-compose/) | Containerización Profesional con Docker y Compose | *«Docker como Contenedores Estándar de Carga Marítima para Software»* |
+| **CLASE 08** | [`clase-08-despliegue-cicd-portafolio/`](clase-08-despliegue-cicd-portafolio/) | Despliegue en la Nube, CI/CD y Portafolio Final | *«Lanzamiento a Producción y Presentación de tu Proyecto ante el Mundo»* |
+
+
+---
+
+## 📦 Materiales Disponibles en este Curso
+
+*   📄 [`curso-04-proyecto-final.pdf`](curso-04-proyecto-final.pdf): Manual completo oficial en PDF compilado con estética LaTeX.
+*   📖 [`book.md`](book.md): Libro de estudio digital con explicaciones profundas y diagramas Mermaid.
+*   🧪 Suite de Pruebas Automatizadas en [`tests/curso_04/`](../tests/curso_04/).
+
+---
+
+## 🚲 La Regla de la Bicicleta
+
+> *"Nadie aprende a programar leyendo código ajeno. Abre cada clase, ejecuta los ejemplos en tu editor y resuelve los retos con tus propias manos."*

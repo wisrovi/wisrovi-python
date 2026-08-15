@@ -1,16 +1,32 @@
-# 🧪 Suite Central de Pruebas Automatizadas (Pytest)
+# 🧪 Suite de Pruebas Automatizadas (Pytest)
 
-Esta carpeta centraliza todas las pruebas unitarias y de integración del repositorio.
-Permite validar la integridad de las 32 clases sin saturar las carpetas de estudio de los alumnos.
+> **Módulo:** `README.md`  
+> **Ubicación:** `tests`  
 
-## 💻 Cómo ejecutar las pruebas
+---
+
+## 🌀 Pirámide y Flujo de Verificación de Calidad
+
+```mermaid
+flowchart TD
+    DEV["💻 Código del Estudiante<br/>(reto.py / funciones)"] --> PYTEST["🧪 Pytest Test Suite<br/>(tests/README.md)"]
+    PYTEST --> CI["⚙️ GitHub Actions CI<br/>Validación en cada Commit"]
+    CI --> PASS["✅ 100% Tests Pasados<br/>Calidad Garantizada"]
+
+    style DEV fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style PYTEST fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style CI fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style PASS fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
+
+---
+
+## 💻 Comandos de Ejecución
+
 ```bash
-# Ejecutar todos los tests del repositorio
-pytest
+# Ejecutar todas las pruebas de este módulo
+pytest tests/
 
-# Ejecutar los tests de un curso específico
-pytest tests/curso_01/
-pytest tests/curso_02/
-pytest tests/curso_03/
-pytest tests/curso_04/
+# Ejecutar con reporte detallado
+pytest -v tests/
 ```

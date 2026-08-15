@@ -1,16 +1,35 @@
-# 📖 Dockerfile Ligero (python:3.11-slim)
+# 📖 01 Dockerfile Python
 
 > **Clase:** Clase 07: Containerización Profesional con Docker y Compose  
-> **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador  
+> **Ubicación:** `04-proyecto-final/clase-07-docker-y-compose/ejemplos/ejemplo_01_dockerfile_python`  
 
-## 🎯 Propósito del Ejemplo
-Demostración técnica de Dockerfile Ligero (python:3.11-slim).
+---
+
+## 🌀 Modelo de Aprendizaje Activo
+
+Este ejemplo demuestra de forma práctica, directa y aislada un principio fundamental de la clase:
+
+```mermaid
+flowchart LR
+    IN["📥 1. Entrada / Parámetros<br/>Definición de datos"] --> PROC["⚙️ 2. Lógica & Operación<br/>Transformación paso a paso"]
+    PROC --> OUT["🎯 3. Salida por Pantalla<br/>print() / Retorno verificado"]
+
+    style IN fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style PROC fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+    style OUT fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+```
+
+---
 
 ## 💻 Cómo Ejecutar este Ejemplo
-Desde la terminal de VS Code en la raíz del repositorio, ejecuta:
+
+Abre la terminal en la raíz del repositorio y ejecuta:
+
 ```bash
 python 04-proyecto-final/clase-07-docker-y-compose/ejemplos/ejemplo_01_dockerfile_python/main.py
 ```
 
+---
+
 ## 🔍 Código Fuente
-Revisa el archivo [`main.py`](main.py) en esta carpeta para ver la implementación comentada paso a paso.
+Examina el archivo [`main.py`](main.py) en esta misma carpeta para revisar la sintaxis comentada y experimentar modificando los valores.
