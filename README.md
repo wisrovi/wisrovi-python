@@ -240,6 +240,50 @@ pip install -e ".[all]"
 
 # 4. Validar la instalación ejecutando la suite completa de pruebas
 pytest -v
+
+# 5. Iniciar el Tutor Virtual Interactivo en tu navegador
+wisrovi ui
+```
+
+---
+
+## 🎮 Tutor Virtual Interactivo & RPG de Programación (`wisrovi ui`)
+
+El repositorio incluye un **Tutor Virtual Interactivo** que convierte el aprendizaje en un videojuego de rol (RPG). El alumno puede estudiar de forma 100% autodidacta guiado por un **Mentor Socrático Digital**:
+
+```mermaid
+flowchart TD
+    CMD["💻 wisrovi ui<br/>(Lanzador de 1 comando)"] --> SPA["🖥️ Estudio Web Reactivo (http://localhost:8501)"]
+    
+    SPA --> S1["💡 1. Concepto & Metáfora<br/>Fundamentación visual con diagramas Mermaid"]
+    SPA --> S2["💻 2. Demostración Interactiva<br/>Código comentado con ejecución en vivo"]
+    SPA --> S3["🔬 3. Arenero & Memoria en Vivo<br/>Visualizador de variables, Heap y punteros"]
+    SPA --> S4["🏋️ 4. Reto Evaluado (+150 XP)<br/>Pruebas unitarias, confeti y retroalimentación"]
+
+    S4 --> CERT["📜 Generador de Certificados en PDF<br/>Diploma oficial con sellos dorados y QR verificable"]
+
+    style CMD fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style SPA fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style S1 fill:#0284c7,color:#ffffff,stroke:#38bdf8,stroke-width:2px
+    style S2 fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style S3 fill:#581c87,color:#ffffff,stroke:#c084fc,stroke-width:2px
+    style S4 fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style CERT fill:#78350f,color:#ffffff,stroke:#f59e0b,stroke-width:3px
+```
+
+### 🌟 Capacidades del Tutor Virtual:
+1. **Paso a Paso Asistido (*"Siguiente ➔ Siguiente"*)**: Guía estructurada a través de las 32 clases sin perder el hilo.
+2. **🧠 Visualizador de Memoria y Punteros**: Muestra en tiempo real las direcciones hexadecimales (`id`), tamaños en RAM (`sys.getsizeof`) y cómo las variables apuntan a objetos en el Heap.
+3. **🎮 Gamificación & Persistencia**: Niveles 1 al 4, puntos de experiencia (XP), rachas de estudio diarias e insignias coleccionables guardadas automáticamente en `~/.wisrovi/student_profile.json`.
+4. **💡 Mentor Socrático**: Ante cualquier error en las pruebas, el mentor proporciona pistas pedagógicas basadas en la metáfora de la clase sin revelar la solución directamente.
+5. **📜 Emisión de Diplomas Oficiales**: Al completar el curso, genera un Certificado PDF de alta resolución con sellos dorados, firma digital de *William Rodríguez (Wisrovi)* y badge para GitHub.
+
+```bash
+# Comandos directos de la herramienta:
+wisrovi ui            # Lanza la plataforma web en el navegador
+wisrovi list          # Consulta el mapa de clases y semanas en consola
+wisrovi start 1 2     # Inicia la sesión de trabajo de la Clase 02
+wisrovi solve 1 2     # Evalúa tu reto práctico con reporte interactivo
 ```
 
 ---

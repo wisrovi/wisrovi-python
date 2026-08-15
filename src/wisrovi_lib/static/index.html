@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wisrovi Academy - Virtual AI Tutor & RPG</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <!-- Mermaid & Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body class="dark-theme">
+  <div id="app" class="app-container">
+    
+    <!-- HEADER GAMIFICADO -->
+    <header class="app-header">
+      <div class="brand-box">
+        <span class="brand-icon">🐍</span>
+        <div>
+          <h1 class="brand-title">Wisrovi Academy</h1>
+          <p class="brand-subtitle">Virtual AI Tutor & RPG de Programación</p>
+        </div>
+      </div>
+
+      <!-- BARRA DE ESTADÍSTICAS DEL ESTUDIANTE -->
+      <div class="stats-bar">
+        <div class="stat-badge level-badge" id="player-level-badge">
+          <span class="badge-icon">🌱</span>
+          <span id="player-level-title">Nv. 1 Aprendiz</span>
+        </div>
+
+        <div class="xp-container">
+          <div class="xp-labels">
+            <span>XP: <strong id="player-xp-val">0</strong></span>
+            <span id="xp-progress-percent">0%</span>
+          </div>
+          <div class="xp-bar-track">
+            <div class="xp-bar-fill" id="player-xp-fill" style="width: 10%;"></div>
+          </div>
+        </div>
+
+        <div class="stat-badge streak-badge" title="Racha de estudio">
+          <span class="badge-icon">🔥</span>
+          <span id="player-streak">1 Días</span>
+        </div>
+
+        <button class="cert-modal-btn" id="open-cert-btn" title="Ver mi Certificación">
+          📜 Certificado
+        </button>
+      </div>
+    </header>
+
+    <!-- CUERPO PRINCIPAL (DRAWER LATERAL + ESTUDIO CENTRAL) -->
+    <div class="main-layout">
+      
+      <!-- SIDEBAR / MAPA CURRICULAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h3>🗺️ Hoja de Ruta (32 Clases)</h3>
+          <span class="badge-pill" id="total-progress-pill">0% Completado</span>
+        </div>
+        <div class="class-tree" id="class-tree-container">
+          <!-- Clases inyectadas por JS -->
+        </div>
+      </aside>
+
+      <!-- ÁREA DE APRENDIZAJE ACTIVO -->
+      <main class="studio-area">
+        
+        <!-- ENCABEZADO DE CLASE -->
+        <div class="lesson-header-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag" id="lesson-course-name">Curso 1: Fundamentos Básicos</span>
+            <span class="lesson-boss-tag hidden" id="lesson-boss-badge">⚔️ Boss Battle</span>
+          </div>
+          <h2 class="lesson-title" id="lesson-title">Cargando Clase...</h2>
+          <div class="metaphor-banner">
+            <span class="metaphor-icon">🌟</span>
+            <span class="metaphor-text" id="lesson-metaphor">Metáfora: «El Megáfono, las Cajas y el Semáforo»</span>
+          </div>
+        </div>
+
+        <!-- PESTAÑAS DEL TUTOR (4 PASOS) -->
+        <nav class="step-nav">
+          <button class="step-btn active" data-step="1">
+            <span class="step-num">1</span> 💡 Concepto & Metáfora
+          </button>
+          <button class="step-btn" data-step="2">
+            <span class="step-num">2</span> 💻 Demostración
+          </button>
+          <button class="step-btn" data-step="3">
+            <span class="step-num">3</span> 🔬 Arenero & Memoria
+          </button>
+          <button class="step-btn" data-step="4">
+            <span class="step-num">4</span> 🏋️ Reto Evaluado
+          </button>
+        </nav>
+
+        <!-- CONTENIDO DE LOS PASOS -->
+        <div class="step-content-area">
+
+          <!-- PASO 1: CONCEPTO & MERMAID -->
+          <section class="step-pane active" id="pane-step-1">
+            <div class="theory-grid">
+              <div class="card card-theory">
+                <h3>💡 Fundamentación Teórica</h3>
+                <div class="theory-body" id="theory-text"></div>
+                <div class="mentor-callout">
+                  <div class="mentor-avatar">👨‍🏫</div>
+                  <div>
+                    <strong>Consejo del Mentor (Wisrovi):</strong>
+                    <p id="mentor-advice">Visualiza los datos como cajas etiquetadas en la memoria RAM antes de escribir código.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-diagram">
+                <h3>🗺️ Arquitectura Visual de Flujo</h3>
+                <div class="mermaid-box" id="mermaid-render-box"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PASO 2: DEMOSTRACIÓN -->
+          <section class="step-pane" id="pane-step-2">
+            <div class="card card-demo">
+              <div class="card-header-flex">
+                <h3>💻 Código de Demostración Comentado</h3>
+                <button class="btn btn-primary" id="run-demo-btn">▶️ Ejecutar Demo</button>
+              </div>
+              <textarea class="code-editor readonly" id="demo-code-area" readonly></textarea>
+              <div class="terminal-box" id="demo-terminal">
+                <span class="term-prompt">&gt;</span> <span class="term-msg">Presiona 'Ejecutar Demo' para compilar.</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- PASO 3: ARENERO & VISUALIZADOR DE MEMORIA -->
+          <section class="step-pane" id="pane-step-3">
+            <div class="sandbox-grid">
+              <div class="card card-sandbox-editor">
+                <div class="card-header-flex">
+                  <h3>🔬 Arenero de Experimentación</h3>
+                  <button class="btn btn-accent" id="run-sandbox-btn">⚡ Inspeccionar Memoria</button>
+                </div>
+                <textarea class="code-editor" id="sandbox-code-area" spellcheck="false"></textarea>
+                <div class="terminal-box" id="sandbox-terminal">
+                  <span class="term-prompt">&gt;</span> <span class="term-msg">Modifica variables arriba y pulsa 'Inspeccionar Memoria'.</span>
+                </div>
+              </div>
+
+              <div class="card card-memory-visualizer">
+                <h3>🧠 Visualizador de Variables & Heap en Vivo</h3>
+                <div class="memory-canvas" id="memory-canvas">
+                  <div class="empty-memory-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PASO 4: RETO EVALUADO -->
+          <section class="step-pane" id="pane-step-4">
+            <div class="challenge-grid">
+              <div class="card card-challenge-editor">
+                <div class="card-header-flex">
+                  <div>
+                    <h3>🏋️ Desafío Práctico de la Clase</h3>
+                    <p class="challenge-prompt" id="challenge-prompt-text">Crea la función indicada.</p>
+                  </div>
+                  <button class="btn btn-success" id="eval-challenge-btn">🚀 Evaluar Reto (+150 XP)</button>
+                </div>
+                
+                <textarea class="code-editor" id="challenge-code-area" spellcheck="false"></textarea>
+                
+                <div class="challenge-results" id="challenge-results-box">
+                  <div class="status-msg">Escribe tu solución y pulsa 'Evaluar Reto'.</div>
+                </div>
+              </div>
+
+              <div class="card card-socratic-hints">
+                <h3>💡 Pistas Socráticas del Mentor</h3>
+                <div class="hints-accordion" id="hints-accordion">
+                  <!-- Pistas inyectadas por JS -->
+                </div>
+                <div class="xp-reward-card">
+                  <div class="xp-icon">🏆</div>
+                  <div>
+                    <strong>Recompensa de la Sesión:</strong>
+                    <p>+150 XP &bull; Desbloqueo de siguiente clase &bull; Sello de acreditación.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- FOOTER DE NAVEGACIÓN -->
+        <footer class="studio-footer">
+          <button class="btn btn-secondary" id="prev-class-btn">⬅️ Clase Anterior</button>
+          <button class="btn btn-primary" id="next-class-btn">Siguiente Clase ➡️</button>
+        </footer>
+
+      </main>
+    </div>
+
+    <!-- MODAL DE GRADUACIÓN Y CERTIFICADO -->
+    <div class="modal-overlay hidden" id="cert-modal">
+      <div class="modal-card">
+        <button class="modal-close" id="close-cert-btn">&times;</button>
+        <div class="modal-header">
+          <h2>📜 Certificación Oficial de Acreditación</h2>
+          <p>Wisrovi Academy of Advanced Software & AI Architecture</p>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="student-name-input">Nombre Completo para el Certificado:</label>
+            <input type="text" id="student-name-input" class="form-control" value="Alejandro Martínez">
+          </div>
+          <div class="cert-preview-frame" id="cert-preview-frame">
+            <!-- Preview HTML del certificado -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
+          <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

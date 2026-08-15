@@ -225,12 +225,41 @@ def cmd_info():
 """
     console.print(Panel(info_panel, title="ℹ️ Información del Programa & Autor", border_style="cyan"))
 
+def cmd_ui(args):
+    console.print(BANNER)
+    port = getattr(args, "port", 8501)
+    host = getattr(args, "host", "127.0.0.1")
+    url = f"http://{host}:{port}"
+    console.print(f"[bold green]🚀 Iniciando Tutor Virtual Interactivo (Wisrovi Academy):[/bold green] [bold cyan]{url}[/bold cyan]")
+    console.print("[dim]Presiona CTRL+C para detener el servidor.[/dim]\n")
+    
+    import threading
+    import time
+    def _open_browser():
+        time.sleep(1.2)
+        webbrowser.open(url)
+    threading.Thread(target=_open_browser, daemon=True).start()
+    
+    try:
+        from wisrovi_lib.server import start_server
+        start_server(host=host, port=port)
+    except Exception as e:
+        console.print(f"[bold red]Error al iniciar servidor FastAPI:[/bold red] {e}")
+
 def main():
     parser = argparse.ArgumentParser(
         description="Wisrovi CLI - Asistente de Aprendizaje en Python",
         formatter_class=argparse.RawTextHelpFormatter
     )
     subparsers = parser.add_subparsers(dest="command")
+
+    # ui / tutor
+    p_ui = subparsers.add_parser("ui", help="Lanza el Tutor Virtual Interactivo en el navegador")
+    p_ui.add_argument("--port", type=int, default=8501, help="Puerto del servidor (defecto: 8501)")
+    p_ui.add_argument("--host", type=str, default="127.0.0.1", help="Host del servidor (defecto: 127.0.0.1)")
+
+    p_tutor = subparsers.add_parser("tutor", help="Alias de 'wisrovi ui'")
+    p_tutor.add_argument("--port", type=int, default=8501, help="Puerto del servidor")
 
     # list
     p_list = subparsers.add_parser("list", help="Muestra la tabla de cursos y clases")
@@ -259,7 +288,9 @@ def main():
 
     args = parser.parse_args()
 
-    if args.command == "list":
+    if args.command in ("ui", "tutor"):
+        cmd_ui(args)
+    elif args.command == "list":
         cmd_list(args)
     elif args.command == "start":
         cmd_start(args)
