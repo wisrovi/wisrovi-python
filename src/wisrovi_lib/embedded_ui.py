@@ -1,17 +1,7 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v4.0).
-Plataforma educativa de clase mundial con:
-- Header Global Sticky con navegación completa, selector de avatar, timer, audio FX y medidor XP.
-- Hero Banner del Curso con métricas clave y anillo de progreso.
-- Barra Stepper de 4 Pasos Obligatorios con compuertas secuenciales.
-- Paso 1: Teatro de Concepto & Metáfora, narrador por voz y canvas Mermaid interactivo.
-- Paso 2: Estudio de Demostración con Toolbar (Copiar, Ejecutar y Terminal de Salida).
-- Paso 3: Arenero & Visualizador de Memoria RAM v4.0 (Stack vs Heap, Direcciones Hex y Bytes).
-- Paso 4: Arena de Retos con Detector de Modificación, Pistas Socráticas Progresivas y Confeti.
-- Hoja de Ruta de 8 Clases para el Curso 1 con estilo Boss Battle para la Semana 8.
-- Footer Institucional de Clase Mundial con perfil verificado de William Rodríguez (Wisrovi).
-- Modales interactivos para Certificados Oficiales en PDF y Vitrina de Trofeos.
+Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v5.0 Masterpiece).
+100% Autónomo, autocontenido, sin dependencias de archivos externos estáticos en disco.
 """
 
 def get_embedded_html() -> str:
@@ -20,9 +10,9 @@ def get_embedded_html() -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG de Programación</title>
+  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG de Programación en Python</title>
   
-  <!-- Tipografías Google Fonts de Alta Gama: Outfit, Inter y JetBrains Mono -->
+  <!-- Tipografías Google Fonts: Outfit, Inter y JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -33,7 +23,7 @@ def get_embedded_html() -> str:
 
   <style>
     /* ==============================================================================
-       WISROVI ULTIMATE DESIGN SYSTEM (NEO-CYBER MASTERPIECE)
+       WISROVI DESIGN SYSTEM v5.0 (NEO-CYBER MASTERPIECE)
        ============================================================================== */
     :root {
       --bg-canvas: #030712;
@@ -41,7 +31,7 @@ def get_embedded_html() -> str:
       --bg-card: rgba(15, 23, 42, 0.88);
       --bg-card-hover: #1e293b;
       --bg-editor: #02040a;
-      --border-glass: rgba(56, 189, 248, 0.2);
+      --border-glass: rgba(56, 189, 248, 0.22);
       --border-accent: #0284c7;
       --border-glow: rgba(2, 132, 199, 0.45);
       --text-main: #f8fafc;
@@ -64,7 +54,6 @@ def get_embedded_html() -> str:
       --radius-md: 12px;
       --radius-lg: 18px;
       --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
-      --shadow-glow: 0 0 25px rgba(2, 132, 199, 0.3);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -83,14 +72,20 @@ def get_embedded_html() -> str:
       overflow-x: hidden;
     }
 
+    .app-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     /* --------------------------------------------------------------------------
        1. HEADER GLOBAL STICKY CON NAVEGACIÓN COMPLETA
        -------------------------------------------------------------------------- */
     .app-header {
-      background: rgba(8, 14, 28, 0.95);
+      background: rgba(8, 14, 28, 0.96);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.75rem 2.25rem;
+      padding: 0.8rem 2.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -165,7 +160,7 @@ def get_embedded_html() -> str:
     .gamification-controls {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 0.85rem;
     }
 
     .user-avatar-btn {
@@ -224,7 +219,7 @@ def get_embedded_html() -> str:
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
-      width: 145px;
+      width: 140px;
     }
 
     .xp-text-row {
@@ -1311,7 +1306,7 @@ def get_embedded_html() -> str:
 
       <div class="footer-bottom">
         <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
-        <span>Badajoz, España &bull; Versión 1.6.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+        <span>Badajoz, España &bull; Versión 1.7.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
       </div>
     </footer>
 
@@ -1350,7 +1345,7 @@ def get_embedded_html() -> str:
 
   </div>
 
-  <!-- SCRIPT JS REACTIVO -->
+  <!-- SCRIPT JS REACTIVO AUTOCONTENIDO -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const state = {

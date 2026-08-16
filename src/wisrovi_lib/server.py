@@ -164,14 +164,7 @@ from .embedded_ui import get_embedded_html
 # ------------------------------------------------------------------------------
 @app.get("/", response_class=HTMLResponse)
 def serve_index():
-    """Sirve la Single-Page Application completa del Tutor Virtual."""
-    index_file = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(index_file):
-        try:
-            with open(index_file, "r", encoding="utf-8") as f:
-                return HTMLResponse(f.read())
-        except Exception:
-            pass
+    """Sirve la Single-Page Application completa del Tutor Virtual (100% autocontenida)."""
     return HTMLResponse(get_embedded_html())
 
 if os.path.exists(STATIC_DIR):
