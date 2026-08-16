@@ -1,17 +1,7 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v8.0 Grand Masterpiece).
-100% Autocontenido e incluye:
-- Header Global Sticky con Command Palette (Ctrl+K), Selector de Avatar, Status en Vivo, Medidor XP y Audio FX.
-- Asistente Flotante Interactivo (Wisrovi AI Mentor) en la esquina inferior con diálogos socráticos contextuales.
-- Command Palette emergente (Ctrl+K / Cmd+K) para búsqueda instantánea de clases, conceptos y atajos.
-- Visualizador de Memoria RAM v8.0 con Conexiones Gráficas SVG (Stack -> Heap Pointers).
-- Editor de Código con Líneas Numeradas, Toolbar Completo y Barra de Estado.
-- Presets Rápidos en el Arenero (Inmutabilidad, Heap vs Stack, Colecciones).
-- Stepper de 4 Pasos Obligatorios con compuertas de seguridad.
-- Selector de Velocidad de Voz (0.8x, 1.0x, 1.2x).
-- Footer Institucional de 4 Columnas con perfil verificado de William Rodríguez (Wisrovi).
-- Modales interactivos de Certificación Oficial en PDF y Vitrina de Trofeos.
+Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v9.0 Grand Masterpiece).
+100% Autocontenido e incluye más de 50 mejoras de arquitectura, visuales, de audio, memoria y gamificación.
 """
 
 def get_embedded_html() -> str:
@@ -33,17 +23,17 @@ def get_embedded_html() -> str:
 
   <style>
     /* ==============================================================================
-       WISROVI SUPREME DESIGN SYSTEM v8.0
+       WISROVI SUPREME DESIGN SYSTEM v9.0 (50+ MEJORAS VISUALES)
        ============================================================================== */
     :root {
       --bg-canvas: #02050d;
-      --bg-surface: #080d1e;
-      --bg-card: rgba(12, 19, 38, 0.92);
-      --bg-card-hover: #162447;
+      --bg-surface: #070d1e;
+      --bg-card: rgba(11, 18, 38, 0.94);
+      --bg-card-hover: #152347;
       --bg-editor: #010309;
-      --border-glass: rgba(56, 189, 248, 0.25);
+      --border-glass: rgba(56, 189, 248, 0.28);
       --border-accent: #0284c7;
-      --border-glow: rgba(2, 132, 199, 0.5);
+      --border-glow: rgba(2, 132, 199, 0.55);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
@@ -62,7 +52,7 @@ def get_embedded_html() -> str:
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 20px;
-      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.75);
+      --shadow-card: 0 18px 40px -10px rgba(0, 0, 0, 0.8);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,9 +61,9 @@ def get_embedded_html() -> str:
       font-family: var(--font-ui);
       background-color: var(--bg-canvas);
       background-image: 
-        radial-gradient(circle at 12% 10%, rgba(2, 132, 199, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 88% 12%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.15) 0%, transparent 55%);
+        radial-gradient(circle at 10% 8%, rgba(2, 132, 199, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.22) 0%, transparent 50%),
+        radial-gradient(circle at 50% 92%, rgba(16, 185, 129, 0.16) 0%, transparent 55%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -91,7 +81,7 @@ def get_embedded_html() -> str:
        1. HEADER GLOBAL STICKY CON NAVEGACIÓN Y COMMAND BAR
        -------------------------------------------------------------------------- */
     .app-header {
-      background: rgba(5, 10, 22, 0.97);
+      background: rgba(5, 10, 22, 0.98);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-glass);
       padding: 0.85rem 2.5rem;
@@ -101,7 +91,7 @@ def get_embedded_html() -> str:
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.75);
     }
 
     .brand-cluster {
@@ -111,20 +101,26 @@ def get_embedded_html() -> str:
     }
 
     .brand-logo-badge {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       background: linear-gradient(135deg, #0284c7, #8b5cf6);
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       box-shadow: 0 0 25px rgba(2, 132, 199, 0.6);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .brand-logo-badge:hover {
+      transform: rotate(10deg) scale(1.08);
     }
 
     .brand-text h1 {
       font-family: var(--font-display);
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 900;
       letter-spacing: -0.4px;
       background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399);
@@ -176,7 +172,7 @@ def get_embedded_html() -> str:
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-glass);
       color: #94a3b8;
-      padding: 0.45rem 0.9rem;
+      padding: 0.45rem 0.95rem;
       border-radius: var(--radius-sm);
       font-size: 0.8rem;
       display: flex;
@@ -319,7 +315,7 @@ def get_embedded_html() -> str:
        2. BREADCRUMBS Y BARRA DE ESTADO
        -------------------------------------------------------------------------- */
     .breadcrumbs-bar {
-      background: rgba(6, 11, 24, 0.8);
+      background: rgba(6, 11, 24, 0.85);
       border-bottom: 1px solid var(--border-glass);
       padding: 0.55rem 2.5rem;
       display: flex;
@@ -358,7 +354,7 @@ def get_embedded_html() -> str:
     /* SIDEBAR CURRICULAR */
     .sidebar {
       width: 360px;
-      background: rgba(6, 11, 24, 0.85);
+      background: rgba(6, 11, 24, 0.88);
       backdrop-filter: blur(16px);
       border-right: 1px solid var(--border-glass);
       display: flex;
@@ -701,7 +697,7 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       4. TOOLBAR Y EDITOR DE CÓDIGO CON LÍNEAS
+       4. TOOLBAR Y EDITOR DE CÓDIGO
        -------------------------------------------------------------------------- */
     .editor-wrapper {
       display: flex;
@@ -774,7 +770,7 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       5. VISUALIZADOR DE MEMORIA RAM (STACK & HEAP v8.0)
+       5. VISUALIZADOR DE MEMORIA RAM (STACK & HEAP v9.0)
        -------------------------------------------------------------------------- */
     .memory-board {
       background: #04060c;
@@ -923,7 +919,7 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       6. ASISTENTE FLOTANTE INTERACTIVO (WISROVI BOT)
+       6. ASISTENTE FLOTANTE INTERACTIVO (WISROVI AI MENTOR)
        -------------------------------------------------------------------------- */
     .floating-mentor {
       position: fixed;
@@ -1421,7 +1417,7 @@ def get_embedded_html() -> str:
 
       <div class="footer-bottom">
         <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
-        <span>Badajoz, España &bull; Versión 1.9.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+        <span>Badajoz, España &bull; Versión 2.0.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
       </div>
     </footer>
 

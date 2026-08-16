@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wisrovi-python"
-version = "1.9.0"
+version = "2.0.0"
 description = "Programa Integral de Formación en Python: De Cero a Agentes de IA"
 readme = "README.md"
 requires-python = ">=3.10"
