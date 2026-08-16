@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v5.0 Masterpiece).
-100% Autónomo, autocontenido, sin dependencias de archivos externos estáticos en disco.
+Embedded UI Frontend (Wisrovi Academy - Supreme AI Tutor & RPG Studio v6.0).
+100% Autocontenido, incluye:
+- Header Global Cyberpunk Glassmorphic con status en vivo, selector de avatares, barra de XP fluida, racha con fuego animado y cronómetro.
+- Barra de Navegación Rápida & Breadcrumbs con indicador de atajos de teclado (Ctrl + Enter).
+- Sidebar Curricular con progreso porcentual y diseño especial Boss Battle para Clase 8.
+- Stepper Ribbon de 4 Pasos Obligatorios con compuertas de seguridad.
+- Paso 1: Concepto con reproductor de voz, diagrama Mermaid interactivo y consejo del mentor.
+- Paso 2: Demo interactiva con ventana de código estilo macOS (🔴🟡🟢), toolbar y terminal de salida.
+- Paso 3: Arenero con Visualizador de Memoria RAM v6.0 (Stack vs Heap, direcciones Hex y Bytes).
+- Paso 4: Arena de Retos con Detector de Diff en Vivo, baraja de pistas socráticas y confeti.
+- Footer Institucional de 4 Columnas con perfil oficial de William Rodríguez (Wisrovi), metodología y enlaces.
+- Modales interactivos para Certificados Oficiales en PDF y Vitrina de Trofeos.
 """
 
 def get_embedded_html() -> str:
@@ -10,9 +20,9 @@ def get_embedded_html() -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG de Programación en Python</title>
+  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG Studio</title>
   
-  <!-- Tipografías Google Fonts: Outfit, Inter y JetBrains Mono -->
+  <!-- Google Fonts: Outfit, Inter y JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -23,14 +33,14 @@ def get_embedded_html() -> str:
 
   <style>
     /* ==============================================================================
-       WISROVI DESIGN SYSTEM v5.0 (NEO-CYBER MASTERPIECE)
+       WISROVI SUPREME DESIGN SYSTEM v6.0
        ============================================================================== */
     :root {
-      --bg-canvas: #030712;
-      --bg-surface: #0b1329;
-      --bg-card: rgba(15, 23, 42, 0.88);
-      --bg-card-hover: #1e293b;
-      --bg-editor: #02040a;
+      --bg-canvas: #02050e;
+      --bg-surface: #090e1f;
+      --bg-card: rgba(13, 20, 38, 0.9);
+      --bg-card-hover: #162244;
+      --bg-editor: #010308;
       --border-glass: rgba(56, 189, 248, 0.22);
       --border-accent: #0284c7;
       --border-glow: rgba(2, 132, 199, 0.45);
@@ -44,7 +54,6 @@ def get_embedded_html() -> str:
       --success-hover: #059669;
       --success-glow: rgba(16, 185, 129, 0.45);
       --accent-gold: #f59e0b;
-      --accent-gold-glow: rgba(245, 158, 11, 0.45);
       --accent-purple: #8b5cf6;
       --danger: #ef4444;
       --font-ui: 'Inter', -apple-system, sans-serif;
@@ -62,9 +71,9 @@ def get_embedded_html() -> str:
       font-family: var(--font-ui);
       background-color: var(--bg-canvas);
       background-image: 
-        radial-gradient(circle at 15% 10%, rgba(2, 132, 199, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.1) 0%, transparent 55%);
+        radial-gradient(circle at 15% 10%, rgba(2, 132, 199, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.12) 0%, transparent 55%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -82,10 +91,10 @@ def get_embedded_html() -> str:
        1. HEADER GLOBAL STICKY CON NAVEGACIÓN COMPLETA
        -------------------------------------------------------------------------- */
     .app-header {
-      background: rgba(8, 14, 28, 0.96);
+      background: rgba(6, 11, 24, 0.96);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.8rem 2.25rem;
+      padding: 0.85rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -290,13 +299,13 @@ def get_embedded_html() -> str:
        2. BREADCRUMBS Y BARRA DE ESTADO
        -------------------------------------------------------------------------- */
     .breadcrumbs-bar {
-      background: rgba(8, 14, 28, 0.7);
+      background: rgba(8, 14, 28, 0.75);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.5rem 2.25rem;
+      padding: 0.55rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
@@ -321,7 +330,7 @@ def get_embedded_html() -> str:
     .main-workspace {
       display: flex;
       flex: 1;
-      max-width: 1680px;
+      max-width: 1720px;
       margin: 0 auto;
       width: 100%;
     }
@@ -329,7 +338,7 @@ def get_embedded_html() -> str:
     /* SIDEBAR CURRICULAR */
     .sidebar {
       width: 360px;
-      background: rgba(8, 14, 28, 0.85);
+      background: rgba(7, 12, 26, 0.85);
       backdrop-filter: blur(16px);
       border-right: 1px solid var(--border-glass);
       display: flex;
@@ -337,7 +346,7 @@ def get_embedded_html() -> str:
     }
 
     .sidebar-title {
-      padding: 1.25rem 1.5rem;
+      padding: 1.3rem 1.5rem;
       border-bottom: 1px solid var(--border-glass);
       display: flex;
       justify-content: space-between;
@@ -436,13 +445,13 @@ def get_embedded_html() -> str:
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 1.75rem 2.5rem 3rem 2.5rem;
+      padding: 1.75rem 2.75rem 3.5rem 2.75rem;
       gap: 1.4rem;
     }
 
     /* HERO CARD DE LA CLASE */
     .hero-card {
-      background: linear-gradient(135deg, rgba(13, 22, 41, 0.95) 0%, rgba(26, 38, 64, 0.7) 100%);
+      background: linear-gradient(135deg, rgba(13, 20, 38, 0.95) 0%, rgba(26, 36, 62, 0.75) 100%);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
       padding: 1.5rem 1.85rem;
@@ -479,7 +488,7 @@ def get_embedded_html() -> str:
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
+      font-size: 1.65rem;
       font-weight: 900;
       color: #f8fafc;
       letter-spacing: -0.4px;
@@ -489,7 +498,7 @@ def get_embedded_html() -> str:
       background: rgba(2, 132, 199, 0.1);
       border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: var(--radius-md);
-      padding: 0.7rem 1.15rem;
+      padding: 0.75rem 1.2rem;
       font-size: 0.9rem;
       color: #7dd3fc;
       font-style: italic;
@@ -881,9 +890,9 @@ def get_embedded_html() -> str:
        6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL
        -------------------------------------------------------------------------- */
     .app-footer {
-      background: rgba(5, 9, 18, 0.98);
+      background: rgba(4, 8, 18, 0.98);
       border-top: 1px solid var(--border-glass);
-      padding: 2.5rem 3rem 2rem 3rem;
+      padding: 2.75rem 3rem 2rem 3rem;
       margin-top: auto;
       display: flex;
       flex-direction: column;
@@ -1306,7 +1315,7 @@ def get_embedded_html() -> str:
 
       <div class="footer-bottom">
         <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
-        <span>Badajoz, España &bull; Versión 1.7.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+        <span>Badajoz, España &bull; Versión 1.8.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
       </div>
     </footer>
 
