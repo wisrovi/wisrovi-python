@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Virtual AI Tutor & RPG Studio v3.0 Masterpiece).
-Incluye:
-- Header Global con Avatar Selector, Timer de Sesión, Switch de Audio, Medidor XP y Badges.
-- Footer Institucional con Perfil del Mentor (Wisrovi), Metodología en Espiral y Enlaces.
-- Breadcrumbs y Barra de Navegación Rápida.
-- Editor de Código con Barra de Herramientas (Copiar, Restaurar, Limpiar, Atajo Ctrl+Enter).
-- Visualizador de Memoria RAM v3.0 (Stack vs Heap con Cajas y Flechas de Punteros).
-- Modal de Vitrina de Trofeos e Insignias Desbloqueables.
-- Asistente Socrático Flotante con Diálogo Dinámico.
-- Sistema de Compra/Desbloqueo Progresivo de Pistas.
-- Celebración de Victoria con Confeti y Fanfarria en 8-Bits.
-- Detección Activa de Modificación de Código en Tiempo Real.
+Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v4.0).
+Plataforma educativa de clase mundial con:
+- Header Global Sticky con navegación completa, selector de avatar, timer, audio FX y medidor XP.
+- Hero Banner del Curso con métricas clave y anillo de progreso.
+- Barra Stepper de 4 Pasos Obligatorios con compuertas secuenciales.
+- Paso 1: Teatro de Concepto & Metáfora, narrador por voz y canvas Mermaid interactivo.
+- Paso 2: Estudio de Demostración con Toolbar (Copiar, Ejecutar y Terminal de Salida).
+- Paso 3: Arenero & Visualizador de Memoria RAM v4.0 (Stack vs Heap, Direcciones Hex y Bytes).
+- Paso 4: Arena de Retos con Detector de Modificación, Pistas Socráticas Progresivas y Confeti.
+- Hoja de Ruta de 8 Clases para el Curso 1 con estilo Boss Battle para la Semana 8.
+- Footer Institucional de Clase Mundial con perfil verificado de William Rodríguez (Wisrovi).
+- Modales interactivos para Certificados Oficiales en PDF y Vitrina de Trofeos.
 """
 
 def get_embedded_html() -> str:
@@ -20,9 +20,9 @@ def get_embedded_html() -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisrovi Academy - Virtual AI Tutor & RPG de Programación</title>
+  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG de Programación</title>
   
-  <!-- Tipografías de Alta Fidelidad: Outfit, Inter y JetBrains Mono -->
+  <!-- Tipografías Google Fonts de Alta Gama: Outfit, Inter y JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -33,18 +33,17 @@ def get_embedded_html() -> str:
 
   <style>
     /* ==============================================================================
-       WISROVI DESIGN SYSTEM v3.0 (CYBER-ACADEMIC MASTERPIECE)
+       WISROVI ULTIMATE DESIGN SYSTEM (NEO-CYBER MASTERPIECE)
        ============================================================================== */
     :root {
-      --bg-canvas: #040711;
-      --bg-surface: #0a1020;
-      --bg-card: rgba(13, 22, 41, 0.85);
-      --bg-card-solid: #0d1629;
-      --bg-card-hover: #15223c;
-      --bg-editor: #020409;
-      --border-subtle: rgba(56, 189, 248, 0.12);
-      --border-glass: rgba(56, 189, 248, 0.22);
-      --border-focus: #0284c7;
+      --bg-canvas: #030712;
+      --bg-surface: #0b1329;
+      --bg-card: rgba(15, 23, 42, 0.88);
+      --bg-card-hover: #1e293b;
+      --bg-editor: #02040a;
+      --border-glass: rgba(56, 189, 248, 0.2);
+      --border-accent: #0284c7;
+      --border-glow: rgba(2, 132, 199, 0.45);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
@@ -53,19 +52,19 @@ def get_embedded_html() -> str:
       --primary-glow: rgba(2, 132, 199, 0.4);
       --success: #10b981;
       --success-hover: #059669;
-      --success-glow: rgba(16, 185, 129, 0.4);
+      --success-glow: rgba(16, 185, 129, 0.45);
       --accent-gold: #f59e0b;
-      --accent-gold-glow: rgba(245, 158, 11, 0.4);
+      --accent-gold-glow: rgba(245, 158, 11, 0.45);
       --accent-purple: #8b5cf6;
       --danger: #ef4444;
-      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
       --font-display: 'Outfit', sans-serif;
       --font-code: 'JetBrains Mono', 'Fira Code', monospace;
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-      --shadow-neon: 0 0 25px rgba(2, 132, 199, 0.25);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+      --shadow-glow: 0 0 25px rgba(2, 132, 199, 0.3);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -74,9 +73,9 @@ def get_embedded_html() -> str:
       font-family: var(--font-ui);
       background-color: var(--bg-canvas);
       background-image: 
-        radial-gradient(circle at 10% 10%, rgba(2, 132, 199, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 90% 15%, rgba(139, 92, 246, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 15% 10%, rgba(2, 132, 199, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.1) 0%, transparent 55%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -84,50 +83,44 @@ def get_embedded_html() -> str:
       overflow-x: hidden;
     }
 
-    .app-wrapper {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
     /* --------------------------------------------------------------------------
-       1. HEADER GLOBAL DE ALTO NIVEL
+       1. HEADER GLOBAL STICKY CON NAVEGACIÓN COMPLETA
        -------------------------------------------------------------------------- */
     .app-header {
       background: rgba(8, 14, 28, 0.95);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.65rem 1.75rem;
+      padding: 0.75rem 2.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
     }
 
-    .brand-group {
+    .brand-cluster {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.1rem;
     }
 
     .brand-logo-badge {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       background: linear-gradient(135deg, #0284c7, #8b5cf6);
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       box-shadow: 0 0 20px rgba(2, 132, 199, 0.5);
     }
 
     .brand-text h1 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 900;
       letter-spacing: -0.4px;
       background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399);
@@ -144,22 +137,22 @@ def get_embedded_html() -> str:
     .engine-status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      padding: 0.2rem 0.55rem;
+      gap: 0.45rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 0.25rem 0.65rem;
       border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 700;
+      font-size: 0.72rem;
+      font-weight: 800;
       color: #34d399;
     }
 
     .pulse-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       background: #10b981;
       border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
+      box-shadow: 0 0 10px #10b981;
       animation: pulseGreen 2s infinite;
     }
 
@@ -172,19 +165,19 @@ def get_embedded_html() -> str:
     .gamification-controls {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.9rem;
     }
 
     .user-avatar-btn {
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border-glass);
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       cursor: pointer;
       transition: all 0.2s;
       box-shadow: var(--shadow-card);
@@ -192,52 +185,52 @@ def get_embedded_html() -> str:
 
     .user-avatar-btn:hover {
       border-color: #38bdf8;
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
     .badge-pill {
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border-glass);
-      padding: 0.4rem 0.85rem;
+      padding: 0.45rem 0.9rem;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.5rem;
       box-shadow: var(--shadow-card);
     }
 
     .badge-level {
-      border-color: rgba(56, 189, 248, 0.4);
+      border-color: rgba(56, 189, 248, 0.5);
       color: #38bdf8;
-      background: rgba(2, 132, 199, 0.12);
+      background: rgba(2, 132, 199, 0.15);
     }
 
     .badge-streak {
-      border-color: rgba(249, 115, 22, 0.4);
+      border-color: rgba(249, 115, 22, 0.5);
       color: #fb923c;
-      background: rgba(249, 115, 22, 0.12);
+      background: rgba(249, 115, 22, 0.15);
     }
 
     .badge-timer {
       border-color: rgba(52, 211, 153, 0.4);
       color: #34d399;
-      background: rgba(16, 185, 129, 0.12);
+      background: rgba(16, 185, 129, 0.15);
       font-family: var(--font-code);
     }
 
     .xp-meter-box {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-      width: 140px;
+      gap: 0.25rem;
+      width: 145px;
     }
 
     .xp-text-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -257,22 +250,22 @@ def get_embedded_html() -> str:
       transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .header-icon-btn {
-      background: rgba(15, 23, 42, 0.8);
+    .header-btn {
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-glass);
       color: #cbd5e1;
-      padding: 0.4rem 0.75rem;
+      padding: 0.45rem 0.85rem;
       border-radius: var(--radius-sm);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       transition: all 0.2s;
     }
 
-    .header-icon-btn:hover {
+    .header-btn:hover {
       background: #1e293b;
       color: #fff;
     }
@@ -281,34 +274,34 @@ def get_embedded_html() -> str:
       background: linear-gradient(135deg, #78350f, #d97706);
       border: 1px solid #f59e0b;
       color: #fff;
-      padding: 0.45rem 1.05rem;
+      padding: 0.5rem 1.15rem;
       border-radius: var(--radius-md);
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       transition: all 0.2s;
       box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
     }
 
     .cert-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.55);
     }
 
     /* --------------------------------------------------------------------------
-       2. BREADCRUMBS Y BARRA DE NAVEGACIÓN RÁPIDA
+       2. BREADCRUMBS Y BARRA DE ESTADO
        -------------------------------------------------------------------------- */
     .breadcrumbs-bar {
-      background: rgba(10, 16, 30, 0.6);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.45rem 2rem;
+      background: rgba(8, 14, 28, 0.7);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 0.5rem 2.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
@@ -328,16 +321,19 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       3. CONTENEDOR PRINCIPAL
+       3. CONTENEDOR PRINCIPAL (SIDEBAR + ESTUDIO)
        -------------------------------------------------------------------------- */
-    .main-body {
+    .main-workspace {
       display: flex;
       flex: 1;
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     /* SIDEBAR CURRICULAR */
     .sidebar {
-      width: 350px;
+      width: 360px;
       background: rgba(8, 14, 28, 0.85);
       backdrop-filter: blur(16px);
       border-right: 1px solid var(--border-glass);
@@ -346,7 +342,7 @@ def get_embedded_html() -> str:
     }
 
     .sidebar-title {
-      padding: 1.15rem 1.4rem;
+      padding: 1.25rem 1.5rem;
       border-bottom: 1px solid var(--border-glass);
       display: flex;
       justify-content: space-between;
@@ -355,7 +351,7 @@ def get_embedded_html() -> str:
 
     .sidebar-title h2 {
       font-family: var(--font-display);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -366,9 +362,9 @@ def get_embedded_html() -> str:
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid #10b981;
       color: #34d399;
-      padding: 0.2rem 0.65rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 800;
       box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
     }
@@ -376,21 +372,21 @@ def get_embedded_html() -> str:
     .curriculum-tree {
       flex: 1;
       overflow-y: auto;
-      padding: 0.85rem;
+      padding: 1rem;
     }
 
     .course-section {
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.2rem;
     }
 
     .course-header {
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: #64748b;
-      padding: 0.4rem 0.6rem;
-      margin-bottom: 0.3rem;
+      padding: 0.45rem 0.65rem;
+      margin-bottom: 0.35rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -400,25 +396,25 @@ def get_embedded_html() -> str:
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.6rem 0.85rem;
+      padding: 0.65rem 0.95rem;
       border-radius: var(--radius-md);
-      font-size: 0.83rem;
+      font-size: 0.84rem;
       font-weight: 600;
       color: #94a3b8;
       cursor: pointer;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
       border: 1px solid transparent;
-      transition: all 0.2s;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .class-item:hover:not(.locked) {
       background: rgba(30, 41, 59, 0.9);
       color: #fff;
-      transform: translateX(3px);
+      transform: translateX(4px);
     }
 
     .class-item.active {
-      background: linear-gradient(90deg, rgba(2, 132, 199, 0.35), rgba(2, 132, 199, 0.1));
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.35), rgba(2, 132, 199, 0.12));
       border-color: #0284c7;
       color: #fff;
       font-weight: 700;
@@ -445,9 +441,8 @@ def get_embedded_html() -> str:
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
-      padding: 1.5rem 2.25rem 2.5rem 2.25rem;
-      gap: 1.3rem;
+      padding: 1.75rem 2.5rem 3rem 2.5rem;
+      gap: 1.4rem;
     }
 
     /* HERO CARD DE LA CLASE */
@@ -455,23 +450,23 @@ def get_embedded_html() -> str:
       background: linear-gradient(135deg, rgba(13, 22, 41, 0.95) 0%, rgba(26, 38, 64, 0.7) 100%);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
-      padding: 1.4rem 1.75rem;
+      padding: 1.5rem 1.85rem;
       box-shadow: var(--shadow-card);
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.65rem;
       position: relative;
     }
 
     .hero-tags {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.8rem;
     }
 
     .tag-course {
       color: #38bdf8;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -480,16 +475,16 @@ def get_embedded_html() -> str:
     .tag-boss {
       background: linear-gradient(90deg, #991b1b, #dc2626);
       color: #fff;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 900;
-      padding: 0.2rem 0.6rem;
+      padding: 0.2rem 0.65rem;
       border-radius: 6px;
       box-shadow: 0 0 14px rgba(220, 38, 38, 0.5);
     }
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: 1.55rem;
+      font-size: 1.6rem;
       font-weight: 900;
       color: #f8fafc;
       letter-spacing: -0.4px;
@@ -499,23 +494,23 @@ def get_embedded_html() -> str:
       background: rgba(2, 132, 199, 0.1);
       border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: var(--radius-md);
-      padding: 0.65rem 1.1rem;
-      font-size: 0.88rem;
+      padding: 0.7rem 1.15rem;
+      font-size: 0.9rem;
       color: #7dd3fc;
       font-style: italic;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
 
     .listen-btn {
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid #38bdf8;
       color: #38bdf8;
-      padding: 0.25rem 0.7rem;
+      padding: 0.3rem 0.75rem;
       border-radius: var(--radius-sm);
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
@@ -530,18 +525,18 @@ def get_embedded_html() -> str:
     .stepper-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
+      gap: 0.85rem;
       background: rgba(10, 16, 30, 0.75);
-      padding: 0.6rem;
+      padding: 0.65rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-glass);
     }
 
     .step-gate-pill {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-sm);
-      padding: 0.65rem 0.9rem;
+      padding: 0.7rem 0.95rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -567,16 +562,16 @@ def get_embedded_html() -> str:
     .step-gate-info {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.83rem;
+      gap: 0.55rem;
+      font-size: 0.86rem;
       font-weight: 700;
       color: #cbd5e1;
     }
 
     .step-gate-status {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 800;
-      padding: 0.15rem 0.45rem;
+      padding: 0.15rem 0.5rem;
       border-radius: 4px;
       background: rgba(100, 116, 139, 0.2);
       color: #94a3b8;
@@ -591,7 +586,7 @@ def get_embedded_html() -> str:
     .tab-pane {
       display: none;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1.3rem;
       animation: fadeIn 0.3s ease;
     }
 
@@ -607,7 +602,7 @@ def get_embedded_html() -> str:
     .two-col-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.4rem;
+      gap: 1.5rem;
     }
 
     .glass-card {
@@ -624,16 +619,16 @@ def get_embedded_html() -> str:
 
     .glass-card h3 {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #f1f5f9;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
 
     .theory-desc {
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       line-height: 1.7;
       color: #cbd5e1;
     }
@@ -666,7 +661,7 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       4. EDITOR DE CÓDIGO CON TOOLBAR PROFESIONAL
+       4. TOOLBAR Y EDITOR DE CÓDIGO
        -------------------------------------------------------------------------- */
     .editor-wrapper {
       display: flex;
@@ -679,27 +674,28 @@ def get_embedded_html() -> str:
 
     .editor-toolbar {
       background: rgba(15, 23, 42, 0.95);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.4rem 0.85rem;
+      border-bottom: 1px solid var(--border-glass);
+      padding: 0.45rem 0.95rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     .editor-actions {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
 
     .tool-btn {
       background: #1e293b;
       border: 1px solid #334155;
       color: #cbd5e1;
-      padding: 0.2rem 0.55rem;
+      padding: 0.25rem 0.6rem;
       border-radius: 4px;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -711,13 +707,13 @@ def get_embedded_html() -> str:
 
     .code-editor {
       width: 100%;
-      height: 240px;
+      height: 250px;
       background: var(--bg-editor);
       border: none;
       color: #38bdf8;
       font-family: var(--font-code);
-      font-size: 0.92rem;
-      line-height: 1.55;
+      font-size: 0.94rem;
+      line-height: 1.6;
       padding: 1rem;
       resize: vertical;
       outline: none;
@@ -727,25 +723,19 @@ def get_embedded_html() -> str:
       background: #03050a;
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-md);
-      padding: 0.85rem 1.15rem;
+      padding: 0.9rem 1.2rem;
       font-family: var(--font-code);
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: #4ade80;
-      min-height: 80px;
+      min-height: 85px;
       max-height: 200px;
       overflow-y: auto;
       white-space: pre-wrap;
     }
 
     /* --------------------------------------------------------------------------
-       5. VISUALIZADOR DE MEMORIA RAM v3.0 (STACK & HEAP)
+       5. VISUALIZADOR DE MEMORIA RAM (STACK & HEAP)
        -------------------------------------------------------------------------- */
-    .memory-dashboard {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
     .memory-board {
       background: #04060c;
       border: 1px solid var(--border-glass);
@@ -765,7 +755,7 @@ def get_embedded_html() -> str:
       justify-content: center;
       height: 100%;
       color: #64748b;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-style: italic;
     }
 
@@ -774,17 +764,17 @@ def get_embedded_html() -> str:
       border: 1px solid var(--border-glass);
       border-left: 4px solid #0284c7;
       border-radius: var(--radius-sm);
-      padding: 0.7rem 1rem;
+      padding: 0.75rem 1.05rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       transition: all 0.2s;
     }
 
     .mem-card:hover {
       transform: translateX(4px);
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2);
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
     }
 
     .mem-name {
@@ -795,16 +785,16 @@ def get_embedded_html() -> str:
 
     .mem-type {
       color: #94a3b8;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-family: var(--font-code);
     }
 
     .mem-bytes-badge {
       background: #1e293b;
       border: 1px solid #334155;
-      padding: 0.2rem 0.55rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 4px;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       color: #fbbf24;
       font-weight: 800;
       font-family: var(--font-code);
@@ -812,7 +802,7 @@ def get_embedded_html() -> str:
 
     .mem-hex-id {
       font-family: var(--font-code);
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: #64748b;
     }
 
@@ -882,12 +872,12 @@ def get_embedded_html() -> str:
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid var(--border-glass);
-      padding-top: 1.4rem;
+      padding-top: 1.5rem;
       margin-top: 0.6rem;
     }
 
     .class-status-summary {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -896,55 +886,55 @@ def get_embedded_html() -> str:
        6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL
        -------------------------------------------------------------------------- */
     .app-footer {
-      background: rgba(6, 10, 20, 0.98);
+      background: rgba(5, 9, 18, 0.98);
       border-top: 1px solid var(--border-glass);
-      padding: 2.25rem 2.5rem 1.75rem 2.5rem;
+      padding: 2.5rem 3rem 2rem 3rem;
       margin-top: auto;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
     .footer-brand h4 {
       font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 800;
+      font-size: 1.15rem;
+      font-weight: 900;
       color: #f8fafc;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
 
     .footer-brand p {
-      font-size: 0.84rem;
+      font-size: 0.86rem;
       color: #94a3b8;
-      line-height: 1.6;
-      margin-top: 0.5rem;
-      max-width: 520px;
+      line-height: 1.65;
+      margin-top: 0.6rem;
+      max-width: 540px;
     }
 
     .footer-col h5 {
       font-family: var(--font-display);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.6px;
       color: #7dd3fc;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
     }
 
     .footer-links {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
-      font-size: 0.82rem;
+      gap: 0.5rem;
+      font-size: 0.84rem;
     }
 
     .footer-links a {
@@ -953,7 +943,7 @@ def get_embedded_html() -> str:
       transition: color 0.2s;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
 
     .footer-links a:hover {
@@ -962,11 +952,11 @@ def get_embedded_html() -> str:
 
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 1.25rem;
+      padding-top: 1.4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: #64748b;
     }
 
@@ -1018,9 +1008,9 @@ def get_embedded_html() -> str:
 <body>
   <div class="app-wrapper">
     
-    <!-- 1. HEADER GLOBAL GAMIFICADO -->
+    <!-- 1. HEADER GLOBAL STICKY CON NAVEGACIÓN Y CONTROLES -->
     <header class="app-header">
-      <div class="brand-group">
+      <div class="brand-cluster">
         <div class="brand-logo-badge">🐍</div>
         <div class="brand-text">
           <h1>Wisrovi Academy</h1>
@@ -1055,16 +1045,16 @@ def get_embedded_html() -> str:
           <span id="player-streak">1 Días</span>
         </div>
 
-        <div class="badge-pill badge-timer" title="Tiempo de pedaleo en la sesión actual">
+        <div class="badge-pill badge-timer" title="Tiempo de pedaleo activo en la sesión">
           <span>⏱️</span>
           <span id="session-timer">00:00</span>
         </div>
 
-        <button class="header-icon-btn" id="achievements-btn" title="Ver Trofeos e Insignias">
+        <button class="header-btn" id="achievements-btn" title="Ver Trofeos e Insignias Desbloqueadas">
           🏆 Logros
         </button>
 
-        <button class="header-icon-btn" id="sound-toggle-btn" title="Alternar Sonido Sintetizado">
+        <button class="header-btn" id="sound-toggle-btn" title="Alternar Sonido Sintetizado">
           <span id="sound-icon">🔊</span> Sonido
         </button>
 
@@ -1074,7 +1064,7 @@ def get_embedded_html() -> str:
       </div>
     </header>
 
-    <!-- 2. BARRA DE BREADCRUMBS -->
+    <!-- 2. BARRA DE BREADCRUMBS Y ATAJOS -->
     <div class="breadcrumbs-bar">
       <div class="breadcrumbs-list">
         <span>Wisrovi Academy</span>
@@ -1085,13 +1075,13 @@ def get_embedded_html() -> str:
         <span class="breadcrumb-sep">&gt;</span>
         <span style="color: #34d399;" id="crumb-step">Paso 1: Concepto</span>
       </div>
-      <div style="font-size: 0.74rem; color: #94a3b8;">
-        💡 Atajo: <kbd style="background:#1e293b; padding:1px 5px; border-radius:3px;">Ctrl + Enter</kbd> para ejecutar código
+      <div style="font-size: 0.76rem; color: #94a3b8;">
+        💡 Atajo Rápido: <kbd style="background:#1e293b; padding:2px 6px; border-radius:4px; color:#38bdf8;">Ctrl + Enter</kbd> para ejecutar código
       </div>
     </div>
 
-    <!-- 3. CUERPO PRINCIPAL -->
-    <div class="main-body">
+    <!-- 3. CUERPO PRINCIPAL (SIDEBAR + STUDIO) -->
+    <div class="main-workspace">
       
       <!-- SIDEBAR CURRICULAR -->
       <aside class="sidebar">
@@ -1100,14 +1090,14 @@ def get_embedded_html() -> str:
           <span class="progress-tag" id="total-progress-pill">0% Hecho</span>
         </div>
         <div class="curriculum-tree" id="class-tree-container">
-          <!-- Inyectado por JS -->
+          <!-- Inyectado dinámicamente por JS -->
         </div>
       </aside>
 
       <!-- ESTUDIO CENTRAL -->
       <main class="studio">
         
-        <!-- HERO CARD -->
+        <!-- HERO CARD DE LA CLASE -->
         <div class="hero-card">
           <div class="hero-tags">
             <span class="tag-course" id="lesson-course-name">Curso 1: Fundamentos Básicos</span>
@@ -1123,7 +1113,7 @@ def get_embedded_html() -> str:
           </div>
         </div>
 
-        <!-- STEPPER GATES -->
+        <!-- STEPPER GATES (4 PASOS OBLIGATORIOS) -->
         <nav class="stepper-container">
           <div class="step-gate-pill active" id="gate-step-1" data-step="1">
             <div class="step-gate-info">
@@ -1191,7 +1181,7 @@ def get_embedded_html() -> str:
               <div class="editor-toolbar">
                 <span>🐍 Python 3 &bull; Modo Lectura / Ejecución</span>
                 <div class="editor-actions">
-                  <button class="tool-btn" id="copy-demo-btn">📋 Copiar</button>
+                  <button class="tool-btn" id="copy-demo-btn">📋 Copiar Código</button>
                 </div>
               </div>
               <textarea class="code-editor" id="demo-code-area" readonly spellcheck="false"></textarea>
@@ -1227,7 +1217,7 @@ def get_embedded_html() -> str:
             <div class="glass-card">
               <div class="flex-between">
                 <h3>🧠 Visualizador de Heap & Stack RAM</h3>
-                <span style="font-size: 0.72rem; color: #fbbf24;" id="mem-total-count">0 Variables</span>
+                <span style="font-size: 0.74rem; color: #fbbf24; font-weight: 800;" id="mem-total-count">0 Variables</span>
               </div>
               <div class="memory-board" id="memory-canvas">
                 <div class="empty-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>
@@ -1250,7 +1240,7 @@ def get_embedded_html() -> str:
 
               <div class="editor-wrapper">
                 <div class="editor-toolbar">
-                  <span id="diff-status-label" style="color: #fb923c;">⚠️ Modifica el código antes de evaluar</span>
+                  <span id="diff-status-label" style="color: #fb923c; font-weight: 700;">⚠️ Modifica el código antes de evaluar</span>
                   <div class="editor-actions">
                     <button class="tool-btn" id="reset-challenge-btn">🔄 Restaurar Plantilla</button>
                   </div>
@@ -1286,7 +1276,7 @@ def get_embedded_html() -> str:
       </main>
     </div>
 
-    <!-- 4. FOOTER INSTITUCIONAL DE CLASE MUNDIAL -->
+    <!-- 4. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL -->
     <footer class="app-footer">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -1321,7 +1311,7 @@ def get_embedded_html() -> str:
 
       <div class="footer-bottom">
         <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
-        <span>Badajoz, España &bull; Versión 1.5.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+        <span>Badajoz, España &bull; Versión 1.6.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
       </div>
     </footer>
 

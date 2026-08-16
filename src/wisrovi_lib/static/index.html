@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisrovi Academy - Virtual AI Tutor & RPG de Programación</title>
+  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG de Programación</title>
   
-  <!-- Tipografías de Alta Fidelidad: Outfit, Inter y JetBrains Mono -->
+  <!-- Tipografías Google Fonts de Alta Gama: Outfit, Inter y JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -19,9 +19,9 @@
 <body>
   <div class="app-wrapper">
     
-    <!-- 1. HEADER GLOBAL GAMIFICADO -->
+    <!-- 1. HEADER GLOBAL STICKY CON NAVEGACIÓN Y CONTROLES -->
     <header class="app-header">
-      <div class="brand-group">
+      <div class="brand-cluster">
         <div class="brand-logo-badge">🐍</div>
         <div class="brand-text">
           <h1>Wisrovi Academy</h1>
@@ -56,16 +56,16 @@
           <span id="player-streak">1 Días</span>
         </div>
 
-        <div class="badge-pill badge-timer" title="Tiempo de pedaleo en la sesión actual">
+        <div class="badge-pill badge-timer" title="Tiempo de pedaleo activo en la sesión">
           <span>⏱️</span>
           <span id="session-timer">00:00</span>
         </div>
 
-        <button class="header-icon-btn" id="achievements-btn" title="Ver Trofeos e Insignias">
+        <button class="header-btn" id="achievements-btn" title="Ver Trofeos e Insignias Desbloqueadas">
           🏆 Logros
         </button>
 
-        <button class="header-icon-btn" id="sound-toggle-btn" title="Alternar Sonido Sintetizado">
+        <button class="header-btn" id="sound-toggle-btn" title="Alternar Sonido Sintetizado">
           <span id="sound-icon">🔊</span> Sonido
         </button>
 
@@ -75,7 +75,7 @@
       </div>
     </header>
 
-    <!-- 2. BARRA DE BREADCRUMBS -->
+    <!-- 2. BARRA DE BREADCRUMBS Y ATAJOS -->
     <div class="breadcrumbs-bar">
       <div class="breadcrumbs-list">
         <span>Wisrovi Academy</span>
@@ -86,13 +86,13 @@
         <span class="breadcrumb-sep">&gt;</span>
         <span style="color: #34d399;" id="crumb-step">Paso 1: Concepto</span>
       </div>
-      <div style="font-size: 0.74rem; color: #94a3b8;">
-        💡 Atajo: <kbd style="background:#1e293b; padding:1px 5px; border-radius:3px;">Ctrl + Enter</kbd> para ejecutar código
+      <div style="font-size: 0.76rem; color: #94a3b8;">
+        💡 Atajo Rápido: <kbd style="background:#1e293b; padding:2px 6px; border-radius:4px; color:#38bdf8;">Ctrl + Enter</kbd> para ejecutar código
       </div>
     </div>
 
-    <!-- 3. CUERPO PRINCIPAL -->
-    <div class="main-body">
+    <!-- 3. CUERPO PRINCIPAL (SIDEBAR + STUDIO) -->
+    <div class="main-workspace">
       
       <!-- SIDEBAR CURRICULAR -->
       <aside class="sidebar">
@@ -101,14 +101,14 @@
           <span class="progress-tag" id="total-progress-pill">0% Hecho</span>
         </div>
         <div class="curriculum-tree" id="class-tree-container">
-          <!-- Inyectado por JS -->
+          <!-- Inyectado dinámicamente por JS -->
         </div>
       </aside>
 
       <!-- ESTUDIO CENTRAL -->
       <main class="studio">
         
-        <!-- HERO CARD -->
+        <!-- HERO CARD DE LA CLASE -->
         <div class="hero-card">
           <div class="hero-tags">
             <span class="tag-course" id="lesson-course-name">Curso 1: Fundamentos Básicos</span>
@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        <!-- STEPPER GATES -->
+        <!-- STEPPER GATES (4 PASOS OBLIGATORIOS) -->
         <nav class="stepper-container">
           <div class="step-gate-pill active" id="gate-step-1" data-step="1">
             <div class="step-gate-info">
@@ -192,7 +192,7 @@
               <div class="editor-toolbar">
                 <span>🐍 Python 3 &bull; Modo Lectura / Ejecución</span>
                 <div class="editor-actions">
-                  <button class="tool-btn" id="copy-demo-btn">📋 Copiar</button>
+                  <button class="tool-btn" id="copy-demo-btn">📋 Copiar Código</button>
                 </div>
               </div>
               <textarea class="code-editor" id="demo-code-area" readonly spellcheck="false"></textarea>
@@ -228,7 +228,7 @@
             <div class="glass-card">
               <div class="flex-between">
                 <h3>🧠 Visualizador de Heap & Stack RAM</h3>
-                <span style="font-size: 0.72rem; color: #fbbf24;" id="mem-total-count">0 Variables</span>
+                <span style="font-size: 0.74rem; color: #fbbf24; font-weight: 800;" id="mem-total-count">0 Variables</span>
               </div>
               <div class="memory-board" id="memory-canvas">
                 <div class="empty-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>
@@ -251,7 +251,7 @@
 
               <div class="editor-wrapper">
                 <div class="editor-toolbar">
-                  <span id="diff-status-label" style="color: #fb923c;">⚠️ Modifica el código antes de evaluar</span>
+                  <span id="diff-status-label" style="color: #fb923c; font-weight: 700;">⚠️ Modifica el código antes de evaluar</span>
                   <div class="editor-actions">
                     <button class="tool-btn" id="reset-challenge-btn">🔄 Restaurar Plantilla</button>
                   </div>
@@ -287,7 +287,7 @@
       </main>
     </div>
 
-    <!-- 4. FOOTER INSTITUCIONAL DE CLASE MUNDIAL -->
+    <!-- 4. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL -->
     <footer class="app-footer">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -322,7 +322,7 @@
 
       <div class="footer-bottom">
         <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
-        <span>Badajoz, España &bull; Versión 1.5.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+        <span>Badajoz, España &bull; Versión 1.6.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
       </div>
     </footer>
 
