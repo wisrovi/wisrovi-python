@@ -1,17 +1,7 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Supreme AI Tutor & RPG Studio v6.0).
-100% Autocontenido, incluye:
-- Header Global Cyberpunk Glassmorphic con status en vivo, selector de avatares, barra de XP fluida, racha con fuego animado y cronómetro.
-- Barra de Navegación Rápida & Breadcrumbs con indicador de atajos de teclado (Ctrl + Enter).
-- Sidebar Curricular con progreso porcentual y diseño especial Boss Battle para Clase 8.
-- Stepper Ribbon de 4 Pasos Obligatorios con compuertas de seguridad.
-- Paso 1: Concepto con reproductor de voz, diagrama Mermaid interactivo y consejo del mentor.
-- Paso 2: Demo interactiva con ventana de código estilo macOS (🔴🟡🟢), toolbar y terminal de salida.
-- Paso 3: Arenero con Visualizador de Memoria RAM v6.0 (Stack vs Heap, direcciones Hex y Bytes).
-- Paso 4: Arena de Retos con Detector de Diff en Vivo, baraja de pistas socráticas y confeti.
-- Footer Institucional de 4 Columnas con perfil oficial de William Rodríguez (Wisrovi), metodología y enlaces.
-- Modales interactivos para Certificados Oficiales en PDF y Vitrina de Trofeos.
+Embedded UI Frontend (Wisrovi Academy - Supreme AI Tutor & RPG Studio v7.0 Grand Masterpiece).
+100% Autocontenido e inmune a fallos de caché o archivos estáticos.
 """
 
 def get_embedded_html() -> str:
@@ -20,7 +10,7 @@ def get_embedded_html() -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisrovi Academy &bull; Virtual AI Tutor & RPG Studio</title>
+  <title>Wisrovi Academy &bull; Virtual AI Tutor &amp; RPG Studio</title>
   
   <!-- Google Fonts: Outfit, Inter y JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,23 +23,23 @@ def get_embedded_html() -> str:
 
   <style>
     /* ==============================================================================
-       WISROVI SUPREME DESIGN SYSTEM v6.0
+       WISROVI SUPREME DESIGN SYSTEM v7.0 (GRAND MASTERPIECE)
        ============================================================================== */
     :root {
-      --bg-canvas: #02050e;
-      --bg-surface: #090e1f;
-      --bg-card: rgba(13, 20, 38, 0.9);
-      --bg-card-hover: #162244;
-      --bg-editor: #010308;
-      --border-glass: rgba(56, 189, 248, 0.22);
+      --bg-canvas: #020612;
+      --bg-surface: #070d1e;
+      --bg-card: rgba(11, 18, 36, 0.92);
+      --bg-card-hover: #152244;
+      --bg-editor: #01040a;
+      --border-glass: rgba(56, 189, 248, 0.25);
       --border-accent: #0284c7;
-      --border-glow: rgba(2, 132, 199, 0.45);
+      --border-glow: rgba(2, 132, 199, 0.5);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       --primary: #0284c7;
       --primary-hover: #0369a1;
-      --primary-glow: rgba(2, 132, 199, 0.4);
+      --primary-glow: rgba(2, 132, 199, 0.45);
       --success: #10b981;
       --success-hover: #059669;
       --success-glow: rgba(16, 185, 129, 0.45);
@@ -61,8 +51,8 @@ def get_embedded_html() -> str:
       --font-code: 'JetBrains Mono', 'Fira Code', monospace;
       --radius-sm: 8px;
       --radius-md: 12px;
-      --radius-lg: 18px;
-      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+      --radius-lg: 20px;
+      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.75);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,9 +61,9 @@ def get_embedded_html() -> str:
       font-family: var(--font-ui);
       background-color: var(--bg-canvas);
       background-image: 
-        radial-gradient(circle at 15% 10%, rgba(2, 132, 199, 0.2) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.18) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.12) 0%, transparent 55%);
+        radial-gradient(circle at 12% 10%, rgba(2, 132, 199, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 88% 12%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.15) 0%, transparent 55%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -88,43 +78,43 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       1. HEADER GLOBAL STICKY CON NAVEGACIÓN COMPLETA
+       1. HEADER GLOBAL DE ALTO NIVEL (SUPERIOR)
        -------------------------------------------------------------------------- */
     .app-header {
-      background: rgba(6, 11, 24, 0.96);
-      backdrop-filter: blur(20px);
+      background: rgba(5, 10, 22, 0.97);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.85rem 2.5rem;
+      padding: 0.85rem 2.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
     }
 
     .brand-cluster {
       display: flex;
       align-items: center;
-      gap: 1.1rem;
+      gap: 1.15rem;
     }
 
     .brand-logo-badge {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       background: linear-gradient(135deg, #0284c7, #8b5cf6);
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 0 20px rgba(2, 132, 199, 0.5);
+      font-size: 1.7rem;
+      box-shadow: 0 0 25px rgba(2, 132, 199, 0.6);
     }
 
     .brand-text h1 {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 900;
       letter-spacing: -0.4px;
       background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399);
@@ -133,7 +123,7 @@ def get_embedded_html() -> str:
     }
 
     .brand-text p {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
       font-weight: 600;
     }
@@ -144,9 +134,9 @@ def get_embedded_html() -> str:
       gap: 0.45rem;
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 0.25rem 0.65rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 800;
       color: #34d399;
     }
@@ -175,13 +165,13 @@ def get_embedded_html() -> str:
     .user-avatar-btn {
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border-glass);
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       cursor: pointer;
       transition: all 0.2s;
       box-shadow: var(--shadow-card);
@@ -195,7 +185,7 @@ def get_embedded_html() -> str:
     .badge-pill {
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border-glass);
-      padding: 0.45rem 0.9rem;
+      padding: 0.45rem 0.95rem;
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 800;
@@ -228,7 +218,7 @@ def get_embedded_html() -> str:
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
-      width: 140px;
+      width: 145px;
     }
 
     .xp-text-row {
@@ -258,7 +248,7 @@ def get_embedded_html() -> str:
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-glass);
       color: #cbd5e1;
-      padding: 0.45rem 0.85rem;
+      padding: 0.45rem 0.9rem;
       border-radius: var(--radius-sm);
       font-size: 0.82rem;
       font-weight: 700;
@@ -278,7 +268,7 @@ def get_embedded_html() -> str:
       background: linear-gradient(135deg, #78350f, #d97706);
       border: 1px solid #f59e0b;
       color: #fff;
-      padding: 0.5rem 1.15rem;
+      padding: 0.5rem 1.2rem;
       border-radius: var(--radius-md);
       font-size: 0.84rem;
       font-weight: 800;
@@ -299,9 +289,9 @@ def get_embedded_html() -> str:
        2. BREADCRUMBS Y BARRA DE ESTADO
        -------------------------------------------------------------------------- */
     .breadcrumbs-bar {
-      background: rgba(8, 14, 28, 0.75);
+      background: rgba(6, 11, 24, 0.8);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.55rem 2.5rem;
+      padding: 0.55rem 2.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -330,7 +320,7 @@ def get_embedded_html() -> str:
     .main-workspace {
       display: flex;
       flex: 1;
-      max-width: 1720px;
+      max-width: 1760px;
       margin: 0 auto;
       width: 100%;
     }
@@ -338,7 +328,7 @@ def get_embedded_html() -> str:
     /* SIDEBAR CURRICULAR */
     .sidebar {
       width: 360px;
-      background: rgba(7, 12, 26, 0.85);
+      background: rgba(6, 11, 24, 0.85);
       backdrop-filter: blur(16px);
       border-right: 1px solid var(--border-glass);
       display: flex;
@@ -366,7 +356,7 @@ def get_embedded_html() -> str:
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid #10b981;
       color: #34d399;
-      padding: 0.25rem 0.7rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 999px;
       font-size: 0.76rem;
       font-weight: 800;
@@ -400,7 +390,7 @@ def get_embedded_html() -> str:
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.65rem 0.95rem;
+      padding: 0.68rem 0.95rem;
       border-radius: var(--radius-md);
       font-size: 0.84rem;
       font-weight: 600;
@@ -445,7 +435,7 @@ def get_embedded_html() -> str:
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 1.75rem 2.75rem 3.5rem 2.75rem;
+      padding: 1.85rem 3rem 3.5rem 3rem;
       gap: 1.4rem;
     }
 
@@ -887,10 +877,10 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL
+       6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL (INFERIOR)
        -------------------------------------------------------------------------- */
     .app-footer {
-      background: rgba(4, 8, 18, 0.98);
+      background: rgba(3, 7, 16, 0.98);
       border-top: 1px solid var(--border-glass);
       padding: 2.75rem 3rem 2rem 3rem;
       margin-top: auto;
@@ -1295,7 +1285,7 @@ def get_embedded_html() -> str:
           <h5>👤 Dirección Académica</h5>
           <ul class="footer-links">
             <li><strong style="color: #fff;">William Rodríguez (Wisrovi)</strong></li>
-            <li><span>Principal Software Engineer & AI Architect</span></li>
+            <li><span>Principal Software Engineer &amp; AI Architect</span></li>
             <li><a href="https://wisrovi.dev" target="_blank">🌐 Sitio Web: wisrovi.dev</a></li>
             <li><a href="https://github.com/wisrovi" target="_blank">🐙 GitHub: @wisrovi</a></li>
             <li><a href="https://www.linkedin.com/in/wisrovi-rodriguez/" target="_blank">💼 LinkedIn Oficial</a></li>
