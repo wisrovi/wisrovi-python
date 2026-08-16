@@ -3,225 +3,244 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisrovi Academy - Virtual AI Tutor & RPG</title>
+  <title>Wisrovi Academy - Virtual AI Tutor & RPG de Programación</title>
+  
+  <!-- Google Fonts: Inter, Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="/static/app.css">
-  <!-- Mermaid & Canvas Confetti -->
+  
+  <!-- CDN Libraries: Mermaid & Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
-<body class="dark-theme">
-  <div id="app" class="app-container">
+<body>
+  <div class="app-wrapper">
     
     <!-- HEADER GAMIFICADO -->
     <header class="app-header">
-      <div class="brand-box">
-        <span class="brand-icon">🐍</span>
-        <div>
-          <h1 class="brand-title">Wisrovi Academy</h1>
-          <p class="brand-subtitle">Virtual AI Tutor & RPG de Programación</p>
+      <div class="brand-container">
+        <div class="brand-logo-badge">🐍</div>
+        <div class="brand-titles">
+          <h1>Wisrovi Academy</h1>
+          <p>Virtual AI Tutor &bull; RPG de Aprendizaje en Espiral</p>
         </div>
       </div>
 
-      <!-- BARRA DE ESTADÍSTICAS DEL ESTUDIANTE -->
-      <div class="stats-bar">
-        <div class="stat-badge level-badge" id="player-level-badge">
-          <span class="badge-icon">🌱</span>
+      <div class="gamification-bar">
+        <div class="badge-pill badge-level" id="player-level-badge">
+          <span>🌱</span>
           <span id="player-level-title">Nv. 1 Aprendiz</span>
         </div>
 
-        <div class="xp-container">
-          <div class="xp-labels">
-            <span>XP: <strong id="player-xp-val">0</strong></span>
+        <div class="xp-meter">
+          <div class="xp-text">
+            <span>XP: <strong id="player-xp-val" style="color: #38bdf8;">0</strong></span>
             <span id="xp-progress-percent">0%</span>
           </div>
-          <div class="xp-bar-track">
-            <div class="xp-bar-fill" id="player-xp-fill" style="width: 10%;"></div>
+          <div class="xp-track">
+            <div class="xp-fill" id="player-xp-fill" style="width: 5%;"></div>
           </div>
         </div>
 
-        <div class="stat-badge streak-badge" title="Racha de estudio">
-          <span class="badge-icon">🔥</span>
+        <div class="badge-pill badge-streak" title="Racha de estudio activo">
+          <span>🔥</span>
           <span id="player-streak">1 Días</span>
         </div>
 
-        <button class="cert-modal-btn" id="open-cert-btn" title="Ver mi Certificación">
+        <div class="badge-pill badge-timer" title="Tiempo de pedaleo activo">
+          <span>⏱️</span>
+          <span id="session-timer">00:00</span>
+        </div>
+
+        <button class="sound-toggle-btn" id="sound-toggle-btn" title="Activar/Desactivar Efectos de Sonido">
+          <span id="sound-icon">🔊</span> Sonido
+        </button>
+
+        <button class="cert-btn" id="open-cert-btn">
           📜 Certificado
         </button>
       </div>
     </header>
 
-    <!-- CUERPO PRINCIPAL (DRAWER LATERAL + ESTUDIO CENTRAL) -->
-    <div class="main-layout">
+    <!-- CUERPO PRINCIPAL -->
+    <div class="main-body">
       
-      <!-- SIDEBAR / MAPA CURRICULAR -->
+      <!-- SIDEBAR CURRICULAR -->
       <aside class="sidebar">
-        <div class="sidebar-header">
-          <h3>🗺️ Hoja de Ruta (32 Clases)</h3>
-          <span class="badge-pill" id="total-progress-pill">0% Completado</span>
+        <div class="sidebar-title">
+          <h2>🗺️ Hoja de Ruta (32 Clases)</h2>
+          <span class="progress-tag" id="total-progress-pill">0% Hecho</span>
         </div>
-        <div class="class-tree" id="class-tree-container">
+        <div class="curriculum-tree" id="class-tree-container">
           <!-- Clases inyectadas por JS -->
         </div>
       </aside>
 
-      <!-- ÁREA DE APRENDIZAJE ACTIVO -->
-      <main class="studio-area">
+      <!-- ESTUDIO CENTRAL -->
+      <main class="studio">
         
-        <!-- ENCABEZADO DE CLASE -->
-        <div class="lesson-header-card">
-          <div class="lesson-meta">
-            <span class="lesson-tag" id="lesson-course-name">Curso 1: Fundamentos Básicos</span>
-            <span class="lesson-boss-tag hidden" id="lesson-boss-badge">⚔️ Boss Battle</span>
+        <!-- HERO CARD DE LA CLASE -->
+        <div class="hero-card">
+          <div class="hero-tags">
+            <span class="tag-course" id="lesson-course-name">Curso 1: Fundamentos Básicos</span>
+            <span class="tag-boss" id="lesson-boss-badge" style="display: none;">⚔️ Boss Battle</span>
           </div>
-          <h2 class="lesson-title" id="lesson-title">Cargando Clase...</h2>
-          <div class="metaphor-banner">
-            <span class="metaphor-icon">🌟</span>
-            <span class="metaphor-text" id="lesson-metaphor">Metáfora: «El Megáfono, las Cajas y el Semáforo»</span>
+          <h2 class="hero-title" id="lesson-title">Cargando Clase...</h2>
+          <div class="metaphor-box">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span>🌟</span>
+              <span id="lesson-metaphor">Metáfora: «El Megáfono, las Cajas y el Semáforo»</span>
+            </div>
+            <button class="listen-btn" id="listen-metaphor-btn">🔊 Escuchar</button>
           </div>
         </div>
 
-        <!-- PESTAÑAS DEL TUTOR (4 PASOS) -->
-        <nav class="step-nav">
-          <button class="step-btn active" data-step="1">
-            <span class="step-num">1</span> 💡 Concepto & Metáfora
-          </button>
-          <button class="step-btn" data-step="2">
-            <span class="step-num">2</span> 💻 Demostración
-          </button>
-          <button class="step-btn" data-step="3">
-            <span class="step-num">3</span> 🔬 Arenero & Memoria
-          </button>
-          <button class="step-btn" data-step="4">
-            <span class="step-num">4</span> 🏋️ Reto Evaluado
-          </button>
+        <!-- CHECKLIST DE LOS 4 PASOS OBLIGATORIOS (STEPPER GATES) -->
+        <nav class="stepper-container">
+          <div class="step-gate-pill active" id="gate-step-1" data-step="1">
+            <div class="step-gate-info">
+              <span>💡</span> 1. Concepto
+            </div>
+            <span class="step-gate-status" id="status-step-1">Pendiente</span>
+          </div>
+
+          <div class="step-gate-pill" id="gate-step-2" data-step="2">
+            <div class="step-gate-info">
+              <span>💻</span> 2. Demo
+            </div>
+            <span class="step-gate-status" id="status-step-2">Pendiente</span>
+          </div>
+
+          <div class="step-gate-pill" id="gate-step-3" data-step="3">
+            <div class="step-gate-info">
+              <span>🔬</span> 3. Arenero
+            </div>
+            <span class="step-gate-status" id="status-step-3">Pendiente</span>
+          </div>
+
+          <div class="step-gate-pill" id="gate-step-4" data-step="4">
+            <div class="step-gate-info">
+              <span>🏋️</span> 4. Reto
+            </div>
+            <span class="step-gate-status" id="status-step-4">Pendiente</span>
+          </div>
         </nav>
 
-        <!-- CONTENIDO DE LOS PASOS -->
-        <div class="step-content-area">
-
-          <!-- PASO 1: CONCEPTO & MERMAID -->
-          <section class="step-pane active" id="pane-step-1">
-            <div class="theory-grid">
-              <div class="card card-theory">
-                <h3>💡 Fundamentación Teórica</h3>
-                <div class="theory-body" id="theory-text"></div>
-                <div class="mentor-callout">
-                  <div class="mentor-avatar">👨‍🏫</div>
-                  <div>
-                    <strong>Consejo del Mentor (Wisrovi):</strong>
-                    <p id="mentor-advice">Visualiza los datos como cajas etiquetadas en la memoria RAM antes de escribir código.</p>
-                  </div>
+        <!-- PASO 1: CONCEPTO & MERMAID -->
+        <div class="tab-pane active" id="pane-step-1">
+          <div class="two-col-grid">
+            <div class="glass-card">
+              <h3>💡 Fundamentación Teórica</h3>
+              <p class="theory-desc" id="theory-text">Cargando fundamentación...</p>
+              <div class="mentor-box">
+                <div class="mentor-avatar">👨‍🏫</div>
+                <div>
+                  <strong>Consejo del Mentor (Wisrovi):</strong>
+                  <p id="mentor-advice">Piensa en los datos como objetos tangibles en la memoria RAM antes de escribir código.</p>
                 </div>
               </div>
-
-              <div class="card card-diagram">
-                <h3>🗺️ Arquitectura Visual de Flujo</h3>
-                <div class="mermaid-box" id="mermaid-render-box"></div>
-              </div>
+              <button class="btn btn-success" id="confirm-concept-btn" style="margin-top: auto;">
+                ✅ He comprendido el Concepto (Completar Paso 1)
+              </button>
             </div>
-          </section>
 
-          <!-- PASO 2: DEMOSTRACIÓN -->
-          <section class="step-pane" id="pane-step-2">
-            <div class="card card-demo">
-              <div class="card-header-flex">
-                <h3>💻 Código de Demostración Comentado</h3>
-                <button class="btn btn-primary" id="run-demo-btn">▶️ Ejecutar Demo</button>
-              </div>
-              <textarea class="code-editor readonly" id="demo-code-area" readonly></textarea>
-              <div class="terminal-box" id="demo-terminal">
-                <span class="term-prompt">&gt;</span> <span class="term-msg">Presiona 'Ejecutar Demo' para compilar.</span>
-              </div>
+            <div class="glass-card">
+              <h3>🗺️ Arquitectura Visual de Flujo</h3>
+              <div class="mermaid-canvas" id="mermaid-render-box"></div>
             </div>
-          </section>
-
-          <!-- PASO 3: ARENERO & VISUALIZADOR DE MEMORIA -->
-          <section class="step-pane" id="pane-step-3">
-            <div class="sandbox-grid">
-              <div class="card card-sandbox-editor">
-                <div class="card-header-flex">
-                  <h3>🔬 Arenero de Experimentación</h3>
-                  <button class="btn btn-accent" id="run-sandbox-btn">⚡ Inspeccionar Memoria</button>
-                </div>
-                <textarea class="code-editor" id="sandbox-code-area" spellcheck="false"></textarea>
-                <div class="terminal-box" id="sandbox-terminal">
-                  <span class="term-prompt">&gt;</span> <span class="term-msg">Modifica variables arriba y pulsa 'Inspeccionar Memoria'.</span>
-                </div>
-              </div>
-
-              <div class="card card-memory-visualizer">
-                <h3>🧠 Visualizador de Variables & Heap en Vivo</h3>
-                <div class="memory-canvas" id="memory-canvas">
-                  <div class="empty-memory-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- PASO 4: RETO EVALUADO -->
-          <section class="step-pane" id="pane-step-4">
-            <div class="challenge-grid">
-              <div class="card card-challenge-editor">
-                <div class="card-header-flex">
-                  <div>
-                    <h3>🏋️ Desafío Práctico de la Clase</h3>
-                    <p class="challenge-prompt" id="challenge-prompt-text">Crea la función indicada.</p>
-                  </div>
-                  <button class="btn btn-success" id="eval-challenge-btn">🚀 Evaluar Reto (+150 XP)</button>
-                </div>
-                
-                <textarea class="code-editor" id="challenge-code-area" spellcheck="false"></textarea>
-                
-                <div class="challenge-results" id="challenge-results-box">
-                  <div class="status-msg">Escribe tu solución y pulsa 'Evaluar Reto'.</div>
-                </div>
-              </div>
-
-              <div class="card card-socratic-hints">
-                <h3>💡 Pistas Socráticas del Mentor</h3>
-                <div class="hints-accordion" id="hints-accordion">
-                  <!-- Pistas inyectadas por JS -->
-                </div>
-                <div class="xp-reward-card">
-                  <div class="xp-icon">🏆</div>
-                  <div>
-                    <strong>Recompensa de la Sesión:</strong>
-                    <p>+150 XP &bull; Desbloqueo de siguiente clase &bull; Sello de acreditación.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
+          </div>
         </div>
 
-        <!-- FOOTER DE NAVEGACIÓN -->
+        <!-- PASO 2: DEMOSTRACIÓN INTERACTIVA -->
+        <div class="tab-pane" id="pane-step-2">
+          <div class="glass-card">
+            <div class="flex-between">
+              <h3>💻 Código de Demostración Comentado</h3>
+              <button class="btn btn-primary" id="run-demo-btn">▶️ Ejecutar Demo (Completar Paso 2)</button>
+            </div>
+            <textarea class="code-editor" id="demo-code-area" readonly spellcheck="false"></textarea>
+            <div class="terminal-output" id="demo-terminal">&gt; Presiona 'Ejecutar Demo' para compilar y validar.</div>
+          </div>
+        </div>
+
+        <!-- PASO 3: ARENERO & VISUALIZADOR DE MEMORIA -->
+        <div class="tab-pane" id="pane-step-3">
+          <div class="two-col-grid">
+            <div class="glass-card">
+              <div class="flex-between">
+                <h3>🔬 Arenero de Experimentación</h3>
+                <button class="btn btn-primary" id="run-sandbox-btn">⚡ Inspeccionar Memoria (Completar Paso 3)</button>
+              </div>
+              <textarea class="code-editor" id="sandbox-code-area" spellcheck="false"></textarea>
+              <div class="terminal-output" id="sandbox-terminal">&gt; Modifica variables y pulsa 'Inspeccionar Memoria'.</div>
+            </div>
+
+            <div class="glass-card">
+              <h3>🧠 Visualizador de Variables & Heap en Vivo</h3>
+              <div class="memory-board" id="memory-canvas">
+                <div class="empty-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 4: RETO EVALUADO -->
+        <div class="tab-pane" id="pane-step-4">
+          <div class="two-col-grid">
+            <div class="glass-card">
+              <div class="flex-between">
+                <div>
+                  <h3>🏋️ Desafío Práctico de la Clase</h3>
+                  <p style="font-size: 0.86rem; color: #94a3b8; margin-top: 0.2rem;" id="challenge-prompt-text">Crea la función indicada.</p>
+                </div>
+                <button class="btn btn-success" id="eval-challenge-btn">🚀 Evaluar Reto (+150 XP)</button>
+              </div>
+              <textarea class="code-editor" id="challenge-code-area" spellcheck="false"></textarea>
+              <div id="challenge-results-box" style="margin-top: 0.5rem;">
+                <div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Modifica la plantilla con tu solución y pulsa 'Evaluar Reto'.</div>
+              </div>
+            </div>
+
+            <div class="glass-card">
+              <h3>💡 Pistas Socráticas del Mentor</h3>
+              <div id="hints-accordion" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+              <div style="background: rgba(2, 132, 199, 0.12); border: 1px solid #0284c7; padding: 0.85rem; border-radius: 9px; margin-top: auto;">
+                <strong style="color: #38bdf8;">🏆 Recompensa:</strong>
+                <p style="font-size: 0.83rem; color: #cbd5e1; margin-top: 0.25rem;">+150 XP &bull; Sello de acreditación &bull; Desbloqueo de siguiente clase.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER DE NAVEGACIÓN CON ESTADO DE DESBLOQUEO -->
         <footer class="studio-footer">
           <button class="btn btn-secondary" id="prev-class-btn">⬅️ Clase Anterior</button>
-          <button class="btn btn-primary" id="next-class-btn">Siguiente Clase ➡️</button>
+          <div class="class-status-summary" id="class-status-summary">
+            🔒 Completa los 4 pasos para desbloquear la siguiente clase.
+          </div>
+          <button class="btn btn-primary" id="next-class-btn" disabled>Siguiente Clase ➡️</button>
         </footer>
 
       </main>
     </div>
 
-    <!-- MODAL DE GRADUACIÓN Y CERTIFICADO -->
-    <div class="modal-overlay hidden" id="cert-modal">
-      <div class="modal-card">
-        <button class="modal-close" id="close-cert-btn">&times;</button>
+    <!-- MODAL DE CERTIFICADO -->
+    <div class="modal-backdrop hidden" id="cert-modal">
+      <div class="modal-panel">
         <div class="modal-header">
           <h2>📜 Certificación Oficial de Acreditación</h2>
-          <p>Wisrovi Academy of Advanced Software & AI Architecture</p>
+          <button style="background:none; border:none; color:#fff; font-size:1.6rem; cursor:pointer;" id="close-cert-btn">&times;</button>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="student-name-input">Nombre Completo para el Certificado:</label>
-            <input type="text" id="student-name-input" class="form-control" value="Alejandro Martínez">
-          </div>
-          <div class="cert-preview-frame" id="cert-preview-frame">
-            <!-- Preview HTML del certificado -->
-          </div>
+        <div style="display:flex; gap:0.6rem; align-items:center;">
+          <label style="font-size:0.88rem; color:#94a3b8;">Nombre en el Diploma:</label>
+          <input type="text" id="student-name-input" style="flex:1; padding:0.5rem 0.75rem; background:#060911; border:1px solid #334155; color:#fff; border-radius:7px; font-weight:700;" value="Alejandro Martínez">
+          <button class="btn btn-primary" id="refresh-cert-btn">Actualizar Vista</button>
         </div>
-        <div class="modal-footer">
+        <div class="cert-view" id="cert-preview-frame"></div>
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
           <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
           <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
         </div>
@@ -229,6 +248,7 @@
     </div>
 
   </div>
+
   <script src="/static/app.js"></script>
 </body>
 </html>
