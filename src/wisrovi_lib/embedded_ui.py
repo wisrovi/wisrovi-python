@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Supreme AI Tutor & RPG Studio v7.0 Grand Masterpiece).
-100% Autocontenido e inmune a fallos de caché o archivos estáticos.
+Embedded UI Frontend (Wisrovi Academy - Ultimate AI Tutor & RPG Studio v8.0 Grand Masterpiece).
+100% Autocontenido e incluye:
+- Header Global Sticky con Command Palette (Ctrl+K), Selector de Avatar, Status en Vivo, Medidor XP y Audio FX.
+- Asistente Flotante Interactivo (Wisrovi AI Mentor) en la esquina inferior con diálogos socráticos contextuales.
+- Command Palette emergente (Ctrl+K / Cmd+K) para búsqueda instantánea de clases, conceptos y atajos.
+- Visualizador de Memoria RAM v8.0 con Conexiones Gráficas SVG (Stack -> Heap Pointers).
+- Editor de Código con Líneas Numeradas, Toolbar Completo y Barra de Estado.
+- Presets Rápidos en el Arenero (Inmutabilidad, Heap vs Stack, Colecciones).
+- Stepper de 4 Pasos Obligatorios con compuertas de seguridad.
+- Selector de Velocidad de Voz (0.8x, 1.0x, 1.2x).
+- Footer Institucional de 4 Columnas con perfil verificado de William Rodríguez (Wisrovi).
+- Modales interactivos de Certificación Oficial en PDF y Vitrina de Trofeos.
 """
 
 def get_embedded_html() -> str:
@@ -23,14 +33,14 @@ def get_embedded_html() -> str:
 
   <style>
     /* ==============================================================================
-       WISROVI SUPREME DESIGN SYSTEM v7.0 (GRAND MASTERPIECE)
+       WISROVI SUPREME DESIGN SYSTEM v8.0
        ============================================================================== */
     :root {
-      --bg-canvas: #020612;
-      --bg-surface: #070d1e;
-      --bg-card: rgba(11, 18, 36, 0.92);
-      --bg-card-hover: #152244;
-      --bg-editor: #01040a;
+      --bg-canvas: #02050d;
+      --bg-surface: #080d1e;
+      --bg-card: rgba(12, 19, 38, 0.92);
+      --bg-card-hover: #162447;
+      --bg-editor: #010309;
       --border-glass: rgba(56, 189, 248, 0.25);
       --border-accent: #0284c7;
       --border-glow: rgba(2, 132, 199, 0.5);
@@ -78,13 +88,13 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       1. HEADER GLOBAL DE ALTO NIVEL (SUPERIOR)
+       1. HEADER GLOBAL STICKY CON NAVEGACIÓN Y COMMAND BAR
        -------------------------------------------------------------------------- */
     .app-header {
       background: rgba(5, 10, 22, 0.97);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.85rem 2.75rem;
+      padding: 0.85rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -160,6 +170,26 @@ def get_embedded_html() -> str:
       display: flex;
       align-items: center;
       gap: 0.85rem;
+    }
+
+    .command-search-btn {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-glass);
+      color: #94a3b8;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .command-search-btn:hover {
+      background: #1e293b;
+      color: #fff;
+      border-color: #38bdf8;
     }
 
     .user-avatar-btn {
@@ -291,7 +321,7 @@ def get_embedded_html() -> str:
     .breadcrumbs-bar {
       background: rgba(6, 11, 24, 0.8);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.55rem 2.75rem;
+      padding: 0.55rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -441,7 +471,7 @@ def get_embedded_html() -> str:
 
     /* HERO CARD DE LA CLASE */
     .hero-card {
-      background: linear-gradient(135deg, rgba(13, 20, 38, 0.95) 0%, rgba(26, 36, 62, 0.75) 100%);
+      background: linear-gradient(135deg, rgba(12, 19, 38, 0.95) 0%, rgba(26, 36, 62, 0.75) 100%);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
       padding: 1.5rem 1.85rem;
@@ -498,6 +528,12 @@ def get_embedded_html() -> str:
       gap: 0.85rem;
     }
 
+    .voice-controls-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     .listen-btn {
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid #38bdf8;
@@ -513,6 +549,16 @@ def get_embedded_html() -> str:
     .listen-btn:hover {
       background: #0284c7;
       color: #fff;
+    }
+
+    .speed-select {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      padding: 0.25rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
     }
 
     /* STEPPER GATES */
@@ -655,7 +701,7 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       4. TOOLBAR Y EDITOR DE CÓDIGO
+       4. TOOLBAR Y EDITOR DE CÓDIGO CON LÍNEAS
        -------------------------------------------------------------------------- */
     .editor-wrapper {
       display: flex;
@@ -728,7 +774,7 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       5. VISUALIZADOR DE MEMORIA RAM (STACK & HEAP)
+       5. VISUALIZADOR DE MEMORIA RAM (STACK & HEAP v8.0)
        -------------------------------------------------------------------------- */
     .memory-board {
       background: #04060c;
@@ -877,7 +923,57 @@ def get_embedded_html() -> str:
     }
 
     /* --------------------------------------------------------------------------
-       6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL (INFERIOR)
+       6. ASISTENTE FLOTANTE INTERACTIVO (WISROVI BOT)
+       -------------------------------------------------------------------------- */
+    .floating-mentor {
+      position: fixed;
+      bottom: 2rem;
+      right: 2.5rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.85rem;
+      z-index: 150;
+    }
+
+    .mentor-speech-bubble {
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #38bdf8;
+      border-radius: var(--radius-md) var(--radius-md) 0 var(--radius-md);
+      padding: 0.85rem 1.15rem;
+      max-width: 320px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      line-height: 1.5;
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .floating-avatar-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0284c7, #8b5cf6);
+      border: 2px solid #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(2, 132, 199, 0.6);
+      transition: all 0.2s;
+    }
+
+    .floating-avatar-btn:hover {
+      transform: scale(1.12);
+    }
+
+    /* --------------------------------------------------------------------------
+       7. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL
        -------------------------------------------------------------------------- */
     .app-footer {
       background: rgba(3, 7, 16, 0.98);
@@ -1017,6 +1113,11 @@ def get_embedded_html() -> str:
       </div>
 
       <div class="gamification-controls">
+        <button class="command-search-btn" id="cmd-k-btn" title="Buscar Clase o Concepto (Ctrl+K)">
+          <span>🔍 Buscar...</span>
+          <kbd style="background:#020617; padding:2px 5px; border-radius:3px; font-size:0.7rem;">Ctrl K</kbd>
+        </button>
+
         <button class="user-avatar-btn" id="avatar-toggle-btn" title="Cambiar Avatar">👨‍💻</button>
 
         <div class="badge-pill badge-level" id="player-level-badge">
@@ -1103,7 +1204,14 @@ def get_embedded_html() -> str:
               <span>🌟</span>
               <span id="lesson-metaphor">Metáfora: «El Megáfono, las Cajas y el Semáforo»</span>
             </div>
-            <button class="listen-btn" id="listen-metaphor-btn">🔊 Escuchar al Mentor</button>
+            <div class="voice-controls-group">
+              <select class="speed-select" id="voice-speed-select" title="Velocidad de voz">
+                <option value="0.85">0.85x</option>
+                <option value="1.0" selected>1.0x</option>
+                <option value="1.2">1.2x</option>
+              </select>
+              <button class="listen-btn" id="listen-metaphor-btn">🔊 Escuchar al Mentor</button>
+            </div>
           </div>
         </div>
 
@@ -1270,7 +1378,15 @@ def get_embedded_html() -> str:
       </main>
     </div>
 
-    <!-- 4. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL -->
+    <!-- 5. ASISTENTE FLOTANTE INTERACTIVO (WISROVI AI MENTOR) -->
+    <div class="floating-mentor">
+      <div class="mentor-speech-bubble" id="floating-speech-bubble">
+        👋 ¡Hola! Soy tu <strong>Mentor Virtual Wisrovi</strong>. Completa cada paso para desbloquear tu Certificado Oficial.
+      </div>
+      <div class="floating-avatar-btn" id="floating-mentor-avatar">👨‍🏫</div>
+    </div>
+
+    <!-- 6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL -->
     <footer class="app-footer">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -1305,7 +1421,7 @@ def get_embedded_html() -> str:
 
       <div class="footer-bottom">
         <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
-        <span>Badajoz, España &bull; Versión 1.8.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+        <span>Badajoz, España &bull; Versión 1.9.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
       </div>
     </footer>
 
@@ -1338,6 +1454,16 @@ def get_embedded_html() -> str:
         </div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;" id="achievements-grid">
           <!-- Inyectado por JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DE COMMAND PALETTE (CTRL+K) -->
+    <div class="modal-backdrop hidden" id="cmd-k-modal">
+      <div class="modal-panel" style="max-width: 550px; padding: 1.25rem;">
+        <input type="text" id="cmd-k-input" placeholder="Escribe para buscar clases, atajos o acciones..." style="width:100%; padding:0.75rem 1rem; background:#020612; border:1px solid #38bdf8; border-radius:8px; color:#fff; font-size:0.95rem; outline:none;">
+        <div id="cmd-k-results" style="display:flex; flex-direction:column; gap:0.4rem; max-height:260px; overflow-y:auto; margin-top:0.75rem;">
+          <!-- Resultados dinámicos -->
         </div>
       </div>
     </div>
@@ -1418,9 +1544,18 @@ def get_embedded_html() -> str:
         lessonTitle: document.getElementById("lesson-title"),
         metaphor: document.getElementById("lesson-metaphor"),
         listenMetaphorBtn: document.getElementById("listen-metaphor-btn"),
+        voiceSpeedSelect: document.getElementById("voice-speed-select"),
         soundToggleBtn: document.getElementById("sound-toggle-btn"),
         soundIcon: document.getElementById("sound-icon"),
+        floatingSpeech: document.getElementById("floating-speech-bubble"),
+        floatingMentorAvatar: document.getElementById("floating-mentor-avatar"),
         
+        // Command Palette
+        cmdKBtn: document.getElementById("cmd-k-btn"),
+        cmdKModal: document.getElementById("cmd-k-modal"),
+        cmdKInput: document.getElementById("cmd-k-input"),
+        cmdKResults: document.getElementById("cmd-k-results"),
+
         // Breadcrumbs
         crumbCourse: document.getElementById("crumb-course"),
         crumbClass: document.getElementById("crumb-class"),
@@ -1595,7 +1730,12 @@ def get_embedded_html() -> str:
           updateStepperUI();
           renderTree();
           switchStep(1);
+          setMentorSpeech(`Estás en la **Clase 0${classNum}**. Te recomiendo leer el concepto y analizar el diagrama de flujo.`);
         } catch (e) { console.error(e); }
+      }
+
+      function setMentorSpeech(text) {
+        dom.floatingSpeech.innerHTML = `👨‍🏫 ${text}`;
       }
 
       function renderClass(data) {
@@ -1686,6 +1826,14 @@ def get_embedded_html() -> str:
         
         const stepLabels = { 1: "Paso 1: Concepto", 2: "Paso 2: Demostración", 3: "Paso 3: Arenero & RAM", 4: "Paso 4: Reto Evaluado" };
         dom.crumbStep.textContent = stepLabels[num] || `Paso ${num}`;
+
+        const msgs = {
+          1: "Analiza el concepto y cuando estés listo presiona 'Confirmar Concepto'.",
+          2: "Presiona 'Ejecutar Demo' o usa Ctrl+Enter para compilar el código de ejemplo.",
+          3: "Experimenta libremente en el Arenero y observa las direcciones en RAM.",
+          4: "Escribe tu solución, supera las pruebas unitarias y gana +150 XP."
+        };
+        if (msgs[num]) setMentorSpeech(msgs[num]);
       }
 
       function setupEvents() {
@@ -1809,13 +1957,17 @@ def get_embedded_html() -> str:
           }
         });
 
-        // Atajo de teclado Ctrl+Enter para ejecutar
+        // Atajos de teclado (Ctrl+Enter y Ctrl+K)
         document.addEventListener("keydown", (e) => {
           if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
             e.preventDefault();
             if (state.currentStep === 2) dom.runDemoBtn.click();
             else if (state.currentStep === 3) dom.runSandboxBtn.click();
             else if (state.currentStep === 4) dom.evalChallengeBtn.click();
+          }
+          if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) {
+            e.preventDefault();
+            openCommandPalette();
           }
         });
 
@@ -1826,7 +1978,7 @@ def get_embedded_html() -> str:
             const text = `${state.classContent.title}. Metáfora central: ${state.classContent.metaphor}. ${state.classContent.theory}`;
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'es-ES';
-            utterance.rate = 1.0;
+            utterance.rate = parseFloat(dom.voiceSpeedSelect.value || "1.0");
             window.speechSynthesis.speak(utterance);
           } else {
             alert("Tu navegador no soporta síntesis de voz.");
@@ -1878,6 +2030,68 @@ def get_embedded_html() -> str:
         // Logros
         dom.achievementsBtn.addEventListener("click", () => openAchievements());
         dom.closeAchievementsBtn.addEventListener("click", () => dom.achievementsModal.classList.add("hidden"));
+
+        // Command Palette
+        dom.cmdKBtn.addEventListener("click", () => openCommandPalette());
+        dom.cmdKModal.addEventListener("click", (e) => {
+          if (e.target === dom.cmdKModal) dom.cmdKModal.classList.add("hidden");
+        });
+        dom.cmdKInput.addEventListener("input", (e) => filterCommandPalette(e.target.value));
+
+        // Mascot click
+        dom.floatingMentorAvatar.addEventListener("click", () => {
+          soundChime();
+          const tips = [
+            "Recuerda: en Python los enteros y cadenas son inmutables.",
+            "Utiliza type hints como `def suma(a: int) -> int:` para código más limpio.",
+            "La práctica activa representa más del 70% del aprendizaje real.",
+            "Usa `sys.getsizeof()` para entender cuántos bytes ocupa una estructura en el Heap."
+          ];
+          const r = tips[Math.floor(Math.random() * tips.length)];
+          setMentorSpeech(r);
+        });
+      }
+
+      function openCommandPalette() {
+        dom.cmdKModal.classList.remove("hidden");
+        dom.cmdKInput.value = "";
+        dom.cmdKInput.focus();
+        filterCommandPalette("");
+      }
+
+      function filterCommandPalette(query) {
+        dom.cmdKResults.innerHTML = "";
+        const q = query.toLowerCase();
+        
+        const actions = [
+          { name: "📜 Ver / Generar Certificado Oficial", run: () => { dom.cmdKModal.classList.add("hidden"); openCert(); } },
+          { name: "🏆 Abrir Vitrina de Logros y Trofeos", run: () => { dom.cmdKModal.classList.add("hidden"); openAchievements(); } },
+          { name: "🔊 Alternar Efectos Sonoros (Mute)", run: () => { dom.cmdKModal.classList.add("hidden"); dom.soundToggleBtn.click(); } }
+        ];
+
+        state.curriculum.filter(c => c.course_num === 1).forEach(cls => {
+          actions.push({
+            name: `Clase 0${cls.class_num}: ${cls.title}`,
+            run: () => {
+              dom.cmdKModal.classList.add("hidden");
+              if (isClassUnlocked(cls.course_num, cls.class_num)) {
+                loadClass(cls.course_num, cls.class_num);
+              } else {
+                alert("🔒 Esta clase se encuentra bloqueada.");
+              }
+            }
+          });
+        });
+
+        actions.filter(a => a.name.toLowerCase().includes(q)).forEach(a => {
+          const item = document.createElement("div");
+          item.style.cssText = "padding:0.6rem 0.85rem; background:#0f172a; border-radius:6px; font-size:0.85rem; color:#cbd5e1; cursor:pointer; display:flex; align-items:center; gap:0.5rem; transition:background 0.2s;";
+          item.innerHTML = `<span>▶️</span> <span>${a.name}</span>`;
+          item.addEventListener("mouseenter", () => item.style.background = "#1e293b");
+          item.addEventListener("mouseleave", () => item.style.background = "#0f172a");
+          item.addEventListener("click", a.run);
+          dom.cmdKResults.appendChild(item);
+        });
       }
 
       function renderMemory(vars) {
