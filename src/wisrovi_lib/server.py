@@ -70,19 +70,24 @@ def update_profile(req: UpdateProfileRequest):
 
 @app.get("/api/curriculum")
 def get_curriculum():
-    """Retorna la lista de todas las clases y su estado de compleción."""
-    summary = TutorEngine.get_all_classes_summary()
-    completed = set(gamification.profile.completed_classes)
+    """Retorna el árbol curricular con progreso del estudiante (Curso 1 activo)."""
+    classes = TutorEngine.get_all_classes_summary()
+    completed_set = set(gamification.profile.completed_classes)
     
-    for item in summary:
-        key = f"{item['course_num']}-{item['class_num']}"
-        item["completed"] = key in completed
+    for c in classes:
+        c["completed"] = c["key"] in completed_set
+        c["available"] = (c["course_num"] == 1)
         
+    c1_classes = [c for c in classes if c["course_num"] == 1]
+    c1_completed = sum(1 for c in c1_classes if c["completed"])
+    pct = int((c1_completed / len(c1_classes)) * 100) if c1_classes else 0
+    
     return {
-        "classes": summary,
-        "total_classes": len(summary),
-        "completed_count": len(completed),
-        "progress_percent": int((len(completed) / max(len(summary), 1)) * 100)
+        "classes": classes,
+        "total_classes": len(c1_classes),
+        "completed_count": c1_completed,
+        "progress_percent": pct,
+        "active_course": 1
     }
 
 @app.get("/api/class/{course_num}/{class_num}")

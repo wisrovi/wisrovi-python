@@ -161,30 +161,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function isClassUnlocked(courseNum, classNum) {
+    if (courseNum > 1) return false; // Cursos 2, 3 y 4 desactivados por ahora
     if (courseNum === 1 && classNum === 1) return true;
     const completed = new Set(state.profile ? state.profile.completed_classes : []);
-    
-    if (classNum > 1) {
-      return completed.has(`${courseNum}-${classNum - 1}`);
-    } else if (courseNum > 1) {
-      return completed.has(`${courseNum - 1}-8`);
-    }
-    return false;
+    return completed.has(`1-${classNum - 1}`);
   }
 
   function renderTree() {
     dom.classTree.innerHTML = "";
     const courses = [
-      { id: 1, name: "Curso 1: Fundamentos Básicos" },
-      { id: 2, name: "Curso 2: Algoritmos y Estructuras" },
-      { id: 3, name: "Curso 3: Agentes de IA" },
-      { id: 4, name: "Curso 4: Proyecto Final Integrador" }
+      { id: 1, name: "Curso 1: Fundamentos Básicos", available: true },
+      { id: 2, name: "Curso 2: Algoritmos y Estructuras", available: false, badge: "Próximamente" },
+      { id: 3, name: "Curso 3: Agentes de IA", available: false, badge: "Próximamente" },
+      { id: 4, name: "Curso 4: Proyecto Final Integrador", available: false, badge: "Próximamente" }
     ];
 
     courses.forEach(c => {
       const grp = document.createElement("div");
       grp.className = "course-section";
-      grp.innerHTML = `<div class="course-header">${c.name}</div>`;
+      const badgeHtml = c.available ? "" : '<span style="color:#fbbf24; font-size:0.68rem; text-transform:none; border:1px solid rgba(245,158,11,0.4); padding:0.1rem 0.4rem; border-radius:4px; background:rgba(245,158,11,0.1);">🔒 Próximamente</span>';
+      grp.innerHTML = `<div class="course-header"><span>${c.name}</span> ${badgeHtml}</div>`;
 
       const courseClasses = state.curriculum.filter(cls => cls.course_num === c.id);
       courseClasses.forEach(cls => {
@@ -209,7 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           item.addEventListener("click", () => {
             soundError();
-            alert("🔒 Esta clase está bloqueada. Debes completar y superar todas las clases anteriores para desbloquearla.");
+            if (!c.available) {
+              alert("🔒 Este curso se encuentra temporalmente desactivado. Completa las 8 clases del Curso 1: Fundamentos Básicos de Python para obtener tu acreditación oficial.");
+            } else {
+              alert("🔒 Esta clase está bloqueada. Debes completar y superar la clase anterior.");
+            }
           });
         }
 
@@ -428,16 +428,22 @@ document.addEventListener("DOMContentLoaded", () => {
       dom.soundToggleBtn.style.borderColor = state.soundEnabled ? "#38bdf8" : "#64748b";
     });
 
-    // Footer buttons
+    // Footer buttons (Exclusivo Curso 1)
     dom.prevBtn.addEventListener("click", () => {
-      if (state.currentClass > 1) loadClass(state.currentCourse, state.currentClass - 1);
-      else if (state.currentCourse > 1) loadClass(state.currentCourse - 1, 8);
+      if (state.currentClass > 1) {
+        loadClass(1, state.currentClass - 1);
+      }
     });
 
     dom.nextBtn.addEventListener("click", () => {
       if (dom.nextBtn.disabled) return;
-      if (state.currentClass < 8) loadClass(state.currentCourse, state.currentClass + 1);
-      else if (state.currentCourse < 4) loadClass(state.currentCourse + 1, 1);
+      if (state.currentClass < 8) {
+        loadClass(1, state.currentClass + 1);
+      } else if (state.currentClass === 8) {
+        soundVictory();
+        alert("🎉 ¡FELICITACIONES! Has completado y superado las 8 clases del Curso 1: Fundamentos Básicos de Python.\n\nGenerando tu Certificado Oficial de Acreditación...");
+        openCert();
+      }
     });
 
     // Certificado

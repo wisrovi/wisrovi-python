@@ -105,6 +105,7 @@ def cmd_list(args):
     
     table = Table(title="🗺️ Mapa Integral de Cursos y Clases Semanales", border_style="cyan")
     table.add_column("Curso", style="bold green", justify="center")
+    table.add_column("Estado", justify="center")
     table.add_column("Semana", style="bold yellow", justify="center")
     table.add_column("Directorio de la Clase", style="bold white")
     table.add_column("Metáfora Didáctica", style="italic cyan")
@@ -114,22 +115,29 @@ def cmd_list(args):
     for c_num, data in COURSES_DATA.items():
         if filter_course and int(filter_course) != c_num:
             continue
+        is_active = (c_num == 1)
+        status_tag = "[bold green]✅ Activo[/bold green]" if is_active else "[bold yellow]🔒 Próximamente[/bold yellow]"
+        
         for idx, (folder, metaphor) in enumerate(data["classes"], start=1):
             table.add_row(
                 f"C{c_num}",
+                status_tag,
                 f"S{idx:02d}",
-                folder,
-                f"«{metaphor}»"
+                folder if is_active else f"[dim]{folder}[/dim]",
+                f"«{metaphor}»" if is_active else f"[dim]«{metaphor}»[/dim]"
             )
             
     console.print(table)
-    console.print("\n💡 [bold yellow]Tip:[/bold yellow] Usa [bold cyan]wisrovi start <curso> <clase>[/bold cyan] para abrir una sesión de trabajo.")
+    console.print("\n💡 [bold yellow]Tip:[/bold yellow] Usa [bold cyan]wisrovi start 1 <clase>[/bold cyan] o [bold cyan]wisrovi ui[/bold cyan] para abrir el Tutor Virtual Interactivo.")
 
 def cmd_start(args):
     console.print(BANNER)
     try:
         c_num = int(args.course)
         clase_idx = int(args.clase)
+        if c_num != 1:
+            console.print("[bold yellow]🔒 Los Cursos 2, 3 y 4 se encuentran temporalmente desactivados. Por ahora, solo está disponible el Curso 1: Fundamentos Básicos de Python (Clases 1 a 8).[/bold yellow]")
+            sys.exit(0)
         data = COURSES_DATA[c_num]
         folder, metaphor = data["classes"][clase_idx - 1]
     except Exception:
