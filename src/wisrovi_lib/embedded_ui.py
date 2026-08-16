@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 """
-Embedded UI Frontend (Wisrovi Academy - Virtual AI Tutor & RPG v2.0).
-Incluye sistema de bloqueos secuenciales estrictos (4 pasos obligatorios por clase),
-efectos de sonido sintetizados (Web Audio API), narración socrática (Web Speech API),
-visualizador interactivo de Heap/Stack y diseño Neo-Cyber Glassmorphism de clase mundial.
+Embedded UI Frontend (Wisrovi Academy - Virtual AI Tutor & RPG Studio v3.0 Masterpiece).
+Incluye:
+- Header Global con Avatar Selector, Timer de Sesión, Switch de Audio, Medidor XP y Badges.
+- Footer Institucional con Perfil del Mentor (Wisrovi), Metodología en Espiral y Enlaces.
+- Breadcrumbs y Barra de Navegación Rápida.
+- Editor de Código con Barra de Herramientas (Copiar, Restaurar, Limpiar, Atajo Ctrl+Enter).
+- Visualizador de Memoria RAM v3.0 (Stack vs Heap con Cajas y Flechas de Punteros).
+- Modal de Vitrina de Trofeos e Insignias Desbloqueables.
+- Asistente Socrático Flotante con Diálogo Dinámico.
+- Sistema de Compra/Desbloqueo Progresivo de Pistas.
+- Celebración de Victoria con Confeti y Fanfarria en 8-Bits.
+- Detección Activa de Modificación de Código en Tiempo Real.
 """
 
 def get_embedded_html() -> str:
@@ -14,57 +22,61 @@ def get_embedded_html() -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wisrovi Academy - Virtual AI Tutor & RPG de Programación</title>
   
-  <!-- Google Fonts: Inter, Outfit & JetBrains Mono -->
+  <!-- Tipografías de Alta Fidelidad: Outfit, Inter y JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
   
   <!-- CDN Libraries: Mermaid & Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <style>
-    /* ==========================================================================
-       WISROVI MASTERPIECE DESIGN SYSTEM (NEO-CYBER GLASSMORPHISM)
-       ========================================================================== */
+    /* ==============================================================================
+       WISROVI DESIGN SYSTEM v3.0 (CYBER-ACADEMIC MASTERPIECE)
+       ============================================================================== */
     :root {
-      --bg-canvas: #050811;
-      --bg-card: rgba(13, 20, 36, 0.88);
-      --bg-card-solid: #0d1424;
-      --bg-card-hover: #1e293b;
-      --bg-editor: #03060d;
-      --border-glass: rgba(56, 189, 248, 0.18);
-      --border-accent: #0284c7;
-      --border-glow: rgba(2, 132, 199, 0.4);
+      --bg-canvas: #040711;
+      --bg-surface: #0a1020;
+      --bg-card: rgba(13, 22, 41, 0.85);
+      --bg-card-solid: #0d1629;
+      --bg-card-hover: #15223c;
+      --bg-editor: #020409;
+      --border-subtle: rgba(56, 189, 248, 0.12);
+      --border-glass: rgba(56, 189, 248, 0.22);
+      --border-focus: #0284c7;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --text-dim: #64748b;
       --primary: #0284c7;
       --primary-hover: #0369a1;
-      --primary-glow: rgba(2, 132, 199, 0.35);
-      --success: #059669;
-      --success-hover: #047857;
-      --success-glow: rgba(5, 150, 105, 0.4);
+      --primary-glow: rgba(2, 132, 199, 0.4);
+      --success: #10b981;
+      --success-hover: #059669;
+      --success-glow: rgba(16, 185, 129, 0.4);
       --accent-gold: #f59e0b;
       --accent-gold-glow: rgba(245, 158, 11, 0.4);
       --accent-purple: #8b5cf6;
       --danger: #ef4444;
-      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-display: 'Outfit', sans-serif;
       --font-code: 'JetBrains Mono', 'Fira Code', monospace;
-      --radius: 12px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
       --radius-lg: 16px;
-      --shadow-card: 0 12px 30px -8px rgba(0, 0, 0, 0.6);
-      --shadow-neon: 0 0 20px rgba(2, 132, 199, 0.25);
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+      --shadow-neon: 0 0 25px rgba(2, 132, 199, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: var(--font-ui);
       background-color: var(--bg-canvas);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.15) 0px, transparent 55%),
-        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(5, 150, 105, 0.08) 0px, transparent 60%);
+        radial-gradient(circle at 10% 10%, rgba(2, 132, 199, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 15%, rgba(139, 92, 246, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -75,134 +87,157 @@ def get_embedded_html() -> str:
     .app-wrapper {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     /* --------------------------------------------------------------------------
-       HEADER GAMIFICADO & AUDIO BAR
+       1. HEADER GLOBAL DE ALTO NIVEL
        -------------------------------------------------------------------------- */
     .app-header {
-      background: rgba(10, 16, 30, 0.95);
-      backdrop-filter: blur(16px);
+      background: rgba(8, 14, 28, 0.95);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-glass);
-      padding: 0.75rem 2rem;
+      padding: 0.65rem 1.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 50;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .brand-container {
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
 
     .brand-logo-badge {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       background: linear-gradient(135deg, #0284c7, #8b5cf6);
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       box-shadow: 0 0 20px rgba(2, 132, 199, 0.5);
-      animation: pulseGlow 4s infinite alternate;
     }
 
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 15px rgba(2, 132, 199, 0.3); }
-      100% { box-shadow: 0 0 25px rgba(139, 92, 246, 0.6); }
-    }
-
-    .brand-titles h1 {
+    .brand-text h1 {
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 900;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.4px;
       background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .brand-titles p {
-      font-size: 0.75rem;
+    .brand-text p {
+      font-size: 0.72rem;
       color: var(--text-muted);
       font-weight: 600;
     }
 
-    .gamification-bar {
+    .engine-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulseGreen 2s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    .gamification-controls {
       display: flex;
       align-items: center;
-      gap: 1.1rem;
+      gap: 0.85rem;
+    }
+
+    .user-avatar-btn {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-glass);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: var(--shadow-card);
+    }
+
+    .user-avatar-btn:hover {
+      border-color: #38bdf8;
+      transform: scale(1.08);
     }
 
     .badge-pill {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-glass);
-      padding: 0.45rem 0.95rem;
+      padding: 0.4rem 0.85rem;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       box-shadow: var(--shadow-card);
-      transition: all 0.2s;
     }
 
     .badge-level {
-      border-color: rgba(56, 189, 248, 0.5);
+      border-color: rgba(56, 189, 248, 0.4);
       color: #38bdf8;
-      background: rgba(2, 132, 199, 0.15);
+      background: rgba(2, 132, 199, 0.12);
     }
 
     .badge-streak {
-      border-color: rgba(249, 115, 22, 0.5);
+      border-color: rgba(249, 115, 22, 0.4);
       color: #fb923c;
-      background: rgba(249, 115, 22, 0.15);
+      background: rgba(249, 115, 22, 0.12);
     }
 
     .badge-timer {
       border-color: rgba(52, 211, 153, 0.4);
       color: #34d399;
-      background: rgba(5, 150, 105, 0.15);
+      background: rgba(16, 185, 129, 0.12);
       font-family: var(--font-code);
     }
 
-    .sound-toggle-btn {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border-glass);
-      color: #cbd5e1;
-      padding: 0.45rem 0.8rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .sound-toggle-btn:hover {
-      background: #1e293b;
-      color: #fff;
-    }
-
-    .xp-meter {
+    .xp-meter-box {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
-      width: 150px;
+      gap: 0.2rem;
+      width: 140px;
     }
 
-    .xp-text {
+    .xp-text-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -222,40 +257,88 @@ def get_embedded_html() -> str:
       transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
+    .header-icon-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-glass);
+      color: #cbd5e1;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .header-icon-btn:hover {
+      background: #1e293b;
+      color: #fff;
+    }
+
     .cert-btn {
       background: linear-gradient(135deg, #78350f, #d97706);
       border: 1px solid #f59e0b;
       color: #fff;
-      padding: 0.5rem 1.15rem;
-      border-radius: 9px;
-      font-size: 0.84rem;
+      padding: 0.45rem 1.05rem;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: all 0.2s;
       box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
     }
 
     .cert-btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5);
     }
 
     /* --------------------------------------------------------------------------
-       LAYOUT PRINCIPAL
+       2. BREADCRUMBS Y BARRA DE NAVEGACIÓN RÁPIDA
+       -------------------------------------------------------------------------- */
+    .breadcrumbs-bar {
+      background: rgba(10, 16, 30, 0.6);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.45rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumbs-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .breadcrumb-item {
+      color: #7dd3fc;
+      font-weight: 600;
+    }
+
+    .breadcrumb-sep {
+      color: var(--text-dim);
+    }
+
+    /* --------------------------------------------------------------------------
+       3. CONTENEDOR PRINCIPAL
        -------------------------------------------------------------------------- */
     .main-body {
       display: flex;
       flex: 1;
-      overflow: hidden;
     }
 
     /* SIDEBAR CURRICULAR */
     .sidebar {
-      width: 340px;
-      background: rgba(10, 16, 30, 0.85);
+      width: 350px;
+      background: rgba(8, 14, 28, 0.85);
       backdrop-filter: blur(16px);
       border-right: 1px solid var(--border-glass);
       display: flex;
@@ -263,7 +346,7 @@ def get_embedded_html() -> str:
     }
 
     .sidebar-title {
-      padding: 1.25rem 1.4rem;
+      padding: 1.15rem 1.4rem;
       border-bottom: 1px solid var(--border-glass);
       display: flex;
       justify-content: space-between;
@@ -272,7 +355,7 @@ def get_embedded_html() -> str:
 
     .sidebar-title h2 {
       font-family: var(--font-display);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -280,14 +363,14 @@ def get_embedded_html() -> str:
     }
 
     .progress-tag {
-      background: rgba(5, 150, 105, 0.2);
-      border: 1px solid #059669;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
       color: #34d399;
-      padding: 0.25rem 0.65rem;
+      padding: 0.2rem 0.65rem;
       border-radius: 999px;
       font-size: 0.74rem;
       font-weight: 800;
-      box-shadow: 0 0 10px rgba(5, 150, 105, 0.2);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
     }
 
     .curriculum-tree {
@@ -318,15 +401,14 @@ def get_embedded_html() -> str:
       align-items: center;
       justify-content: space-between;
       padding: 0.6rem 0.85rem;
-      border-radius: 9px;
+      border-radius: var(--radius-md);
       font-size: 0.83rem;
       font-weight: 600;
       color: #94a3b8;
       cursor: pointer;
       margin-bottom: 0.3rem;
       border: 1px solid transparent;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
+      transition: all 0.2s;
     }
 
     .class-item:hover:not(.locked) {
@@ -358,23 +440,19 @@ def get_embedded_html() -> str:
       cursor: not-allowed;
     }
 
-    .class-item.locked .item-status-icon {
-      color: #64748b;
-    }
-
     /* ESTUDIO CENTRAL */
     .studio {
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
-      padding: 1.75rem 2.25rem;
-      gap: 1.4rem;
+      padding: 1.5rem 2.25rem 2.5rem 2.25rem;
+      gap: 1.3rem;
     }
 
     /* HERO CARD DE LA CLASE */
     .hero-card {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.7) 100%);
+      background: linear-gradient(135deg, rgba(13, 22, 41, 0.95) 0%, rgba(26, 38, 64, 0.7) 100%);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
       padding: 1.4rem 1.75rem;
@@ -407,12 +485,6 @@ def get_embedded_html() -> str:
       padding: 0.2rem 0.6rem;
       border-radius: 6px;
       box-shadow: 0 0 14px rgba(220, 38, 38, 0.5);
-      animation: pulseBoss 2s infinite alternate;
-    }
-
-    @keyframes pulseBoss {
-      0% { transform: scale(0.98); }
-      100% { transform: scale(1.02); }
     }
 
     .hero-title {
@@ -426,8 +498,8 @@ def get_embedded_html() -> str:
     .metaphor-box {
       background: rgba(2, 132, 199, 0.1);
       border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 9px;
-      padding: 0.6rem 1rem;
+      border-radius: var(--radius-md);
+      padding: 0.65rem 1.1rem;
       font-size: 0.88rem;
       color: #7dd3fc;
       font-style: italic;
@@ -438,12 +510,12 @@ def get_embedded_html() -> str:
     }
 
     .listen-btn {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid #38bdf8;
       color: #38bdf8;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-      font-size: 0.74rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
@@ -454,29 +526,27 @@ def get_embedded_html() -> str:
       color: #fff;
     }
 
-    /* --------------------------------------------------------------------------
-       CHECKLIST DE LOS 4 PASOS OBLIGATORIOS (BARRA DINÁMICA DE BLOQUEO)
-       -------------------------------------------------------------------------- */
+    /* STEPPER GATES */
     .stepper-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0.75rem;
       background: rgba(10, 16, 30, 0.75);
       padding: 0.6rem;
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
       border: 1px solid var(--border-glass);
     }
 
     .step-gate-pill {
       background: rgba(15, 23, 42, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 9px;
+      border-radius: var(--radius-sm);
       padding: 0.65rem 0.9rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s;
     }
 
     .step-gate-pill:hover {
@@ -490,8 +560,8 @@ def get_embedded_html() -> str:
     }
 
     .step-gate-pill.done {
-      border-color: rgba(5, 150, 105, 0.6);
-      background: rgba(5, 150, 105, 0.12);
+      border-color: rgba(16, 185, 129, 0.6);
+      background: rgba(16, 185, 129, 0.12);
     }
 
     .step-gate-info {
@@ -513,11 +583,11 @@ def get_embedded_html() -> str:
     }
 
     .step-gate-pill.done .step-gate-status {
-      background: rgba(5, 150, 105, 0.3);
+      background: rgba(16, 185, 129, 0.3);
       color: #34d399;
     }
 
-    /* CONTENEDOR DE CONTENIDOS */
+    /* PANELES DE CONTENIDO */
     .tab-pane {
       display: none;
       flex-direction: column;
@@ -544,7 +614,7 @@ def get_embedded_html() -> str:
       background: var(--bg-card);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-glass);
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
       padding: 1.5rem;
       box-shadow: var(--shadow-card);
       display: flex;
@@ -578,7 +648,6 @@ def get_embedded_html() -> str:
       font-size: 0.88rem;
       color: #ddd6fe;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
     }
 
     .mentor-avatar {
@@ -588,22 +657,63 @@ def get_embedded_html() -> str:
     .mermaid-canvas {
       background: #04060c;
       border: 1px solid var(--border-glass);
-      border-radius: 10px;
+      border-radius: var(--radius-md);
       padding: 1.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 290px;
-      box-shadow: inset 0 2px 10px rgba(0,0,0,0.6);
     }
 
-    /* EDITORES DE CÓDIGO */
+    /* --------------------------------------------------------------------------
+       4. EDITOR DE CÓDIGO CON TOOLBAR PROFESIONAL
+       -------------------------------------------------------------------------- */
+    .editor-wrapper {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-editor);
+    }
+
+    .editor-toolbar {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.4rem 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .editor-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .tool-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tool-btn:hover {
+      background: #334155;
+      color: #fff;
+    }
+
     .code-editor {
       width: 100%;
-      height: 250px;
+      height: 240px;
       background: var(--bg-editor);
-      border: 1px solid var(--border-glass);
-      border-radius: 10px;
+      border: none;
       color: #38bdf8;
       font-family: var(--font-code);
       font-size: 0.92rem;
@@ -611,19 +721,12 @@ def get_embedded_html() -> str:
       padding: 1rem;
       resize: vertical;
       outline: none;
-      box-shadow: inset 0 3px 8px rgba(0,0,0,0.6);
-      transition: border-color 0.2s;
-    }
-
-    .code-editor:focus {
-      border-color: #0284c7;
-      box-shadow: 0 0 15px rgba(2, 132, 199, 0.35);
     }
 
     .terminal-output {
       background: #03050a;
       border: 1px solid var(--border-glass);
-      border-radius: 10px;
+      border-radius: var(--radius-md);
       padding: 0.85rem 1.15rem;
       font-family: var(--font-code);
       font-size: 0.85rem;
@@ -632,21 +735,28 @@ def get_embedded_html() -> str:
       max-height: 200px;
       overflow-y: auto;
       white-space: pre-wrap;
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.7);
     }
 
-    /* VISUALIZADOR DE MEMORIA EN VIVO */
+    /* --------------------------------------------------------------------------
+       5. VISUALIZADOR DE MEMORIA RAM v3.0 (STACK & HEAP)
+       -------------------------------------------------------------------------- */
+    .memory-dashboard {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
     .memory-board {
       background: #04060c;
       border: 1px solid var(--border-glass);
-      border-radius: 10px;
+      border-radius: var(--radius-md);
       padding: 1rem;
       min-height: 270px;
       max-height: 340px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.65rem;
     }
 
     .empty-state {
@@ -663,13 +773,13 @@ def get_embedded_html() -> str:
       background: rgba(15, 23, 42, 0.95);
       border: 1px solid var(--border-glass);
       border-left: 4px solid #0284c7;
-      border-radius: 9px;
+      border-radius: var(--radius-sm);
       padding: 0.7rem 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.88rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.2s;
     }
 
     .mem-card:hover {
@@ -693,7 +803,7 @@ def get_embedded_html() -> str:
       background: #1e293b;
       border: 1px solid #334155;
       padding: 0.2rem 0.55rem;
-      border-radius: 5px;
+      border-radius: 4px;
       font-size: 0.74rem;
       color: #fbbf24;
       font-weight: 800;
@@ -709,7 +819,7 @@ def get_embedded_html() -> str:
     /* BOTONES */
     .btn {
       padding: 0.65rem 1.35rem;
-      border-radius: 9px;
+      border-radius: var(--radius-md);
       font-weight: 800;
       font-size: 0.88rem;
       cursor: pointer;
@@ -717,7 +827,7 @@ def get_embedded_html() -> str:
       display: inline-flex;
       align-items: center;
       gap: 0.55rem;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.2s;
     }
 
     .btn:disabled {
@@ -739,14 +849,14 @@ def get_embedded_html() -> str:
     }
 
     .btn-success {
-      background: linear-gradient(135deg, #059669, #047857);
+      background: linear-gradient(135deg, #10b981, #059669);
       color: #fff;
       box-shadow: 0 4px 15px var(--success-glow);
     }
 
     .btn-success:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.55);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.55);
     }
 
     .btn-secondary {
@@ -758,7 +868,6 @@ def get_embedded_html() -> str:
     .btn-secondary:hover:not(:disabled) {
       background: #334155;
       color: #fff;
-      transform: translateY(-1px);
     }
 
     .flex-between {
@@ -767,7 +876,7 @@ def get_embedded_html() -> str:
       align-items: center;
     }
 
-    /* FOOTER */
+    /* FOOTER DE ESTUDIO */
     .studio-footer {
       display: flex;
       justify-content: space-between;
@@ -783,22 +892,100 @@ def get_embedded_html() -> str:
       font-weight: 700;
     }
 
-    /* MODAL CERTIFICADO */
+    /* --------------------------------------------------------------------------
+       6. FOOTER INSTITUCIONAL COMPLETO DE CLASE MUNDIAL
+       -------------------------------------------------------------------------- */
+    .app-footer {
+      background: rgba(6, 10, 20, 0.98);
+      border-top: 1px solid var(--border-glass);
+      padding: 2.25rem 2.5rem 1.75rem 2.5rem;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.84rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+      max-width: 520px;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #7dd3fc;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-links a:hover {
+      color: #38bdf8;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: #64748b;
+    }
+
+    /* MODALES */
     .modal-backdrop {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 100;
+      z-index: 200;
     }
 
     .modal-backdrop.hidden { display: none; }
 
     .modal-panel {
-      background: #0d1424;
+      background: #0d1629;
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
       width: 90%;
@@ -825,31 +1012,36 @@ def get_embedded_html() -> str:
       max-height: 420px;
       overflow: auto;
       border: 2px solid #d97706;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
   </style>
 </head>
 <body>
   <div class="app-wrapper">
     
-    <!-- HEADER GAMIFICADO -->
+    <!-- 1. HEADER GLOBAL GAMIFICADO -->
     <header class="app-header">
-      <div class="brand-container">
+      <div class="brand-group">
         <div class="brand-logo-badge">🐍</div>
-        <div class="brand-titles">
+        <div class="brand-text">
           <h1>Wisrovi Academy</h1>
           <p>Virtual AI Tutor &bull; RPG de Aprendizaje en Espiral</p>
         </div>
+        <div class="engine-status-pill">
+          <div class="pulse-dot"></div>
+          <span>Motor Activo</span>
+        </div>
       </div>
 
-      <div class="gamification-bar">
+      <div class="gamification-controls">
+        <button class="user-avatar-btn" id="avatar-toggle-btn" title="Cambiar Avatar">👨‍💻</button>
+
         <div class="badge-pill badge-level" id="player-level-badge">
           <span>🌱</span>
           <span id="player-level-title">Nv. 1 Aprendiz</span>
         </div>
 
-        <div class="xp-meter">
-          <div class="xp-text">
+        <div class="xp-meter-box">
+          <div class="xp-text-row">
             <span>XP: <strong id="player-xp-val" style="color: #38bdf8;">0</strong></span>
             <span id="xp-progress-percent">0%</span>
           </div>
@@ -858,17 +1050,21 @@ def get_embedded_html() -> str:
           </div>
         </div>
 
-        <div class="badge-pill badge-streak" title="Racha de estudio activo">
+        <div class="badge-pill badge-streak" title="Racha de días de estudio continuo">
           <span>🔥</span>
           <span id="player-streak">1 Días</span>
         </div>
 
-        <div class="badge-pill badge-timer" title="Tiempo de pedaleo activo">
+        <div class="badge-pill badge-timer" title="Tiempo de pedaleo en la sesión actual">
           <span>⏱️</span>
           <span id="session-timer">00:00</span>
         </div>
 
-        <button class="sound-toggle-btn" id="sound-toggle-btn" title="Activar/Desactivar Efectos de Sonido">
+        <button class="header-icon-btn" id="achievements-btn" title="Ver Trofeos e Insignias">
+          🏆 Logros
+        </button>
+
+        <button class="header-icon-btn" id="sound-toggle-btn" title="Alternar Sonido Sintetizado">
           <span id="sound-icon">🔊</span> Sonido
         </button>
 
@@ -878,24 +1074,40 @@ def get_embedded_html() -> str:
       </div>
     </header>
 
-    <!-- CUERPO PRINCIPAL -->
+    <!-- 2. BARRA DE BREADCRUMBS -->
+    <div class="breadcrumbs-bar">
+      <div class="breadcrumbs-list">
+        <span>Wisrovi Academy</span>
+        <span class="breadcrumb-sep">&gt;</span>
+        <span class="breadcrumb-item" id="crumb-course">Curso 1: Fundamentos Básicos</span>
+        <span class="breadcrumb-sep">&gt;</span>
+        <span class="breadcrumb-item" id="crumb-class">Clase 01: Primer Vistazo</span>
+        <span class="breadcrumb-sep">&gt;</span>
+        <span style="color: #34d399;" id="crumb-step">Paso 1: Concepto</span>
+      </div>
+      <div style="font-size: 0.74rem; color: #94a3b8;">
+        💡 Atajo: <kbd style="background:#1e293b; padding:1px 5px; border-radius:3px;">Ctrl + Enter</kbd> para ejecutar código
+      </div>
+    </div>
+
+    <!-- 3. CUERPO PRINCIPAL -->
     <div class="main-body">
       
       <!-- SIDEBAR CURRICULAR -->
       <aside class="sidebar">
         <div class="sidebar-title">
-          <h2>🗺️ Hoja de Ruta (32 Clases)</h2>
+          <h2>🗺️ Hoja de Ruta (Curso 1)</h2>
           <span class="progress-tag" id="total-progress-pill">0% Hecho</span>
         </div>
         <div class="curriculum-tree" id="class-tree-container">
-          <!-- Clases inyectadas por JS -->
+          <!-- Inyectado por JS -->
         </div>
       </aside>
 
       <!-- ESTUDIO CENTRAL -->
       <main class="studio">
         
-        <!-- HERO CARD DE LA CLASE -->
+        <!-- HERO CARD -->
         <div class="hero-card">
           <div class="hero-tags">
             <span class="tag-course" id="lesson-course-name">Curso 1: Fundamentos Básicos</span>
@@ -907,11 +1119,11 @@ def get_embedded_html() -> str:
               <span>🌟</span>
               <span id="lesson-metaphor">Metáfora: «El Megáfono, las Cajas y el Semáforo»</span>
             </div>
-            <button class="listen-btn" id="listen-metaphor-btn">🔊 Escuchar</button>
+            <button class="listen-btn" id="listen-metaphor-btn">🔊 Escuchar al Mentor</button>
           </div>
         </div>
 
-        <!-- CHECKLIST DE LOS 4 PASOS OBLIGATORIOS (STEPPER GATES) -->
+        <!-- STEPPER GATES -->
         <nav class="stepper-container">
           <div class="step-gate-pill active" id="gate-step-1" data-step="1">
             <div class="step-gate-info">
@@ -929,14 +1141,14 @@ def get_embedded_html() -> str:
 
           <div class="step-gate-pill" id="gate-step-3" data-step="3">
             <div class="step-gate-info">
-              <span>🔬</span> 3. Arenero
+              <span>🔬</span> 3. Arenero & RAM
             </div>
             <span class="step-gate-status" id="status-step-3">Pendiente</span>
           </div>
 
           <div class="step-gate-pill" id="gate-step-4" data-step="4">
             <div class="step-gate-info">
-              <span>🏋️</span> 4. Reto
+              <span>🏋️</span> 4. Reto Evaluado
             </div>
             <span class="step-gate-status" id="status-step-4">Pendiente</span>
           </div>
@@ -951,7 +1163,7 @@ def get_embedded_html() -> str:
               <div class="mentor-box">
                 <div class="mentor-avatar">👨‍🏫</div>
                 <div>
-                  <strong>Consejo del Mentor (Wisrovi):</strong>
+                  <strong>Consejo de Arquitectura (Wisrovi):</strong>
                   <p id="mentor-advice">Piensa en los datos como objetos tangibles en la memoria RAM antes de escribir código.</p>
                 </div>
               </div>
@@ -974,7 +1186,17 @@ def get_embedded_html() -> str:
               <h3>💻 Código de Demostración Comentado</h3>
               <button class="btn btn-primary" id="run-demo-btn">▶️ Ejecutar Demo (Completar Paso 2)</button>
             </div>
-            <textarea class="code-editor" id="demo-code-area" readonly spellcheck="false"></textarea>
+            
+            <div class="editor-wrapper">
+              <div class="editor-toolbar">
+                <span>🐍 Python 3 &bull; Modo Lectura / Ejecución</span>
+                <div class="editor-actions">
+                  <button class="tool-btn" id="copy-demo-btn">📋 Copiar</button>
+                </div>
+              </div>
+              <textarea class="code-editor" id="demo-code-area" readonly spellcheck="false"></textarea>
+            </div>
+
             <div class="terminal-output" id="demo-terminal">&gt; Presiona 'Ejecutar Demo' para compilar y validar.</div>
           </div>
         </div>
@@ -985,14 +1207,28 @@ def get_embedded_html() -> str:
             <div class="glass-card">
               <div class="flex-between">
                 <h3>🔬 Arenero de Experimentación</h3>
-                <button class="btn btn-primary" id="run-sandbox-btn">⚡ Inspeccionar Memoria (Completar Paso 3)</button>
+                <button class="btn btn-primary" id="run-sandbox-btn">⚡ Inspeccionar Memoria (Paso 3)</button>
               </div>
-              <textarea class="code-editor" id="sandbox-code-area" spellcheck="false"></textarea>
+
+              <div class="editor-wrapper">
+                <div class="editor-toolbar">
+                  <span>Modifica variables para inspeccionar su dirección y tamaño</span>
+                  <div class="editor-actions">
+                    <button class="tool-btn" id="reset-sandbox-btn">🔄 Restaurar</button>
+                    <button class="tool-btn" id="clear-sandbox-btn">🧹 Limpiar</button>
+                  </div>
+                </div>
+                <textarea class="code-editor" id="sandbox-code-area" spellcheck="false"></textarea>
+              </div>
+
               <div class="terminal-output" id="sandbox-terminal">&gt; Modifica variables y pulsa 'Inspeccionar Memoria'.</div>
             </div>
 
             <div class="glass-card">
-              <h3>🧠 Visualizador de Variables & Heap en Vivo</h3>
+              <div class="flex-between">
+                <h3>🧠 Visualizador de Heap & Stack RAM</h3>
+                <span style="font-size: 0.72rem; color: #fbbf24;" id="mem-total-count">0 Variables</span>
+              </div>
               <div class="memory-board" id="memory-canvas">
                 <div class="empty-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>
               </div>
@@ -1011,7 +1247,17 @@ def get_embedded_html() -> str:
                 </div>
                 <button class="btn btn-success" id="eval-challenge-btn">🚀 Evaluar Reto (+150 XP)</button>
               </div>
-              <textarea class="code-editor" id="challenge-code-area" spellcheck="false"></textarea>
+
+              <div class="editor-wrapper">
+                <div class="editor-toolbar">
+                  <span id="diff-status-label" style="color: #fb923c;">⚠️ Modifica el código antes de evaluar</span>
+                  <div class="editor-actions">
+                    <button class="tool-btn" id="reset-challenge-btn">🔄 Restaurar Plantilla</button>
+                  </div>
+                </div>
+                <textarea class="code-editor" id="challenge-code-area" spellcheck="false"></textarea>
+              </div>
+
               <div id="challenge-results-box" style="margin-top: 0.5rem;">
                 <div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Modifica la plantilla con tu solución y pulsa 'Evaluar Reto'.</div>
               </div>
@@ -1020,7 +1266,7 @@ def get_embedded_html() -> str:
             <div class="glass-card">
               <h3>💡 Pistas Socráticas del Mentor</h3>
               <div id="hints-accordion" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
-              <div style="background: rgba(2, 132, 199, 0.12); border: 1px solid #0284c7; padding: 0.85rem; border-radius: 9px; margin-top: auto;">
+              <div style="background: rgba(2, 132, 199, 0.12); border: 1px solid #0284c7; padding: 0.85rem; border-radius: var(--radius-md); margin-top: auto;">
                 <strong style="color: #38bdf8;">🏆 Recompensa:</strong>
                 <p style="font-size: 0.83rem; color: #cbd5e1; margin-top: 0.25rem;">+150 XP &bull; Sello de acreditación &bull; Desbloqueo de siguiente clase.</p>
               </div>
@@ -1028,7 +1274,7 @@ def get_embedded_html() -> str:
           </div>
         </div>
 
-        <!-- FOOTER DE NAVEGACIÓN CON ESTADO DE DESBLOQUEO -->
+        <!-- FOOTER DE NAVEGACIÓN -->
         <footer class="studio-footer">
           <button class="btn btn-secondary" id="prev-class-btn">⬅️ Clase Anterior</button>
           <div class="class-status-summary" id="class-status-summary">
@@ -1039,6 +1285,45 @@ def get_embedded_html() -> str:
 
       </main>
     </div>
+
+    <!-- 4. FOOTER INSTITUCIONAL DE CLASE MUNDIAL -->
+    <footer class="app-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>🐍 Wisrovi Academy &bull; Python Masterclass</h4>
+          <p>
+            Programa Integral de Formación en Python: De Cero Absoluto a la Arquitectura de Agentes de Inteligencia Artificial.
+            Diseñado bajo el modelo pedagógico del <strong>Aprendizaje en Espiral *(Spiral Learning)*</strong> y <strong>La Regla de la Bicicleta *(70%+ Práctica Activa)*</strong>.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>👤 Dirección Académica</h5>
+          <ul class="footer-links">
+            <li><strong style="color: #fff;">William Rodríguez (Wisrovi)</strong></li>
+            <li><span>Principal Software Engineer & AI Architect</span></li>
+            <li><a href="https://wisrovi.dev" target="_blank">🌐 Sitio Web: wisrovi.dev</a></li>
+            <li><a href="https://github.com/wisrovi" target="_blank">🐙 GitHub: @wisrovi</a></li>
+            <li><a href="https://www.linkedin.com/in/wisrovi-rodriguez/" target="_blank">💼 LinkedIn Oficial</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>📚 Recursos del Ecosistema</h5>
+          <ul class="footer-links">
+            <li><a href="https://academy_python.wisrovi.dev/" target="_blank">📖 Plataforma Web Docs</a></li>
+            <li><a href="https://pypi.org/project/wisrovi-python/" target="_blank">📦 PyPI: wisrovi-python</a></li>
+            <li><a href="https://codespaces.new/wisrovi/wisrovi-python" target="_blank">🚀 Abrir en Codespaces</a></li>
+            <li><a href="https://github.com/wisrovi/wisrovi-python" target="_blank">⭐ Repositorio en GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 William Rodríguez (Wisrovi). Distribuido bajo Licencia de Código Abierto MIT.</span>
+        <span>Badajoz, España &bull; Versión 1.5.0 &bull; Ecosistema Educativo de Nivel Mundial</span>
+      </div>
+    </footer>
 
     <!-- MODAL DE CERTIFICADO -->
     <div class="modal-backdrop hidden" id="cert-modal">
@@ -1060,12 +1345,24 @@ def get_embedded_html() -> str:
       </div>
     </div>
 
+    <!-- MODAL DE TROFEOS Y LOGROS -->
+    <div class="modal-backdrop hidden" id="achievements-modal">
+      <div class="modal-panel" style="max-width: 650px;">
+        <div class="modal-header">
+          <h2>🏆 Vitrina de Trofeos e Insignias</h2>
+          <button style="background:none; border:none; color:#fff; font-size:1.6rem; cursor:pointer;" id="close-achievements-btn">&times;</button>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;" id="achievements-grid">
+          <!-- Inyectado por JS -->
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- SCRIPT JS REACTIVO CON SINTETIZADOR DE AUDIO Y BLOQUEOS -->
+  <!-- SCRIPT JS REACTIVO -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Estado de la aplicación
       const state = {
         currentCourse: 1,
         currentClass: 1,
@@ -1074,13 +1371,14 @@ def get_embedded_html() -> str:
         classContent: null,
         currentStep: 1,
         soundEnabled: true,
-        // Checklist de los 4 pasos obligatorios
         stepsCompleted: { 1: false, 2: false, 3: false, 4: false },
         starterChallengeCode: "",
+        starterSandboxCode: "",
+        starterDemoCode: "",
         elapsedSeconds: 0
       };
 
-      // Sintetizador de Audio Web (Web Audio API nativa sin archivos externos)
+      // Sintetizador Web Audio API nativo
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       function playTone(freq, type, duration, gainVal = 0.1) {
         if (!state.soundEnabled || !audioCtx) return;
@@ -1118,10 +1416,12 @@ def get_embedded_html() -> str:
         state.elapsedSeconds++;
         const m = Math.floor(state.elapsedSeconds / 60).toString().padStart(2, '0');
         const s = (state.elapsedSeconds % 60).toString().padStart(2, '0');
-        document.getElementById("session-timer").textContent = `${m}:${s}`;
+        const timerElem = document.getElementById("session-timer");
+        if (timerElem) timerElem.textContent = `${m}:${s}`;
       }, 1000);
 
       const dom = {
+        avatarBtn: document.getElementById("avatar-toggle-btn"),
         levelTitle: document.getElementById("player-level-title"),
         xpVal: document.getElementById("player-xp-val"),
         xpPercent: document.getElementById("xp-progress-percent"),
@@ -1137,12 +1437,13 @@ def get_embedded_html() -> str:
         soundToggleBtn: document.getElementById("sound-toggle-btn"),
         soundIcon: document.getElementById("sound-icon"),
         
+        // Breadcrumbs
+        crumbCourse: document.getElementById("crumb-course"),
+        crumbClass: document.getElementById("crumb-class"),
+        crumbStep: document.getElementById("crumb-step"),
+
         // Stepper gates
         gatePills: document.querySelectorAll(".step-gate-pill"),
-        statusStep1: document.getElementById("status-step-1"),
-        statusStep2: document.getElementById("status-step-2"),
-        statusStep3: document.getElementById("status-step-3"),
-        statusStep4: document.getElementById("status-step-4"),
         tabPanes: document.querySelectorAll(".tab-pane"),
         
         // Paso 1
@@ -1154,18 +1455,24 @@ def get_embedded_html() -> str:
         demoCode: document.getElementById("demo-code-area"),
         demoTerm: document.getElementById("demo-terminal"),
         runDemoBtn: document.getElementById("run-demo-btn"),
+        copyDemoBtn: document.getElementById("copy-demo-btn"),
 
         // Paso 3
         sandboxCode: document.getElementById("sandbox-code-area"),
         sandboxTerm: document.getElementById("sandbox-terminal"),
         runSandboxBtn: document.getElementById("run-sandbox-btn"),
+        resetSandboxBtn: document.getElementById("reset-sandbox-btn"),
+        clearSandboxBtn: document.getElementById("clear-sandbox-btn"),
         memoryCanvas: document.getElementById("memory-canvas"),
+        memTotalCount: document.getElementById("mem-total-count"),
 
         // Paso 4
         challengePrompt: document.getElementById("challenge-prompt-text"),
         challengeCode: document.getElementById("challenge-code-area"),
         challengeResults: document.getElementById("challenge-results-box"),
         evalChallengeBtn: document.getElementById("eval-challenge-btn"),
+        resetChallengeBtn: document.getElementById("reset-challenge-btn"),
+        diffStatusLabel: document.getElementById("diff-status-label"),
         hintsAccordion: document.getElementById("hints-accordion"),
 
         // Footer
@@ -1173,7 +1480,7 @@ def get_embedded_html() -> str:
         nextBtn: document.getElementById("next-class-btn"),
         classStatusSummary: document.getElementById("class-status-summary"),
 
-        // Certificado
+        // Certificado & Logros
         certModal: document.getElementById("cert-modal"),
         openCertBtn: document.getElementById("open-cert-btn"),
         closeCertBtn: document.getElementById("close-cert-btn"),
@@ -1181,7 +1488,11 @@ def get_embedded_html() -> str:
         certPreviewFrame: document.getElementById("cert-preview-frame"),
         refreshCertBtn: document.getElementById("refresh-cert-btn"),
         copyBadgeBtn: document.getElementById("copy-badge-btn"),
-        downloadCertBtn: document.getElementById("download-cert-btn")
+        downloadCertBtn: document.getElementById("download-cert-btn"),
+        achievementsBtn: document.getElementById("achievements-btn"),
+        achievementsModal: document.getElementById("achievements-modal"),
+        closeAchievementsBtn: document.getElementById("close-achievements-btn"),
+        achievementsGrid: document.getElementById("achievements-grid")
       };
 
       async function initApp() {
@@ -1208,6 +1519,7 @@ def get_embedded_html() -> str:
         dom.levelTitle.textContent = `Nv. ${p.level} ${p.level_title.split(' ')[1] || 'Aprendiz'}`;
         dom.xpVal.textContent = p.xp;
         dom.streak.textContent = `${p.streak_days} Días`;
+        dom.avatarBtn.textContent = p.avatar || "👨‍💻";
         const currentLvlXP = p.xp % 500;
         const pct = Math.min(100, Math.round((currentLvlXP / 500) * 100));
         dom.xpPercent.textContent = `${pct}%`;
@@ -1225,7 +1537,7 @@ def get_embedded_html() -> str:
       }
 
       function isClassUnlocked(courseNum, classNum) {
-        if (courseNum > 1) return false; // Cursos 2, 3 y 4 desactivados por ahora
+        if (courseNum > 1) return false;
         if (courseNum === 1 && classNum === 1) return true;
         const completed = new Set(state.profile ? state.profile.completed_classes : []);
         return completed.has(`1-${classNum - 1}`);
@@ -1287,7 +1599,6 @@ def get_embedded_html() -> str:
         state.currentCourse = courseNum;
         state.currentClass = classNum;
         
-        // Reiniciar estado de los 4 pasos si no está previamente completada
         const key = `${courseNum}-${classNum}`;
         const isDone = state.profile && state.profile.completed_classes.includes(key);
         state.stepsCompleted = { 1: isDone, 2: isDone, 3: isDone, 4: isDone };
@@ -1305,23 +1616,29 @@ def get_embedded_html() -> str:
 
       function renderClass(data) {
         dom.courseName.textContent = data.course_name;
+        dom.crumbCourse.textContent = data.course_name;
         dom.lessonTitle.textContent = data.title;
+        dom.crumbClass.textContent = `Clase 0${data.class_num}`;
         dom.metaphor.textContent = `Metáfora Central: «${data.metaphor}»`;
         dom.bossBadge.style.display = data.boss_battle ? "inline-block" : "none";
 
         dom.theoryText.innerHTML = data.theory.replace(/\\n/g, "<br>");
         renderMermaid(data.mermaid);
 
+        state.starterDemoCode = data.demo_code;
         dom.demoCode.value = data.demo_code;
         dom.demoTerm.innerHTML = "&gt; Presiona 'Ejecutar Demo' para compilar y validar el paso 2.";
 
+        state.starterSandboxCode = data.playground_code;
         dom.sandboxCode.value = data.playground_code;
         dom.sandboxTerm.innerHTML = "&gt; Modifica variables y pulsa 'Inspeccionar Memoria' para el paso 3.";
         dom.memoryCanvas.innerHTML = `<div class="empty-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>`;
+        dom.memTotalCount.textContent = "0 Variables";
 
         dom.challengePrompt.textContent = data.challenge_prompt;
         state.starterChallengeCode = data.challenge_starter;
         dom.challengeCode.value = data.challenge_starter;
+        updateDiffStatus();
         dom.challengeResults.innerHTML = `<div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Modifica la plantilla y pulsa 'Evaluar Reto'.</div>`;
 
         dom.hintsAccordion.innerHTML = "";
@@ -1345,6 +1662,17 @@ def get_embedded_html() -> str:
         }
       }
 
+      function updateDiffStatus() {
+        const isModified = dom.challengeCode.value.trim() !== state.starterChallengeCode.trim();
+        if (isModified) {
+          dom.diffStatusLabel.textContent = "✓ Código modificado (Listo para evaluar)";
+          dom.diffStatusLabel.style.color = "#34d399";
+        } else {
+          dom.diffStatusLabel.textContent = "⚠️ Modifica el código antes de evaluar";
+          dom.diffStatusLabel.style.color = "#fb923c";
+        }
+      }
+
       function updateStepperUI() {
         dom.gatePills.forEach(pill => {
           const s = parseInt(pill.dataset.step);
@@ -1356,7 +1684,6 @@ def get_embedded_html() -> str:
           }
         });
 
-        // Verificar si los 4 pasos están completos
         const allDone = Object.values(state.stepsCompleted).every(Boolean);
         dom.nextBtn.disabled = !allDone;
         if (allDone) {
@@ -1372,15 +1699,17 @@ def get_embedded_html() -> str:
         state.currentStep = num;
         dom.gatePills.forEach(p => p.classList.toggle("active", parseInt(p.dataset.step) === num));
         dom.tabPanes.forEach(p => p.classList.toggle("active", p.id === `pane-step-${num}`));
+        
+        const stepLabels = { 1: "Paso 1: Concepto", 2: "Paso 2: Demostración", 3: "Paso 3: Arenero & RAM", 4: "Paso 4: Reto Evaluado" };
+        dom.crumbStep.textContent = stepLabels[num] || `Paso ${num}`;
       }
 
       function setupEvents() {
-        // Stepper tabs
         dom.gatePills.forEach(pill => {
           pill.addEventListener("click", () => switchStep(parseInt(pill.dataset.step)));
         });
 
-        // Paso 1: Confirmar concepto
+        // Paso 1
         dom.confirmConceptBtn.addEventListener("click", () => {
           state.stepsCompleted[1] = true;
           soundChime();
@@ -1388,7 +1717,7 @@ def get_embedded_html() -> str:
           switchStep(2);
         });
 
-        // Paso 2: Ejecutar Demo
+        // Paso 2
         dom.runDemoBtn.addEventListener("click", async () => {
           soundClick();
           dom.demoTerm.innerHTML = "&gt; Compilando y ejecutando demo...";
@@ -1404,7 +1733,12 @@ def get_embedded_html() -> str:
           updateStepperUI();
         });
 
-        // Paso 3: Ejecutar Arenero & Memoria
+        dom.copyDemoBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText(dom.demoCode.value);
+          alert("¡Código de demostración copiado al portapapeles!");
+        });
+
+        // Paso 3
         dom.runSandboxBtn.addEventListener("click", async () => {
           soundClick();
           dom.sandboxTerm.innerHTML = "&gt; Inspeccionando estado del Heap en RAM...";
@@ -1421,12 +1755,29 @@ def get_embedded_html() -> str:
           updateStepperUI();
         });
 
-        // Paso 4: Evaluar Reto
+        dom.resetSandboxBtn.addEventListener("click", () => {
+          dom.sandboxCode.value = state.starterSandboxCode;
+          dom.sandboxTerm.innerHTML = "&gt; Código del arenero restaurado.";
+        });
+
+        dom.clearSandboxBtn.addEventListener("click", () => {
+          dom.sandboxCode.value = "";
+          dom.sandboxTerm.innerHTML = "&gt; Arenero limpio. Escribe tu código desde cero.";
+        });
+
+        // Paso 4
+        dom.challengeCode.addEventListener("input", () => updateDiffStatus());
+
+        dom.resetChallengeBtn.addEventListener("click", () => {
+          dom.challengeCode.value = state.starterChallengeCode;
+          updateDiffStatus();
+          dom.challengeResults.innerHTML = `<div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Plantilla restaurada.</div>`;
+        });
+
         dom.evalChallengeBtn.addEventListener("click", async () => {
           soundClick();
           const currentCode = dom.challengeCode.value.trim();
           
-          // Validación: Debe haber modificado el código de inicio
           if (currentCode === state.starterChallengeCode.trim()) {
             soundError();
             dom.challengeResults.innerHTML = `
@@ -1455,7 +1806,7 @@ def get_embedded_html() -> str:
             soundVictory();
             if (window.confetti) confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
             dom.challengeResults.innerHTML = `
-              <div style="background: rgba(5,150,105,0.25); border: 1px solid #059669; color: #6ee7b7; padding: 0.85rem; border-radius: 8px; box-shadow: 0 0 20px rgba(5,150,105,0.3);">
+              <div style="background: rgba(16,185,129,0.25); border: 1px solid #10b981; color: #6ee7b7; padding: 0.85rem; border-radius: 8px; box-shadow: 0 0 20px rgba(16,185,129,0.3);">
                 🎉 <strong>¡RETO SUPERADO CON ÉXITO! (+150 XP)</strong><br>
                 Tu solución ha superado el 100% de las pruebas y contratos de tipado.
               </div>
@@ -1474,7 +1825,17 @@ def get_embedded_html() -> str:
           }
         });
 
-        // Escuchar metáfora con voz
+        // Atajo de teclado Ctrl+Enter para ejecutar
+        document.addEventListener("keydown", (e) => {
+          if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+            e.preventDefault();
+            if (state.currentStep === 2) dom.runDemoBtn.click();
+            else if (state.currentStep === 3) dom.runSandboxBtn.click();
+            else if (state.currentStep === 4) dom.evalChallengeBtn.click();
+          }
+        });
+
+        // Escuchar con voz
         dom.listenMetaphorBtn.addEventListener("click", () => {
           if ('speechSynthesis' in window && state.classContent) {
             window.speechSynthesis.cancel();
@@ -1495,11 +1856,17 @@ def get_embedded_html() -> str:
           dom.soundToggleBtn.style.borderColor = state.soundEnabled ? "#38bdf8" : "#64748b";
         });
 
-        // Footer buttons (Exclusivo Curso 1)
+        // Avatar selector
+        const avatars = ["👨‍💻", "👩‍💻", "🧙‍♂️", "🤖", "🚀", "⚡", "🥋", "🐍"];
+        dom.avatarBtn.addEventListener("click", () => {
+          const nextIdx = (avatars.indexOf(dom.avatarBtn.textContent) + 1) % avatars.length;
+          dom.avatarBtn.textContent = avatars[nextIdx];
+          soundClick();
+        });
+
+        // Footer buttons
         dom.prevBtn.addEventListener("click", () => {
-          if (state.currentClass > 1) {
-            loadClass(1, state.currentClass - 1);
-          }
+          if (state.currentClass > 1) loadClass(1, state.currentClass - 1);
         });
 
         dom.nextBtn.addEventListener("click", () => {
@@ -1523,14 +1890,20 @@ def get_embedded_html() -> str:
           navigator.clipboard.writeText(badge);
           alert("¡Badge Markdown copiado al portapapeles!");
         });
+
+        // Logros
+        dom.achievementsBtn.addEventListener("click", () => openAchievements());
+        dom.closeAchievementsBtn.addEventListener("click", () => dom.achievementsModal.classList.add("hidden"));
       }
 
       function renderMemory(vars) {
         if (!vars || vars.length === 0) {
           dom.memoryCanvas.innerHTML = `<div class="empty-state">No se detectaron variables en el scope actual.</div>`;
+          dom.memTotalCount.textContent = "0 Variables";
           return;
         }
         dom.memoryCanvas.innerHTML = "";
+        dom.memTotalCount.textContent = `${vars.length} Variables`;
         vars.forEach(v => {
           const c = document.createElement("div");
           c.className = "mem-card";
@@ -1554,10 +1927,35 @@ def get_embedded_html() -> str:
         const res = await fetch("/api/certificate/generate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ student_name: name, course_title: "Programa Integral de Formación en Python: De Cero a Agentes de IA", hours: 160 })
+          body: JSON.stringify({ student_name: name, course_title: "Curso 1: Fundamentos Básicos de Python", hours: 40 })
         });
         const data = await res.json();
         dom.certPreviewFrame.innerHTML = data.html;
+      }
+
+      function openAchievements() {
+        dom.achievementsModal.classList.remove("hidden");
+        const badges = [
+          { id: "first_code", name: "🚴 Primer Pedaleo", desc: "Ejecutaste tu primer bloque de código en Python." },
+          { id: "memory_master", name: "🔬 Explorador del Heap", desc: "Inspeccionaste variables y memoria en el Arenero." },
+          { id: "streak_3", name: "🔥 Racha Imparable", desc: "Mantuviste 3 días consecutivos de práctica activa." },
+          { id: "boss_slayer_1", name: "⚔️ Vencedor del Boss 1", desc: "Superaste el Proyecto Integrador del Curso 1." }
+        ];
+
+        dom.achievementsGrid.innerHTML = "";
+        badges.forEach(b => {
+          const isUnlocked = state.profile && state.profile.unlocked_badges && state.profile.unlocked_badges.includes(b.id);
+          const card = document.createElement("div");
+          card.style.cssText = `background: ${isUnlocked ? 'rgba(16,185,129,0.15)' : 'rgba(15,23,42,0.6)'}; border: 1px solid ${isUnlocked ? '#10b981' : '#334155'}; border-radius: 8px; padding: 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;`;
+          card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color: ${isUnlocked ? '#34d399' : '#94a3b8'}; font-size: 0.9rem;">${b.name}</strong>
+              <span style="font-size:0.75rem; color:${isUnlocked ? '#34d399' : '#64748b'};">${isUnlocked ? '✓ Desbloqueado' : '🔒 Bloqueado'}</span>
+            </div>
+            <p style="font-size: 0.78rem; color: #94a3b8;">${b.desc}</p>
+          `;
+          dom.achievementsGrid.appendChild(card);
+        });
       }
 
       initApp();

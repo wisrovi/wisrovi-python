@@ -1,11 +1,10 @@
 /**
- * Wisrovi Academy - Virtual AI Tutor & RPG Engine v2.0
- * Lógica reactiva SPA con sistema de compuertas estrictas (4 pasos obligatorios),
- * sintetizador Web Audio, narración por voz y visualizador Heap en tiempo real.
+ * Wisrovi Academy - Virtual AI Tutor & RPG Studio v3.0 Masterpiece
+ * Lógica reactiva SPA con atajos de teclado, avatar customizer, vitrina de logros,
+ * toolbar de editores y control estricto de compuertas secuenciales.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Estado global de la sesión
   const state = {
     currentCourse: 1,
     currentClass: 1,
@@ -16,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     soundEnabled: true,
     stepsCompleted: { 1: false, 2: false, 3: false, 4: false },
     starterChallengeCode: "",
+    starterSandboxCode: "",
+    starterDemoCode: "",
     elapsedSeconds: 0
   };
 
@@ -62,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1000);
 
   const dom = {
+    avatarBtn: document.getElementById("avatar-toggle-btn"),
     levelTitle: document.getElementById("player-level-title"),
     xpVal: document.getElementById("player-xp-val"),
     xpPercent: document.getElementById("xp-progress-percent"),
@@ -77,6 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
     soundToggleBtn: document.getElementById("sound-toggle-btn"),
     soundIcon: document.getElementById("sound-icon"),
     
+    // Breadcrumbs
+    crumbCourse: document.getElementById("crumb-course"),
+    crumbClass: document.getElementById("crumb-class"),
+    crumbStep: document.getElementById("crumb-step"),
+
     // Stepper gates
     gatePills: document.querySelectorAll(".step-gate-pill"),
     tabPanes: document.querySelectorAll(".tab-pane"),
@@ -90,18 +97,24 @@ document.addEventListener("DOMContentLoaded", () => {
     demoCode: document.getElementById("demo-code-area"),
     demoTerm: document.getElementById("demo-terminal"),
     runDemoBtn: document.getElementById("run-demo-btn"),
+    copyDemoBtn: document.getElementById("copy-demo-btn"),
 
     // Paso 3
     sandboxCode: document.getElementById("sandbox-code-area"),
     sandboxTerm: document.getElementById("sandbox-terminal"),
     runSandboxBtn: document.getElementById("run-sandbox-btn"),
+    resetSandboxBtn: document.getElementById("reset-sandbox-btn"),
+    clearSandboxBtn: document.getElementById("clear-sandbox-btn"),
     memoryCanvas: document.getElementById("memory-canvas"),
+    memTotalCount: document.getElementById("mem-total-count"),
 
     // Paso 4
     challengePrompt: document.getElementById("challenge-prompt-text"),
     challengeCode: document.getElementById("challenge-code-area"),
     challengeResults: document.getElementById("challenge-results-box"),
     evalChallengeBtn: document.getElementById("eval-challenge-btn"),
+    resetChallengeBtn: document.getElementById("reset-challenge-btn"),
+    diffStatusLabel: document.getElementById("diff-status-label"),
     hintsAccordion: document.getElementById("hints-accordion"),
 
     // Footer
@@ -109,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextBtn: document.getElementById("next-class-btn"),
     classStatusSummary: document.getElementById("class-status-summary"),
 
-    // Certificado
+    // Certificado & Logros
     certModal: document.getElementById("cert-modal"),
     openCertBtn: document.getElementById("open-cert-btn"),
     closeCertBtn: document.getElementById("close-cert-btn"),
@@ -117,7 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
     certPreviewFrame: document.getElementById("cert-preview-frame"),
     refreshCertBtn: document.getElementById("refresh-cert-btn"),
     copyBadgeBtn: document.getElementById("copy-badge-btn"),
-    downloadCertBtn: document.getElementById("download-cert-btn")
+    downloadCertBtn: document.getElementById("download-cert-btn"),
+    achievementsBtn: document.getElementById("achievements-btn"),
+    achievementsModal: document.getElementById("achievements-modal"),
+    closeAchievementsBtn: document.getElementById("close-achievements-btn"),
+    achievementsGrid: document.getElementById("achievements-grid")
   };
 
   async function initApp() {
@@ -144,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dom.levelTitle.textContent = `Nv. ${p.level} ${p.level_title.split(' ')[1] || 'Aprendiz'}`;
     dom.xpVal.textContent = p.xp;
     dom.streak.textContent = `${p.streak_days} Días`;
+    dom.avatarBtn.textContent = p.avatar || "👨‍💻";
     const currentLvlXP = p.xp % 500;
     const pct = Math.min(100, Math.round((currentLvlXP / 500) * 100));
     dom.xpPercent.textContent = `${pct}%`;
@@ -161,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function isClassUnlocked(courseNum, classNum) {
-    if (courseNum > 1) return false; // Cursos 2, 3 y 4 desactivados por ahora
+    if (courseNum > 1) return false;
     if (courseNum === 1 && classNum === 1) return true;
     const completed = new Set(state.profile ? state.profile.completed_classes : []);
     return completed.has(`1-${classNum - 1}`);
@@ -240,23 +258,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderClass(data) {
     dom.courseName.textContent = data.course_name;
+    dom.crumbCourse.textContent = data.course_name;
     dom.lessonTitle.textContent = data.title;
+    dom.crumbClass.textContent = `Clase 0${data.class_num}`;
     dom.metaphor.textContent = `Metáfora Central: «${data.metaphor}»`;
     dom.bossBadge.style.display = data.boss_battle ? "inline-block" : "none";
 
     dom.theoryText.innerHTML = data.theory.replace(/\\n/g, "<br>");
     renderMermaid(data.mermaid);
 
+    state.starterDemoCode = data.demo_code;
     dom.demoCode.value = data.demo_code;
     dom.demoTerm.innerHTML = "&gt; Presiona 'Ejecutar Demo' para compilar y validar el paso 2.";
 
+    state.starterSandboxCode = data.playground_code;
     dom.sandboxCode.value = data.playground_code;
     dom.sandboxTerm.innerHTML = "&gt; Modifica variables y pulsa 'Inspeccionar Memoria' para el paso 3.";
     dom.memoryCanvas.innerHTML = `<div class="empty-state">Ejecuta código para visualizar las variables en la memoria RAM.</div>`;
+    dom.memTotalCount.textContent = "0 Variables";
 
     dom.challengePrompt.textContent = data.challenge_prompt;
     state.starterChallengeCode = data.challenge_starter;
     dom.challengeCode.value = data.challenge_starter;
+    updateDiffStatus();
     dom.challengeResults.innerHTML = `<div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Modifica la plantilla y pulsa 'Evaluar Reto'.</div>`;
 
     dom.hintsAccordion.innerHTML = "";
@@ -277,6 +301,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }).catch(err => {
         dom.mermaidBox.innerHTML = `<pre style="color:#94a3b8; font-size:0.8rem;">${chartCode}</pre>`;
       });
+    }
+  }
+
+  function updateDiffStatus() {
+    const isModified = dom.challengeCode.value.trim() !== state.starterChallengeCode.trim();
+    if (isModified) {
+      dom.diffStatusLabel.textContent = "✓ Código modificado (Listo para evaluar)";
+      dom.diffStatusLabel.style.color = "#34d399";
+    } else {
+      dom.diffStatusLabel.textContent = "⚠️ Modifica el código antes de evaluar";
+      dom.diffStatusLabel.style.color = "#fb923c";
     }
   }
 
@@ -306,6 +341,9 @@ document.addEventListener("DOMContentLoaded", () => {
     state.currentStep = num;
     dom.gatePills.forEach(p => p.classList.toggle("active", parseInt(p.dataset.step) === num));
     dom.tabPanes.forEach(p => p.classList.toggle("active", p.id === `pane-step-${num}`));
+    
+    const stepLabels = { 1: "Paso 1: Concepto", 2: "Paso 2: Demostración", 3: "Paso 3: Arenero & RAM", 4: "Paso 4: Reto Evaluado" };
+    dom.crumbStep.textContent = stepLabels[num] || `Paso ${num}`;
   }
 
   function setupEvents() {
@@ -337,6 +375,11 @@ document.addEventListener("DOMContentLoaded", () => {
       updateStepperUI();
     });
 
+    dom.copyDemoBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(dom.demoCode.value);
+      alert("¡Código de demostración copiado al portapapeles!");
+    });
+
     // Paso 3
     dom.runSandboxBtn.addEventListener("click", async () => {
       soundClick();
@@ -354,12 +397,29 @@ document.addEventListener("DOMContentLoaded", () => {
       updateStepperUI();
     });
 
+    dom.resetSandboxBtn.addEventListener("click", () => {
+      dom.sandboxCode.value = state.starterSandboxCode;
+      dom.sandboxTerm.innerHTML = "&gt; Código del arenero restaurado.";
+    });
+
+    dom.clearSandboxBtn.addEventListener("click", () => {
+      dom.sandboxCode.value = "";
+      dom.sandboxTerm.innerHTML = "&gt; Arenero limpio. Escribe tu código desde cero.";
+    });
+
     // Paso 4
+    dom.challengeCode.addEventListener("input", () => updateDiffStatus());
+
+    dom.resetChallengeBtn.addEventListener("click", () => {
+      dom.challengeCode.value = state.starterChallengeCode;
+      updateDiffStatus();
+      dom.challengeResults.innerHTML = `<div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Plantilla restaurada.</div>`;
+    });
+
     dom.evalChallengeBtn.addEventListener("click", async () => {
       soundClick();
       const currentCode = dom.challengeCode.value.trim();
       
-      // Validación estricta: Debe haber modificado el código de inicio
       if (currentCode === state.starterChallengeCode.trim()) {
         soundError();
         dom.challengeResults.innerHTML = `
@@ -388,10 +448,10 @@ document.addEventListener("DOMContentLoaded", () => {
         soundVictory();
         if (window.confetti) confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
         dom.challengeResults.innerHTML = `
-          <div style="background: rgba(5,150,105,0.25); border: 1px solid #059669; color: #6ee7b7; padding: 0.85rem; border-radius: 8px; box-shadow: 0 0 20px rgba(5,150,105,0.3);">
-            🎉 <strong>¡RETO SUPERADO CON ÉXITO! (+150 XP)</strong><br>
-            Tu solución ha superado el 100% de las pruebas y contratos de tipado.
-          </div>
+          <div style="background: rgba(16,185,129,0.25); border: 1px solid #10b981; color: #6ee7b7; padding: 0.85rem; border-radius: 8px; box-shadow: 0 0 20px rgba(16,185,129,0.3);">
+                🎉 <strong>¡RETO SUPERADO CON ÉXITO! (+150 XP)</strong><br>
+                Tu solución ha superado el 100% de las pruebas y contratos de tipado.
+              </div>
         `;
         await fetchProfile();
         await fetchCurriculum();
@@ -404,6 +464,16 @@ document.addEventListener("DOMContentLoaded", () => {
             <p style="margin-top:0.35rem; font-size:0.86rem;">${data.evaluation.socratic_hint}</p>
           </div>
         `;
+      }
+    });
+
+    // Atajo de teclado Ctrl+Enter para ejecutar
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        if (state.currentStep === 2) dom.runDemoBtn.click();
+        else if (state.currentStep === 3) dom.runSandboxBtn.click();
+        else if (state.currentStep === 4) dom.evalChallengeBtn.click();
       }
     });
 
@@ -428,11 +498,17 @@ document.addEventListener("DOMContentLoaded", () => {
       dom.soundToggleBtn.style.borderColor = state.soundEnabled ? "#38bdf8" : "#64748b";
     });
 
-    // Footer buttons (Exclusivo Curso 1)
+    // Avatar selector
+    const avatars = ["👨‍💻", "👩‍💻", "🧙‍♂️", "🤖", "🚀", "⚡", "🥋", "🐍"];
+    dom.avatarBtn.addEventListener("click", () => {
+      const nextIdx = (avatars.indexOf(dom.avatarBtn.textContent) + 1) % avatars.length;
+      dom.avatarBtn.textContent = avatars[nextIdx];
+      soundClick();
+    });
+
+    // Footer buttons
     dom.prevBtn.addEventListener("click", () => {
-      if (state.currentClass > 1) {
-        loadClass(1, state.currentClass - 1);
-      }
+      if (state.currentClass > 1) loadClass(1, state.currentClass - 1);
     });
 
     dom.nextBtn.addEventListener("click", () => {
@@ -456,14 +532,20 @@ document.addEventListener("DOMContentLoaded", () => {
       navigator.clipboard.writeText(badge);
       alert("¡Badge Markdown copiado al portapapeles!");
     });
+
+    // Logros
+    dom.achievementsBtn.addEventListener("click", () => openAchievements());
+    dom.closeAchievementsBtn.addEventListener("click", () => dom.achievementsModal.classList.add("hidden"));
   }
 
   function renderMemory(vars) {
     if (!vars || vars.length === 0) {
       dom.memoryCanvas.innerHTML = `<div class="empty-state">No se detectaron variables en el scope actual.</div>`;
+      dom.memTotalCount.textContent = "0 Variables";
       return;
     }
     dom.memoryCanvas.innerHTML = "";
+    dom.memTotalCount.textContent = `${vars.length} Variables`;
     vars.forEach(v => {
       const c = document.createElement("div");
       c.className = "mem-card";
@@ -487,10 +569,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const res = await fetch("/api/certificate/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ student_name: name, course_title: "Programa Integral de Formación en Python: De Cero a Agentes de IA", hours: 160 })
+      body: JSON.stringify({ student_name: name, course_title: "Curso 1: Fundamentos Básicos de Python", hours: 40 })
     });
     const data = await res.json();
     dom.certPreviewFrame.innerHTML = data.html;
+  }
+
+  function openAchievements() {
+    dom.achievementsModal.classList.remove("hidden");
+    const badges = [
+      { id: "first_code", name: "🚴 Primer Pedaleo", desc: "Ejecutaste tu primer bloque de código en Python." },
+      { id: "memory_master", name: "🔬 Explorador del Heap", desc: "Inspeccionaste variables y memoria en el Arenero." },
+      { id: "streak_3", name: "🔥 Racha Imparable", desc: "Mantuviste 3 días consecutivos de práctica activa." },
+      { id: "boss_slayer_1", name: "⚔️ Vencedor del Boss 1", desc: "Superaste el Proyecto Integrador del Curso 1." }
+    ];
+
+    dom.achievementsGrid.innerHTML = "";
+    badges.forEach(b => {
+      const isUnlocked = state.profile && state.profile.unlocked_badges && state.profile.unlocked_badges.includes(b.id);
+      const card = document.createElement("div");
+      card.style.cssText = `background: ${isUnlocked ? 'rgba(16,185,129,0.15)' : 'rgba(15,23,42,0.6)'}; border: 1px solid ${isUnlocked ? '#10b981' : '#334155'}; border-radius: 8px; padding: 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;`;
+      card.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="color: ${isUnlocked ? '#34d399' : '#94a3b8'}; font-size: 0.9rem;">${b.name}</strong>
+          <span style="font-size:0.75rem; color:${isUnlocked ? '#34d399' : '#64748b'};">${isUnlocked ? '✓ Desbloqueado' : '🔒 Bloqueado'}</span>
+        </div>
+        <p style="font-size: 0.78rem; color: #94a3b8;">${b.desc}</p>
+      `;
+      dom.achievementsGrid.appendChild(card);
+    });
   }
 
   initApp();
