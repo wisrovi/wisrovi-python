@@ -2241,7 +2241,7 @@
 <h2 id="1-fundamentacion-teorica-y-modelo-mental">1. 💡 Fundamentación Teórica y Modelo Mental</h2>
 <p>Permitir al Agente de IA invocar funciones de código externo para interactuar con APIs y bases de datos:
 1. <strong>Esquema de Herramienta (Tool Schema)</strong>: Nombre, descripción y parámetros tipados en JSON Schema.
-2. <strong>Despacho Dinámico</strong>: Enrutar la petición del modelo a la función Python real (<code>registry.execute(tool_name, **kwargs)</code>).
+2. <strong>Despacho Dinámico</strong>: Enrutar la petición del modelo a la función Python real mediante <code>registry.execute(tool_name, **params)</code>.
 3. <strong>Manejo de Errores en Tools</strong>: Retornar mensajes de error descriptivos al LLM para autocorrección.</p>
 <div class="admonition note">
 <p class="admonition-title">🌟 Modelo Mental de la Sesión: «El Cinturón de Herramientas de Batman (Acciones en el Mundo Real)»</p>
@@ -2259,46 +2259,47 @@
     style D fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px</code></pre>
 <hr />
 <h2 id="3-codigo-de-implementacion-practica">3. 💻 Código de Implementación Práctica</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">🚀 Demostración en Vivo</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">🚀 Demostración en Vivo</label><label for="__tabbed_1_2">🔬 Arenero de Exploración de Memoria (RAM)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>```python
-class ToolRegistryDemo:
-def <strong>init</strong>(self): self.tools = {}
-def register(self, name, fn): self.tools[name] = fn
-def run(self, name, **kwargs): return self.tools<a href="**kwargs">name</a></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ToolRegistryDemo</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">tools</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">tools</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tools</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">reg</span> <span class="o">=</span> <span class="n">ToolRegistryDemo</span><span class="p">()</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">reg</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">"multiplicar"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Resultado Tool Call:"</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"multiplicar"</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
+</span></code></pre></div>
 </div>
-</div>
-</div>
-<p>reg = ToolRegistryDemo()
-reg.register("multiplicar", lambda x, y: x * y)
-print("Resultado Tool Call:", reg.run("multiplicar", x=6, y=7))
-    ```</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">🔬 Arenero de Exploración de Memoria (RAM)</label></div>
-<div class="tabbed-content">
 <div class="tabbed-block">
-<p>```python
-def consultar_clima(ciudad: str):
-return f"Soleado en {ciudad}, 24°C"</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">consultar_clima</span><span class="p">(</span><span class="n">ciudad</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"Soleado en </span><span class="si">{</span><span class="n">ciudad</span><span class="si">}</span><span class="s2">, 24°C"</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">herramientas</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"get_weather"</span><span class="p">:</span> <span class="n">consultar_clima</span><span class="p">}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">herramientas</span><span class="p">[</span><span class="s2">"get_weather"</span><span class="p">](</span><span class="s2">"Madrid"</span><span class="p">))</span>
+</span></code></pre></div>
 </div>
 </div>
 </div>
-<p>herramientas = {"get_weather": consultar_clima}
-print(herramientas<a href="" title="Madrid">"get_weather"</a>)
-    ```</p>
 <hr />
 <h2 id="4-buenas-practicas-pep-8-antipatrones-vs-codigo-pythonic">4. 🛡️ Buenas Prácticas PEP 8: Antipatrones vs Código Pythonic</h2>
 <div class="admonition warning">
 <p class="admonition-title">⚠️ Cuidado con los Antipatrones</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">❌ Antipatrón / Código Inadecuado</label><label for="__tabbed_3_2">✅ Patrón Recomendado / Pythonic</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">❌ Antipatrón / Código Inadecuado</label><label for="__tabbed_2_2">✅ Patrón Recomendado / Pythonic</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nombre_funcion</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="n">argumentos_crudos</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>  <span class="c1"># ❌ Vulnerabilidad RCE crítica</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nombre_funcion</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="n">argumentos_crudos</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>  <span class="c1"># ❌ Vulnerabilidad RCE crítica</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">HERRAMIENTAS</span><span class="p">[</span><span class="n">nombre</span><span class="p">](</span><span class="o">**</span><span class="n">argumentos</span><span class="p">)</span>  <span class="c1"># ✅ Mapeo explícito a funciones seguras</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">HERRAMIENTAS</span><span class="p">[</span><span class="n">nombre</span><span class="p">](</span><span class="o">**</span><span class="n">argumentos</span><span class="p">)</span>  <span class="c1"># ✅ Mapeo explícito a funciones seguras</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -2307,36 +2308,35 @@ print(herramientas<a href="" title="Madrid">"get_weather"</a>)
 <h2 id="5-desafio-practico-de-la-clase">5. 🏋️ Desafío Práctico de la Clase</h2>
 <div class="admonition example">
 <p class="admonition-title">🎯 Enunciado del Reto</p>
-<p><strong>Crea una clase <code>ToolRegistry</code> con métodos: <code>register(self, name: str, fn: Callable)</code>, <code>execute(self, name: str, **kwargs) -&gt; Any</code> (lanza <code>KeyError</code> si la herramienta no está registrada) y <code>list_tools(self) -&gt; list[str]</code>.</strong></p>
+<p>Crea una clase <code>ToolRegistry</code> con los métodos: <code>register(self, name: str, fn: Callable)</code>, <code>execute(self, name: str, **kwargs: Any) -&gt; Any</code> (debe lanzar <code>KeyError</code> si la herramienta no se encuentra registrada) y <code>list_tools(self) -&gt; List[str]</code>.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">⚡ Resolución Híbrida en 1 Clic (Local + Web)</p>
 <p>Si tienes ejecutando <code>wisrovi ui</code> en tu terminal local, puedes <a href="http://127.0.0.1:8501/?course=3&amp;class=4">🚀 Abrir este Reto directamente en tu Studio Local (127.0.0.1:8501)</a> para escribir tu código con auto-formateo AST, inspeccionar variables en el Heap/Stack y evaluarlo con pruebas en tiempo real.</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">💻 Plantilla de Inicio (Starter Code)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">💻 Plantilla de Inicio (Starter Code)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>```python
-from typing import Callable, Any, Dict, List</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">ToolRegistry</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">:</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Herramienta '</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">' no registrada"</span><span class="p">)</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">list_tools</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tools</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span></code></pre></div>
 </div>
 </div>
 </div>
-<p>class ToolRegistry:
-    def <strong>init</strong>(self):
-        self._tools: Dict[str, Callable] = {}</p>
-<div class="language-text highlight"><pre><span></span><code>def register(self, name: str, fn: Callable):
-    self._tools[name] = fn
-
-def execute(self, name: str, **kwargs) -&gt; Any:
-    if name not in self._tools:
-        raise KeyError(f"Herramienta '{name}' no registrada")
-    return self._tools[name](**kwargs)
-
-def list_tools(self) -&gt; List[str]:
-    return list(self._tools.keys())
-
-```
-</code></pre></div>
 <details class="info">
 <summary>💡 Pista Socrática 1</summary>
 <p>💡 Pista 1: Guarda las funciones en un diccionario interno <code>self._tools = {}</code>.</p>
@@ -2347,13 +2347,13 @@ def list_tools(self) -&gt; List[str]:
 </details>
 <details class="info">
 <summary>💡 Pista Socrática 3</summary>
-<p>💡 Pista 3: Invoca la función pasando los argumentos con <code>self._tools[name](**kwargs)</code>.</p>
+<p>💡 Pista 3: Invoca la función pasando los argumentos con <code>func = self._tools[name]; return func(**kwargs)</code>.</p>
 </details>
 <p>Para resolver este ejercicio en tu entorno:
 1. Abre el archivo <code>ejercicios/reto.py</code> de esta clase en Visual Studio Code o utiliza <code>wisrovi ui</code> / <code>wisrovi tutor</code>.
 2. Implementa tu solución cumpliendo los requisitos y contratos de tipado.
 3. Valida tus resultados ejecutando las pruebas unitarias:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pytest<span class="w"> </span>tests/curso_03/test_clase_04_tool_calling_funciones.py
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pytest<span class="w"> </span>tests/curso_03/test_clase_04_tool_calling_funciones.py
 </span></code></pre></div></p>
 <hr />
 <h2 id="6-fuentes-y-bibliografia-recomendada">6. 📚 Fuentes y Bibliografía Recomendada</h2>
