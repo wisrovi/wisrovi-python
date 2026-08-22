@@ -65,12 +65,30 @@ def main():
         (True, "Booleano (bool)"),
         (None, "Nulo (NoneType)")
     ]
-    
     print(f"{'Valor':<15} | {'Tipo':<15} | {'Bytes en RAM':<12} | {'Dirección Hexadecimal'}")
     print("-" * 65)
     for val, tipo_desc in ejemplos:
         print(f"{str(val):<15} | {type(val).__name__:<15} | {sys.getsizeof(val):<12} | {hex(id(val))}")
-        
+
+    # --------------------------------------------------------------------------
+    # 5. Funciones ('La Licuadora') y Paso de Parámetros en Memoria
+    # --------------------------------------------------------------------------
+    separador("5. Paso de Variables a Funciones (Call by Object Reference)")
+    
+    def procesar_saldo(monto: float, bono: float) -> float:
+        print(f"  -> [Scope Local Función] ID 'monto' recibido: {hex(id(monto))}")
+        nuevo_monto = monto + bono
+        print(f"  -> [Scope Local Función] ID 'nuevo_monto' creado: {hex(id(nuevo_monto))}")
+        return nuevo_monto
+
+    saldo_cuenta: float = 1500.50
+    bonificacion: float = 250.0
+    
+    print(f"Variable global 'saldo_cuenta': {saldo_cuenta} | ID: {hex(id(saldo_cuenta))}")
+    saldo_final = procesar_saldo(saldo_cuenta, bonificacion)
+    print(f"Variable global 'saldo_final':  {saldo_final} | ID: {hex(id(saldo_final))}")
+    print("💡 Conclusión: La función recibe la referencia del objeto; al sumar se instancia un nuevo float en el Heap.")
+
     print("\n✨ SIMULACIÓN DE MEMORIA COMPLETADA EXITOSAMENTE.\n")
 
 if __name__ == "__main__":

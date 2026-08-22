@@ -1,9 +1,9 @@
-# 🏋️ Reto Práctico: Clase 02: Variables, Tipos de Datos y Operadores
+# 🏋️ Reto Práctico: Clase 02: Variables, Tipos de Datos y Funciones Modulares
 
 <div align="center">
 
 **Curso 1: Fundamentos Básicos de Python** &bull; **Semana CLASE 02**  
-*Archivo de Trabajo:* [`reto.py`](reto.py) &bull; *Suite de Validación:* [`tests/curso_01/test_clase_02_variables_y_tipos.py`](../../tests/curso_01/test_clase_02_variables_y_tipos.py)
+*Archivo de Trabajo:* [`reto.py`](reto.py) &bull; *Suite de Validación:* [`tests/curso_01/test_clase_02.py`](../../../tests/curso_01/test_clase_02.py)
 
 </div>
 
@@ -11,7 +11,10 @@
 
 ## 🎯 Enunciado del Desafío
 
-> **Crea una calculadora de propinas que solicite el total de la cuenta y el porcentaje deseado.**
+> **Construye una calculadora de propinas y facturación modular implementando 3 funciones con Type Hints (PEP 484):**
+> 1. `calcular_propina(total_cuenta: float, porcentaje: float) -> float`
+> 2. `calcular_total_por_persona(total_cuenta: float, porcentaje: float, num_personas: int) -> float`
+> 3. `formatear_factura(total_cuenta: float, propina: float, total_por_persona: float) -> str`
 
 ---
 
@@ -19,9 +22,9 @@
 
 ```mermaid
 flowchart LR
-    A["📖 1. Leer reto.py<br/>Comprende los requisitos y tipos"] --> B["💻 2. Implementar Solución<br/>Escribe tu lógica en VS Code"]
-    B --> C["🧪 3. Ejecutar Pytest<br/>pytest tests/curso_01/"]
-    C -->|Fallo ❌| D["🔍 4. Depuración<br/>Analiza el mensaje de error"]
+    A["📖 1. Leer reto.py<br/>Firmas de función y Type Hints"] --> B["💻 2. Implementar Funciones<br/>Escribe tu lógica tipada"]
+    B --> C["🧪 3. Ejecutar Pytest<br/>pytest tests/curso_01/test_clase_02.py"]
+    C -->|Fallo ❌| D["🔍 4. Depuración<br/>Revisa tipos y redondeo"]
     D --> B
     C -->|Pasa 100% ✅| E["🏆 5. ¡Hito Superado!<br/>Avanza a la siguiente clase"]
 
@@ -37,9 +40,10 @@ flowchart LR
 ## 🚀 Pasos para Resolver el Reto
 
 1. Abre [`reto.py`](reto.py) en tu editor.
-2. Lee las firmas de función, docstrings y restricciones.
-3. Escribe tu solución reemplazando los comentarios `TODO`.
+2. Lee las firmas de función, docstrings y anotaciones de tipo.
+3. Escribe tu solución implementando los cálculos aritméticos y el formateo con f-strings.
 4. Valida tu solución en cualquier momento ejecutando en la terminal:
    ```bash
-   pytest tests/curso_01/
+   pytest tests/curso_01/test_clase_02.py
    ```
+

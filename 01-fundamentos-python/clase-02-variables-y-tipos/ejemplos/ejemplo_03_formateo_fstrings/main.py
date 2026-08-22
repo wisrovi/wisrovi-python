@@ -1,9 +1,24 @@
-"""Ejemplo 03: F-Strings Avanzados."""
-producto = "Teclado Mecánico"
-precio = 89.9543
-descuento = 0.15
+"""Ejemplo 03: F-Strings Avanzados y Funciones de Formateo Financiero."""
 
-total = precio * (1 - descuento)
+def generar_recibo_compra(producto: str, precio_base: float, descuento: float) -> str:
+    """Genera un recibo estructurado aplicando alineación, porcentajes y formato decimal."""
+    monto_descuento: float = precio_base * descuento
+    total_final: float = precio_base - monto_descuento
+    
+    recibo = (
+        f"{'=' * 45}\n"
+        f"{'RESUMEN DE COMPRA':^45}\n"
+        f"{'=' * 45}\n"
+        f"Producto:     {producto:<25}\n"
+        f"Precio Base:  ${precio_base:>8.2f}\n"
+        f"Descuento:    {descuento * 100:>7.1f}%\n"
+        f"Ahorro:       ${monto_descuento:>8.2f}\n"
+        f"{'-' * 45}\n"
+        f"Total Pagar:  ${total_final:>8.2f}\n"
+        f"{'=' * 45}"
+    )
+    return recibo
 
-print(f"Producto: {producto:<20} | Precio Base: ${precio:.2f}")
-print(f"Descuento: {descuento * 100:.0f}% | Total a Pagar: ${total:.2f}")
+recibo_texto = generar_recibo_compra("Teclado Mecánico RGB", 89.9543, 0.15)
+print(recibo_texto)
+

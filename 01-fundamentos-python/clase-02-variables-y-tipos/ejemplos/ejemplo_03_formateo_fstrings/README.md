@@ -1,4 +1,4 @@
-# 📖 03 Formateo Fstrings
+# 📖 Ejemplo 03: F-Strings Avanzados y Formateo Financiero con Funciones
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 ---
 
 ## 🎯 Propósito del Ejemplo
-Ejemplo 03: F-Strings Avanzados.
+Demostrar el poder de los **f-strings en Python 3.10+** para alineación de texto (`<`, `>`, `^`), formato de porcentajes (`.1%`) y redondeo visual de decimales (`.2f`) dentro de una función generadora de recibos.
 
 ---
 
@@ -18,21 +18,23 @@ Ejemplo 03: F-Strings Avanzados.
 
 ```mermaid
 flowchart LR
-    A["📥 Entrada de Parámetros<br/>(03 Formateo Fstrings)"] --> B["⚙️ Transformación Lógica<br/>Ejecución en Python"]
-    B --> C["🎯 Salida por Consola<br/>print() / Retorno Seguro"]
+    A["📥 Datos del Producto<br/>'Teclado RGB', 89.9543, 0.15"] --> B["⚙️ Función: generar_recibo_compra()<br/>Cálculo de Descuento y Total"]
+    B --> C["📝 Plantilla f-string<br/>Alineación <:25, >:8.2f y Centrado :^45"]
+    C --> D["📤 Retorno Tipado (-> str)<br/>Recibo Tabulado Profesional"]
 
     style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
     style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style C fill:#581c87,color:#ffffff,stroke:#c084fc,stroke-width:2px
+    style D fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
 ## 🔍 Aspectos Clave a Observar en el Código
 
-1. **Claridad Sintáctica:** Estructura modular, tipado explícito y apego a la guía de estilo oficial PEP 8.
-2. **Transformación de Datos:** Cómo se declaran las entradas, se procesan en memoria y se devuelven al usuario.
-3. **Robustez:** Prevención de comportamientos inesperados mediante nombres expresivos y control lógico.
+1. **Alineación y Relleno:** `{producto:<25}` alinea a la izquierda con ancho 25; `{titulo:^45}` centra el texto; `{precio:>8.2f}` alinea a la derecha.
+2. **Formato Numérico Decimal:** `{precio:.2f}` asegura visualización con exactamente dos decimales sin alterar el valor aritmético original.
+3. **Composición de Cadenas Limpia:** Uso de tuplas de cadenas con paréntesis para evitar líneas infinitas respetando PEP 8.
 
 ---
 

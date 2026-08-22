@@ -25,10 +25,12 @@ flowchart LR
 
 | Directorio | Caso de Uso Demostrado | Script Principal |
 | :--- | :--- | :---: |
-| [`ejemplo_01_tipos_primitivos/`](ejemplo_01_tipos_primitivos/) | 01 Tipos Primitivos | [`main.py`](ejemplo_01_tipos_primitivos/main.py) |
-| [`ejemplo_02_casting_y_conversion/`](ejemplo_02_casting_y_conversion/) | 02 Casting Y Conversion | [`main.py`](ejemplo_02_casting_y_conversion/main.py) |
-| [`ejemplo_03_formateo_fstrings/`](ejemplo_03_formateo_fstrings/) | 03 Formateo Fstrings | [`main.py`](ejemplo_03_formateo_fstrings/main.py) |
-| [`ejemplo_04_identidad_id_memoria/`](ejemplo_04_identidad_id_memoria/) | 04 Identidad Id Memoria | [`main.py`](ejemplo_04_identidad_id_memoria/main.py) |
+| [`ejemplo_01_tipos_primitivos/`](ejemplo_01_tipos_primitivos/) | Tipos primitivos, type hints (PEP 484) y funciones modulares | [`main.py`](ejemplo_01_tipos_primitivos/main.py) |
+| [`ejemplo_02_casting_y_conversion/`](ejemplo_02_casting_y_conversion/) | Casting explícito de cadenas a float/int dentro de funciones | [`main.py`](ejemplo_02_casting_y_conversion/main.py) |
+| [`ejemplo_03_formateo_fstrings/`](ejemplo_03_formateo_fstrings/) | Funciones generadoras de recibos con alineación y f-strings | [`main.py`](ejemplo_03_formateo_fstrings/main.py) |
+| [`ejemplo_04_identidad_id_memoria/`](ejemplo_04_identidad_id_memoria/) | Paso de parámetros, inmutabilidad de tipos e `id()` en Heap | [`main.py`](ejemplo_04_identidad_id_memoria/main.py) |
+| [`ejemplo_05_operadores_aritmeticos_y_asignacion/`](ejemplo_05_operadores_aritmeticos_y_asignacion/) | Operadores aritméticos (`/`, `//`, `%`, `**`) y asignación (`+=`) | [`main.py`](ejemplo_05_operadores_aritmeticos_y_asignacion/main.py) |
+| [`ejemplo_06_operadores_comparacion_y_logicos/`](ejemplo_06_operadores_comparacion_y_logicos/) | Operadores relacionales (`==`, `<`, `>=`), lógicos (`and`, `or`, `not`) y cortocircuito | [`main.py`](ejemplo_06_operadores_comparacion_y_logicos/main.py) |
 
 
 ---

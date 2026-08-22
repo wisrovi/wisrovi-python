@@ -128,67 +128,143 @@ print(resultado)
 reg_ex(1, "clase-02-variables-y-tipos", [
     {
         "dir": "ejemplo_01_tipos_primitivos",
-        "title": "Tipos de Datos Primitivos y Type Hints",
-        "desc": "Manipulación de enteros, flotantes, cadenas y booleanos con anotaciones de tipo.",
-        "code": '''"""Ejemplo 01: Tipos Primitivos y Anotaciones de Tipo (PEP 484)."""
-edad: int = 30
-altura: float = 1.78
-nombre: str = "Wisrovi"
-es_estudiante: bool = False
+        "title": "Tipos de Datos Primitivos, Type Hints y Funciones",
+        "desc": "Definición de funciones tipadas (PEP 484) combinando int, float, str y bool.",
+        "code": '''"""Ejemplo 01: Tipos Primitivos, Type Hints (PEP 484) y Funciones Modulares."""
 
-print(f"Nombre: {nombre} ({type(nombre).__name__})")
-print(f"Edad: {edad} ({type(edad).__name__})")
-print(f"Altura: {altura} m ({type(altura).__name__})")
-print(f"¿Estudiante?: {es_estudiante} ({type(es_estudiante).__name__})")
+def crear_perfil_usuario(nombre: str, edad: int, altura: float, es_estudiante: bool) -> str:
+    """Combina variables de diferentes tipos primitivos en un reporte formateado."""
+    categoria = "Estudiante Activo" if es_estudiante else "Profesional / Graduado"
+    resumen = (
+        f"--- FICHA DE USUARIO ---\\n"
+        f"Nombre:     {nombre} (Tipo: {type(nombre).__name__})\\n"
+        f"Edad:       {edad} años (Tipo: {type(edad).__name__})\\n"
+        f"Altura:     {altura:.2f} m (Tipo: {type(altura).__name__})\\n"
+        f"Condición:  {categoria} (Tipo booleano: {type(es_estudiante).__name__})"
+    )
+    return resumen
+
+# Declaración de variables tipadas
+nombre_usuario: str = "Wisrovi"
+edad_usuario: int = 30
+altura_usuario: float = 1.78
+activo: bool = False
+
+# Llamada a la función con paso de variables
+perfil_generado = crear_perfil_usuario(
+    nombre=nombre_usuario,
+    edad=edad_usuario,
+    altura=altura_usuario,
+    es_estudiante=activo
+)
+
+print(perfil_generado)
 '''
     },
     {
         "dir": "ejemplo_02_casting_y_conversion",
-        "title": "Conversión Explícita de Tipos (Casting)",
-        "desc": "Conversión segura de strings a números y formateo de excepciones.",
-        "code": '''"""Ejemplo 02: Casting y Conversión de Tipos."""
-entrada_usuario = "45.90"
+        "title": "Conversión Explícita de Tipos (Casting) con Funciones",
+        "desc": "Casting seguro de strings a números y operaciones aritméticas con retorno tipado.",
+        "code": '''"""Ejemplo 02: Casting y Conversión Segura de Tipos con Funciones."""
 
-# Conversión a float y posterior a int
-precio_float = float(entrada_usuario)
-precio_int = int(precio_float)
+def calcular_precio_total(precio_str: str, cantidad_str: str, impuesto_porcentaje: float = 21.0) -> float:
+    """Realiza casting explícito de cadenas a float e int, y calcula el total con impuestos."""
+    precio_unitario: float = float(precio_str)
+    cantidad: int = int(cantidad_str)
+    
+    subtotal: float = precio_unitario * cantidad
+    total_con_impuesto: float = subtotal * (1 + (impuesto_porcentaje / 100))
+    return round(total_con_impuesto, 2)
 
-print(f"Original (str): '{entrada_usuario}'")
-print(f"Como Float: {precio_float:.2f}")
-print(f"Como Int (truncado): {precio_int}")
+entrada_precio: str = "45.90"
+entrada_cantidad: str = "3"
+
+total_pagar = calcular_precio_total(entrada_precio, entrada_cantidad)
+
+print(f"Precio recibido (str):    '{entrada_precio}'")
+print(f"Cantidad recibida (str):  '{entrada_cantidad}'")
+print(f"Total calculado con IVA:  ${total_pagar:.2f} (Tipo retornado: {type(total_pagar).__name__})")
 '''
     },
     {
         "dir": "ejemplo_03_formateo_fstrings",
-        "title": "Formateo Avanzado con F-Strings (PEP 498)",
-        "desc": "Alineación de texto, especificadores de decimales y expresiones embebidas.",
-        "code": '''"""Ejemplo 03: F-Strings Avanzados."""
-producto = "Teclado Mecánico"
-precio = 89.9543
-descuento = 0.15
+        "title": "Formateo Financiero Avanzado con F-Strings y Funciones",
+        "desc": "Alineación de texto, especificadores de decimales y plantillas en funciones.",
+        "code": '''"""Ejemplo 03: F-Strings Avanzados y Funciones de Formateo Financiero."""
 
-total = precio * (1 - descuento)
+def generar_recibo_compra(producto: str, precio_base: float, descuento: float) -> str:
+    """Genera un recibo estructurado aplicando alineación, porcentajes y formato decimal."""
+    monto_descuento: float = precio_base * descuento
+    total_final: float = precio_base - monto_descuento
+    
+    recibo = (
+        f"{'=' * 45}\\n"
+        f"{'RESUMEN DE COMPRA':^45}\\n"
+        f"{'=' * 45}\\n"
+        f"Producto:     {producto:<25}\\n"
+        f"Precio Base:  ${precio_base:>8.2f}\\n"
+        f"Descuento:    {descuento * 100:>7.1f}%\\n"
+        f"Ahorro:       ${monto_descuento:>8.2f}\\n"
+        f"{'-' * 45}\\n"
+        f"Total Pagar:  ${total_final:>8.2f}\\n"
+        f"{'=' * 45}"
+    )
+    return recibo
 
-print(f"Producto: {producto:<20} | Precio Base: ${precio:.2f}")
-print(f"Descuento: {descuento * 100:.0f}% | Total a Pagar: ${total:.2f}")
+recibo_texto = generar_recibo_compra("Teclado Mecánico RGB", 89.9543, 0.15)
+print(recibo_texto)
 '''
     },
     {
         "dir": "ejemplo_04_identidad_id_memoria",
-        "title": "Identidad de Objetos e Inmutabilidad",
-        "desc": "Exploración de la dirección de memoria con id() y operador is.",
-        "code": '''"""Ejemplo 04: Identidad en Memoria (id() y operador 'is')."""
-a = "Python"
-b = a
+        "title": "Identidad de Objetos, Memoria Heap y Parámetros",
+        "desc": "Paso de parámetros por asignación, inmutabilidad y direcciones id() en funciones.",
+        "code": '''"""Ejemplo 04: Identidad en Memoria (id), Operador 'is' y Parámetros en Funciones."""
 
-print(f"Dirección de 'a': {id(a)}")
-print(f"Dirección de 'b': {id(b)}")
-print(f"¿Apuntan al mismo objeto?: {a is b}")
+def modificar_contador(contador: int) -> int:
+    """Demuestra que los enteros son inmutables: modificarlos dentro de la función crea un nuevo objeto."""
+    print(f"  [Dentro de función] ID al recibir:            {hex(id(contador))}")
+    contador = contador + 10
+    print(f"  [Dentro de función] ID tras 'contador + 10':  {hex(id(contador))}")
+    return contador
 
-# Reasignación crea un nuevo objeto
-a = a + " 3.12"
-print(f"Nueva dirección de 'a': {id(a)}")
-print(f"¿Siguen siendo iguales?: {a is b}")
+saldo_original: int = 100
+print(f"1. ID 'saldo_original' fuera de la función:     {hex(id(saldo_original))}")
+
+saldo_nuevo = modificar_contador(saldo_original)
+
+print(f"2. ID 'saldo_original' tras la llamada:         {hex(id(saldo_original))} (Valor: {saldo_original})")
+print(f"3. ID 'saldo_nuevo' retornado:                  {hex(id(saldo_nuevo))} (Valor: {saldo_nuevo})")
+print(f"¿Apuntan al mismo bloque de memoria?:           {saldo_original is saldo_nuevo}")
+'''
+    },
+    {
+        "dir": "ejemplo_05_operadores_aritmeticos_y_asignacion",
+        "title": "Operadores Aritméticos y Asignación Aumentada",
+        "desc": "División real (/), entera (//), módulo (%) y acumuladores (+=) tipados.",
+        "code": '''"""Ejemplo 05: Operadores Aritméticos y Asignación Aumentada."""
+def calcular_estadisticas_division(dividendo: int, divisor: int) -> dict:
+    return {
+        "division_real": dividendo / divisor,
+        "division_entera": float(dividendo // divisor),
+        "modulo_residuo": float(dividendo % divisor),
+        "cuadrado": float(dividendo ** 2)
+    }
+
+stats = calcular_estadisticas_division(17, 5)
+print("Estadísticas 17 / 5:", stats)
+'''
+    },
+    {
+        "dir": "ejemplo_06_operadores_comparacion_y_logicos",
+        "title": "Operadores de Comparación, Lógicos y Cortocircuito",
+        "desc": "Evaluación booleana combinada con and, or, not y comparaciones encadenadas.",
+        "code": '''"""Ejemplo 06: Operadores de Comparación y Lógicos."""
+def validar_acceso(edad: int, tiene_membresia: bool, es_admin: bool = False) -> bool:
+    return es_admin or (edad >= 18 and tiene_membresia)
+
+print("Acceso Usuario Regular (20 años, con membresía):", validar_acceso(20, True))
+print("Acceso Admin (16 años, sin membresía, admin):", validar_acceso(16, False, True))
 '''
     }
 ])

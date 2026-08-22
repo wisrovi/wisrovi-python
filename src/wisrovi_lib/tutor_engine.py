@@ -81,51 +81,70 @@ else:
         "course_num": 1,
         "class_num": 2,
         "course_name": "Curso 1: Fundamentos Básicos de Python",
-        "title": "Clase 02: Variables, Tipos de Datos y Memoria Heap",
-        "metaphor": "Las Cajas Etiquetadas en Memoria (Punteros e Inmutabilidad)",
-        "theory": """En Python, las variables no contienen datos directamente; son **etiquetas que apuntan a objetos en la memoria Heap**:
-1. **Tipos Primitivos**: `int`, `float`, `str`, `bool`. Son **inmutables** (no pueden alterarse tras crearse).
-2. **Identidad (`id`)**: La dirección física en RAM donde reside el objeto.
-3. **`==` vs `is`**: `==` compara si dos objetos tienen el mismo valor de contenido; `is` comprueba si son exactamente el mismo bloque de memoria física.""",
+        "title": "Clase 02: Variables, Tipos de Datos y Funciones con Type Hints",
+        "metaphor": "Las Cajas Etiquetadas en Memoria y la Licuadora Tipada (PEP 484)",
+        "theory": """En Python, las variables no contienen datos directamente; son **etiquetas que apuntan a objetos en la memoria Heap**.
+Al conectarlas con **funciones (`def`)**, construimos transformaciones robustas y reutilizables:
+1. **Tipos Primitivos & Type Hints (PEP 484)**: `int`, `float`, `str`, `bool`. Anotar parámetros (`x: float`) y retorno (`-> float`) documenta y previene errores.
+2. **Paso por Asignación de Objetos**: Al pasar una variable a una función, el parámetro recibe la referencia al objeto en memoria.
+3. **Inmutabilidad y Reasignación**: Modificar un tipo primitivo dentro o fuera de una función crea un *nuevo* objeto en el Heap.
+4. **Identidad (`id`) vs Igualdad (`==`)**: `==` compara valores; `is` comprueba si apuntan a la misma dirección física de memoria.""",
         "mermaid": """flowchart LR
-    A["🏷️ Variable: nombre_a<br/>'Python'"] -->|Apunta a| OBJ["📦 Objeto en Heap<br/>0x7f... | 'Python' | 54 Bytes"]
-    B["🏷️ Variable: nombre_b<br/>'Python'"] -->|Apunta a| OBJ
+    subgraph Entrada["📥 Variables en Heap"]
+        V1["💵 total = 100.0<br/>(float | 24 B)"]
+        V2["🏷️ tasa = 15<br/>(int | 28 B)"]
+    end
 
-    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    B fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style OBJ fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px""",
-        "demo_code": """# Inspección de Identidad y Memoria
-a = "Python"
-b = a
+    subgraph Funcion["🥤 Función 'calcular_propina' (PEP 484)"]
+        PARAMS["Parámetros: (total: float, tasa: float)"]
+        OP["Operación: total * (tasa / 100)"]
+        RET["Retorno: -> float"]
+        PARAMS --> OP --> RET
+    end
 
-print(f"Dirección de 'a': {hex(id(a))}")
-print(f"Dirección de 'b': {hex(id(b))}")
-print(f"¿Apuntan al mismo objeto?: {a is b}")
+    subgraph Salida["📤 Nuevo Objeto en Heap"]
+        RES["🎯 15.0<br/>(float)"]
+    end
 
-# Reasignación crea un nuevo objeto en el Heap
-a = a + " 3.12"
-print(f"Nueva dirección de 'a': {hex(id(a))}")
-print(f"¿Siguen siendo el mismo objeto?: {a is b}")""",
-        "playground_code": """# 🔬 ARENERO DE MEMORIA: Observa cómo cambia la memoria
-x = 100
-y = x
-print("x:", x, "| y:", y, "| x is y:", x is y)
+    V1 --> PARAMS
+    V2 --> PARAMS
+    RET --> RES
 
-x = x + 1
-print("Tras x = x + 1 -> x:", x, "| y:", y, "| x is y:", x is y)""",
-        "challenge_prompt": "Crea una función `identificar_tipo_y_tamano(valor)` que retorne una tupla con (nombre_del_tipo, tamano_en_bytes_usando_sys).",
-        "challenge_starter": """import sys
+    style Entrada fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style Funcion fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style Salida fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style V1 fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style V2 fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style RES fill:#047857,color:#ffffff,stroke:#10b981,stroke-width:2px""",
+        "demo_code": """# Funciones con Type Hints y Gestión de Memoria
+def calcular_propina(total_cuenta: float, porcentaje: float) -> float:
+    \"\"\"Calcula la propina y demuestra la creación de un nuevo float en memoria.\"\"\"
+    monto_propina = total_cuenta * (porcentaje / 100)
+    print(f"-> [Dentro de función] ID de monto_propina: {hex(id(monto_propina))}")
+    return monto_propina
 
-def identificar_tipo_y_tamano(valor) -> tuple:
+cuenta_inicial: float = 85.50
+tasa_propina: float = 10.0
+
+print(f"Variable cuenta_inicial: {cuenta_inicial} | ID: {hex(id(cuenta_inicial))}")
+resultado = calcular_propina(cuenta_inicial, tasa_propina)
+print(f"Propina calculada: ${resultado:.2f} | ID: {hex(id(resultado))}")""",
+        "playground_code": """# 🔬 ARENERO DE MEMORIA & FUNCIONES: Experimenta con tipos y retornos
+def formatear_perfil(nombre: str, edad: int, saldo: float) -> str:
+    return f"Usuario: {nombre:<10} | Edad: {edad} años | Saldo: ${saldo:.2f}"
+
+perfil = formatear_perfil("Wisrovi", 30, 245.80)
+print(perfil)""",
+        "challenge_prompt": "Crea una función `calcular_propina(total_cuenta: float, porcentaje: float) -> float` que calcule y retorne el monto de la propina redondeado a 2 decimales.",
+        "challenge_starter": """def calcular_propina(total_cuenta: float, porcentaje: float) -> float:
     # ✍️ Escribe aquí tu solución
-    tipo_nombre = type(valor).__name__
-    tamano = sys.getsizeof(valor)
-    return (tipo_nombre, tamano)
+    propina = total_cuenta * (porcentaje / 100)
+    return round(propina, 2)
 """,
         "socratic_hints": [
-            "💡 Pista 1: Usa 'type(valor).__name__' para obtener el nombre del tipo como texto ('int', 'str', etc.).",
-            "💡 Pista 2: Usa 'sys.getsizeof(valor)' para calcular el tamaño en memoria RAM.",
-            "💡 Pista 3: Retorna una tupla de dos elementos '(tipo, tamano)'."
+            "💡 Pista 1: Multiplica total_cuenta por (porcentaje / 100).",
+            "💡 Pista 2: Usa round(resultado, 2) para asegurar precisión a dos decimales.",
+            "💡 Pista 3: Asegúrate de retornar un valor de tipo float."
         ],
         "boss_battle": False
     },

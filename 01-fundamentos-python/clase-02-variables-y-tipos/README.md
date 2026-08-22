@@ -1,9 +1,9 @@
-# 📘 Clase 02: Variables, Tipos de Datos y Operadores
+# 📘 Clase 02: Variables, Tipos de Datos y Funciones con Type Hints
 
 <div align="center">
 
 **Curso 1: Fundamentos Básicos de Python** &bull; **Semana CLASE 02**  
-*Nivel:* `Nivel 1 - Principiante` &bull; *Metáfora Central:* **«Variables como Cajas Etiquetadas en Memoria»**
+*Nivel:* `Nivel 1 - Principiante` &bull; *Metáfora Central:* **«Variables como Cajas Etiquetadas en Memoria y la Licuadora Tipada (PEP 484)»**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-02-variables-y-tipos/notebook/clase-02-variables-y-tipos.ipynb)
 [![PDF Oficial](https://img.shields.io/badge/Manual-PDF%209%20Páginas-red.svg?logo=adobeacrobatreader&logoColor=white)](clase-02-variables-y-tipos.pdf)
@@ -15,9 +15,9 @@
 
 ## 🎯 Objetivos de Aprendizaje de la Sesión
 
-*   **Competencia Conceptual:** Comprender el modelo mental de *«Variables como Cajas Etiquetadas en Memoria»* (Una variable es una etiqueta adhesiva pegada a una caja; varias etiquetas pueden apuntar a la misma caja.).
-*   **Competencia Práctica:** Escribir, ejecutar y depurar scripts en Python aplicando buenas prácticas (PEP 8) y tipado.
-*   **Competencia de Ingeniería:** Resolver el reto práctico de la sesión y verificar su correcto funcionamiento con la suite de pruebas automatizadas.
+*   **Competencia Conceptual:** Comprender el modelo mental de *«Variables como Cajas Etiquetadas en Memoria»* y cómo se transmiten referencias de objetos a funciones (`def`).
+*   **Competencia Práctica:** Escribir, ejecutar y depurar funciones en Python aplicando *Type Hints* (PEP 484), *casting* explícito y formateo con f-strings.
+*   **Competencia de Ingeniería:** Resolver el reto de la calculadora modular y verificar su correcto funcionamiento con la suite de pruebas automatizadas (`pytest`).
 
 ---
 
@@ -25,18 +25,28 @@
 
 ```mermaid
 flowchart LR
-    INPUT["📥 Entrada del Usuario<br/>'45.90' (str)"] --> CAST1["⚙️ float('45.90')<br/>Conversión Decimal"]
-    CAST1 --> FLOAT_VAL["💵 45.90 (float)<br/>Número Flotante"]
-    FLOAT_VAL --> CAST2["⚙️ int(45.90)<br/>Truncado a Entero"]
-    CAST2 --> INT_VAL["🔢 45 (int)<br/>Número Entero"]
-    INT_VAL --> MEM["🧠 Memoria Heap<br/>id(objeto) & Inmutabilidad"]
+    subgraph Memoria["🧠 Memoria Heap"]
+        OBJ1["💵 total_cuenta = 100.0 (float)"]
+        OBJ2["🏷️ porcentaje = 15.0 (float)"]
+        RET["🎯 propina = 15.0 (float)"]
+    end
 
-    style INPUT fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style CAST1 fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
-    style FLOAT_VAL fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style CAST2 fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
-    style INT_VAL fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
-    style MEM fill:#4338ca,color:#ffffff,stroke:#818cf8,stroke-width:2px
+    subgraph Funcion["🥤 Función 'calcular_propina' (PEP 484)"]
+        INPUT["📥 Parámetros Tipados<br/>(total_cuenta: float, porcentaje: float)"]
+        LOGIC["⚙️ Operación & Casting<br/>total_cuenta * (porcentaje / 100)"]
+        OUT["📤 Retorno Tipado<br/>-> float"]
+        INPUT --> LOGIC --> OUT
+    end
+
+    OBJ1 -.->|Pasa Referencia| INPUT
+    OBJ2 -.->|Pasa Referencia| INPUT
+    OUT -.->|Crea en Heap| RET
+
+    style Memoria fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style Funcion fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style OBJ1 fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
+    style OBJ2 fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style RET fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
@@ -52,18 +62,20 @@ clase-02-variables-y-tipos/
 │   ├── 📓 clase-02-variables-y-tipos.ipynb
 │   └── 📝 README.md               # Guía con badge a Google Colab
 ├── 📁 ejemplos/                   # Carpetas de código estructurado paso a paso
-│   └── 📝 README.md               # Catálogo de ejemplos con comandos de ejecución
+│   └── 📝 README.md               # Catálogo de 6 ejemplos modulares con funciones
 └── 📁 ejercicios/                 # Reto práctico para el estudiante
-    ├── 🐍 reto.py                 # Enunciado y plantilla del ejercicio
+    ├── 🐍 reto.py                 # Enunciado y funciones modulares a implementar
+    ├── 🐍 ejercicio_02_perfil_usuario.py # Ejercicio guiado de perfil de usuario
     └── 📝 README.md               # Instrucciones de resolución y comandos pytest
 ```
 
 ---
 
 ## 🏋️ Desafío Práctico de la Sesión
-> **Enunciado:** Crea una calculadora de propinas que solicite el total de la cuenta y el porcentaje deseado.
+> **Enunciado:** Construye una calculadora de propinas y facturación modular implementando `calcular_propina`, `calcular_total_por_persona` y `formatear_factura` con tipado PEP 484.
 
 Abre el archivo [`ejercicios/reto.py`](ejercicios/reto.py), completa tu implementación y valida tu código ejecutando:
 ```bash
-pytest tests/curso_01/test_clase_02_variables_y_tipos.py
+pytest tests/curso_01/test_clase_02.py
 ```
+

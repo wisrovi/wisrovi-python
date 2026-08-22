@@ -1,4 +1,4 @@
-# 📖 02 Casting Y Conversion
+# 📖 Ejemplo 02: Casting y Conversión Segura de Tipos con Funciones
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 ---
 
 ## 🎯 Propósito del Ejemplo
-Ejemplo 02: Casting y Conversión de Tipos.
+Demostrar la conversión explícita de tipos (*casting*) al procesar entradas textuales (`str`) transformándolas a números (`float` e `int`) dentro de una función de cálculo financiero.
 
 ---
 
@@ -18,21 +18,23 @@ Ejemplo 02: Casting y Conversión de Tipos.
 
 ```mermaid
 flowchart LR
-    A["📥 Entrada de Parámetros<br/>(02 Casting Y Conversion)"] --> B["⚙️ Transformación Lógica<br/>Ejecución en Python"]
-    B --> C["🎯 Salida por Consola<br/>print() / Retorno Seguro"]
+    A["📥 Entradas de Texto (str)<br/>'45.90' y '3'"] --> B["⚙️ Casting Explícito<br/>float('45.90') & int('3')"]
+    B --> C["🧮 Cálculo Aritmético<br/>subtotal * (1 + IVA / 100)"]
+    C --> D["📤 Retorno Tipado (-> float)<br/>Total redondeado a 2 decimales"]
 
     style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style B fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style C fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style D fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
 ## 🔍 Aspectos Clave a Observar en el Código
 
-1. **Claridad Sintáctica:** Estructura modular, tipado explícito y apego a la guía de estilo oficial PEP 8.
-2. **Transformación de Datos:** Cómo se declaran las entradas, se procesan en memoria y se devuelven al usuario.
-3. **Robustez:** Prevención de comportamientos inesperados mediante nombres expresivos y control lógico.
+1. **Casting Explícito:** `float(precio_str)` e `int(cantidad_str)` evitan el clásico error de concatenación accidental.
+2. **Parámetros con Valor por Defecto:** La tasa de impuesto `impuesto_porcentaje: float = 21.0` permite flexibilidad en la llamada.
+3. **Control de Precisión:** Uso de `round(total_con_impuesto, 2)` para asegurar exactitud monetaria antes del retorno.
 
 ---
 
