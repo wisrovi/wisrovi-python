@@ -4,7 +4,8 @@
 
 -   :material-bookmark: **Curso:** Curso 1: Fundamentos Básicos de Python (CLASE 02)
 -   :material-signal-cellular-outline: **Nivel:** `Nivel 1 - Principiante`
--   :material-lightbulb-on: **Metáfora Central:** *«Variables como Cajas Etiquetadas en Memoria y la Licuadora Tipada (PEP 484)»*
+-   :material-lightbulb-on: **Metáfora Central:** *«Las Cajas Etiquetadas en Memoria y la Licuadora Tipada (PEP 484)»*
+-   :material-laptop: **Wisrovi Studio (Local):** [🚀 Abrir Reto](http://127.0.0.1:8501/?course=1&class=2) &bull; [👨‍🏫 Modo Tutor](http://127.0.0.1:8501/tutor?course=1&class=2)
 -   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-02-variables-y-tipos.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/01-fundamentos-python/clase-02-variables-y-tipos/clase-02-variables-y-tipos.pdf)
 
 </div>
@@ -12,6 +13,7 @@
 <div align="center" style="margin: 1rem 0;" markdown>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/01-fundamentos-python/clase-02-variables-y-tipos/notebook/clase-02-variables-y-tipos.ipynb)
+[![Abrir en Studio Local](https://img.shields.io/badge/Wisrovi_Studio-Abrir_en_Local_(127.0.0.1%3A8501)-0284c7?logo=python&logoColor=white)](http://127.0.0.1:8501/?course=1&class=2)
 [![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/01-fundamentos-python/clase-02-variables-y-tipos)
 
 </div>
@@ -20,19 +22,13 @@
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
-En Python, las variables almacenan referencias (punteros) a objetos en el Heap de memoria. Integradas con funciones modulares (`def`), nos permiten construir algoritmos limpios y reutilizables.
+En Python, las variables son **etiquetas que apuntan a objetos en la memoria RAM**.
+1. **Tipos Primitivos & Type Hints (PEP 484)**: `int`, `float`, `str`, `bool`. Anotar parámetros (`x: float`) y retorno (`-> float`) previene errores de diseño.
+2. **Inmutabilidad**: Modificar un tipo primitivo crea un *nuevo* objeto en una dirección hex diferente.
+3. **Inspección de Memoria**: `type()`, `id()` y `sys.getsizeof()` revelan la huella física del dato.
 
-!!! note "🌟 Modelo Mental de la Sesión: «Variables en Memoria y la Licuadora Tipada»"
-    Una variable es una etiqueta adhesiva pegada a una caja; varias etiquetas pueden apuntar a la misma caja. Una función es *«La Licuadora»*, que recibe parámetros tipados (`PEP 484`), opera con ellos y devuelve un nuevo objeto en el Heap.
-
-### Principios Fundamentales de la Sesión
-
-1. **Tipado Dinámico y Fuerte:** Python verifica tipos en runtime y no realiza conversiones forzadas incompatibles.
-2. **Anotaciones de Tipo (PEP 484):** Documentan contratos de interfaz claros (`total: float, porcentaje: float -> float`).
-3. **Inmutabilidad:** Operar con tipos primitivos (`int`, `float`, `str`, `bool`) genera siempre nuevos objetos en memoria.
-
-!!! info "⚡ Regla de Oro en Python"
-    Convierte tipos explícitamente usando `int()` o `float()` antes de operar con entradas de usuario.
+!!! note "🌟 Modelo Mental de la Sesión: «Las Cajas Etiquetadas en Memoria y la Licuadora Tipada (PEP 484)»"
+    En esta sesión anclamos el aprendizaje en la metáfora del mundo real para visualizar cómo fluyen las estructuras de datos y el flujo de ejecución en la memoria.
 
 ---
 
@@ -40,109 +36,117 @@ En Python, las variables almacenan referencias (punteros) a objetos en el Heap d
 
 ```mermaid
 flowchart LR
-    subgraph Memoria["🧠 Memoria Heap"]
-        OBJ1["💵 total_cuenta = 100.0 (float)"]
-        OBJ2["🏷️ porcentaje = 15.0 (float)"]
-        RET["🎯 propina = 15.0 (float)"]
+    subgraph Entrada["📥 Variables en Heap"]
+        V1["💵 total = 100.0<br/>(float | 24 B)"]
+        V2["🏷️ tasa = 15<br/>(int | 28 B)"]
     end
-
-    subgraph Funcion["🥤 Función 'calcular_propina' (PEP 484)"]
-        INPUT["📥 Parámetros Tipados<br/>(total_cuenta: float, porcentaje: float)"]
-        LOGIC["⚙️ Operación Aritmética<br/>total_cuenta * (porcentaje / 100)"]
-        OUT["📤 Retorno Tipado<br/>-> float"]
-        INPUT --> LOGIC --> OUT
+    subgraph Funcion["🥤 Función Tipada"]
+        PARAMS["Parámetros: (total: float, tasa: float)"]
+        OP["Operación: total * (tasa / 100)"]
+        RET["Retorno: -> float"]
+        PARAMS --> OP --> RET
     end
-
-    OBJ1 -.->|Pasa Referencia| INPUT
-    OBJ2 -.->|Pasa Referencia| INPUT
-    OUT -.->|Instancia en Heap| RET
-
-    style Memoria fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    subgraph Salida["📤 Objeto Resultado"]
+        RES["🎯 15.0 (float)"]
+    end
+    V1 --> PARAMS
+    V2 --> PARAMS
+    RET --> RES
+    style Entrada fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
     style Funcion fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style OBJ1 fill:#1e3a8a,color:#ffffff,stroke:#60a5fa,stroke-width:2px
-    style OBJ2 fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
-    style RET fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    style Salida fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
 ## 3. 💻 Código de Implementación Práctica
 
-```python
-"""Demostración de Funciones con Type Hints, Casting y Formato f-strings."""
+=== "🚀 Demostración en Vivo"
+    ```python
+    import sys
 
-def calcular_resumen_pedido(
-    producto: str, 
-    precio_unitario_str: str, 
-    cantidad: int, 
-    tasa_iva: float = 0.21
-) -> str:
-    """Procesa una orden realizando casting explícito y retornando un resumen formateado."""
-    precio_unitario: float = float(precio_unitario_str)
-    subtotal: float = precio_unitario * cantidad
-    monto_iva: float = subtotal * tasa_iva
-    total_final: float = subtotal + monto_iva
-    
-    return (
-        f"--- RESUMEN DE COMPRA ---\n"
-        f"Producto:     {producto:<20}\n"
-        f"Cantidad:     {cantidad:>5}\n"
-        f"Subtotal:     ${subtotal:>8.2f}\n"
-        f"IVA ({tasa_iva*100:.0f}%):    ${monto_iva:>8.2f}\n"
-        f"Total Final:  ${total_final:>8.2f}"
-    )
+def calcular_propina(total_cuenta: float, porcentaje: float) -> float:
+    return total_cuenta * (porcentaje / 100.0)
 
-if __name__ == "__main__":
-    factura = calcular_resumen_pedido("Teclado RGB", "79.99", 2)
-    print(factura)
-```
+propina = calcular_propina(100.0, 15.0)
+print(f"Propina: ${propina:.2f} | Memoria: {sys.getsizeof(propina)} bytes")
+    ```
+
+=== "🔬 Arenero de Exploración de Memoria (RAM)"
+    ```python
+    import sys
+entero = 42
+flotante = 3.1416
+texto = "Wisrovi"
+
+print(f"Tipo entero: {type(entero).__name__} | Bytes: {sys.getsizeof(entero)}")
+print(f"Tipo texto:  {type(texto).__name__}  | Bytes: {sys.getsizeof(texto)}")
+    ```
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
+## 4. 🛡️ Buenas Prácticas PEP 8: Antipatrones vs Código Pythonic
 
-!!! warning "⚠️ Trampa Frecuente (Gotcha)"
-    `input()` siempre retorna un `str`; sumarlo o multiplicarlo directamente con números causará errores lógicos o de tipo.
+!!! warning "⚠️ Cuidado con los Antipatrones"
+    
 
 === "❌ Antipatrón / Código Inadecuado"
     ```python
-    precio = input("Precio: ")
-    total = precio * 2  # ❌ Repite el texto en vez de multiplicar
+    precio = input('Precio: ')
+total = precio * 2  # ❌ Repite la cadena
     ```
 
 === "✅ Patrón Recomendado / Pythonic"
     ```python
     def calcular_doble(precio_str: str) -> float:
-        precio_num: float = float(precio_str)
-        return precio_num * 2  # ✅ Multiplicación matemática real
+    return float(precio_str) * 2  # ✅ Multiplicación real
     ```
-
-!!! tip "🔧 Consejo de Ingeniería"
-    Añade siempre anotaciones de tipo (PEP 484) a tus funciones para activar autocompletado y validación estática en tu editor.
 
 ---
 
 ## 5. 🏋️ Desafío Práctico de la Clase
 
 !!! example "🎯 Enunciado del Reto"
-    **Construye una calculadora de propinas y facturación modular implementando 3 funciones con Type Hints (PEP 484):**
-    1. `calcular_propina(total_cuenta: float, porcentaje: float) -> float`
-    2. `calcular_total_por_persona(total_cuenta: float, porcentaje: float, num_personas: int) -> float`
-    3. `formatear_factura(total_cuenta: float, propina: float, total_por_persona: float) -> str`
+    **Crea una función llamada `identificar_tipo_y_tamano(valor: Any) -> tuple[str, int]` que retorne una tupla con el nombre del tipo (ej: 'int', 'str') y su tamaño en bytes mediante `sys.getsizeof(valor)`.**
+
+!!! tip "⚡ Resolución Híbrida en 1 Clic (Local + Web)"
+    Si tienes ejecutando `wisrovi ui` en tu terminal local, puedes [🚀 Abrir este Reto directamente en tu Studio Local (127.0.0.1:8501)](http://127.0.0.1:8501/?course=1&class=2) para escribir tu código con auto-formateo AST, inspeccionar variables en el Heap/Stack y evaluarlo con pruebas en tiempo real.
+
+=== "💻 Plantilla de Inicio (Starter Code)"
+    ```python
+    import sys
+from typing import Any, Tuple
+
+def identificar_tipo_y_tamano(valor: Any) -> Tuple[str, int]:
+    # ✍️ Retorna (nombre_tipo, tamano_bytes)
+    return (type(valor).__name__, sys.getsizeof(valor))
+
+    ```
+
+??? info "💡 Pista Socrática 1"
+    💡 Pista 1: Usa `type(valor).__name__` para obtener la cadena con el nombre del tipo.
+
+??? info "💡 Pista Socrática 2"
+    💡 Pista 2: Usa `sys.getsizeof(valor)` para obtener los bytes ocupados en RAM.
+
+??? info "💡 Pista Socrática 3"
+    💡 Pista 3: Retorna ambos valores dentro de una tupla `(tipo_str, bytes_int)`.
+
+
 
 Para resolver este ejercicio en tu entorno:
-1. Abre el archivo `01-fundamentos-python/clase-02-variables-y-tipos/ejercicios/reto.py` en Visual Studio Code.
-2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code o utiliza `wisrovi ui` / `wisrovi tutor`.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipado.
 3. Valida tus resultados ejecutando las pruebas unitarias:
    ```bash
-   pytest tests/curso_01/test_clase_02.py
+   pytest tests/curso_01/test_clase_02_variables_y_tipos.py
    ```
 
 ---
 
+
 ## 6. 📚 Fuentes y Bibliografía Recomendada
 
-*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/library/stdtypes.html)
-*   [📑 Guía de Anotaciones de Tipo PEP 484](https://peps.python.org/pep-0484/)
+*   [📖 Documentación Oficial de Python 3](https://docs.python.org/3/)
 *   [📑 Guía de Estilo Oficial PEP 8](https://peps.python.org/pep-0008/)
 *   [📦 Ecosistema Open Source wisrovi en PyPI](https://pypi.org/user/wisrovi/)

@@ -52,6 +52,10 @@ markdown_extensions:
 
 nav:
   - 🏠 Inicio: index.md
+  - 🖥️ Ecosistema & Tutor Virtual:
+      - 🎓 Tutor Virtual & Wisrovi Studio: ecosistema/tutor-virtual.md
+      - 🎮 Gamificación, XP y Progresión: ecosistema/gamificacion.md
+      - 📜 Certificación Oficial PDF: ecosistema/certificados.md
   - 🎯 Curso 1 (Fundamentos):
       - 📘 Manual del Curso 1: curso-01/book.md
       - Clase 01 (Panorama General): curso-01/clase-01.md

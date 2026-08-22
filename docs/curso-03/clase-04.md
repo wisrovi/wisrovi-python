@@ -4,7 +4,8 @@
 
 -   :material-bookmark: **Curso:** Curso 3: Creación y Desarrollo de Agentes de IA (CLASE 04)
 -   :material-signal-cellular-outline: **Nivel:** `Nivel 3 - Avanzado`
--   :material-lightbulb-on: **Metáfora Central:** *«Dotando de Manos y Herramientas al Cerebro del LLM»*
+-   :material-lightbulb-on: **Metáfora Central:** *«El Cinturón de Herramientas de Batman (Acciones en el Mundo Real)»*
+-   :material-laptop: **Wisrovi Studio (Local):** [🚀 Abrir Reto](http://127.0.0.1:8501/?course=3&class=4) &bull; [👨‍🏫 Modo Tutor](http://127.0.0.1:8501/tutor?course=3&class=4)
 -   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-04-tool-calling-funciones.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/03-agentes-ia/clase-04-tool-calling-funciones/clase-04-tool-calling-funciones.pdf)
 
 </div>
@@ -12,6 +13,7 @@
 <div align="center" style="margin: 1rem 0;" markdown>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/03-agentes-ia/clase-04-tool-calling-funciones/notebook/clase-04-tool-calling-funciones.ipynb)
+[![Abrir en Studio Local](https://img.shields.io/badge/Wisrovi_Studio-Abrir_en_Local_(127.0.0.1%3A8501)-0284c7?logo=python&logoColor=white)](http://127.0.0.1:8501/?course=3&class=4)
 [![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/03-agentes-ia/clase-04-tool-calling-funciones)
 
 </div>
@@ -20,16 +22,13 @@
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
+Permitir al Agente de IA invocar funciones de código externo para interactuar con APIs y bases de datos:
+1. **Esquema de Herramienta (Tool Schema)**: Nombre, descripción y parámetros tipados en JSON Schema.
+2. **Despacho Dinámico**: Enrutar la petición del modelo a la función Python real (`registry.execute(tool_name, **kwargs)`).
+3. **Manejo de Errores en Tools**: Retornar mensajes de error descriptivos al LLM para autocorrección.
 
-
-!!! note "🌟 Modelo Mental de la Sesión: «Dotando de Manos y Herramientas al Cerebro del LLM»"
-    El LLM es un cerebro brillante pero ciego y sin manos; las herramientas son sus brazos mecánicos para interactuar con el mundo.
-
-### Principios Fundamentales de la Sesión
-
-
-!!! info "⚡ Regla de Oro en Python"
-    Escribe docstrings extremadamente claros en tus funciones: el LLM los usa como manual de instrucciones.
+!!! note "🌟 Modelo Mental de la Sesión: «El Cinturón de Herramientas de Batman (Acciones en el Mundo Real)»"
+    En esta sesión anclamos el aprendizaje en la metáfora del mundo real para visualizar cómo fluyen las estructuras de datos y el flujo de ejecución en la memoria.
 
 ---
 
@@ -37,44 +36,46 @@
 
 ```mermaid
 flowchart LR
-    IN["📥 1. Datos de Entrada<br/>(Dotando de Manos y Herramienta...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Tool Calling y Function Calling en Python"]
-    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
-
-    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+    A["🤖 LLM decide: 'call: sumar(a=10, b=20)'"] --> B["🛠️ ToolRegistry Dispatcher"]
+    B --> C["🐍 Ejecución Función Python real"]
+    C --> D["📤 Resultado: 30 devuelto al Agente"]
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style C fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style D fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
 ```
 
 ---
 
 ## 3. 💻 Código de Implementación Práctica
 
-```python
-import math
+=== "🚀 Demostración en Vivo"
+    ```python
+    class ToolRegistryDemo:
+    def __init__(self): self.tools = {}
+    def register(self, name, fn): self.tools[name] = fn
+    def run(self, name, **kwargs): return self.tools[name](**kwargs)
 
-def calcular_distancia(x1: float, y1: float, x2: float, y2: float) -> float:
-    """Calcula la distancia euclidiana entre dos puntos (x1, y1) y (x2, y2)."""
-    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+reg = ToolRegistryDemo()
+reg.register("multiplicar", lambda x, y: x * y)
+print("Resultado Tool Call:", reg.run("multiplicar", x=6, y=7))
+    ```
 
-HERRAMIENTAS = {
-    "calcular_distancia": calcular_distancia
-}
+=== "🔬 Arenero de Exploración de Memoria (RAM)"
+    ```python
+    def consultar_clima(ciudad: str):
+    return f"Soleado en {ciudad}, 24°C"
 
-def despachar_herramienta(nombre: str, argumentos: dict):
-    if nombre in HERRAMIENTAS:
-        return HERRAMIENTAS[nombre](**argumentos)
-    raise ValueError(f"Herramienta '{nombre}' no encontrada.")
-
-res = despachar_herramienta("calcular_distancia", {"x1": 0.0, "y1": 0.0, "x2": 3.0, "y2": 4.0})
-print("Resultado de la herramienta:", res)  # 5.0
-```
+herramientas = {"get_weather": consultar_clima}
+print(herramientas["get_weather"]("Madrid"))
+    ```
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
+## 4. 🛡️ Buenas Prácticas PEP 8: Antipatrones vs Código Pythonic
 
-!!! warning "⚠️ Trampa Frecuente (Gotcha)"
-    Usar eval() o exec() para ejecutar herramientas abre una vulnerabilidad crítica de inyección de código.
+!!! warning "⚠️ Cuidado con los Antipatrones"
+    
 
 === "❌ Antipatrón / Código Inadecuado"
     ```python
@@ -86,25 +87,58 @@ print("Resultado de la herramienta:", res)  # 5.0
     HERRAMIENTAS[nombre](**argumentos)  # ✅ Mapeo explícito a funciones seguras
     ```
 
-!!! tip "🔧 Consejo de Ingeniería"
-    
-
 ---
 
 ## 5. 🏋️ Desafío Práctico de la Clase
 
 !!! example "🎯 Enunciado del Reto"
-    **Crea una herramienta que consulte el clima simulado de una ciudad y conéctala a un despachador.**
+    **Crea una clase `ToolRegistry` con métodos: `register(self, name: str, fn: Callable)`, `execute(self, name: str, **kwargs) -> Any` (lanza `KeyError` si la herramienta no está registrada) y `list_tools(self) -> list[str]`.**
+
+!!! tip "⚡ Resolución Híbrida en 1 Clic (Local + Web)"
+    Si tienes ejecutando `wisrovi ui` en tu terminal local, puedes [🚀 Abrir este Reto directamente en tu Studio Local (127.0.0.1:8501)](http://127.0.0.1:8501/?course=3&class=4) para escribir tu código con auto-formateo AST, inspeccionar variables en el Heap/Stack y evaluarlo con pruebas en tiempo real.
+
+=== "💻 Plantilla de Inicio (Starter Code)"
+    ```python
+    from typing import Callable, Any, Dict, List
+
+class ToolRegistry:
+    def __init__(self):
+        self._tools: Dict[str, Callable] = {}
+
+    def register(self, name: str, fn: Callable):
+        self._tools[name] = fn
+
+    def execute(self, name: str, **kwargs) -> Any:
+        if name not in self._tools:
+            raise KeyError(f"Herramienta '{name}' no registrada")
+        return self._tools[name](**kwargs)
+
+    def list_tools(self) -> List[str]:
+        return list(self._tools.keys())
+
+    ```
+
+??? info "💡 Pista Socrática 1"
+    💡 Pista 1: Guarda las funciones en un diccionario interno `self._tools = {}`.
+
+??? info "💡 Pista Socrática 2"
+    💡 Pista 2: En `execute`, verifica `if name not in self._tools: raise KeyError(...)`.
+
+??? info "💡 Pista Socrática 3"
+    💡 Pista 3: Invoca la función pasando los argumentos con `self._tools[name](**kwargs)`.
+
+
 
 Para resolver este ejercicio en tu entorno:
-1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
-2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code o utiliza `wisrovi ui` / `wisrovi tutor`.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipado.
 3. Valida tus resultados ejecutando las pruebas unitarias:
    ```bash
    pytest tests/curso_03/test_clase_04_tool_calling_funciones.py
    ```
 
 ---
+
 
 ## 6. 📚 Fuentes y Bibliografía Recomendada
 

@@ -4,7 +4,8 @@
 
 -   :material-bookmark: **Curso:** Curso 4: Taller Práctico & Proyecto Final Integrador (CLASE 01)
 -   :material-signal-cellular-outline: **Nivel:** `Nivel 4 - Integrador`
--   :material-lightbulb-on: **Metáfora Central:** *«Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»*
+-   :material-lightbulb-on: **Metáfora Central:** *«El Plano del Rascacielos Modular (Clean Architecture)»*
+-   :material-laptop: **Wisrovi Studio (Local):** [🚀 Abrir Reto](http://127.0.0.1:8501/?course=4&class=1) &bull; [👨‍🏫 Modo Tutor](http://127.0.0.1:8501/tutor?course=4&class=1)
 -   :material-file-pdf-box: **Manual PDF Oficial:** [Descargar clase-01-arquitectura-y-planificacion.pdf](https://github.com/wisrovi/wisrovi-python/raw/main/04-proyecto-final/clase-01-arquitectura-y-planificacion/clase-01-arquitectura-y-planificacion.pdf)
 
 </div>
@@ -12,6 +13,7 @@
 <div align="center" style="margin: 1rem 0;" markdown>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wisrovi/wisrovi-python/blob/main/04-proyecto-final/clase-01-arquitectura-y-planificacion/notebook/clase-01-arquitectura-y-planificacion.ipynb)
+[![Abrir en Studio Local](https://img.shields.io/badge/Wisrovi_Studio-Abrir_en_Local_(127.0.0.1%3A8501)-0284c7?logo=python&logoColor=white)](http://127.0.0.1:8501/?course=4&class=1)
 [![Ver en GitHub](https://img.shields.io/badge/GitHub-Ver_Carpeta_de_Clase-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python/tree/main/04-proyecto-final/clase-01-arquitectura-y-planificacion)
 
 </div>
@@ -20,60 +22,55 @@
 
 ## 1. 💡 Fundamentación Teórica y Modelo Mental
 
+Diseño modular y desacoplado para aplicaciones de producción:
+1. **Separación de Responsabilidades**: `api` (controladores), `core` (configuración), `models` (entidades), `services` (lógica de negocio).
+2. **Inversión de Dependencias**: Los módulos de alto nivel no dependen de los de bajo nivel; ambos dependen de abstracciones.
+3. **Verificación de Estructura**: Validar que el proyecto posea todas las capas obligatorias.
 
-
-!!! note "🌟 Modelo Mental de la Sesión: «Diseñar los Planos de un Edificio Antes de Poner el Primer Ladrillo»"
-    Diseñar el software es como dibujar los planos estructurales de una casa: define dónde irán las tuberías (APIs) y los cimientos (BD).
-
-### Principios Fundamentales de la Sesión
-
-
-!!! info "⚡ Regla de Oro en Python"
-    Nunca empieces a codificar sin tener un diagrama de arquitectura y las entidades de datos definidas.
+!!! note "🌟 Modelo Mental de la Sesión: «El Plano del Rascacielos Modular (Clean Architecture)»"
+    En esta sesión anclamos el aprendizaje en la metáfora del mundo real para visualizar cómo fluyen las estructuras de datos y el flujo de ejecución en la memoria.
 
 ---
 
 ## 2. 🗺️ Arquitectura de Ejecución y Diagrama de Flujo
 
 ```mermaid
-flowchart LR
-    IN["📥 1. Datos de Entrada<br/>(Diseñar los Planos de un Edifi...)"] --> ENG["⚙️ 2. Motor de Ejecución<br/>Arquitectura de Software y Planificación del Proyecto"]
-    ENG --> OUT["🎯 3. Salida / Estado Actualizado<br/>print() / Retorno DTO"]
-
-    style IN fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
-    style ENG fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
-    style OUT fill:#059669,color:#ffffff,stroke:#34d399,stroke-width:2px
+flowchart TD
+    A["🌐 Capa API (Endpoints REST)"] --> B["⚙️ Capa Services (Lógica Negocio)"]
+    B --> C["💾 Capa Repositories (Persistencia DB)"]
+    B --> D["🤖 Capa Agents (Motor de IA)"]
+    style A fill:#1e293b,color:#ffffff,stroke:#3b82f6,stroke-width:2px
+    style B fill:#0f766e,color:#ffffff,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#d97706,color:#ffffff,stroke:#fbbf24,stroke-width:2px
+    style D fill:#581c87,color:#ffffff,stroke:#c084fc,stroke-width:2px
 ```
 
 ---
 
 ## 3. 💻 Código de Implementación Práctica
 
-```python
-from pydantic import BaseModel
-from typing import Optional
-from datetime import datetime
+=== "🚀 Demostración en Vivo"
+    ```python
+    MODULOS_OBLIGATORIOS = {"api", "core", "models", "services", "tests"}
 
-class ProyectoConfig(BaseModel):
-    nombre_app: str = "Wisrovi Enterprise App"
-    version: str = "1.0.0"
-    debug: bool = False
+def validar_modulos(modulos_presentes: list[str]) -> bool:
+    return MODULOS_OBLIGATORIOS.issubset(set(modulos_presentes))
 
-class ItemDTO(BaseModel):
-    id: Optional[int] = None
-    titulo: str
-    creado_en: datetime = datetime.now()
+print("¿Arquitectura válida?:", validar_modulos(["api", "core", "models", "services", "tests", "ui"]))
+    ```
 
-config = ProyectoConfig()
-print(f"Iniciando arquitectura para: {config.nombre_app} v{config.version}")
-```
+=== "🔬 Arenero de Exploración de Memoria (RAM)"
+    ```python
+    carpetas = ["src/api", "src/services", "src/models", "tests"]
+print("Estructura definida:", carpetas)
+    ```
 
 ---
 
-## 4. 🛡️ Buenas Prácticas, Gotchas y Prevención de Errores
+## 4. 🛡️ Buenas Prácticas PEP 8: Antipatrones vs Código Pythonic
 
-!!! warning "⚠️ Trampa Frecuente (Gotcha)"
-    Colocar consultas SQL directamente dentro de los componentes visuales del frontend destruye la mantenibilidad.
+!!! warning "⚠️ Cuidado con los Antipatrones"
+    
 
 === "❌ Antipatrón / Código Inadecuado"
     ```python
@@ -86,25 +83,46 @@ print(f"Iniciando arquitectura para: {config.nombre_app} v{config.version}")
     # Frontend -> Llama a API REST -> API invoca Repositorio -> BD ✅
     ```
 
-!!! tip "🔧 Consejo de Ingeniería"
-    
-
 ---
 
 ## 5. 🏋️ Desafío Práctico de la Clase
 
 !!! example "🎯 Enunciado del Reto"
-    **Dibuja el diagrama de arquitectura y redacta las 5 rutas principales de tu API.**
+    **Crea una función `validar_estructura_proyecto(modulos: list[str]) -> bool` que retorne `True` si la lista contiene al menos los 5 módulos base: 'api', 'core', 'models', 'services', 'tests'.**
+
+!!! tip "⚡ Resolución Híbrida en 1 Clic (Local + Web)"
+    Si tienes ejecutando `wisrovi ui` en tu terminal local, puedes [🚀 Abrir este Reto directamente en tu Studio Local (127.0.0.1:8501)](http://127.0.0.1:8501/?course=4&class=1) para escribir tu código con auto-formateo AST, inspeccionar variables en el Heap/Stack y evaluarlo con pruebas en tiempo real.
+
+=== "💻 Plantilla de Inicio (Starter Code)"
+    ```python
+    def validar_estructura_proyecto(modulos: list[str]) -> bool:
+    # ✍️ Verifica que contenga api, core, models, services, tests
+    requeridos = {"api", "core", "models", "services", "tests"}
+    return requeridos.issubset(set(modulos))
+
+    ```
+
+??? info "💡 Pista Socrática 1"
+    💡 Pista 1: Define el conjunto requerido: `{'api', 'core', 'models', 'services', 'tests'}`.
+
+??? info "💡 Pista Socrática 2"
+    💡 Pista 2: Usa `.issubset(set(modulos))` para verificar la inclusión.
+
+??? info "💡 Pista Socrática 3"
+    💡 Pista 3: Retorna el resultado booleano.
+
+
 
 Para resolver este ejercicio en tu entorno:
-1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code.
-2. Implementa tu solución cumpliendo los requisitos y contratos de tipo.
+1. Abre el archivo `ejercicios/reto.py` de esta clase en Visual Studio Code o utiliza `wisrovi ui` / `wisrovi tutor`.
+2. Implementa tu solución cumpliendo los requisitos y contratos de tipado.
 3. Valida tus resultados ejecutando las pruebas unitarias:
    ```bash
    pytest tests/curso_04/test_clase_01_arquitectura_y_planificacion.py
    ```
 
 ---
+
 
 ## 6. 📚 Fuentes y Bibliografía Recomendada
 

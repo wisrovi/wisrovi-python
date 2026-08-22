@@ -4,7 +4,7 @@
 
 -   :material-school: __Programa Completo:__ 4 Cursos &bull; 32 Semanas Formativas
 -   :material-account-tie: __Director Académico:__ [William Rodríguez (Wisrovi)](https://wisrovi.dev)
--   :material-code-tags: __Stack de Ingeniería:__ Python 3.10+, FastAPI, Streamlit, Pydantic, RAG, ReAct Agents, Docker
+-   :material-code-tags: __Stack de Ingeniería:__ Python 3.10+, FastAPI, Streamlit, Pydantic V2, RAG, ReAct Agents, Docker
 -   :material-license: __Licencia:__ Código Abierto (MIT)
 
 </div>
@@ -13,12 +13,42 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
 [![Repository](https://img.shields.io/badge/GitHub-wisrovi--python-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python)
-[![PyPI](https://img.shields.io/badge/PyPI-26%2B%20Librerías-3775A9?logo=pypi&logoColor=white)](https://pypi.org/user/wisrovi/)
-[![Tests](https://img.shields.io/badge/Pytest-34%20Passing%20100%25-brightgreen.svg?logo=pytest&logoColor=white)](https://github.com/wisrovi/wisrovi-python)
+[![PyPI](https://img.shields.io/badge/PyPI-v2.3.0-3775A9?logo=pypi&logoColor=white)](https://pypi.org/user/wisrovi/)
+[![Tests](https://img.shields.io/badge/Pytest-50%20Passing%20100%25-brightgreen.svg?logo=pytest&logoColor=white)](https://github.com/wisrovi/wisrovi-python)
 
 </div>
 
-Bienvenido/a al portal oficial del **Programa Integral de Formación en Python**. Esta plataforma reúne todo el material interactivo, manuales técnicos descargables en PDF, libros digitales y cuadernos ejecutables en Google Colab para formarte desde los fundamentos de la programación hasta el despliegue de **Agentes de Inteligencia Artificial**.
+Bienvenido/a al portal oficial del **Programa Integral de Formación en Python**. Esta plataforma reúne todo el material interactivo, manuales técnicos descargables en PDF, libros digitales, cuadernos ejecutables en Google Colab y el **Tutor Virtual Socrático** para formarte desde los fundamentos de la programación hasta el despliegue de **Agentes de Inteligencia Artificial**.
+
+---
+
+## 🖥️ Ecosistema Interactivo: Wisrovi Studio & Modo Presentador Docente
+
+La librería **`wisrovi-python`** incluye un entorno de aprendizaje y presentación local con interfaz gráfica en navegador:
+
+<div class="grid cards" markdown>
+
+-   **🎓 [Wisrovi Studio (`wisrovi ui`)](ecosistema/tutor-virtual.md)**  
+    Estudio interactivo para el estudiante con progresión secuencial lineal, 4 pasos obligatorios (*Concepto & Quiz*, *Demo PEP 8*, *Arenero & RAM 3.0*, *Reto Evaluado*) y Documentación Web Embebida en Pantalla Dividida (Split Screen).
+
+-   **👨‍🏫 [Consola Docente (`wisrovi tutor`)](ecosistema/tutor-virtual.md)**  
+    Modo presentación en vivo con acceso maestro a las 32 clases, vista para proyector/streaming, Live Coding interactivo, Speaker Notes y Temporizador de Aula.
+
+-   **🎮 [Gamificación RPG & Speed Bonus](ecosistema/gamificacion.md)**  
+    Niveles 1-4, insignias de maestría, bonificaciones dinámicas por velocidad de resolución y bloqueo secuencial anti-saltos.
+
+-   **📜 [Certificados Oficiales PDF](ecosistema/certificados.md)**  
+    Diplomas profesionales de 160 horas con verificación criptográfica SHA-256 compilados vía Chrome Headless.
+
+</div>
+
+```bash
+# Lanzar el Estudio Interactivo para Estudiantes (Modo Autónomo)
+wisrovi ui
+
+# Lanzar la Consola del Docente / Modo Presentación (Master Access)
+wisrovi tutor
+```
 
 ---
 
@@ -28,9 +58,9 @@ Bienvenido/a al portal oficial del **Programa Integral de Formación en Python**
 
 -   **William Rodríguez (Wisrovi)**  
     *AI Solutions Architect & Principal Software Engineer &bull; Badajoz, España*  
-    Ingeniero de software y arquitecto de sistemas de Inteligencia Artificial Generativa. Creador y mantenedor de **wisrovi SUITE** en PyPI con más de 26 paquetes publicados de optimización y rendimiento.
+    Ingeniero de software y arquitecto de sistemas de Inteligencia Artificial Generativa. Creador y mantenedor de **wisrovi SUITE** en PyPI con más de 26 paquetes publicados de optimización, bases de datos y orquestación.
     
-    [:octicons-mark-github-16: GitHub](https://github.com/wisrovi) &bull; [:octicons-globe-16: Sitio Web](https://wisrovi.dev) &bull; [:octicons-package-16: PyPI](https://pypi.org/user/wisrovi/)
+    [:octicons-mark-github-16: GitHub](https://github.com/wisrovi) &bull; [:octicons-globe-16: Sitio Web](https://wisrovi.dev) &bull; [:octicons-package-16: PyPI](https://pypi.org/user/wisrovi/) &bull; [:octicons-link-external-16: LinkedIn](https://www.linkedin.com/in/wisrovi-rodriguez/)
 
 </div>
 
@@ -45,7 +75,7 @@ flowchart TD
     subgraph Espiral["🌀 Ciclo de Aprendizaje en Espiral (32 Semanas)"]
         F1["🌱 Fase 1: Visión Holística (Semanas 1-8)<br/>Primer contacto práctico: print, variables, if, for y funciones en un Gestor CLI."]
         F2["⚡ Fase 2: Rigor Algorítmico (Semanas 9-16)<br/>Análisis Big-O, Pilas, Colas, Tablas Hash, Árboles BST, Grafos y DP Memoizada."]
-        F3["🤖 Fase 3: Agentes de IA (Semanas 17-24)<br/>LLMs, Pydantic, Tool Calling, Embeddings Vectoriales, RAG y ciclo ReAct."]
+        F3["🤖 Fase 3: Agentes de IA (Semanas 17-24)<br/>LLMs, Pydantic V2, Tool Calling, Embeddings Vectoriales, RAG y ciclo ReAct."]
         F4["🛠️ Fase 4: Proyecto Integrador (Semanas 25-32)<br/>FastAPI REST + SQLite ACID + UI Streamlit + Docker Compose + CI/CD."]
         F1 ==> F2
         F2 ==> F3
@@ -104,4 +134,7 @@ pip install -e ".[all]"
 
 # 4. Validar suite completa de pruebas
 pytest -v
+
+# 5. Iniciar el Tutor Virtual Interactivo
+wisrovi ui
 ```

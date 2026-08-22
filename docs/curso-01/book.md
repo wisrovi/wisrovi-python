@@ -16,7 +16,7 @@
 | Semana | Unidad Temática | Metáfora Didáctica |
 | :---: | :--- | :--- |
 | **CLASE 01** | [Primer Vistazo Práctico (print, variables, if, for)](clase-01-panorama-general.md) | *«El Megáfono (print), Las Cajas (variables), El Semáforo (if) y La Cinta Transportadora (for)»* |
-| **CLASE 02** | [Variables, Tipos de Datos y Operadores](clase-02-variables-y-tipos.md) | *«Variables como Cajas Etiquetadas en Memoria»* |
+| **CLASE 02** | [Variables, Tipos de Datos y Funciones con Type Hints](clase-02-variables-y-tipos.md) | *«Variables como Cajas Etiquetadas en Memoria y la Licuadora Tipada (PEP 484)»* |
 | **CLASE 03** | [Condicionales (if / elif / else)](clase-03-control-flujo-condicionales.md) | *«Condicionales como Semáforos y Bifurcaciones en un Tren»* |
 | **CLASE 04** | [Bucles (for / while)](clase-04-control-flujo-bucles.md) | *«Bucles como una Cinta Transportadora de Fábrica»* |
 | **CLASE 05** | [Listas, Tuplas y Colecciones Básicas](clase-05-listas-y-colecciones.md) | *«Listas como Archivadores Modulares y Tuplas como Documentos Notariados»* |

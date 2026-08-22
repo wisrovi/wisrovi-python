@@ -1,8 +1,21 @@
 """Ejemplo 01: Tipos Primitivos, Type Hints (PEP 484) y Funciones Modulares."""
 
-def crear_perfil_usuario(nombre: str, edad: int, altura: float, es_estudiante: bool) -> str:
+
+def crear_perfil_usuario(
+    nombre: str,
+    edad: int,
+    altura: float,
+    es_estudiante: bool,
+) -> str:
     """Combina variables de diferentes tipos primitivos en un reporte formateado."""
-    categoria = "Estudiante Activo" if es_estudiante else "Profesional / Graduado"
+    
+    if es_estudiante == True:
+        categoria = "Estudiante Activo"
+    else:
+        categoria = "Profesional / Graduado"
+
+    # categoria = "Estudiante Activo" if es_estudiante else "Profesional / Graduado"
+
     resumen = (
         f"--- FICHA DE USUARIO ---\n"
         f"Nombre:     {nombre} (Tipo: {type(nombre).__name__})\n"
@@ -11,6 +24,7 @@ def crear_perfil_usuario(nombre: str, edad: int, altura: float, es_estudiante: b
         f"Condición:  {categoria} (Tipo booleano: {type(es_estudiante).__name__})"
     )
     return resumen
+
 
 # Declaración de variables tipadas
 nombre_usuario: str = "Wisrovi"
@@ -23,8 +37,7 @@ perfil_generado = crear_perfil_usuario(
     nombre=nombre_usuario,
     edad=edad_usuario,
     altura=altura_usuario,
-    es_estudiante=activo
+    es_estudiante=activo,
 )
 
 print(perfil_generado)
-

@@ -115,29 +115,46 @@ def cmd_list(args):
     for c_num, data in COURSES_DATA.items():
         if filter_course and int(filter_course) != c_num:
             continue
-        is_active = (c_num == 1)
-        status_tag = "[bold green]✅ Activo[/bold green]" if is_active else "[bold yellow]🔒 Próximamente[/bold yellow]"
+        status_tag = "[bold green]✅ Activo[/bold green]"
         
         for idx, (folder, metaphor) in enumerate(data["classes"], start=1):
             table.add_row(
                 f"C{c_num}",
                 status_tag,
                 f"S{idx:02d}",
-                folder if is_active else f"[dim]{folder}[/dim]",
-                f"«{metaphor}»" if is_active else f"[dim]«{metaphor}»[/dim]"
+                folder,
+                f"«{metaphor}»"
             )
             
     console.print(table)
-    console.print("\n💡 [bold yellow]Tip:[/bold yellow] Usa [bold cyan]wisrovi start 1 <clase>[/bold cyan] o [bold cyan]wisrovi ui[/bold cyan] para abrir el Tutor Virtual Interactivo.")
+    console.print("\n💡 [bold yellow]Tip:[/bold yellow] Usa [bold cyan]wisrovi start <curso> <clase>[/bold cyan] o [bold cyan]wisrovi ui[/bold cyan] para abrir el Tutor Virtual Interactivo.")
 
 def cmd_start(args):
     console.print(BANNER)
     try:
         c_num = int(args.course)
         clase_idx = int(args.clase)
-        if c_num != 1:
-            console.print("[bold yellow]🔒 Los Cursos 2, 3 y 4 se encuentran temporalmente desactivados. Por ahora, solo está disponible el Curso 1: Fundamentos Básicos de Python (Clases 1 a 8).[/bold yellow]")
+        if c_num not in COURSES_DATA:
+            console.print("[bold red]❌ Error:[/bold red] Curso inválido (elige 1, 2, 3 o 4).")
+            sys.exit(1)
+
+        from wisrovi_lib import GamificationEngine
+        engine = GamificationEngine()
+        is_unlocked = engine.is_class_unlocked(c_num, clase_idx)
+        class_key = f"{c_num}-{clase_idx}"
+        is_completed = class_key in engine.profile.completed_classes
+
+        if not is_unlocked and not getattr(args, "force", False):
+            console.print(Panel(
+                f"[bold red]🔒 Clase C{c_num}-S{clase_idx:02d} Bloqueada[/bold red]\n\n"
+                f"No puedes adelantar lecciones sin haber completado las anteriores.\n"
+                f"Para acceder a esta clase, primero debes superar la lección previa.\n\n"
+                f"💡 [bold yellow]Ruta recomendada:[/bold yellow] Usa [bold cyan]wisrovi ui[/bold cyan] para seguir el orden pedagógico con el Tutor Virtual.",
+                title="⚠️ Bloqueo de Progresión Pedagógica",
+                border_style="red"
+            ))
             sys.exit(0)
+
         data = COURSES_DATA[c_num]
         folder, metaphor = data["classes"][clase_idx - 1]
     except Exception:
@@ -145,8 +162,11 @@ def cmd_start(args):
         sys.exit(1)
         
     class_path = os.path.join(data["folder"], folder)
+    status_label = "[bold green]🔄 MODO REPASO Y PRÁCTICA LIBRE (Lección ya superada)[/bold green]" if is_completed else "[bold cyan]🚀 LECCIÓN ACTIVA EN CURSO[/bold cyan]"
     
-    panel_content = f"""[bold yellow]Curso:[/bold yellow] {data['title']}
+    panel_content = f"""{status_label}
+
+[bold yellow]Curso:[/bold yellow] {data['title']}
 [bold yellow]Semana {clase_idx:02d}:[/bold yellow] {folder}
 [bold yellow]Metáfora Central:[/bold yellow] [italic cyan]«{metaphor}»[/italic cyan]
 
@@ -237,8 +257,52 @@ def cmd_ui(args):
     console.print(BANNER)
     port = getattr(args, "port", 8501)
     host = getattr(args, "host", "127.0.0.1")
-    url = f"http://{host}:{port}"
-    console.print(f"[bold green]🚀 Iniciando Tutor Virtual Interactivo (Wisrovi Academy):[/bold green] [bold cyan]{url}[/bold cyan]")
+    c_num = getattr(args, "course", None)
+    cls_num = getattr(args, "clase", None)
+    
+    query = []
+    if c_num: query.append(f"course={c_num}")
+    if cls_num: query.append(f"class={cls_num}")
+    q_str = f"?{'&'.join(query)}" if query else ""
+    
+    url = f"http://{host}:{port}/{q_str}"
+    console.print(f"[bold green]🚀 Iniciando Wisrovi Interactive Studio (Modo Estudiante):[/bold green] [bold cyan]{url}[/bold cyan]")
+    console.print("[dim]Presiona CTRL+C para detener el servidor.[/dim]\n")
+    
+    import threading
+    import time
+    def _open_browser():
+        time.sleep(1.2)
+        webbrowser.open(url)
+    threading.Thread(target=_open_browser, daemon=True).start()
+    
+    try:
+        from wisrovi_lib.server import start_server
+        start_server(host=host, port=port)
+    except Exception as e:
+        console.print(f"[bold red]Error al iniciar servidor FastAPI:[/bold red] {e}")
+
+def cmd_tutor(args):
+    console.print(BANNER)
+    port = getattr(args, "port", 8501)
+    host = getattr(args, "host", "127.0.0.1")
+    c_num = getattr(args, "course", None)
+    cls_num = getattr(args, "clase", None)
+    
+    query = ["mode=tutor"]
+    if c_num: query.append(f"course={c_num}")
+    if cls_num: query.append(f"class={cls_num}")
+    q_str = f"?{'&'.join(query)}"
+    
+    url = f"http://{host}:{port}/tutor{q_str}"
+    console.print(Panel(
+        f"[bold magenta]👨‍🏫 Iniciando Modo Presentador / Docente en Vivo (Wisrovi Master Deck):[/bold magenta]\n"
+        f"URL: [bold cyan]{url}[/bold cyan]\n"
+        f"• [bold green]Acceso Maestro:[/bold green] Las 32 clases desbloqueadas sin restricciones de gamificación.\n"
+        f"• [bold green]Herramientas:[/bold green] Live Coding, Guía Pedagógica del Mentor, Notas de Aula y Temporizador de Retos.",
+        title="👑 Consola del Instructor / Tutor",
+        border_style="magenta"
+    ))
     console.print("[dim]Presiona CTRL+C para detener el servidor.[/dim]\n")
     
     import threading
@@ -256,18 +320,24 @@ def cmd_ui(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Wisrovi CLI - Asistente de Aprendizaje en Python",
+        description="Wisrovi CLI - Asistente de Aprendizaje en Python & Consola del Docente",
         formatter_class=argparse.RawTextHelpFormatter
     )
     subparsers = parser.add_subparsers(dest="command")
 
-    # ui / tutor
-    p_ui = subparsers.add_parser("ui", help="Lanza el Tutor Virtual Interactivo en el navegador")
+    # ui (Modo Estudiante)
+    p_ui = subparsers.add_parser("ui", help="Lanza el Estudio de Aprendizaje Guiado en el navegador (Modo Estudiante)")
     p_ui.add_argument("--port", type=int, default=8501, help="Puerto del servidor (defecto: 8501)")
     p_ui.add_argument("--host", type=str, default="127.0.0.1", help="Host del servidor (defecto: 127.0.0.1)")
+    p_ui.add_argument("-c", "--course", type=int, default=None, help="Abrir directamente en el curso especificado (1..4)")
+    p_ui.add_argument("-s", "--clase", type=int, default=None, help="Abrir directamente en la clase especificada (1..8)")
 
-    p_tutor = subparsers.add_parser("tutor", help="Alias de 'wisrovi ui'")
-    p_tutor.add_argument("--port", type=int, default=8501, help="Puerto del servidor")
+    # tutor (Modo Presentador / Docente en Vivo)
+    p_tutor = subparsers.add_parser("tutor", help="Lanza el Modo Presentador / Docente en Vivo con acceso maestro a las 32 clases")
+    p_tutor.add_argument("--port", type=int, default=8501, help="Puerto del servidor (defecto: 8501)")
+    p_tutor.add_argument("--host", type=str, default="127.0.0.1", help="Host del servidor (defecto: 127.0.0.1)")
+    p_tutor.add_argument("-c", "--course", type=int, default=None, help="Curso inicial para proyectar (1..4)")
+    p_tutor.add_argument("-s", "--clase", type=int, default=None, help="Clase inicial para proyectar (1..8)")
 
     # list
     p_list = subparsers.add_parser("list", help="Muestra la tabla de cursos y clases")
@@ -296,8 +366,10 @@ def main():
 
     args = parser.parse_args()
 
-    if args.command in ("ui", "tutor"):
+    if args.command == "ui":
         cmd_ui(args)
+    elif args.command == "tutor":
+        cmd_tutor(args)
     elif args.command == "list":
         cmd_list(args)
     elif args.command == "start":

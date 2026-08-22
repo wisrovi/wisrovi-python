@@ -113,14 +113,35 @@ class GamificationEngine:
             return BADGES[badge_id]
         return None
 
-    def complete_class(self, course_num: int, class_num: int) -> Dict[str, Any]:
-        """Marca una clase como superada y otorga recompensas de graduación."""
+    def complete_class(self, course_num: int, class_num: int, elapsed_seconds: Optional[int] = None) -> Dict[str, Any]:
+        """Marca una clase como superada y otorga recompensas de graduación con bonificación dinámica por velocidad."""
         class_key = f"{course_num}-{class_num}"
         is_first_time = class_key not in self.profile.completed_classes
         
+        base_xp = 150
+        speed_bonus = 0
+        speed_tier = "⏳ Estándar"
+        
+        if elapsed_seconds is not None:
+            if elapsed_seconds < 300:
+                speed_bonus = 50
+                speed_tier = "⚡ Rápido (< 5 min)"
+                self.unlock_badge("speedster")
+            elif elapsed_seconds <= 900:
+                speed_bonus = 25
+                speed_tier = "🎯 Óptimo (5-15 min)"
+            elif elapsed_seconds <= 1800:
+                speed_bonus = 0
+                speed_tier = "⏳ Estándar (15-30 min)"
+            else:
+                speed_bonus = -30
+                speed_tier = "🐢 Exploración Lenta (> 30 min)"
+                
+        total_xp = max(50, base_xp + speed_bonus)
+        
         if is_first_time:
             self.profile.completed_classes.append(class_key)
-            xp_reward = self.add_xp(150, f"¡Clase {course_num}.{class_num} Completada!")
+            xp_reward = self.add_xp(total_xp, f"Clase {course_num}.{class_num} ({speed_tier})")
             
             # Verificar si completó el curso
             course_classes = [f"{course_num}-{i}" for i in range(1, 9)]
@@ -140,6 +161,10 @@ class GamificationEngine:
             return {
                 "success": True,
                 "first_time": True,
+                "base_xp": base_xp,
+                "speed_bonus": speed_bonus,
+                "speed_tier": speed_tier,
+                "total_xp": total_xp,
                 "xp_reward": xp_reward,
                 "current_course": self.profile.current_course,
                 "current_class": self.profile.current_class
@@ -148,9 +173,42 @@ class GamificationEngine:
         return {
             "success": True,
             "first_time": False,
+            "base_xp": base_xp,
+            "speed_bonus": speed_bonus,
+            "speed_tier": speed_tier,
+            "total_xp": total_xp,
             "current_course": self.profile.current_course,
             "current_class": self.profile.current_class
         }
+
+    def is_class_unlocked(self, course_num: int, class_num: int) -> bool:
+        """
+        Determina si una clase está desbloqueada para el estudiante según la regla de progresión lineal.
+        - C1-S01 siempre está desbloqueada.
+        - Cualquier clase ya superada está desbloqueada (modo práctica / repaso).
+        - Para una lección nueva no superada:
+          * Si class_num > 1: requiere haber superado (course_num, class_num - 1).
+          * Si class_num == 1 y course_num > 1: requiere haber superado (course_num - 1, 8).
+        """
+        key = f"{course_num}-{class_num}"
+        if course_num == 1 and class_num == 1:
+            return True
+        if key in self.profile.completed_classes:
+            return True
+        if class_num > 1:
+            prev_key = f"{course_num}-{class_num - 1}"
+            return prev_key in self.profile.completed_classes
+        if class_num == 1 and course_num > 1:
+            prev_course_end = f"{course_num - 1}-8"
+            return prev_course_end in self.profile.completed_classes
+        return False
+
+    def is_course_unlocked(self, course_num: int) -> bool:
+        """Determina si un curso completo está desbloqueado."""
+        if course_num == 1:
+            return True
+        prev_course_end = f"{course_num - 1}-8"
+        return prev_course_end in self.profile.completed_classes
 
     def _update_streak(self):
         """Calcula la racha diaria de estudio."""
