@@ -5,6 +5,10 @@ site_url: "https://academy_python.wisrovi.dev/"
 repo_url: "https://github.com/wisrovi/wisrovi-python"
 repo_name: "wisrovi/wisrovi-python"
 
+exclude_docs: |
+  README.md
+  **/README.md
+
 theme:
   name: material
   language: es

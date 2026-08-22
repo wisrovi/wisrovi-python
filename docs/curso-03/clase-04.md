@@ -24,7 +24,7 @@
 
 Permitir al Agente de IA invocar funciones de código externo para interactuar con APIs y bases de datos:
 1. **Esquema de Herramienta (Tool Schema)**: Nombre, descripción y parámetros tipados en JSON Schema.
-2. **Despacho Dinámico**: Enrutar la petición del modelo a la función Python real (`registry.execute(tool_name, **kwargs)`).
+2. **Despacho Dinámico**: Enrutar la petición del modelo a la función Python real mediante `registry.execute(tool_name, **params)`.
 3. **Manejo de Errores en Tools**: Retornar mensajes de error descriptivos al LLM para autocorrección.
 
 !!! note "🌟 Modelo Mental de la Sesión: «El Cinturón de Herramientas de Batman (Acciones en el Mundo Real)»"
@@ -52,22 +52,27 @@ flowchart LR
 === "🚀 Demostración en Vivo"
     ```python
     class ToolRegistryDemo:
-    def __init__(self): self.tools = {}
-    def register(self, name, fn): self.tools[name] = fn
-    def run(self, name, **kwargs): return self.tools[name](**kwargs)
+        def __init__(self):
+            self.tools = {}
 
-reg = ToolRegistryDemo()
-reg.register("multiplicar", lambda x, y: x * y)
-print("Resultado Tool Call:", reg.run("multiplicar", x=6, y=7))
+        def register(self, name, fn):
+            self.tools[name] = fn
+
+        def run(self, name, **kwargs):
+            return self.tools[name](**kwargs)
+
+    reg = ToolRegistryDemo()
+    reg.register("multiplicar", lambda x, y: x * y)
+    print("Resultado Tool Call:", reg.run("multiplicar", x=6, y=7))
     ```
 
 === "🔬 Arenero de Exploración de Memoria (RAM)"
     ```python
     def consultar_clima(ciudad: str):
-    return f"Soleado en {ciudad}, 24°C"
+        return f"Soleado en {ciudad}, 24°C"
 
-herramientas = {"get_weather": consultar_clima}
-print(herramientas["get_weather"]("Madrid"))
+    herramientas = {"get_weather": consultar_clima}
+    print(herramientas["get_weather"]("Madrid"))
     ```
 
 ---
@@ -92,7 +97,7 @@ print(herramientas["get_weather"]("Madrid"))
 ## 5. 🏋️ Desafío Práctico de la Clase
 
 !!! example "🎯 Enunciado del Reto"
-    **Crea una clase `ToolRegistry` con métodos: `register(self, name: str, fn: Callable)`, `execute(self, name: str, **kwargs) -> Any` (lanza `KeyError` si la herramienta no está registrada) y `list_tools(self) -> list[str]`.**
+    Crea una clase `ToolRegistry` con los métodos: `register(self, name: str, fn: Callable)`, `execute(self, name: str, **kwargs: Any) -> Any` (debe lanzar `KeyError` si la herramienta no se encuentra registrada) y `list_tools(self) -> List[str]`.
 
 !!! tip "⚡ Resolución Híbrida en 1 Clic (Local + Web)"
     Si tienes ejecutando `wisrovi ui` en tu terminal local, puedes [🚀 Abrir este Reto directamente en tu Studio Local (127.0.0.1:8501)](http://127.0.0.1:8501/?course=3&class=4) para escribir tu código con auto-formateo AST, inspeccionar variables en el Heap/Stack y evaluarlo con pruebas en tiempo real.
@@ -101,21 +106,20 @@ print(herramientas["get_weather"]("Madrid"))
     ```python
     from typing import Callable, Any, Dict, List
 
-class ToolRegistry:
-    def __init__(self):
-        self._tools: Dict[str, Callable] = {}
+    class ToolRegistry:
+        def __init__(self):
+            self._tools: Dict[str, Callable] = {}
 
-    def register(self, name: str, fn: Callable):
-        self._tools[name] = fn
+        def register(self, name: str, fn: Callable):
+            self._tools[name] = fn
 
-    def execute(self, name: str, **kwargs) -> Any:
-        if name not in self._tools:
-            raise KeyError(f"Herramienta '{name}' no registrada")
-        return self._tools[name](**kwargs)
+        def execute(self, name: str, **kwargs) -> Any:
+            if name not in self._tools:
+                raise KeyError(f"Herramienta '{name}' no registrada")
+            return self._tools[name](**kwargs)
 
-    def list_tools(self) -> List[str]:
-        return list(self._tools.keys())
-
+        def list_tools(self) -> List[str]:
+            return list(self._tools.keys())
     ```
 
 ??? info "💡 Pista Socrática 1"
@@ -125,7 +129,7 @@ class ToolRegistry:
     💡 Pista 2: En `execute`, verifica `if name not in self._tools: raise KeyError(...)`.
 
 ??? info "💡 Pista Socrática 3"
-    💡 Pista 3: Invoca la función pasando los argumentos con `self._tools[name](**kwargs)`.
+    💡 Pista 3: Invoca la función pasando los argumentos con `func = self._tools[name]; return func(**kwargs)`.
 
 
 
