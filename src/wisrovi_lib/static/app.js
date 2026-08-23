@@ -142,6 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
     classCertPreviewFrame: document.getElementById("class-cert-preview-frame"),
     classCertLinkedinText: document.getElementById("class-cert-linkedin-text"),
     copyLinkedinPostBtn: document.getElementById("copy-linkedin-post-btn"),
+    downloadClassPngQuickBtn: document.getElementById("download-class-png-quick-btn"),
+    linkedinShareGuideToast: document.getElementById("linkedin-share-guide-toast"),
+    shareTwitterBtn: document.getElementById("share-twitter-btn"),
+    shareWhatsappBtn: document.getElementById("share-whatsapp-btn"),
     downloadClassPdfBtn: document.getElementById("download-class-pdf-btn"),
     downloadClassPngBtn: document.getElementById("download-class-png-btn"),
     shareLinkedinDirectBtn: document.getElementById("share-linkedin-direct-btn"),
@@ -598,14 +602,58 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    if (dom.downloadClassPngQuickBtn) {
+      dom.downloadClassPngQuickBtn.addEventListener("click", () => {
+        const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+        window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`, "_blank");
+      });
+    }
+
     if (dom.shareLinkedinDirectBtn) {
-      dom.shareLinkedinDirectBtn.addEventListener("click", () => {
-        if (dom.classCertLinkedinText) {
-          navigator.clipboard.writeText(dom.classCertLinkedinText.value);
+      dom.shareLinkedinDirectBtn.addEventListener("click", async () => {
+        const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+        const textToCopy = dom.classCertLinkedinText ? dom.classCertLinkedinText.value : "";
+        
+        // 1. Copiar texto al portapapeles
+        if (textToCopy) {
+          try {
+            await navigator.clipboard.writeText(textToCopy);
+          } catch (e) {
+            console.warn("Clipboard access:", e);
+          }
         }
-        const shareUrl = `https://wisrovi.github.io/wisrovi-python/curso-0${state.currentCourse}/clase-0${state.currentClass}/`;
-        const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
-        window.open(linkedinUrl, "_blank", "width=600,height=600");
+
+        // 2. Descargar automáticamente la imagen PNG del diploma para adjuntar
+        const pngDownloadUrl = `/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`;
+        const a = document.createElement("a");
+        a.href = pngDownloadUrl;
+        a.download = `Diploma_Wisrovi_C${state.currentCourse}_Clase${state.currentClass.toString().padStart(2, '0')}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // 3. Abrir LinkedIn Feed para crear la publicación
+        const linkedinUrl = "https://www.linkedin.com/feed/?shareActive=true";
+        window.open(linkedinUrl, "_blank");
+
+        // 4. Mostrar banner guía al estudiante
+        if (dom.linkedinShareGuideToast) {
+          dom.linkedinShareGuideToast.classList.remove("hidden");
+        }
+      });
+    }
+
+    if (dom.shareTwitterBtn) {
+      dom.shareTwitterBtn.addEventListener("click", () => {
+        const text = `🎓 ¡Acabo de superar la Clase 0${state.currentClass} de Python con William Rodríguez (@wisrovi)! https://academy_python.wisrovi.dev/ #Python #AI`;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+      });
+    }
+
+    if (dom.shareWhatsappBtn) {
+      dom.shareWhatsappBtn.addEventListener("click", () => {
+        const text = dom.classCertLinkedinText ? dom.classCertLinkedinText.value : `🎓 ¡Acabo de superar la Clase 0${state.currentClass} de Python en Wisrovi Academy! https://academy_python.wisrovi.dev/`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
       });
     }
 

@@ -819,22 +819,49 @@ class CertificateGenerator:
         course_num: int,
         class_num: int
     ) -> Dict[str, Any]:
-        """Retorna el paquete completo de datos y enlaces para compartir en LinkedIn."""
+        """Retorna el paquete completo de datos y enlaces para compartir en LinkedIn, Twitter y WhatsApp."""
         info = cls.get_class_info(course_num, class_num)
         s_name = student_name.strip() or "Estudiante Wisrovi"
+        
+        course_names = {
+            1: "Curso 1: Fundamentos Básicos de Python",
+            2: "Curso 2: Algoritmos Avanzados y Estructuras de Datos",
+            3: "Curso 3: Desarrollo de Agentes de Inteligencia Artificial",
+            4: "Curso 4: Taller Práctico & Proyecto Integrador Full-Stack"
+        }
+        course_name = course_names.get(course_num, f"Curso {course_num}")
         
         issue_date = datetime.now().strftime("%d de %B de %Y")
         hash_seed = f"{s_name}-c{course_num}-s{class_num}-{issue_date}-wisrovi-class-cert"
         cert_hash = hashlib.sha256(hash_seed.encode("utf-8")).hexdigest()[:24].upper()
         
-        linkedin_text = info.get("linkedin_text", "")
-        # URL oficial para compartir
-        share_url = f"https://wisrovi.github.io/wisrovi-python/curso-0{course_num}/clase-0{class_num}/"
-        linkedin_intent_url = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
+        # Texto enriquecido estructurado para LinkedIn
+        linkedin_text = (
+            f"🎓 ¡Nueva Micro-Acreditación Oficial en Python obtenida en Wisrovi Academy! 🚀\n\n"
+            f"He superado el 100% de las pruebas automatizadas y contratos de tipado para la Clase 0{class_num} del:\n"
+            f"📚 {course_name}\n\n"
+            f"🏆 Competencia Acreditada: «{info.get('title', '')}»\n"
+            f"💡 Evidencia Técnica: {info.get('concept', '')}\n\n"
+            f"Agradecido con mi mentor William Rodríguez (Wisrovi) (https://es.linkedin.com/in/wisrovi-rodriguez) por esta formación práctica y rigurosa basada en «La Regla de la Bicicleta» (70%+ código activo).\n\n"
+            f"🔗 Verifica mi acreditación y explora el programa: https://academy_python.wisrovi.dev/\n\n"
+            f"#Python #SoftwareEngineering #CleanCode #Wisrovi #AI #Programming"
+        )
+        
+        # URLs de compartir
+        share_url = f"https://academy_python.wisrovi.dev/curso-0{course_num}/clase-0{class_num}/"
+        linkedin_feed_url = "https://www.linkedin.com/feed/?shareActive=true"
+        linkedin_share_offsite = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
+        
+        import urllib.parse
+        encoded_linkedin = urllib.parse.quote(linkedin_text)
+        twitter_text = f"🎓 ¡Acabo de superar la Clase 0{class_num} de Python ({info.get('title', '')}) con William Rodríguez (@wisrovi)! https://academy_python.wisrovi.dev/ #Python #AI"
+        twitter_intent_url = f"https://twitter.com/intent/tweet?text={urllib.parse.quote(twitter_text)}"
+        whatsapp_intent_url = f"https://api.whatsapp.com/send?text={urllib.parse.quote(linkedin_text)}"
         
         return {
             "course_num": course_num,
             "class_num": class_num,
+            "course_name": course_name,
             "student_name": s_name,
             "title": info.get("title"),
             "skill": info.get("skill"),
@@ -842,9 +869,15 @@ class CertificateGenerator:
             "badge": info.get("badge"),
             "cert_hash": cert_hash,
             "issue_date": issue_date,
+            "mentor_name": "William Rodríguez (Wisrovi)",
+            "mentor_linkedin": "https://es.linkedin.com/in/wisrovi-rodriguez",
+            "portal_url": "https://academy_python.wisrovi.dev/",
             "linkedin_text": linkedin_text,
             "share_url": share_url,
-            "linkedin_intent_url": linkedin_intent_url,
+            "linkedin_feed_url": linkedin_feed_url,
+            "linkedin_intent_url": linkedin_share_offsite,
+            "twitter_intent_url": twitter_intent_url,
+            "whatsapp_intent_url": whatsapp_intent_url,
             "html": cls.generate_class_certificate_html(s_name, course_num, class_num)
         }
 
