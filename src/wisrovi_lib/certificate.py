@@ -231,56 +231,56 @@ CLASS_CERTIFICATES: Dict[str, Dict[str, str]] = {
         "skill": "Sintaxis Fundamental, Variables y Decisiones Básicas",
         "concept": "Ha demostrado dominio técnico al estructurar programas en Python utilizando variables en memoria RAM, bifurcaciones condicionales lógicas y bucles de iteración fundamentales.",
         "badge": "🌱 Primer Pedaleo",
-        "linkedin_text": "🚀 ¡Acabo de superar la Clase 01 del Programa Integral de Python con @Wisrovi! He aprendido a dominar la sintaxis fundamental, el modelo de memoria y el flujo de control en Python. 🎓 Certificado oficial verificado por Wisrovi Academy: https://wisrovi.github.io/wisrovi-python/ #Python #SoftwareEngineering #CleanCode #Wisrovi"
+        "linkedin_text": "🚀 ¡Acabo de superar la Clase 01 del Programa Integral de Python con William Rodríguez (Wisrovi)! He aprendido a dominar la sintaxis fundamental, el modelo de memoria y el flujo de control en Python. 🎓 Certificado oficial verificado por Wisrovi Academy: https://wisrovi.github.io/wisrovi-python/ #Python #SoftwareEngineering #CleanCode #Wisrovi"
     },
     "1-2": {
         "title": "Acreditación en Tipado Estático y Type Hints (PEP 484)",
         "skill": "Desarrollo Tipado y Contratos Estrictos en Python",
         "concept": "Ha demostrado maestría técnica al diseñar funciones con contratos de tipado estricto (Type Hints - PEP 484), previniendo errores de diseño e inspeccionando la memoria RAM.",
         "badge": "🏷️ Type Master",
-        "linkedin_text": "🚀 ¡Acabo de obtener mi Diploma en «Tipado Estático y Type Hints (PEP 484)» en Python! He aprendido a escribir código robusto con contratos estrictos de parámetros y retornos. Mentoría por @Wisrovi. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #TypeHints #PEP484 #Wisrovi"
+        "linkedin_text": "🚀 ¡Acabo de obtener mi Diploma en «Tipado Estático y Type Hints (PEP 484)» en Python! He aprendido a escribir código robusto con contratos estrictos de parámetros y retornos. Mentoría por William Rodríguez (Wisrovi). 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #TypeHints #PEP484 #Wisrovi"
     },
     "1-3": {
         "title": "Acreditación en Bifurcaciones Lógicas y Toma de Decisiones",
         "skill": "Control de Flujo con Condicionales Complejas",
         "concept": "Ha demostrado solvencia al resolver árboles de decisión complejos con operadores lógicos, evaluación en cortocircuito y sentencias if/elif/else optimizadas.",
         "badge": "🚦 Control Flow Expert",
-        "linkedin_text": "🚀 ¡Superada la Clase 03 de Python con @Wisrovi! Dominando bifurcaciones lógicas, álgebra booleana y control de flujo empresarial en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #Programming #CleanCode"
+        "linkedin_text": "🚀 ¡Superada la Clase 03 de Python con William Rodríguez (Wisrovi)! Dominando bifurcaciones lógicas, álgebra booleana y control de flujo empresarial en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #Programming #CleanCode"
     },
     "1-4": {
         "title": "Acreditación en Bucles y Procesamiento Iterativo Eficiente",
         "skill": "Iteración con for/while y Control de Bucles",
         "concept": "Ha demostrado habilidad práctica en la automatización de procesos repetitivos mediante bucles for y while, manipulando secuencias y controlando la ejecución con break y continue.",
         "badge": "⚙️ Loop Automator",
-        "linkedin_text": "🚀 ¡Acabo de certificarme en «Bucles e Iteración Avanzada» en Python con @Wisrovi! Automatizando flujos de datos y procesamiento en memoria. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #Automation #Algorithms"
+        "linkedin_text": "🚀 ¡Acabo de certificarme en «Bucles e Iteración Avanzada» en Python con William Rodríguez (Wisrovi)! Automatizando flujos de datos y procesamiento en memoria. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #Automation #Algorithms"
     },
     "1-5": {
         "title": "Acreditación en Manipulación de Secuencias y Colecciones",
         "skill": "Listas Mutables, Tuplas Inmutables y Slicing",
         "concept": "Ha demostrado capacidad analítica al seleccionar y transformar estructuras de datos secuenciales, optimizando la mutabilidad e indexación avanzada en memoria.",
         "badge": "📦 Sequence Architect",
-        "linkedin_text": "🚀 ¡Nuevo diploma obtenido! Acreditado en «Listas, Tuplas y Slicing Avanzado» en Python con @Wisrovi. Dominando la memoria y la mutabilidad. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #DataStructures"
+        "linkedin_text": "🚀 ¡Nuevo diploma obtenido! Acreditado en «Listas, Tuplas y Slicing Avanzado» en Python con William Rodríguez (Wisrovi). Dominando la memoria y la mutabilidad. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #DataStructures"
     },
     "1-6": {
         "title": "Acreditación en Diccionarios Hash y Teoría de Conjuntos",
         "skill": "Mapeo Clave-Valor O(1) y Conjuntos Sets",
         "concept": "Ha demostrado excelencia técnica al estructurar datos con tablas hash clave-valor en diccionarios y aplicar operaciones de conjuntos para eliminar duplicados en tiempo récord.",
         "badge": "🔑 Key-Value Wizard",
-        "linkedin_text": "🚀 ¡Certificado en «Diccionarios y Sets Hash» en Python con @Wisrovi! Optimizando accesos a datos O(1) y álgebra de conjuntos. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #DataStructures #HashTables"
+        "linkedin_text": "🚀 ¡Certificado en «Diccionarios y Sets Hash» en Python con William Rodríguez (Wisrovi)! Optimizando accesos a datos O(1) y álgebra de conjuntos. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #DataStructures #HashTables"
     },
     "1-7": {
         "title": "Acreditación en Arquitectura Funcional, Ámbitos y Scope",
         "skill": "Funciones de Primer Nivel, Args/Kwargs y Modularidad",
         "concept": "Ha demostrado dominio en el diseño de código modular, limpio y mantenible mediante funciones puras, argumentos posicionales/nombrados (*args, **kwargs) y gestión precisa del Scope.",
         "badge": "🧩 Function Master",
-        "linkedin_text": "🚀 ¡Acabo de superar la Clase 07 de Python con @Wisrovi! Acreditado en «Funciones de Primer Nivel, Scope y Modularidad Limpia». 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #FunctionalProgramming #SoftwareEngineering"
+        "linkedin_text": "🚀 ¡Acabo de superar la Clase 07 de Python con William Rodríguez (Wisrovi)! Acreditado en «Funciones de Primer Nivel, Scope y Modularidad Limpia». 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #FunctionalProgramming #SoftwareEngineering"
     },
     "1-8": {
         "title": "Acreditación en Desarrollo de Aplicaciones CLI Completas",
         "skill": "Arquitectura de Software y Proyecto Integrador CLI",
         "concept": "Ha demostrado capacidad de ingeniería al integrar todos los fundamentos de Python en una aplicación de consola funcional, testeada y lista para producción.",
         "badge": "🏆 CLI Master Builder",
-        "linkedin_text": "🚀 ¡He completado el Curso 1 de Python y graduado mi primer Proyecto Integrador CLI con @Wisrovi! Preparado para la ingeniería de algoritmos y estructuras avanzadas. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #Portfolio #DevProject"
+        "linkedin_text": "🚀 ¡He completado el Curso 1 de Python y graduado mi primer Proyecto Integrador CLI con William Rodríguez (Wisrovi)! Preparado para la ingeniería de algoritmos y estructuras avanzadas. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #Portfolio #DevProject"
     },
 
     # =========================================================================
@@ -291,56 +291,56 @@ CLASS_CERTIFICATES: Dict[str, Dict[str, str]] = {
         "skill": "Eficiencia Asintótica de Tiempo y Espacio",
         "concept": "Ha demostrado rigor de ingeniería al evaluar la eficiencia temporal y espacial de algoritmos, reduciendo cuellos de botella de O(N²) a O(N) y O(1).",
         "badge": "⚡ Big-O Optimizer",
-        "linkedin_text": "🚀 ¡Nuevo diploma en «Análisis de Complejidad y Notación Big-O» con @Wisrovi! Optimizando el rendimiento computacional de algoritmos en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #BigO #Algorithms #Performance"
+        "linkedin_text": "🚀 ¡Nuevo diploma en «Análisis de Complejidad y Notación Big-O» con William Rodríguez (Wisrovi)! Optimizando el rendimiento computacional de algoritmos en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #BigO #Algorithms #Performance"
     },
     "2-2": {
         "title": "Acreditación en Estructuras LIFO y FIFO de Alta Velocidad",
         "skill": "Pilas, Colas y Optimización con collections.deque",
         "concept": "Ha demostrado destreza en la implementación de buffers de tareas FIFO y validadores sintácticos LIFO con operaciones O(1) en los extremos de la memoria.",
         "badge": "🥞 Stack & Queue Master",
-        "linkedin_text": "🚀 ¡Certificado en «Pilas LIFO y Colas FIFO con deque» en Python con @Wisrovi! Rendimiento O(1) para arquitecturas de alta concurrencia. 🎓 https://wisrovi.github.io/wisrovi-python/ #DataStructures #Algorithms"
+        "linkedin_text": "🚀 ¡Certificado en «Pilas LIFO y Colas FIFO con deque» en Python con William Rodríguez (Wisrovi)! Rendimiento O(1) para arquitecturas de alta concurrencia. 🎓 https://wisrovi.github.io/wisrovi-python/ #DataStructures #Algorithms"
     },
     "2-3": {
         "title": "Acreditación en Tablas Hash y Búsqueda en Tiempo Constante",
         "skill": "Estructuras de Búsqueda O(1) y Resolución de Colisiones",
         "concept": "Ha demostrado dominio en el aprovechamiento de funciones hash para indexación y búsqueda instantánea en tiempo constante O(1).",
         "badge": "⚡ O(1) Hash Expert",
-        "linkedin_text": "🚀 ¡Superada la Clase 03 del Curso de Algoritmos con @Wisrovi! Acreditado en «Tablas Hash y Búsqueda O(1)». 🎓 https://wisrovi.github.io/wisrovi-python/ #HashTables #DataStructures"
+        "linkedin_text": "🚀 ¡Superada la Clase 03 del Curso de Algoritmos con William Rodríguez (Wisrovi)! Acreditado en «Tablas Hash y Búsqueda O(1)». 🎓 https://wisrovi.github.io/wisrovi-python/ #HashTables #DataStructures"
     },
     "2-4": {
         "title": "Acreditación en Algoritmos de Búsqueda Binaria",
         "skill": "Búsqueda por Bisección con Complejidad O(log n)",
         "concept": "Ha demostrado maestría al implementar algoritmos de búsqueda logarítmica O(log N) sobre colecciones ordenadas masivas.",
         "badge": "🎯 Binary Search Pro",
-        "linkedin_text": "🚀 ¡Acreditado en «Búsqueda Binaria O(log n)» en Python con @Wisrovi! Reduciendo millones de operaciones a microsegundos. 🎓 https://wisrovi.github.io/wisrovi-python/ #BinarySearch #Algorithms"
+        "linkedin_text": "🚀 ¡Acreditado en «Búsqueda Binaria O(log n)» en Python con William Rodríguez (Wisrovi)! Reduciendo millones de operaciones a microsegundos. 🎓 https://wisrovi.github.io/wisrovi-python/ #BinarySearch #Algorithms"
     },
     "2-5": {
         "title": "Acreditación en Ordenamiento con Divide y Vencerás",
         "skill": "QuickSort, MergeSort y Algoritmos O(n log n)",
         "concept": "Ha demostrado solvencia algorítmica al implementar estrategias de partición y mezcla recursiva para ordenar estructuras de datos a escala.",
         "badge": "📊 Sorting Champion",
-        "linkedin_text": "🚀 ¡He obtenido mi diploma en «QuickSort y MergeSort» con @Wisrovi! Dominando el paradigma Divide y Vencerás en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #Sorting #Algorithms"
+        "linkedin_text": "🚀 ¡He obtenido mi diploma en «QuickSort y MergeSort» con William Rodríguez (Wisrovi)! Dominando el paradigma Divide y Vencerás en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #Sorting #Algorithms"
     },
     "2-6": {
         "title": "Acreditación en Árboles Binarios de Búsqueda (BST)",
         "skill": "Estructuras Jerárquicas y Recorridos de Árbol",
         "concept": "Ha demostrado capacidad técnica al construir árboles binarios balanceados, gestionando nodos, inserciones y recorridos in-order, pre-order y post-order.",
         "badge": "🌳 Tree Architect",
-        "linkedin_text": "🚀 ¡Certificado en «Árboles Binarios de Búsqueda (BST)» con @Wisrovi! Estructurando datos jerárquicos eficientes en memoria. 🎓 https://wisrovi.github.io/wisrovi-python/ #Trees #DataStructures"
+        "linkedin_text": "🚀 ¡Certificado en «Árboles Binarios de Búsqueda (BST)» con William Rodríguez (Wisrovi)! Estructurando datos jerárquicos eficientes en memoria. 🎓 https://wisrovi.github.io/wisrovi-python/ #Trees #DataStructures"
     },
     "2-7": {
         "title": "Acreditación en Modelado de Grafos y Recorridos BFS / DFS",
         "skill": "Grafos, Matrices de Adyacencia y Rutas Óptimas",
         "concept": "Ha demostrado maestría en la representación de redes mediante grafos y el cálculo de caminos más cortos y exploración con Breadth-First y Depth-First Search.",
         "badge": "🕸️ Graph Master",
-        "linkedin_text": "🚀 ¡Nuevo hito alcanzado! Acreditado en «Grafos y Recorridos BFS/DFS» en Python con @Wisrovi. Resolviendo redes y rutas óptimas. 🎓 https://wisrovi.github.io/wisrovi-python/ #GraphAlgorithms #BFS #DFS"
+        "linkedin_text": "🚀 ¡Nuevo hito alcanzado! Acreditado en «Grafos y Recorridos BFS/DFS» en Python con William Rodríguez (Wisrovi). Resolviendo redes y rutas óptimas. 🎓 https://wisrovi.github.io/wisrovi-python/ #GraphAlgorithms #BFS #DFS"
     },
     "2-8": {
         "title": "Acreditación en Programación Dinámica y Memoización",
         "skill": "Optimización Recursiva y Tabulación de Estados",
         "concept": "Ha demostrado excelencia matemática y computacional al transformar algoritmos exponenciales O(2^N) en soluciones polinómicas O(N) con memoización.",
         "badge": "🧠 Dynamic Programming Guru",
-        "linkedin_text": "🚀 ¡Graduado del Curso 2 de Algoritmos con @Wisrovi! Acreditado en «Recursividad y Programación Dinámica». ¡Listo para Agentes de IA! 🎓 https://wisrovi.github.io/wisrovi-python/ #DynamicProgramming #Memoization"
+        "linkedin_text": "🚀 ¡Graduado del Curso 2 de Algoritmos con William Rodríguez (Wisrovi)! Acreditado en «Recursividad y Programación Dinámica». ¡Listo para Agentes de IA! 🎓 https://wisrovi.github.io/wisrovi-python/ #DynamicProgramming #Memoization"
     },
 
     # =========================================================================
@@ -351,56 +351,56 @@ CLASS_CERTIFICATES: Dict[str, Dict[str, str]] = {
         "skill": "Arquitectura Transformer, Context Windows y Tokens",
         "concept": "Ha demostrado comprensión rigurosa de los modelos de lenguaje autorregresivos, cálculo de costes de contexto y codificación de tokens.",
         "badge": "🤖 LLM Pioneer",
-        "linkedin_text": "🚀 ¡Iniciando el Curso de Agentes de IA con @Wisrovi! Acreditado en «Fundamentos de LLMs y Tokenización». 🎓 https://wisrovi.github.io/wisrovi-python/ #LLM #ArtificialIntelligence #GenerativeAI"
+        "linkedin_text": "🚀 ¡Iniciando el Curso de Agentes de IA con William Rodríguez (Wisrovi)! Acreditado en «Fundamentos de LLMs y Tokenización». 🎓 https://wisrovi.github.io/wisrovi-python/ #LLM #ArtificialIntelligence #GenerativeAI"
     },
     "3-2": {
         "title": "Acreditación en Prompt Engineering Avanzado y Few-Shot",
         "skill": "Instrucciones de Sistema, Delimitadores y Few-Shot",
         "concept": "Ha demostrado dominio en el diseño de directrices deterministas, mitigación de alucinaciones y técnicas de razonamiento guiado para modelos de lenguaje.",
         "badge": "✍️ Prompt Engineer",
-        "linkedin_text": "🚀 ¡Diploma obtenido en «Prompt Engineering Avanzado & Few-Shot» con @Wisrovi! Diseñando especificaciones de alta precisión para IA. 🎓 https://wisrovi.github.io/wisrovi-python/ #PromptEngineering #AI"
+        "linkedin_text": "🚀 ¡Diploma obtenido en «Prompt Engineering Avanzado & Few-Shot» con William Rodríguez (Wisrovi)! Diseñando especificaciones de alta precisión para IA. 🎓 https://wisrovi.github.io/wisrovi-python/ #PromptEngineering #AI"
     },
     "3-3": {
         "title": "Acreditación en Salidas Estructuradas con Pydantic V2",
         "skill": "Validación de Esquemas JSON y Tipado Estricto para IA",
         "concept": "Ha demostrado excelencia en el control de interfaces de IA mediante modelos Pydantic, garantizando respuestas JSON parseables y tipadas.",
         "badge": "🛡️ Structured Output Specialist",
-        "linkedin_text": "🚀 ¡Certificado en «Salidas Estructuradas con Pydantic V2 para IA» con @Wisrovi! Blindando la comunicación entre LLMs y backend. 🎓 https://wisrovi.github.io/wisrovi-python/ #Pydantic #StructuredOutputs #AI"
+        "linkedin_text": "🚀 ¡Certificado en «Salidas Estructuradas con Pydantic V2 para IA» con William Rodríguez (Wisrovi)! Blindando la comunicación entre LLMs y backend. 🎓 https://wisrovi.github.io/wisrovi-python/ #Pydantic #StructuredOutputs #AI"
     },
     "3-4": {
         "title": "Acreditación en Tool Calling y Function Execution Engine",
         "skill": "Despacho Dinámico de Herramientas en Python para LLMs",
         "concept": "Ha demostrado maestría al dotar a modelos LLM de herramientas reales en Python, implementando esquemas de herramientas y despacho seguro de llamadas a funciones.",
         "badge": "🛠️ Tool Calling Engineer",
-        "linkedin_text": "🚀 ¡He obtenido mi Acreditación en «Tool Calling y Function Calling en Python» con @Wisrovi! Conectando LLMs con ejecución de código en el mundo real. 🎓 https://wisrovi.github.io/wisrovi-python/ #ToolCalling #FunctionCalling #AIAgents"
+        "linkedin_text": "🚀 ¡He obtenido mi Acreditación en «Tool Calling y Function Calling en Python» con William Rodríguez (Wisrovi)! Conectando LLMs con ejecución de código en el mundo real. 🎓 https://wisrovi.github.io/wisrovi-python/ #ToolCalling #FunctionCalling #AIAgents"
     },
     "3-5": {
         "title": "Acreditación en Embeddings y Representación Semántica",
         "skill": "Vectores Semánticos y Similitud Coseno",
         "concept": "Ha demostrado habilidad en la transformación de texto a espacios vectoriales de alta dimensión y cálculo de distancias semánticas en memoria.",
         "badge": "📐 Vector Space Master",
-        "linkedin_text": "🚀 ¡Superada la Clase 05 de Agentes de IA con @Wisrovi! Acreditado en «Embeddings y Similitud Coseno». 🎓 https://wisrovi.github.io/wisrovi-python/ #Embeddings #VectorSearch #AI"
+        "linkedin_text": "🚀 ¡Superada la Clase 05 de Agentes de IA con William Rodríguez (Wisrovi)! Acreditado en «Embeddings y Similitud Coseno». 🎓 https://wisrovi.github.io/wisrovi-python/ #Embeddings #VectorSearch #AI"
     },
     "3-6": {
         "title": "Acreditación en Arquitecturas RAG (Retrieval-Augmented Generation)",
         "skill": "Recuperación Vectorial e Inyección de Contexto en Tiempo Real",
         "concept": "Ha demostrado capacidad de arquitectura al construir pipelines RAG que aumentan el conocimiento de los LLMs con fuentes documentales privadas.",
         "badge": "📚 RAG Architect",
-        "linkedin_text": "🚀 ¡Diploma en «Arquitecturas RAG (Retrieval-Augmented Generation)» con @Wisrovi! Creando sistemas de IA basados en conocimiento real. 🎓 https://wisrovi.github.io/wisrovi-python/ #RAG #VectorDatabase #AIAgents"
+        "linkedin_text": "🚀 ¡Diploma en «Arquitecturas RAG (Retrieval-Augmented Generation)» con William Rodríguez (Wisrovi)! Creando sistemas de IA basados en conocimiento real. 🎓 https://wisrovi.github.io/wisrovi-python/ #RAG #VectorDatabase #AIAgents"
     },
     "3-7": {
         "title": "Acreditación en Agentes Autónomos y Ciclo ReAct",
         "skill": "Razonamiento ReAct (Thought -> Action -> Observation)",
         "concept": "Ha demostrado solvencia técnica al diseñar agentes autónomos capaces de razonar iterativamente, seleccionar herramientas y resolver objetivos complejos.",
         "badge": "🕵️ ReAct Agent Creator",
-        "linkedin_text": "🚀 ¡Acabo de construir mi primer Agente Autónomo ReAct en Python con @Wisrovi! Acreditado en «Ciclos Cognitivos de IA». 🎓 https://wisrovi.github.io/wisrovi-python/ #ReAct #AIAgents #AutonomousAI"
+        "linkedin_text": "🚀 ¡Acabo de construir mi primer Agente Autónomo ReAct en Python con William Rodríguez (Wisrovi)! Acreditado en «Ciclos Cognitivos de IA». 🎓 https://wisrovi.github.io/wisrovi-python/ #ReAct #AIAgents #AutonomousAI"
     },
     "3-8": {
         "title": "Acreditación en Sistemas Multi-Agente y Guardrails",
         "skill": "Orquestación de Equipos de Agentes y Políticas de Seguridad",
         "concept": "Ha demostrado liderazgo técnico al coordinar sistemas multi-agente distribuidos con supervisión jerárquica y validación de seguridad contra ataques de inyección.",
         "badge": "🌐 Multi-Agent Orchestrator",
-        "linkedin_text": "🚀 ¡Graduado del Curso 3 de Agentes de Inteligencia Artificial con @Wisrovi! Acreditado en «Sistemas Multi-Agente & Guardrails». 🎓 https://wisrovi.github.io/wisrovi-python/ #MultiAgent #Guardrails #AIArchitecture"
+        "linkedin_text": "🚀 ¡Graduado del Curso 3 de Agentes de Inteligencia Artificial con William Rodríguez (Wisrovi)! Acreditado en «Sistemas Multi-Agente & Guardrails». 🎓 https://wisrovi.github.io/wisrovi-python/ #MultiAgent #Guardrails #AIArchitecture"
     },
 
     # =========================================================================
@@ -411,56 +411,56 @@ CLASS_CERTIFICATES: Dict[str, Dict[str, str]] = {
         "skill": "Diseño Modular, Diagramas C4 y Contratos de Dominio",
         "concept": "Ha demostrado visión de ingeniería al planificar sistemas desacoplados, modelos de dominio limpios y flujos de integración punta a punta.",
         "badge": "📐 Lead Architect",
-        "linkedin_text": "🚀 ¡Iniciando el Proyecto Final con @Wisrovi! Acreditado en «Arquitectura de Software y Planificación de Sistemas Full-Stack de IA». 🎓 https://wisrovi.github.io/wisrovi-python/ #SoftwareArchitecture #SystemDesign"
+        "linkedin_text": "🚀 ¡Iniciando el Proyecto Final con William Rodríguez (Wisrovi)! Acreditado en «Arquitectura de Software y Planificación de Sistemas Full-Stack de IA». 🎓 https://wisrovi.github.io/wisrovi-python/ #SoftwareArchitecture #SystemDesign"
     },
     "4-2": {
         "title": "Acreditación en Desarrollo de Backend con FastAPI",
         "skill": "APIs REST Asíncronas, Rutas y Validación de Entrada",
         "concept": "Ha demostrado dominio en el desarrollo de microservicios HTTP de alto rendimiento con FastAPI, inyección de dependencias y OpenAPI.",
         "badge": "⚡ FastAPI Backend Specialist",
-        "linkedin_text": "🚀 ¡Diploma en «Backend APIs con FastAPI» obtenido con @Wisrovi! Creando servicios asíncronos de nivel de producción. 🎓 https://wisrovi.github.io/wisrovi-python/ #FastAPI #Python #APIDesign"
+        "linkedin_text": "🚀 ¡Diploma en «Backend APIs con FastAPI» obtenido con William Rodríguez (Wisrovi)! Creando servicios asíncronos de nivel de producción. 🎓 https://wisrovi.github.io/wisrovi-python/ #FastAPI #Python #APIDesign"
     },
     "4-3": {
         "title": "Acreditación en Persistencia Relacional y Transacciones ACID",
         "skill": "Modelado de Bases de Datos SQL y Transaccionalidad",
         "concept": "Ha demostrado rigor en el diseño de esquemas de datos, consultas optimizadas y control de integridad transaccional ACID.",
         "badge": "🗄️ Database Engineer",
-        "linkedin_text": "🚀 ¡Certificado en «Persistencia SQL y Transacciones ACID» con @Wisrovi! Garantizando integridad de datos en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #SQL #Databases #ACID"
+        "linkedin_text": "🚀 ¡Certificado en «Persistencia SQL y Transacciones ACID» con William Rodríguez (Wisrovi)! Garantizando integridad de datos en Python. 🎓 https://wisrovi.github.io/wisrovi-python/ #SQL #Databases #ACID"
     },
     "4-4": {
         "title": "Acreditación en Frontend Interactivo con Streamlit",
         "skill": "Dashboards de Control e Interfaces Reactivas",
         "concept": "Ha demostrado destreza al construir interfaces de usuario elegantes y reactivas para interactuar con modelos de IA y bases de datos.",
         "badge": "🖥️ Streamlit Frontend Pro",
-        "linkedin_text": "🚀 ¡Superada la Clase 04 de Proyecto Final con @Wisrovi! Acreditado en «Interfaces Interactivas con Streamlit». 🎓 https://wisrovi.github.io/wisrovi-python/ #Streamlit #DataApp #Python"
+        "linkedin_text": "🚀 ¡Superada la Clase 04 de Proyecto Final con William Rodríguez (Wisrovi)! Acreditado en «Interfaces Interactivas con Streamlit». 🎓 https://wisrovi.github.io/wisrovi-python/ #Streamlit #DataApp #Python"
     },
     "4-5": {
         "title": "Acreditación en Integración de Motores de IA en Aplicaciones",
         "skill": "Conexión de Agentes de IA a Pipelines de Producción",
         "concept": "Ha demostrado solvencia al integrar pipelines de razonamiento artificial y procesamiento de lenguaje natural en el flujo operativo del software.",
         "badge": "🔌 AI Integration Engineer",
-        "linkedin_text": "🚀 ¡Diploma obtenido en «Integración de Motores de IA en Producción» con @Wisrovi! Software inteligente en acción. 🎓 https://wisrovi.github.io/wisrovi-python/ #AI #ProductionAI #Python"
+        "linkedin_text": "🚀 ¡Diploma obtenido en «Integración de Motores de IA en Producción» con William Rodríguez (Wisrovi)! Software inteligente en acción. 🎓 https://wisrovi.github.io/wisrovi-python/ #AI #ProductionAI #Python"
     },
     "4-6": {
         "title": "Acreditación en Testing Riguroso con Pytest, Mocks y CI",
         "skill": "Pruebas Unitarias, Fixtures y Cobertura de Código",
         "concept": "Ha demostrado calidad de ingeniería al diseñar suites de pruebas automatizadas con pytest, fixtures y mocks para aislar dependencias críticas.",
         "badge": "🧪 QA & Test Master",
-        "linkedin_text": "🚀 ¡Acreditado en «Testing con Pytest, Fixtures y Mocks» con @Wisrovi! Calidad y fiabilidad de software comprobada. 🎓 https://wisrovi.github.io/wisrovi-python/ #Pytest #QualityAssurance #Python"
+        "linkedin_text": "🚀 ¡Acreditado en «Testing con Pytest, Fixtures y Mocks» con William Rodríguez (Wisrovi)! Calidad y fiabilidad de software comprobada. 🎓 https://wisrovi.github.io/wisrovi-python/ #Pytest #QualityAssurance #Python"
     },
     "4-7": {
         "title": "Acreditación en Containerización Profesional con Docker",
         "skill": "Dockerfiles Multi-Stage y Docker Compose Multi-Servicio",
         "concept": "Ha demostrado solvencia DevOps al empaquetar aplicaciones completas en contenedores reproducibles y orquestar servicios con Docker Compose.",
         "badge": "🐳 Docker & Container Expert",
-        "linkedin_text": "🚀 ¡Certificado en «Containerización con Docker & Compose» en Python con @Wisrovi! Despliegue estandarizado y reproducible. 🎓 https://wisrovi.github.io/wisrovi-python/ #Docker #DevOps #Microservices"
+        "linkedin_text": "🚀 ¡Certificado en «Containerización con Docker & Compose» en Python con William Rodríguez (Wisrovi)! Despliegue estandarizado y reproducible. 🎓 https://wisrovi.github.io/wisrovi-python/ #Docker #DevOps #Microservices"
     },
     "4-8": {
         "title": "Acreditación en Despliegue Continuo CI/CD y Portafolio de Élite",
         "skill": "Pipelines de Despliegue en la Nube y Portafolio Profesional",
         "concept": "Ha demostrado excelencia profesional al culminar con éxito el Programa Integral de Formación en Python: De Cero a Agentes de Inteligencia Artificial, desplegando su solución en producción.",
         "badge": "👑 Python & AI Master Engineer",
-        "linkedin_text": "🏆 ¡HE COMPLETADO EL PROGRAMA INTEGRAL DE PYTHON (32 SEMANAS)! Desde fundamentos y algoritmos hasta Agentes de IA y Arquitectura Full-Stack en producción. Agradecido con @Wisrovi por esta mentoría de excelencia. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #AI #CloudDeployment #Portfolio"
+        "linkedin_text": "🏆 ¡HE COMPLETADO EL PROGRAMA INTEGRAL DE PYTHON (32 SEMANAS)! Desde fundamentos y algoritmos hasta Agentes de IA y Arquitectura Full-Stack en producción. Agradecido con William Rodríguez (Wisrovi) por esta mentoría de excelencia. 🎓 https://wisrovi.github.io/wisrovi-python/ #Python #AI #CloudDeployment #Portfolio"
     }
 }
 

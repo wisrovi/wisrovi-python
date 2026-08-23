@@ -251,7 +251,7 @@ def test_class_certificates_all_32_classes():
             assert len(info["skill"]) > 5
             assert len(info["concept"]) > 10
             assert "linkedin_text" in info
-            assert "@Wisrovi" in info["linkedin_text"]
+            assert "William Rodríguez (Wisrovi)" in info["linkedin_text"]
             
             # Validar render HTML
             html = CertificateGenerator.generate_class_certificate_html(
