@@ -6,6 +6,23 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [2.5.0] - 2026-08-23 (Master-Class UI Studio, Dual-Column Memory Inspector & CLI Suite)
+
+### 🌟 Añadido (New Features)
+- **Inspector de Memoria Dual (Stack vs Heap con IDs Criptográficos y Tamaños en Bytes):**
+  - Separación arquitectónica visual entre variables primitivas inmutables (Stack) y estructuras de datos/objetos (Heap).
+  - Inspección de direcciones en memoria hexadecimales y consumo exacto en bytes (`sys.getsizeof`).
+- **Persistencia Continua en LocalStorage (`Auto-Save Drafts`):**
+  - Guardado en segundo plano de borradores de código para Demo, Sandbox y Retos por cada una de las 32 clases, evitando cualquier pérdida accidental de código.
+- **Suite Avanzada de Comandos en CLI (`wisrovi`):**
+  - `wisrovi profile` / `wisrovi stats`: Matriz interactiva de progreso curricular, barra de XP, nivel y vitrina de insignias en la terminal.
+  - `wisrovi cert`: Generación y exportación de micro-diplomas y master diploma en PDF/PNG directamente por línea de comandos.
+  - `wisrovi book <curso> <clase>`: Visor en consola del libro digital canónico con renderizado Markdown.
+- **Suite de Pruebas Centralizada (55 Tests Pytest):**
+  - Cobertura completa de endpoints, contratos de tipado, motor de gamificación, CLI y generador de certificados.
+
+---
+
 ## [2.4.0] - 2026-08-23 (32 Micro-Class Credentials, 1-Click LinkedIn Publishing & Navigation Engine)
 
 ### 🌟 Añadido (New Features)

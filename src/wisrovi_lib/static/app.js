@@ -151,6 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
     downloadClassPdfBtn: document.getElementById("download-class-pdf-btn"),
     downloadClassPngBtn: document.getElementById("download-class-png-btn"),
     shareLinkedinDirectBtn: document.getElementById("share-linkedin-direct-btn"),
+    shareLinkedinInlineBtn: document.getElementById("share-linkedin-inline-btn"),
+    openLinkedinTopBtn: document.getElementById("open-linkedin-top-btn"),
     nextClassCertBtn: document.getElementById("next-class-cert-btn"),
 
     achievementsBtn: document.getElementById("achievements-btn"),
@@ -308,7 +310,39 @@ document.addEventListener("DOMContentLoaded", () => {
     state.starterChallengeCode = data.challenge_starter;
     dom.challengeCode.value = data.challenge_starter;
     updateDiffStatus();
-    dom.challengeResults.innerHTML = `<div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Modifica la plantilla y pulsa 'Evaluar Reto'.</div>`;
+    if (data.is_completed) {
+      dom.challengeResults.innerHTML = `
+        <div style="background: rgba(16,185,129,0.18); border: 1px solid #10b981; color: #6ee7b7; padding: 0.75rem 1rem; border-radius: 8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            🎉 <strong>¡Lección Superada con Éxito!</strong>
+            <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Tu micro-diploma oficial está listo para compartir en LinkedIn.</div>
+          </div>
+          <button class="btn" id="open-class-cert-from-challenge-btn" style="background:#0a66c2; color:#fff; border:none; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:6px; display:inline-flex; align-items:center; gap:0.4rem; cursor:pointer; box-shadow:0 0 12px rgba(10,102,194,0.5);">
+            <span>🚀</span> Publicar en LinkedIn
+          </button>
+        </div>
+      `;
+      setTimeout(() => {
+        const b = document.getElementById("open-class-cert-from-challenge-btn");
+        if (b) b.addEventListener("click", () => openClassCertForCurrent());
+      }, 50);
+    } else {
+      dom.challengeResults.innerHTML = `<div style="color: #64748b; font-size: 0.85rem; font-style: italic;">Modifica la plantilla y pulsa 'Evaluar Reto'.</div>`;
+    }
+
+    // Cargar borrador persistente de localStorage si existe
+    try {
+      const draftKey = `wisrovi_draft_${state.currentCourse}_${state.currentClass}`;
+      const savedDraft = localStorage.getItem(draftKey);
+      if (savedDraft) {
+        const draft = JSON.parse(savedDraft);
+        if (draft.challenge) {
+          dom.challengeCode.value = draft.challenge;
+          updateLineNumbers(dom.challengeCode, dom.challengeLines);
+          updateDiffStatus();
+        }
+      }
+    } catch (e) {}
 
     dom.hintsAccordion.innerHTML = "";
     data.socratic_hints.forEach((h, idx) => {
@@ -510,6 +544,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Guardado automático de borradores en LocalStorage
+    function saveLocalDraft() {
+      if (!state.currentCourse || !state.currentClass) return;
+      try {
+        const draftKey = `wisrovi_draft_${state.currentCourse}_${state.currentClass}`;
+        localStorage.setItem(draftKey, JSON.stringify({
+          challenge: dom.challengeCode.value,
+          demo: dom.demoCode.value,
+          sandbox: dom.sandboxCode.value
+        }));
+      } catch (e) {}
+    }
+    dom.demoCode.addEventListener("input", saveLocalDraft);
+    dom.sandboxCode.addEventListener("input", saveLocalDraft);
+    dom.challengeCode.addEventListener("input", saveLocalDraft);
+
     // Escuchar con voz
     dom.listenMetaphorBtn.addEventListener("click", () => {
       if ('speechSynthesis' in window && state.classContent) {
@@ -625,39 +675,41 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    if (dom.shareLinkedinDirectBtn) {
-      dom.shareLinkedinDirectBtn.addEventListener("click", async () => {
-        const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
-        const textToCopy = dom.classCertLinkedinText ? dom.classCertLinkedinText.value : "";
-        
-        // 1. Copiar texto al portapapeles
-        if (textToCopy) {
-          try {
-            await navigator.clipboard.writeText(textToCopy);
-          } catch (e) {
-            console.warn("Clipboard access:", e);
-          }
+    const publishToLinkedIn = async () => {
+      const name = dom.classCertStudentName ? dom.classCertStudentName.value.trim() : "Estudiante Wisrovi";
+      const textToCopy = dom.classCertLinkedinText ? dom.classCertLinkedinText.value : "";
+      
+      // 1. Copiar texto al portapapeles
+      if (textToCopy) {
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+        } catch (e) {
+          console.warn("Clipboard access:", e);
         }
+      }
 
-        // 2. Descargar automáticamente la imagen PNG del diploma para adjuntar
-        const pngDownloadUrl = `/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`;
-        const a = document.createElement("a");
-        a.href = pngDownloadUrl;
-        a.download = `Diploma_Wisrovi_C${state.currentCourse}_Clase${state.currentClass.toString().padStart(2, '0')}.png`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+      // 2. Descargar automáticamente la imagen PNG del diploma para adjuntar
+      const pngDownloadUrl = `/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`;
+      const a = document.createElement("a");
+      a.href = pngDownloadUrl;
+      a.download = `Diploma_Wisrovi_C${state.currentCourse}_Clase${state.currentClass.toString().padStart(2, '0')}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
 
-        // 3. Abrir LinkedIn Feed para crear la publicación
-        const linkedinUrl = "https://www.linkedin.com/feed/?shareActive=true";
-        window.open(linkedinUrl, "_blank");
+      // 3. Abrir LinkedIn Feed para crear la publicación
+      const linkedinUrl = "https://www.linkedin.com/feed/?shareActive=true";
+      window.open(linkedinUrl, "_blank");
 
-        // 4. Mostrar banner guía al estudiante
-        if (dom.linkedinShareGuideToast) {
-          dom.linkedinShareGuideToast.classList.remove("hidden");
-        }
-      });
-    }
+      // 4. Mostrar banner guía al estudiante
+      if (dom.linkedinShareGuideToast) {
+        dom.linkedinShareGuideToast.classList.remove("hidden");
+      }
+    };
+
+    if (dom.shareLinkedinDirectBtn) dom.shareLinkedinDirectBtn.addEventListener("click", publishToLinkedIn);
+    if (dom.shareLinkedinInlineBtn) dom.shareLinkedinInlineBtn.addEventListener("click", publishToLinkedIn);
+    if (dom.openLinkedinTopBtn) dom.openLinkedinTopBtn.addEventListener("click", publishToLinkedIn);
 
     if (dom.shareTwitterBtn) {
       dom.shareTwitterBtn.addEventListener("click", () => {
@@ -715,21 +767,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     dom.memoryCanvas.innerHTML = "";
     dom.memTotalCount.textContent = `${vars.length} Variables`;
-    vars.forEach(v => {
-      const c = document.createElement("div");
-      c.className = "mem-card";
-      c.innerHTML = `
-        <div>
-          <span class="mem-name">${v.icon} ${v.name}</span>
-          <span class="mem-type">(${v.type})</span> = <strong style="color:#fff;">${v.value}</strong>
-        </div>
-        <div style="display:flex; gap:0.6rem; align-items:center;">
-          <span class="mem-bytes-badge">${v.size_bytes} Bytes</span>
-          <span class="mem-hex-id">${v.id}</span>
-        </div>
-      `;
-      dom.memoryCanvas.appendChild(c);
-    });
+
+    const stackVars = vars.filter(v => !v.is_mutable);
+    const heapVars = vars.filter(v => v.is_mutable);
+
+    const stackCol = document.createElement("div");
+    stackCol.className = "mem-column";
+    stackCol.innerHTML = `<div class="mem-column-header"><span>🧱 STACK (Inmutables)</span><span>${stackVars.length}</span></div>`;
+
+    if (stackVars.length === 0) {
+      stackCol.innerHTML += `<div style="font-size:0.75rem; color:#64748b; font-style:italic; padding:0.5rem;">Sin variables primitivas</div>`;
+    } else {
+      stackVars.forEach(v => {
+        const c = document.createElement("div");
+        c.className = "mem-card";
+        c.innerHTML = `
+          <div class="mem-top-row">
+            <span class="mem-name">${v.icon} ${v.name}</span>
+            <span class="mem-type">(${v.type})</span>
+          </div>
+          <div class="mem-val-row">${v.value}</div>
+          <div class="mem-meta-row">
+            <span class="mem-bytes-badge">${v.size_bytes} B</span>
+            <span class="mem-hex-id">${v.id}</span>
+          </div>
+        `;
+        stackCol.appendChild(c);
+      });
+    }
+
+    const heapCol = document.createElement("div");
+    heapCol.className = "mem-column";
+    heapCol.innerHTML = `<div class="mem-column-header" style="color:#c084fc;"><span>📦 HEAP (Mutables / Objetos)</span><span>${heapVars.length}</span></div>`;
+
+    if (heapVars.length === 0) {
+      heapCol.innerHTML += `<div style="font-size:0.75rem; color:#64748b; font-style:italic; padding:0.5rem;">Sin estructuras en Heap</div>`;
+    } else {
+      heapVars.forEach(v => {
+        const c = document.createElement("div");
+        c.className = "mem-card heap-card";
+        c.innerHTML = `
+          <div class="mem-top-row">
+            <span class="mem-name" style="color:#c084fc;">${v.icon} ${v.name}</span>
+            <span class="mem-type">(${v.type})</span>
+          </div>
+          <div class="mem-val-row">${v.value}</div>
+          <div class="mem-meta-row">
+            <span class="mem-bytes-badge" style="color:#c084fc; border-color:rgba(192,132,252,0.4);">${v.size_bytes} B</span>
+            <span class="mem-hex-id">${v.id}</span>
+          </div>
+        `;
+        heapCol.appendChild(c);
+      });
+    }
+
+    dom.memoryCanvas.appendChild(stackCol);
+    dom.memoryCanvas.appendChild(heapCol);
   }
 
   async function openClassCertModal(certData) {

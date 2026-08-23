@@ -284,6 +284,8 @@ def test_class_certificate_modal_in_embedded_ui():
     assert "download-class-png-btn" in html
     assert "share-linkedin-direct-btn" in html
     assert "class-cert-linkedin-text" in html
+    assert "header-linkedin-btn" in html
+    assert "cert-modal-linkedin-btn" in html
 
 def test_class_certificate_server_api():
     """Valida los endpoints REST de diplomas de clase."""
@@ -294,6 +296,23 @@ def test_class_certificate_server_api():
     assert res["success"] is True
     assert "Tool Calling" in res["data"]["title"]
     assert "Carlos Mendez" in res["data"]["html"]
+
+def test_cli_subcommands():
+    """Valida que los nuevos comandos del CLI se ejecuten correctamente sin errores."""
+    from wisrovi_cli.main import cmd_profile, cmd_book, cmd_list
+    import argparse
+    
+    # Test cmd_profile / stats
+    args = argparse.Namespace()
+    cmd_profile(args)
+    
+    # Test cmd_book
+    args_book = argparse.Namespace(course=1, clase=1)
+    cmd_book(args_book)
+    
+    # Test cmd_list
+    args_list = argparse.Namespace(course=None)
+    cmd_list(args_list)
 
 
 

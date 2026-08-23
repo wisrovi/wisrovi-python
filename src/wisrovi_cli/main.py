@@ -318,6 +318,108 @@ def cmd_tutor(args):
     except Exception as e:
         console.print(f"[bold red]Error al iniciar servidor FastAPI:[/bold red] {e}")
 
+def cmd_cert(args):
+    console.print(BANNER)
+    from wisrovi_lib import CertificateGenerator, GamificationEngine
+    engine = GamificationEngine()
+    s_name = getattr(args, "name", None) or engine.profile.name or "Estudiante Wisrovi"
+    c_num = getattr(args, "course", None)
+    cls_num = getattr(args, "clase", None)
+    out_format = getattr(args, "format", "pdf")
+    output_path = getattr(args, "output", None)
+
+    if c_num and cls_num:
+        console.print(f"[bold green]🎓 Generando Micro-Diploma de Clase:[/bold green] Curso {c_num} - Clase 0{cls_num} ({s_name})...")
+        payload = CertificateGenerator.get_class_share_payload(s_name, int(c_num), int(cls_num))
+        default_filename = f"Diploma_Wisrovi_C{c_num}_Clase{int(cls_num):02d}.{out_format}"
+        out_file = output_path or default_filename
+        
+        if out_format.lower() == "png":
+            CertificateGenerator.generate_class_certificate_png(s_name, int(c_num), int(cls_num), out_file)
+        else:
+            CertificateGenerator.generate_class_certificate_pdf(s_name, int(c_num), int(cls_num), out_file)
+            
+        console.print(f"[bold green]✅ Diploma exportado con éxito en:[/bold green] [bold cyan]{out_file}[/bold cyan]")
+        console.print(Panel(payload["linkedin_text"], title="💼 Texto Oficial para Publicar en LinkedIn", border_style="cyan"))
+    else:
+        console.print(f"[bold green]🏆 Generando Master Diploma Oficial (160 Horas):[/bold green] {s_name}...")
+        course_title = "Programa Integral de Formación en Python: De Cero a Agentes de IA"
+        default_filename = f"Master_Diploma_Wisrovi_Python_160h.{out_format}"
+        out_file = output_path or default_filename
+        
+        if out_format.lower() == "png":
+            CertificateGenerator.generate_master_certificate_png(s_name, course_title, 160, out_file)
+        else:
+            CertificateGenerator.generate_pdf_certificate(s_name, course_title, 160, out_file)
+            
+        console.print(f"[bold green]✅ Master Diploma exportado con éxito en:[/bold green] [bold cyan]{out_file}[/bold cyan]")
+
+def cmd_profile(args):
+    console.print(BANNER)
+    from wisrovi_lib import GamificationEngine, BADGES
+    engine = GamificationEngine()
+    p = engine.profile
+
+    grid_table = Table(title="🗺️ Matriz de Avance en las 32 Clases", border_style="cyan")
+    grid_table.add_column("Curso", style="bold green", justify="center")
+    grid_table.add_column("Progreso", style="bold yellow", justify="center")
+    for i in range(1, 9):
+        grid_table.add_column(f"S{i:02d}", justify="center")
+
+    for c in range(1, 5):
+        row = [f"Curso {c}"]
+        completed_in_c = sum(1 for i in range(1, 9) if f"{c}-{i}" in p.completed_classes)
+        row.append(f"{completed_in_c}/8 ({int(completed_in_c/8*100)}%)")
+        for i in range(1, 9):
+            key = f"{c}-{i}"
+            row.append("🟩" if key in p.completed_classes else "⬜")
+        grid_table.add_row(*row)
+
+    xp_pct = min(100, int((p.xp % 500) / 500 * 100))
+    bar_len = 25
+    filled = int(bar_len * (xp_pct / 100))
+    bar_str = "█" * filled + "░" * (bar_len - filled)
+
+    badges_list = []
+    for b_id in p.unlocked_badges:
+        if b_id in BADGES:
+            badges_list.append(f"{BADGES[b_id]['icon']} [bold white]{BADGES[b_id]['title']}[/bold white]")
+
+    badges_str = "  ".join(badges_list) if badges_list else "[italic dim]Completa retos para desbloquear insignias.[/italic dim]"
+
+    profile_text = f"""[bold white]Alumno:[/bold white] [bold cyan]{p.name}[/bold cyan] ({p.email})
+[bold white]Rango:[/bold white] [bold yellow]Nivel {p.level} • {p.level_title}[/bold yellow]
+[bold white]Experiencia (XP):[/bold white] [bold green]{p.xp} XP[/bold green]  [{bar_str}] {xp_pct}% para Nivel {p.level + 1}
+[bold white]Racha de Estudio:[/bold white] 🔥 [bold red]{p.streak_days} días consecutivos[/bold red]
+[bold white]Total Clases Superadas:[/bold white] [bold green]{len(p.completed_classes)} / 32[/bold green] ({int(len(p.completed_classes)/32*100)}%)
+
+[bold white]🏆 Insignias y Trofeos Desbloqueados:[/bold white]
+{badges_str}
+"""
+    console.print(Panel(profile_text, title="👤 Perfil del Estudiante & Gamificación", border_style="green"))
+    console.print(grid_table)
+
+def cmd_book(args):
+    console.print(BANNER)
+    try:
+        c_num = int(args.course)
+        cls_num = int(args.clase)
+        data = COURSES_DATA[c_num]
+        folder, _ = data["classes"][cls_num - 1]
+    except Exception:
+        console.print("[bold red]❌ Error:[/bold red] Curso o clase inválido. Ejemplo: [bold cyan]wisrovi book 1 1[/bold cyan]")
+        sys.exit(1)
+
+    book_path = os.path.join(data["folder"], folder, "book.md")
+    if not os.path.exists(book_path):
+        console.print(f"[bold red]❌ Archivo no encontrado:[/bold red] {book_path}")
+        sys.exit(1)
+
+    with open(book_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    console.print(Markdown(content))
+
 def main():
     parser = argparse.ArgumentParser(
         description="Wisrovi CLI - Asistente de Aprendizaje en Python & Consola del Docente",
@@ -338,6 +440,23 @@ def main():
     p_tutor.add_argument("--host", type=str, default="127.0.0.1", help="Host del servidor (defecto: 127.0.0.1)")
     p_tutor.add_argument("-c", "--course", type=int, default=None, help="Curso inicial para proyectar (1..4)")
     p_tutor.add_argument("-s", "--clase", type=int, default=None, help="Clase inicial para proyectar (1..8)")
+
+    # cert (Generación de Diplomas y Micro-Acreditaciones)
+    p_cert = subparsers.add_parser("cert", help="Genera y exporta diplomas oficiales en PDF o PNG")
+    p_cert.add_argument("-n", "--name", type=str, default=None, help="Nombre del estudiante")
+    p_cert.add_argument("-c", "--course", type=int, default=None, help="Número de curso (1..4) para micro-diploma")
+    p_cert.add_argument("-s", "--clase", type=int, default=None, help="Número de clase (1..8) para micro-diploma")
+    p_cert.add_argument("-f", "--format", type=str, choices=["pdf", "png"], default="pdf", help="Formato de exportación (pdf/png)")
+    p_cert.add_argument("-o", "--output", type=str, default=None, help="Ruta de guardado personalizada")
+
+    # profile / stats
+    subparsers.add_parser("profile", help="Muestra el perfil del alumno, nivel, XP y trofeos")
+    subparsers.add_parser("stats", help="Alias de 'profile'")
+
+    # book
+    p_book = subparsers.add_parser("book", help="Muestra el libro digital canónico (6 capítulos) de una clase")
+    p_book.add_argument("course", help="Número de curso (1 a 4)")
+    p_book.add_argument("clase", help="Número de clase (1 a 8)")
 
     # list
     p_list = subparsers.add_parser("list", help="Muestra la tabla de cursos y clases")
@@ -370,6 +489,12 @@ def main():
         cmd_ui(args)
     elif args.command == "tutor":
         cmd_tutor(args)
+    elif args.command == "cert":
+        cmd_cert(args)
+    elif args.command in ("profile", "stats"):
+        cmd_profile(args)
+    elif args.command == "book":
+        cmd_book(args)
     elif args.command == "list":
         cmd_list(args)
     elif args.command == "start":

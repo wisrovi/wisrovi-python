@@ -23,7 +23,7 @@ from .embedded_ui import get_embedded_html
 app = FastAPI(
     title="Wisrovi Python Academy - Local Server",
     description="Servidor local interactivo con tutor pedagógico y compilador seguro",
-    version="2.4.0"
+    version="2.5.0"
 )
 
 # Habilitar CORS para integración híbrida con GitHub Pages (academy_python.wisrovi.dev)
