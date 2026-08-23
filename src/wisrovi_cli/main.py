@@ -420,6 +420,99 @@ def cmd_book(args):
 
     console.print(Markdown(content))
 
+def cmd_benchmark(args):
+    """Ejecuta benchmark de tiempo y memoria sobre la solución de una clase."""
+    console.print(BANNER)
+    try:
+        c_num = int(args.course)
+        s_num = int(args.clase)
+    except Exception:
+        console.print("[bold red]❌ Error:[/bold red] Parámetros inválidos. Ejemplo: [bold cyan]wisrovi benchmark 1 2[/bold cyan]")
+        return
+        
+    if c_num not in COURSES_DATA or s_num < 1 or s_num > len(COURSES_DATA[c_num]["classes"]):
+        console.print(f"[bold red]❌ Error: Curso {c_num} o Clase {s_num} no válidos.[/bold red]")
+        return
+        
+    class_folder = COURSES_DATA[c_num]["classes"][s_num - 1][0]
+    course_folder = COURSES_DATA[c_num]["folder"]
+    reto_path = os.path.join(os.getcwd(), course_folder, class_folder, "ejercicios", "reto.py")
+    
+    if not os.path.exists(reto_path):
+        console.print(f"[bold red]❌ Archivo reto.py no encontrado en: {reto_path}[/bold red]")
+        return
+        
+    with open(reto_path, "r", encoding="utf-8") as f:
+        code = f.read()
+        
+    from wisrovi_lib.memory_inspector import MemoryInspector
+    try:
+        res = MemoryInspector.benchmark_code(code, iterations=getattr(args, "iterations", 50))
+        console.print(Panel(
+            f"[bold green]⚡ Benchmark de Rendimiento - Curso {c_num} Clase 0{s_num}[/bold green]\n\n"
+            f"[cyan]📁 Archivo:[/cyan] {reto_path}\n"
+            f"[yellow]⏱️ Tiempo Promedio:[/yellow] [bold white]{res['avg_time_microseconds']} µs[/bold white]\n"
+            f"[yellow]⚡ Mejor Tiempo (Min):[/yellow] [bold white]{res['min_time_microseconds']} µs[/bold white]\n"
+            f"[magenta]💾 Memoria Heap Pico:[/magenta] [bold white]{res['peak_memory_kb']} KB ({res['peak_memory_bytes']} bytes)[/bold white]\n"
+            f"[bold white]🏆 Calificación Big-O:[/bold white] {res['speed_grade']}",
+            title="🔬 Laboratorio de Rendimiento Big-O (Wisrovi Studio)",
+            border_style="cyan"
+        ))
+    except Exception as e:
+        console.print(f"[bold red]❌ Error al ejecutar benchmark: {e}[/bold red]")
+
+def cmd_lint(args):
+    """Ejecuta análisis estático AST y linter pedagógico Wisrovi."""
+    console.print(BANNER)
+    try:
+        c_num = int(args.course)
+        s_num = int(args.clase)
+    except Exception:
+        console.print("[bold red]❌ Error:[/bold red] Parámetros inválidos. Ejemplo: [bold cyan]wisrovi lint 1 2[/bold cyan]")
+        return
+        
+    if c_num not in COURSES_DATA or s_num < 1 or s_num > len(COURSES_DATA[c_num]["classes"]):
+        console.print(f"[bold red]❌ Error: Curso {c_num} o Clase {s_num} no válidos.[/bold red]")
+        return
+        
+    class_folder = COURSES_DATA[c_num]["classes"][s_num - 1][0]
+    course_folder = COURSES_DATA[c_num]["folder"]
+    reto_path = os.path.join(os.getcwd(), course_folder, class_folder, "ejercicios", "reto.py")
+    
+    if not os.path.exists(reto_path):
+        console.print(f"[bold red]❌ Archivo reto.py no encontrado en: {reto_path}[/bold red]")
+        return
+        
+    with open(reto_path, "r", encoding="utf-8") as f:
+        code = f.read()
+        
+    from wisrovi_lib.memory_inspector import MemoryInspector
+    diagnostics = MemoryInspector.lint_code(code)
+    
+    if not diagnostics:
+        console.print(Panel(
+            f"[bold green]✨ ¡Código 100% Pythonic y Limpio![/bold green]\n"
+            f"No se detectaron antipatrones ni problemas de tipado en {class_folder}/ejercicios/reto.py.",
+            title="🎯 Diagnóstico PEP 8 / Wisrovi",
+            border_style="green"
+        ))
+    else:
+        table = Table(title=f"🔍 Diagnósticos Pedagógicos - Curso {c_num} Clase 0{s_num}", border_style="yellow")
+        table.add_column("Línea", justify="center", style="bold cyan")
+        table.add_column("Tipo", justify="center")
+        table.add_column("Regla", style="bold magenta")
+        table.add_column("Mensaje & Sugerencia", style="white")
+        
+        for d in diagnostics:
+            sev_badge = "[bold red]ERROR[/bold red]" if d["severity"] == "error" else ("[bold yellow]AVISO[/bold yellow]" if d["severity"] == "warning" else "[bold blue]TIP[/bold blue]")
+            table.add_row(
+                str(d["line"]),
+                sev_badge,
+                d["code"],
+                f"{d['message']}\n[italic dim]{d.get('hint', '')}[/italic dim]"
+            )
+        console.print(table)
+
 def main():
     parser = argparse.ArgumentParser(
         description="Wisrovi CLI - Asistente de Aprendizaje en Python & Consola del Docente",
@@ -476,6 +569,17 @@ def main():
     p_solve.add_argument("course", help="Número de curso (1 a 4)")
     p_solve.add_argument("clase", help="Número de clase (1 a 8)")
 
+    # benchmark
+    p_bench = subparsers.add_parser("benchmark", help="Mide tiempo de CPU (µs) y memoria heap de una solución")
+    p_bench.add_argument("course", help="Número de curso (1 a 4)")
+    p_bench.add_argument("clase", help="Número de clase (1 a 8)")
+    p_bench.add_argument("-i", "--iterations", type=int, default=50, help="Número de iteraciones para promedio (defecto: 50)")
+
+    # lint
+    p_lint = subparsers.add_parser("lint", help="Analiza código con el linter pedagógico y buenas prácticas PEP 8")
+    p_lint.add_argument("course", help="Número de curso (1 a 4)")
+    p_lint.add_argument("clase", help="Número de clase (1 a 8)")
+
     # docs
     p_docs = subparsers.add_parser("docs", help="Abre la plataforma web o lanza el servidor local")
     p_docs.add_argument("--serve", action="store_true", help="Inicia 'mkdocs serve' localmente")
@@ -495,6 +599,10 @@ def main():
         cmd_profile(args)
     elif args.command == "book":
         cmd_book(args)
+    elif args.command == "benchmark":
+        cmd_benchmark(args)
+    elif args.command == "lint":
+        cmd_lint(args)
     elif args.command == "list":
         cmd_list(args)
     elif args.command == "start":

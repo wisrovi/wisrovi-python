@@ -23,7 +23,7 @@ from .embedded_ui import get_embedded_html
 app = FastAPI(
     title="Wisrovi Python Academy - Local Server",
     description="Servidor local interactivo con tutor pedagógico y compilador seguro",
-    version="2.5.1"
+    version="2.6.0"
 )
 
 # Habilitar CORS para integración híbrida con GitHub Pages (academy_python.wisrovi.dev)
@@ -78,6 +78,13 @@ class ResetProgressRequest(BaseModel):
 
 class FormatCodeRequest(BaseModel):
     code: str
+
+class LintCodeRequest(BaseModel):
+    code: str
+
+class BenchmarkRequest(BaseModel):
+    code: str
+    iterations: Optional[int] = 50
 
 class QuizEvaluateRequest(BaseModel):
     course_num: int
@@ -156,6 +163,27 @@ def format_code(req: FormatCodeRequest):
     except Exception as e:
         return {"success": False, "formatted_code": req.code, "error": str(e)}
     return {"success": True, "formatted_code": req.code}
+
+@app.post("/api/lint-code")
+def lint_code_endpoint(req: LintCodeRequest):
+    """Analiza código mediante AST y linter pedagógico Wisrovi."""
+    from .memory_inspector import MemoryInspector
+    diagnostics = MemoryInspector.lint_code(req.code)
+    return {
+        "success": True,
+        "diagnostics": diagnostics,
+        "total_issues": len(diagnostics)
+    }
+
+@app.post("/api/benchmark-code")
+def benchmark_code_endpoint(req: BenchmarkRequest):
+    """Mide tiempo de CPU y memoria heap de una solución Python."""
+    from .memory_inspector import MemoryInspector
+    try:
+        results = MemoryInspector.benchmark_code(req.code, iterations=req.iterations or 50)
+        return {"success": True, "benchmark": results}
+    except Exception as e:
+        return {"success": False, "error": f"{type(e).__name__}: {str(e)}"}
 
 @app.post("/api/save-solution")
 def save_solution_to_disk(req: SaveSolutionRequest):

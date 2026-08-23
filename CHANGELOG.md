@@ -6,6 +6,23 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [2.6.0] - 2026-08-23 (AST Pedagogical Linter, Big-O Benchmark Lab & Advanced CLI Commands)
+
+### 🌟 Añadido (New Features)
+- **Linter Pedagógico Basado en AST (`wisrovi_lib/memory_inspector.py` & `wisrovi lint`):**
+  - Análisis estático inteligente de código que detecta antipatrones (excepts desnudos, mutables en argumentos por defecto, importaciones con comodín) y aconseja tipado estricto PEP 484.
+- **Laboratorio de Benchmark de Rendimiento Big-O (`wisrovi benchmark`):**
+  - Medición en microsegundos (µs) mediante `time.perf_counter_ns` y huella máxima de memoria RAM con `tracemalloc`.
+  - Calificación pedagógica instantánea de la complejidad computacional: O(1), O(n), O(n log n).
+- **Nuevos Subcomandos CLI:**
+  - `wisrovi benchmark <curso> <clase>`
+  - `wisrovi lint <curso> <clase>`
+- **Nuevos Endpoints REST en FastAPI:**
+  - `POST /api/lint-code`
+  - `POST /api/benchmark-code`
+
+---
+
 ## [2.5.1] - 2026-08-23 (Universal LinkedIn Sharing Hub & Enhanced Master Modal)
 
 ### 🌟 Añadido (New Features)

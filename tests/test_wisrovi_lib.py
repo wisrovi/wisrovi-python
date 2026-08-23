@@ -299,7 +299,7 @@ def test_class_certificate_server_api():
 
 def test_cli_subcommands():
     """Valida que los nuevos comandos del CLI se ejecuten correctamente sin errores."""
-    from wisrovi_cli.main import cmd_profile, cmd_book, cmd_list
+    from wisrovi_cli.main import cmd_profile, cmd_book, cmd_list, cmd_benchmark, cmd_lint
     import argparse
     
     # Test cmd_profile / stats
@@ -313,6 +313,40 @@ def test_cli_subcommands():
     # Test cmd_list
     args_list = argparse.Namespace(course=None)
     cmd_list(args_list)
+
+    # Test cmd_benchmark & cmd_lint
+    args_bl = argparse.Namespace(course=1, clase=1, iterations=10)
+    cmd_benchmark(args_bl)
+    cmd_lint(args_bl)
+
+def test_lint_and_benchmark_api():
+    """Valida el análisis estático AST y el benchmark de rendimiento de memoria."""
+    from wisrovi_lib.memory_inspector import MemoryInspector
+    from wisrovi_lib.server import lint_code_endpoint, benchmark_code_endpoint, LintCodeRequest, BenchmarkRequest
+
+    code_with_issues = """
+def procesar(items=[]):  # Mutable default
+    try:
+        x = 10 / 0
+    except:              # Bare except
+        pass
+"""
+    diagnostics = MemoryInspector.lint_code(code_with_issues)
+    assert len(diagnostics) >= 2
+    codes = [d["code"] for d in diagnostics]
+    assert "W0102" in codes  # Mutable default
+    assert "W0702" in codes  # Bare except
+
+    # Test Server endpoint
+    res_lint = lint_code_endpoint(LintCodeRequest(code=code_with_issues))
+    assert res_lint["success"] is True
+    assert res_lint["total_issues"] >= 2
+
+    # Benchmark test
+    res_bench = benchmark_code_endpoint(BenchmarkRequest(code="x = sum(range(100))", iterations=20))
+    assert res_bench["success"] is True
+    assert "avg_time_microseconds" in res_bench["benchmark"]
+    assert res_bench["benchmark"]["peak_memory_bytes"] > 0
 
 
 
