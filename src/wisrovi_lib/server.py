@@ -68,6 +68,11 @@ class CertificateRequest(BaseModel):
     course_title: Optional[str] = "Programa Integral de Formación en Python: De Cero a Agentes de IA"
     hours: Optional[int] = 160
 
+class ClassCertificateRequest(BaseModel):
+    course_num: int
+    class_num: int
+    student_name: Optional[str] = "Estudiante Wisrovi"
+
 class ResetProgressRequest(BaseModel):
     confirm: bool
 
@@ -317,10 +322,11 @@ def run_code(req: RunCodeRequest):
 
 @app.post("/api/evaluate-challenge")
 def evaluate_challenge(req: EvaluateChallengeRequest):
-    """Evalúa el reto práctico en vivo con tests unitarios y otorga recompensas de XP."""
+    """Evalúa el reto práctico en vivo con tests unitarios y otorga recompensas de XP y diploma de clase."""
     eval_result = CodeRunner.evaluate_challenge(req.course_num, req.class_num, req.code)
     
     reward_info = {}
+    class_cert_payload = None
     if eval_result.get("passed"):
         reward_info = gamification.complete_class(req.course_num, req.class_num, elapsed_seconds=req.elapsed_seconds)
         
@@ -331,15 +337,79 @@ def evaluate_challenge(req: EvaluateChallengeRequest):
             if req.course_num in badge_map:
                 gamification.unlock_badge(badge_map[req.course_num])
                 
+        # Generar datos y vista previa del diploma de la clase
+        student_name = gamification.profile.name or "Estudiante Wisrovi"
+        class_cert_payload = CertificateGenerator.get_class_share_payload(
+            student_name=student_name,
+            course_num=req.course_num,
+            class_num=req.class_num
+        )
+                
     return {
         "evaluation": eval_result,
         "reward": reward_info,
+        "class_certificate": class_cert_payload,
         "profile": gamification.profile.model_dump()
     }
 
+@app.post("/api/certificate/class/preview")
+def preview_class_certificate(req: ClassCertificateRequest):
+    """Genera los datos y vista previa HTML del diploma de una clase."""
+    payload = CertificateGenerator.get_class_share_payload(
+        student_name=req.student_name or gamification.profile.name or "Estudiante Wisrovi",
+        course_num=req.course_num,
+        class_num=req.class_num
+    )
+    return {
+        "success": True,
+        "data": payload
+    }
+
+@app.get("/api/certificate/class/download")
+def download_class_certificate(
+    course_num: int,
+    class_num: int,
+    student_name: str = "Estudiante Wisrovi",
+    export_format: str = "pdf"
+):
+    """Compila y descarga el diploma oficial de la clase en PDF o PNG."""
+    import tempfile
+    clean_name = student_name.replace(" ", "_").replace("/", "_")
+    
+    if export_format.lower() == "png":
+        temp_png = os.path.join(tempfile.gettempdir(), f"diploma_c{course_num}_s{class_num}_{abs(hash(student_name))}.png")
+        CertificateGenerator.generate_class_certificate_png(
+            student_name=student_name,
+            course_num=course_num,
+            class_num=class_num,
+            output_png_path=temp_png
+        )
+        if os.path.exists(temp_png):
+            return FileResponse(
+                temp_png,
+                media_type="image/png",
+                filename=f"Diploma_Wisrovi_C{course_num}_Clase{class_num:02d}_{clean_name}.png"
+            )
+    else:
+        temp_pdf = os.path.join(tempfile.gettempdir(), f"diploma_c{course_num}_s{class_num}_{abs(hash(student_name))}.pdf")
+        CertificateGenerator.generate_class_certificate_pdf(
+            student_name=student_name,
+            course_num=course_num,
+            class_num=class_num,
+            output_pdf_path=temp_pdf
+        )
+        if os.path.exists(temp_pdf):
+            return FileResponse(
+                temp_pdf,
+                media_type="application/pdf",
+                filename=f"Diploma_Wisrovi_C{course_num}_Clase{class_num:02d}_{clean_name}.pdf"
+            )
+            
+    raise HTTPException(status_code=500, detail="Error al compilar el diploma de clase")
+
 @app.post("/api/certificate/generate")
 def generate_certificate(req: CertificateRequest):
-    """Genera la vista previa HTML oficial del diploma de certificación."""
+    """Genera la vista previa HTML oficial del diploma de certificación de curso."""
     html_content = CertificateGenerator.generate_html(
         student_name=req.student_name,
         course_title=req.course_title,

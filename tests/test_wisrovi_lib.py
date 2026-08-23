@@ -237,5 +237,63 @@ def test_slide_deck_and_resizer_markup():
     assert "docs-resize-handle" in html
     assert "save-reto-disk-btn" in html
 
+def test_class_certificates_all_32_classes():
+    """Valida que existan los 32 diplomas de clase con competencias, conceptos y textos de LinkedIn."""
+    from wisrovi_lib.certificate import CLASS_CERTIFICATES, CertificateGenerator
+    
+    assert len(CLASS_CERTIFICATES) == 32
+    for course_num in range(1, 5):
+        for class_num in range(1, 9):
+            key = f"{course_num}-{class_num}"
+            assert key in CLASS_CERTIFICATES, f"Falta diploma de clase {key}"
+            info = CertificateGenerator.get_class_info(course_num, class_num)
+            assert len(info["title"]) > 5
+            assert len(info["skill"]) > 5
+            assert len(info["concept"]) > 10
+            assert "linkedin_text" in info
+            assert "@Wisrovi" in info["linkedin_text"]
+            
+            # Validar render HTML
+            html = CertificateGenerator.generate_class_certificate_html(
+                student_name="Alexander Fleming",
+                course_num=course_num,
+                class_num=class_num
+            )
+            assert "Alexander Fleming" in html
+            assert info["title"] in html
+            assert "WISROVI ACADEMY" in html
+            assert "ID Hash:" in html
+
+def test_class_certificate_share_payload():
+    """Valida el paquete de metadatos de LinkedIn para compartir micro-acreditaciones."""
+    payload = CertificateGenerator.get_class_share_payload(
+        student_name="Elena Gomez",
+        course_num=1,
+        class_num=2
+    )
+    assert payload["student_name"] == "Elena Gomez"
+    assert "Tipado Estático" in payload["title"]
+    assert "linkedin.com/sharing/share-offsite" in payload["linkedin_intent_url"]
+    assert "<!DOCTYPE html>" in payload["html"]
+
+def test_class_certificate_modal_in_embedded_ui():
+    """Valida que el modal de diplomas de clase y sus controles existan en la interfaz embebida."""
+    html = get_embedded_html()
+    assert "class-cert-modal" in html
+    assert "download-class-pdf-btn" in html
+    assert "download-class-png-btn" in html
+    assert "share-linkedin-direct-btn" in html
+    assert "class-cert-linkedin-text" in html
+
+def test_class_certificate_server_api():
+    """Valida los endpoints REST de diplomas de clase."""
+    from wisrovi_lib.server import preview_class_certificate, ClassCertificateRequest
+    
+    req = ClassCertificateRequest(course_num=3, class_num=4, student_name="Carlos Mendez")
+    res = preview_class_certificate(req)
+    assert res["success"] is True
+    assert "Tool Calling" in res["data"]["title"]
+    assert "Carlos Mendez" in res["data"]["html"]
+
 
 

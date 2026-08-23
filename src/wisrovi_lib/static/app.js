@@ -127,10 +127,26 @@ document.addEventListener("DOMContentLoaded", () => {
     openCertBtn: document.getElementById("open-cert-btn"),
     closeCertBtn: document.getElementById("close-cert-btn"),
     studentNameInput: document.getElementById("student-name-input"),
+    certCourseSelect: document.getElementById("cert-course-select"),
     certPreviewFrame: document.getElementById("cert-preview-frame"),
     refreshCertBtn: document.getElementById("refresh-cert-btn"),
     copyBadgeBtn: document.getElementById("copy-badge-btn"),
     downloadCertBtn: document.getElementById("download-cert-btn"),
+    downloadCertPngBtn: document.getElementById("download-cert-png-btn"),
+
+    // Class Diploma Modal
+    classCertModal: document.getElementById("class-cert-modal"),
+    closeClassCertBtn: document.getElementById("close-class-cert-btn"),
+    classCertStudentName: document.getElementById("class-cert-student-name"),
+    updateClassCertBtn: document.getElementById("update-class-cert-btn"),
+    classCertPreviewFrame: document.getElementById("class-cert-preview-frame"),
+    classCertLinkedinText: document.getElementById("class-cert-linkedin-text"),
+    copyLinkedinPostBtn: document.getElementById("copy-linkedin-post-btn"),
+    downloadClassPdfBtn: document.getElementById("download-class-pdf-btn"),
+    downloadClassPngBtn: document.getElementById("download-class-png-btn"),
+    shareLinkedinDirectBtn: document.getElementById("share-linkedin-direct-btn"),
+    nextClassCertBtn: document.getElementById("next-class-cert-btn"),
+
     achievementsBtn: document.getElementById("achievements-btn"),
     achievementsModal: document.getElementById("achievements-modal"),
     closeAchievementsBtn: document.getElementById("close-achievements-btn"),
@@ -449,19 +465,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.confetti) confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
         dom.challengeResults.innerHTML = `
           <div style="background: rgba(16,185,129,0.25); border: 1px solid #10b981; color: #6ee7b7; padding: 0.85rem; border-radius: 8px; box-shadow: 0 0 20px rgba(16,185,129,0.3);">
-                🎉 <strong>¡RETO SUPERADO CON ÉXITO! (+150 XP)</strong><br>
-                Tu solución ha superado el 100% de las pruebas y contratos de tipado.
-              </div>
+            🎉 <strong>¡RETO SUPERADO CON ÉXITO! (+150 XP)</strong><br>
+            Tu solución ha superado el 100% de las pruebas y contratos de tipado para la Clase 0${state.currentClass}.
+          </div>
         `;
         await fetchProfile();
         await fetchCurriculum();
         updateStepperUI();
+
+        if (data.class_certificate) {
+          setTimeout(() => {
+            openClassCertModal(data.class_certificate);
+          }, 800);
+        }
       } else {
         soundError();
         dom.challengeResults.innerHTML = `
           <div style="background: rgba(220,38,38,0.25); border: 1px solid #dc2626; color: #fca5a5; padding: 0.85rem; border-radius: 8px;">
             ⚠️ <strong>La solución aún no cumple todas las aserciones:</strong><br>
-            <p style="margin-top:0.35rem; font-size:0.86rem;">${data.evaluation.socratic_hint}</p>
+            <p style="margin-top:0.35rem; font-size:0.86rem;">${data.evaluation.socratic_hint || data.evaluation.output}</p>
           </div>
         `;
       }
@@ -526,6 +548,89 @@ document.addEventListener("DOMContentLoaded", () => {
     dom.openCertBtn.addEventListener("click", () => openCert());
     dom.closeCertBtn.addEventListener("click", () => dom.certModal.classList.add("hidden"));
     dom.refreshCertBtn.addEventListener("click", () => openCert());
+    if (dom.certCourseSelect) dom.certCourseSelect.addEventListener("change", () => openCert());
+
+    dom.downloadCertBtn.addEventListener("click", () => {
+      const name = dom.studentNameInput.value || "estudiante";
+      window.open(`/api/certificate/download?student_name=${encodeURIComponent(name)}`, "_blank");
+    });
+
+    if (dom.downloadCertPngBtn) {
+      dom.downloadCertPngBtn.addEventListener("click", () => {
+        const name = dom.studentNameInput.value || "estudiante";
+        window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`, "_blank");
+      });
+    }
+
+    // Eventos del Modal de Diploma de Clase
+    if (dom.closeClassCertBtn) {
+      dom.closeClassCertBtn.addEventListener("click", () => dom.classCertModal.classList.add("hidden"));
+    }
+
+    if (dom.updateClassCertBtn) {
+      dom.updateClassCertBtn.addEventListener("click", async () => {
+        const updatedName = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+        const res = await fetch("/api/certificate/class/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            course_num: state.currentCourse,
+            class_num: state.currentClass,
+            student_name: updatedName
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          dom.classCertPreviewFrame.innerHTML = data.data.html;
+          dom.classCertLinkedinText.value = data.data.linkedin_text;
+        }
+      });
+    }
+
+    if (dom.copyLinkedinPostBtn) {
+      dom.copyLinkedinPostBtn.addEventListener("click", () => {
+        if (dom.classCertLinkedinText) {
+          navigator.clipboard.writeText(dom.classCertLinkedinText.value);
+          const prevText = dom.copyLinkedinPostBtn.textContent;
+          dom.copyLinkedinPostBtn.textContent = "✅ ¡Copiado!";
+          setTimeout(() => { dom.copyLinkedinPostBtn.textContent = prevText; }, 2500);
+        }
+      });
+    }
+
+    if (dom.shareLinkedinDirectBtn) {
+      dom.shareLinkedinDirectBtn.addEventListener("click", () => {
+        if (dom.classCertLinkedinText) {
+          navigator.clipboard.writeText(dom.classCertLinkedinText.value);
+        }
+        const shareUrl = `https://wisrovi.github.io/wisrovi-python/curso-0${state.currentCourse}/clase-0${state.currentClass}/`;
+        const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+        window.open(linkedinUrl, "_blank", "width=600,height=600");
+      });
+    }
+
+    if (dom.downloadClassPdfBtn) {
+      dom.downloadClassPdfBtn.addEventListener("click", () => {
+        const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+        window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=pdf`, "_blank");
+      });
+    }
+
+    if (dom.downloadClassPngBtn) {
+      dom.downloadClassPngBtn.addEventListener("click", () => {
+        const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+        window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`, "_blank");
+      });
+    }
+
+    if (dom.nextClassCertBtn) {
+      dom.nextClassCertBtn.addEventListener("click", () => {
+        dom.classCertModal.classList.add("hidden");
+        if (dom.nextBtn && !dom.nextBtn.disabled) {
+          dom.nextBtn.click();
+        }
+      });
+    }
 
     dom.copyBadgeBtn.addEventListener("click", () => {
       const badge = `[![Wisrovi Certified](https://img.shields.io/badge/Wisrovi%20Academy-Certified%20AI%20Engineer-gold.svg)](https://academy_python.wisrovi.dev)`;
@@ -563,13 +668,52 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  async function openClassCertModal(certData) {
+    if (!certData) return;
+    state.lastClassCertData = certData;
+    dom.classCertModal.classList.remove("hidden");
+    
+    const defaultName = (state.profile && state.profile.name) ? state.profile.name : "Estudiante Wisrovi";
+    dom.classCertStudentName.value = certData.student_name || defaultName;
+    
+    const titleElem = document.getElementById("class-cert-modal-subtitle");
+    if (titleElem) {
+      titleElem.textContent = `${certData.title} • Curso ${certData.course_num} (Clase 0${certData.class_num})`;
+    }
+    dom.classCertPreviewFrame.innerHTML = certData.html;
+    dom.classCertLinkedinText.value = certData.linkedin_text;
+  }
+
   async function openCert() {
     dom.certModal.classList.remove("hidden");
-    const name = dom.studentNameInput.value || "Alejandro Martínez";
+    const name = dom.studentNameInput.value || "Estudiante Wisrovi";
+    const courseChoice = dom.certCourseSelect ? dom.certCourseSelect.value : "master";
+    
+    if (courseChoice === "current") {
+      const res = await fetch("/api/certificate/class/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ course_num: state.currentCourse, class_num: state.currentClass, student_name: name })
+      });
+      const data = await res.json();
+      if (data.success) {
+        dom.certPreviewFrame.innerHTML = data.data.html;
+      }
+      return;
+    }
+
+    let courseTitle = "Programa Integral de Formación en Python: De Cero a Agentes de IA";
+    let hours = 160;
+
+    if (courseChoice === "1") { courseTitle = "Curso 1: Fundamentos Básicos de Python"; hours = 40; }
+    else if (courseChoice === "2") { courseTitle = "Curso 2: Algoritmos Avanzados y Estructuras de Datos"; hours = 40; }
+    else if (courseChoice === "3") { courseTitle = "Curso 3: Desarrollo de Agentes de Inteligencia Artificial"; hours = 40; }
+    else if (courseChoice === "4") { courseTitle = "Curso 4: Taller Práctico & Proyecto Integrador Full-Stack"; hours = 40; }
+
     const res = await fetch("/api/certificate/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ student_name: name, course_title: "Curso 1: Fundamentos Básicos de Python", hours: 40 })
+      body: JSON.stringify({ student_name: name, course_title: courseTitle, hours: hours })
     });
     const data = await res.json();
     dom.certPreviewFrame.innerHTML = data.html;

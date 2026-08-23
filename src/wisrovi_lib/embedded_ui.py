@@ -2268,21 +2268,81 @@ def get_embedded_html() -> str:
             <input type="text" id="student-name-input" style="width:100%; padding:0.4rem 0.65rem; background:#060911; border:1px solid #334155; color:#fff; border-radius:6px; font-weight:700;" value="Estudiante Wisrovi">
           </div>
           <div>
-            <label style="font-size:0.75rem; color:#94a3b8;">Curso a Certificar:</label>
+            <label style="font-size:0.75rem; color:#94a3b8;">Programa o Clase a Certificar:</label>
             <select id="cert-course-select" style="width:100%; padding:0.4rem 0.65rem; background:#060911; border:1px solid #334155; color:#fff; border-radius:6px; font-weight:700;">
-              <option value="1">Curso 1: Fundamentos (40h)</option>
-              <option value="2">Curso 2: Algoritmos (40h)</option>
-              <option value="3">Curso 3: Agentes de IA (40h)</option>
-              <option value="4">Curso 4: Proyecto Final (40h)</option>
-              <option value="master" selected>🏆 Master Diploma (160h)</option>
+              <option value="master" selected>🏆 Master Diploma del Programa (160h)</option>
+              <option value="1">📘 Curso 1: Fundamentos Básicos (40h)</option>
+              <option value="2">🚀 Curso 2: Algoritmos Avanzados (40h)</option>
+              <option value="3">🤖 Curso 3: Agentes de IA (40h)</option>
+              <option value="4">🛠️ Curso 4: Proyecto Final (40h)</option>
+              <option value="current">🎓 Micro-Diploma de la Clase Actual</option>
             </select>
           </div>
           <button class="btn btn-primary" id="refresh-cert-btn" style="height:35px; align-self:flex-end;">Actualizar Vista</button>
         </div>
         <div class="cert-view" id="cert-preview-frame"></div>
-        <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
-          <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem;">
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
+            <button class="btn" id="download-cert-png-btn" style="background:#059669; color:#fff; border:none;">🖼️ Descargar PNG</button>
+          </div>
           <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL CELEBRACIÓN DE DIPLOMA DE CLASE -->
+    <div class="modal-backdrop hidden" id="class-cert-modal" style="z-index: 12000;">
+      <div class="modal-panel" style="max-width: 840px; border: 2px solid #d97706; box-shadow: 0 0 45px rgba(217, 119, 6, 0.45); background: #0b1120;">
+        <div class="modal-header" style="border-bottom: 1px solid rgba(217, 119, 6, 0.35); padding-bottom: 0.75rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <span style="font-size:1.8rem;">🎉</span>
+            <div>
+              <h2 style="margin:0; font-size:1.3rem; color:#fbbf24;" id="class-cert-modal-title">¡Felicitaciones! Has obtenido tu Diploma de Clase</h2>
+              <p style="margin:0; font-size:0.8rem; color:#94a3b8;" id="class-cert-modal-subtitle">Acreditación oficial por superar el 100% de los retos de código y pruebas automatizadas</p>
+            </div>
+          </div>
+          <button style="background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer;" id="close-class-cert-btn">&times;</button>
+        </div>
+
+        <div style="display:flex; gap:0.6rem; align-items:center; margin: 0.6rem 0;">
+          <div style="flex:1;">
+            <label style="font-size:0.75rem; color:#94a3b8;">Nombre en tu Diploma:</label>
+            <input type="text" id="class-cert-student-name" style="width:100%; padding:0.4rem 0.65rem; background:#060911; border:1px solid #334155; color:#38bdf8; border-radius:6px; font-weight:700;" value="Estudiante Wisrovi">
+          </div>
+          <button class="btn btn-primary" id="update-class-cert-btn" style="height:35px; align-self:flex-end;">🔄 Actualizar Nombre</button>
+        </div>
+
+        <div class="cert-view" id="class-cert-preview-frame" style="max-height: 380px; overflow-y:auto; border-radius: 8px; border: 1px solid #334155; margin: 0.4rem 0;"></div>
+
+        <!-- SECCIÓN LINKEDIN POST SUGERIDO -->
+        <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid #1e293b; border-radius: 8px; padding: 0.75rem; margin-top: 0.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+            <strong style="color:#60a5fa; font-size:0.82rem; display:flex; align-items:center; gap:0.35rem;">
+              <span>💼</span> Publicación oficial sugerida para LinkedIn:
+            </strong>
+            <button class="btn btn-secondary" id="copy-linkedin-post-btn" style="font-size:0.75rem; padding:0.25rem 0.6rem;">📋 Copiar Texto</button>
+          </div>
+          <textarea id="class-cert-linkedin-text" readonly style="width:100%; height:70px; background:#020612; border:1px solid #334155; border-radius:6px; color:#cbd5e1; font-size:0.78rem; padding:0.4rem; resize:none; font-family:inherit;"></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-primary" id="download-class-pdf-btn" style="background:#0284c7; border:none; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>📄</span> Descargar Diploma PDF
+            </button>
+            <button class="btn btn-success" id="download-class-png-btn" style="background:#059669; border:none; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>🖼️</span> Descargar PNG
+            </button>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn" id="share-linkedin-direct-btn" style="background:#0a66c2; color:#fff; border:none; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>🚀</span> Publicar en LinkedIn
+            </button>
+            <button class="btn btn-secondary" id="next-class-cert-btn" style="background:#334155; color:#fff; border:none;">
+              ➡️ Siguiente Lección
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -2638,6 +2698,21 @@ def get_embedded_html() -> str:
         refreshCertBtn: document.getElementById("refresh-cert-btn"),
         copyBadgeBtn: document.getElementById("copy-badge-btn"),
         downloadCertBtn: document.getElementById("download-cert-btn"),
+        downloadCertPngBtn: document.getElementById("download-cert-png-btn"),
+
+        // Class Diploma Modal
+        classCertModal: document.getElementById("class-cert-modal"),
+        closeClassCertBtn: document.getElementById("close-class-cert-btn"),
+        classCertStudentName: document.getElementById("class-cert-student-name"),
+        updateClassCertBtn: document.getElementById("update-class-cert-btn"),
+        classCertPreviewFrame: document.getElementById("class-cert-preview-frame"),
+        classCertLinkedinText: document.getElementById("class-cert-linkedin-text"),
+        copyLinkedinPostBtn: document.getElementById("copy-linkedin-post-btn"),
+        downloadClassPdfBtn: document.getElementById("download-class-pdf-btn"),
+        downloadClassPngBtn: document.getElementById("download-class-png-btn"),
+        shareLinkedinDirectBtn: document.getElementById("share-linkedin-direct-btn"),
+        nextClassCertBtn: document.getElementById("next-class-cert-btn"),
+
         achievementsBtn: document.getElementById("achievements-btn"),
         achievementsModal: document.getElementById("achievements-modal"),
         closeAchievementsBtn: document.getElementById("close-achievements-btn"),
@@ -3442,6 +3517,12 @@ def get_embedded_html() -> str:
             await fetchProfile();
             await fetchCurriculum();
             updateStepperUI();
+
+            if (data.class_certificate) {
+              setTimeout(() => {
+                openClassCertModal(data.class_certificate);
+              }, 800);
+            }
           } else {
             soundError();
             dom.challengeResults.innerHTML = `
@@ -3806,6 +3887,83 @@ def get_embedded_html() -> str:
           window.open(`/api/certificate/download?student_name=${encodeURIComponent(name)}`, "_blank");
         });
 
+        if (dom.downloadCertPngBtn) {
+          dom.downloadCertPngBtn.addEventListener("click", () => {
+            const name = dom.studentNameInput.value || "estudiante";
+            window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`, "_blank");
+          });
+        }
+
+        // Eventos del Modal de Diploma de Clase
+        if (dom.closeClassCertBtn) {
+          dom.closeClassCertBtn.addEventListener("click", () => dom.classCertModal.classList.add("hidden"));
+        }
+
+        if (dom.updateClassCertBtn) {
+          dom.updateClassCertBtn.addEventListener("click", async () => {
+            const updatedName = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+            const res = await fetch("/api/certificate/class/preview", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                course_num: state.currentCourse,
+                class_num: state.currentClass,
+                student_name: updatedName
+              })
+            });
+            const data = await res.json();
+            if (data.success) {
+              dom.classCertPreviewFrame.innerHTML = data.data.html;
+              dom.classCertLinkedinText.value = data.data.linkedin_text;
+            }
+          });
+        }
+
+        if (dom.copyLinkedinPostBtn) {
+          dom.copyLinkedinPostBtn.addEventListener("click", () => {
+            if (dom.classCertLinkedinText) {
+              navigator.clipboard.writeText(dom.classCertLinkedinText.value);
+              const prevText = dom.copyLinkedinPostBtn.textContent;
+              dom.copyLinkedinPostBtn.textContent = "✅ ¡Copiado!";
+              setTimeout(() => { dom.copyLinkedinPostBtn.textContent = prevText; }, 2500);
+            }
+          });
+        }
+
+        if (dom.shareLinkedinDirectBtn) {
+          dom.shareLinkedinDirectBtn.addEventListener("click", () => {
+            if (dom.classCertLinkedinText) {
+              navigator.clipboard.writeText(dom.classCertLinkedinText.value);
+            }
+            const shareUrl = `https://wisrovi.github.io/wisrovi-python/curso-0${state.currentCourse}/clase-0${state.currentClass}/`;
+            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+            window.open(linkedinUrl, "_blank", "width=600,height=600");
+          });
+        }
+
+        if (dom.downloadClassPdfBtn) {
+          dom.downloadClassPdfBtn.addEventListener("click", () => {
+            const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+            window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=pdf`, "_blank");
+          });
+        }
+
+        if (dom.downloadClassPngBtn) {
+          dom.downloadClassPngBtn.addEventListener("click", () => {
+            const name = dom.classCertStudentName.value.trim() || "Estudiante Wisrovi";
+            window.open(`/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`, "_blank");
+          });
+        }
+
+        if (dom.nextClassCertBtn) {
+          dom.nextClassCertBtn.addEventListener("click", () => {
+            dom.classCertModal.classList.add("hidden");
+            if (dom.nextBtn && !dom.nextBtn.disabled) {
+              dom.nextBtn.click();
+            }
+          });
+        }
+
         dom.copyBadgeBtn.addEventListener("click", () => {
           const badge = `[![Wisrovi Certified](https://img.shields.io/badge/Wisrovi%20Academy-Certified%20AI%20Engineer-gold.svg)](https://academy_python.wisrovi.dev)`;
           navigator.clipboard.writeText(badge);
@@ -3983,11 +4141,39 @@ def get_embedded_html() -> str:
         dom.memoryCanvas.appendChild(heapCol);
       }
 
+      async function openClassCertModal(certData) {
+        if (!certData) return;
+        state.lastClassCertData = certData;
+        dom.classCertModal.classList.remove("hidden");
+        
+        const defaultName = (state.profile && state.profile.name) ? state.profile.name : "Estudiante Wisrovi";
+        dom.classCertStudentName.value = certData.student_name || defaultName;
+        
+        if (dom.classCertModalSubtitle) {
+          dom.classCertModalSubtitle.textContent = `${certData.title} • Curso ${certData.course_num} (Clase 0${certData.class_num})`;
+        }
+        dom.classCertPreviewFrame.innerHTML = certData.html;
+        dom.classCertLinkedinText.value = certData.linkedin_text;
+      }
+
       async function openCert() {
         dom.certModal.classList.remove("hidden");
         const name = dom.studentNameInput.value || "Estudiante Wisrovi";
         const courseChoice = dom.certCourseSelect.value;
         
+        if (courseChoice === "current") {
+          const res = await fetch("/api/certificate/class/preview", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ course_num: state.currentCourse, class_num: state.currentClass, student_name: name })
+          });
+          const data = await res.json();
+          if (data.success) {
+            dom.certPreviewFrame.innerHTML = data.data.html;
+          }
+          return;
+        }
+
         let courseTitle = "Programa Integral de Formación en Python: De Cero a Agentes de IA";
         let hours = 160;
 

@@ -333,15 +333,87 @@
           <h2>📜 Certificación Oficial de Acreditación</h2>
           <button style="background:none; border:none; color:#fff; font-size:1.6rem; cursor:pointer;" id="close-cert-btn">&times;</button>
         </div>
-        <div style="display:flex; gap:0.6rem; align-items:center;">
-          <label style="font-size:0.88rem; color:#94a3b8;">Nombre en el Diploma:</label>
-          <input type="text" id="student-name-input" style="flex:1; padding:0.5rem 0.75rem; background:#060911; border:1px solid #334155; color:#fff; border-radius:7px; font-weight:700;" value="Alejandro Martínez">
-          <button class="btn btn-primary" id="refresh-cert-btn">Actualizar Vista</button>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:0.6rem; align-items:center;">
+          <div>
+            <label style="font-size:0.75rem; color:#94a3b8;">Nombre en el Diploma:</label>
+            <input type="text" id="student-name-input" style="width:100%; padding:0.4rem 0.65rem; background:#060911; border:1px solid #334155; color:#fff; border-radius:6px; font-weight:700;" value="Estudiante Wisrovi">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; color:#94a3b8;">Programa o Clase a Certificar:</label>
+            <select id="cert-course-select" style="width:100%; padding:0.4rem 0.65rem; background:#060911; border:1px solid #334155; color:#fff; border-radius:6px; font-weight:700;">
+              <option value="master" selected>🏆 Master Diploma del Programa (160h)</option>
+              <option value="1">📘 Curso 1: Fundamentos Básicos (40h)</option>
+              <option value="2">🚀 Curso 2: Algoritmos Avanzados (40h)</option>
+              <option value="3">🤖 Curso 3: Agentes de IA (40h)</option>
+              <option value="4">🛠️ Curso 4: Proyecto Final (40h)</option>
+              <option value="current">🎓 Micro-Diploma de la Clase Actual</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="refresh-cert-btn" style="height:35px; align-self:flex-end;">Actualizar Vista</button>
         </div>
         <div class="cert-view" id="cert-preview-frame"></div>
-        <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
-          <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem;">
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
+            <button class="btn" id="download-cert-png-btn" style="background:#059669; color:#fff; border:none;">🖼️ Descargar PNG</button>
+          </div>
           <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL CELEBRACIÓN DE DIPLOMA DE CLASE -->
+    <div class="modal-backdrop hidden" id="class-cert-modal" style="z-index: 12000;">
+      <div class="modal-panel" style="max-width: 840px; border: 2px solid #d97706; box-shadow: 0 0 45px rgba(217, 119, 6, 0.45); background: #0b1120;">
+        <div class="modal-header" style="border-bottom: 1px solid rgba(217, 119, 6, 0.35); padding-bottom: 0.75rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <span style="font-size:1.8rem;">🎉</span>
+            <div>
+              <h2 style="margin:0; font-size:1.3rem; color:#fbbf24;" id="class-cert-modal-title">¡Felicitaciones! Has obtenido tu Diploma de Clase</h2>
+              <p style="margin:0; font-size:0.8rem; color:#94a3b8;" id="class-cert-modal-subtitle">Acreditación oficial por superar el 100% de los retos de código y pruebas automatizadas</p>
+            </div>
+          </div>
+          <button style="background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer;" id="close-class-cert-btn">&times;</button>
+        </div>
+
+        <div style="display:flex; gap:0.6rem; align-items:center; margin: 0.6rem 0;">
+          <div style="flex:1;">
+            <label style="font-size:0.75rem; color:#94a3b8;">Nombre en tu Diploma:</label>
+            <input type="text" id="class-cert-student-name" style="width:100%; padding:0.4rem 0.65rem; background:#060911; border:1px solid #334155; color:#38bdf8; border-radius:6px; font-weight:700;" value="Estudiante Wisrovi">
+          </div>
+          <button class="btn btn-primary" id="update-class-cert-btn" style="height:35px; align-self:flex-end;">🔄 Actualizar Nombre</button>
+        </div>
+
+        <div class="cert-view" id="class-cert-preview-frame" style="max-height: 380px; overflow-y:auto; border-radius: 8px; border: 1px solid #334155; margin: 0.4rem 0;"></div>
+
+        <!-- SECCIÓN LINKEDIN POST SUGERIDO -->
+        <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid #1e293b; border-radius: 8px; padding: 0.75rem; margin-top: 0.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+            <strong style="color:#60a5fa; font-size:0.82rem; display:flex; align-items:center; gap:0.35rem;">
+              <span>💼</span> Publicación oficial sugerida para LinkedIn:
+            </strong>
+            <button class="btn btn-secondary" id="copy-linkedin-post-btn" style="font-size:0.75rem; padding:0.25rem 0.6rem;">📋 Copiar Texto</button>
+          </div>
+          <textarea id="class-cert-linkedin-text" readonly style="width:100%; height:70px; background:#020612; border:1px solid #334155; border-radius:6px; color:#cbd5e1; font-size:0.78rem; padding:0.4rem; resize:none; font-family:inherit;"></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-primary" id="download-class-pdf-btn" style="background:#0284c7; border:none; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>📄</span> Descargar Diploma PDF
+            </button>
+            <button class="btn btn-success" id="download-class-png-btn" style="background:#059669; border:none; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>🖼️</span> Descargar PNG
+            </button>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn" id="share-linkedin-direct-btn" style="background:#0a66c2; color:#fff; border:none; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>🚀</span> Publicar en LinkedIn
+            </button>
+            <button class="btn btn-secondary" id="next-class-cert-btn" style="background:#334155; color:#fff; border:none;">
+              ➡️ Siguiente Lección
+            </button>
+          </div>
         </div>
       </div>
     </div>
