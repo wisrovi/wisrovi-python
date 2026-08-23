@@ -13,7 +13,7 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/wisrovi/wisrovi-python)
 [![Repository](https://img.shields.io/badge/GitHub-wisrovi--python-181717?logo=github&logoColor=white)](https://github.com/wisrovi/wisrovi-python)
-[![PyPI](https://img.shields.io/badge/PyPI-v2.3.0-3775A9?logo=pypi&logoColor=white)](https://pypi.org/user/wisrovi/)
+[![PyPI](https://img.shields.io/badge/PyPI-v2.4.0-3775A9?logo=pypi&logoColor=white)](https://pypi.org/user/wisrovi/)
 [![Tests](https://img.shields.io/badge/Pytest-50%20Passing%20100%25-brightgreen.svg?logo=pytest&logoColor=white)](https://github.com/wisrovi/wisrovi-python)
 
 </div>

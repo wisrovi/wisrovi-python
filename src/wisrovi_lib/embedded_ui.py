@@ -1885,8 +1885,12 @@ def get_embedded_html() -> str:
           <span id="docs-drawer-icon">📖</span> <span id="docs-drawer-text">Doc Web (Split)</span>
         </button>
 
-        <button class="cert-btn" id="open-cert-btn">
+        <button class="cert-btn" id="open-cert-btn" title="Ver Diplomas y Certificaciones">
           📜 Diplomas
+        </button>
+
+        <button class="btn" id="header-linkedin-btn" style="background:#0a66c2; color:#fff; border:none; font-weight:800; font-size:0.82rem; padding:0.35rem 0.75rem; border-radius:6px; display:flex; align-items:center; gap:0.35rem; box-shadow:0 0 12px rgba(10,102,194,0.4); cursor:pointer;" title="Publicar tu Acreditación en LinkedIn">
+          <span>🚀</span> Publicar en LinkedIn
         </button>
       </div>
     </header>
@@ -2286,7 +2290,12 @@ def get_embedded_html() -> str:
             <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
             <button class="btn" id="download-cert-png-btn" style="background:#059669; color:#fff; border:none;">🖼️ Descargar PNG</button>
           </div>
-          <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn" id="cert-modal-linkedin-btn" style="background:#0a66c2; color:#fff; border:none; font-weight:800; display:flex; align-items:center; gap:0.35rem; cursor:pointer;">
+              <span>🚀</span> Publicar en LinkedIn
+            </button>
+            <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
+          </div>
         </div>
       </div>
     </div>
@@ -2726,6 +2735,8 @@ def get_embedded_html() -> str:
         // Certificado, Logros, Chat & Perfil
         certModal: document.getElementById("cert-modal"),
         openCertBtn: document.getElementById("open-cert-btn"),
+        headerLinkedinBtn: document.getElementById("header-linkedin-btn"),
+        certModalLinkedinBtn: document.getElementById("cert-modal-linkedin-btn"),
         closeCertBtn: document.getElementById("close-cert-btn"),
         studentNameInput: document.getElementById("student-name-input"),
         certCourseSelect: document.getElementById("cert-course-select"),
@@ -3916,8 +3927,17 @@ def get_embedded_html() -> str:
           }
         });
 
-        // Certificado
+        // Certificados y Publicación en LinkedIn
         dom.openCertBtn.addEventListener("click", () => openCert());
+        if (dom.headerLinkedinBtn) {
+          dom.headerLinkedinBtn.addEventListener("click", () => openClassCertForCurrent());
+        }
+        if (dom.certModalLinkedinBtn) {
+          dom.certModalLinkedinBtn.addEventListener("click", () => {
+            dom.certModal.classList.add("hidden");
+            openClassCertForCurrent();
+          });
+        }
         dom.closeCertBtn.addEventListener("click", () => dom.certModal.classList.add("hidden"));
         dom.refreshCertBtn.addEventListener("click", () => openCert());
         dom.certCourseSelect.addEventListener("change", () => openCert());
@@ -4238,6 +4258,27 @@ def get_embedded_html() -> str:
         }
         dom.classCertPreviewFrame.innerHTML = certData.html;
         dom.classCertLinkedinText.value = certData.linkedin_text;
+      }
+
+      async function openClassCertForCurrent() {
+        const defaultName = (state.profile && state.profile.name) ? state.profile.name : "Estudiante Wisrovi";
+        try {
+          const res = await fetch("/api/certificate/class/preview", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              course_num: state.currentCourse,
+              class_num: state.currentClass,
+              student_name: defaultName
+            })
+          });
+          const data = await res.json();
+          if (data.success) {
+            openClassCertModal(data.data);
+          }
+        } catch (e) {
+          console.error("Error cargando diploma de clase:", e);
+        }
       }
 
       async function openCert() {

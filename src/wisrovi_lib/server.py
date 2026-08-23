@@ -21,9 +21,9 @@ from .certificate import CertificateGenerator
 from .embedded_ui import get_embedded_html
 
 app = FastAPI(
-    title="Wisrovi Academy - Virtual AI Tutor & Studio",
-    description="Plataforma de tutoría interactiva, modo presentador docente, gamificación y certificación.",
-    version="2.3.0"
+    title="Wisrovi Python Academy - Local Server",
+    description="Servidor local interactivo con tutor pedagógico y compilador seguro",
+    version="2.4.0"
 )
 
 # Habilitar CORS para integración híbrida con GitHub Pages (academy_python.wisrovi.dev)

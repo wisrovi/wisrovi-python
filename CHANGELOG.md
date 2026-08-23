@@ -6,6 +6,23 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [2.4.0] - 2026-08-23 (32 Micro-Class Credentials, 1-Click LinkedIn Publishing & Navigation Engine)
+
+### 🌟 Añadido (New Features)
+- **Motor de Micro-Acreditaciones Oficiales por Clase (32 Diplomas de Clase):**
+  - Generación de diplomas individuales para cada una de las 32 clases del programa con competencias técnicas personalizadas, evidencia de ingeniería, código de verificación criptográfica hash SHA-256 y firma del mentor William Rodríguez (Wisrovi).
+  - Exportación automática a **PDF estilo LaTeX** y captura en **PNG de alta resolución (1200x850)** mediante Chrome Headless.
+- **Suite de Publicación en 1-Clic para LinkedIn (`🚀 Publicar en LinkedIn`):**
+  - Botón permanente en Navbar, Modal de Celebración de Retos y Modal de Certificados.
+  - Copia automática de publicación enriquecida al portapapeles, descarga automática del diploma en formato PNG para adjuntar como imagen, apertura directa de LinkedIn Feed y banner interactivo de guía paso a paso.
+  - Atribución oficial y enlace al perfil del mentor William Rodríguez (Wisrovi).
+
+### 🛠️ Correcciones y Mejoras (Bug Fixes & Improvements)
+- **Desacoplamiento de Estado en la Transición de Lecciones:** Corregida la mutación en `fetchProfile()` que calculaba saltos erróneos de clase tras superar un reto.
+- **Optimización de Calidad y Linter en CI Matrix:** Reglas de `ruff` y `pytest` ajustadas para garantizar 100% de éxito en GitHub Actions en Python 3.10, 3.11 y 3.12.
+
+---
+
 ## [2.3.0] - 2026-08-22 (Presentation Slide Deck, Drag Resizer & Local Disk Sync)
 
 ### 🌟 Añadido (New Features)

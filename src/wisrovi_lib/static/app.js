@@ -125,6 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Certificado & Logros
     certModal: document.getElementById("cert-modal"),
     openCertBtn: document.getElementById("open-cert-btn"),
+    headerLinkedinBtn: document.getElementById("header-linkedin-btn"),
+    certModalLinkedinBtn: document.getElementById("cert-modal-linkedin-btn"),
     closeCertBtn: document.getElementById("close-cert-btn"),
     studentNameInput: document.getElementById("student-name-input"),
     certCourseSelect: document.getElementById("cert-course-select"),
@@ -553,8 +555,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Certificado
+    // Certificado y Publicación en LinkedIn
     dom.openCertBtn.addEventListener("click", () => openCert());
+    if (dom.headerLinkedinBtn) {
+      dom.headerLinkedinBtn.addEventListener("click", () => openClassCertForCurrent());
+    }
+    if (dom.certModalLinkedinBtn) {
+      dom.certModalLinkedinBtn.addEventListener("click", () => {
+        dom.certModal.classList.add("hidden");
+        openClassCertForCurrent();
+      });
+    }
     dom.closeCertBtn.addEventListener("click", () => dom.certModal.classList.add("hidden"));
     dom.refreshCertBtn.addEventListener("click", () => openCert());
     if (dom.certCourseSelect) dom.certCourseSelect.addEventListener("change", () => openCert());
@@ -735,6 +746,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     dom.classCertPreviewFrame.innerHTML = certData.html;
     dom.classCertLinkedinText.value = certData.linkedin_text;
+  }
+
+  async function openClassCertForCurrent() {
+    const defaultName = (state.profile && state.profile.name) ? state.profile.name : "Estudiante Wisrovi";
+    try {
+      const res = await fetch("/api/certificate/class/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          course_num: state.currentCourse,
+          class_num: state.currentClass,
+          student_name: defaultName
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        openClassCertModal(data.data);
+      }
+    } catch (e) {
+      console.error("Error cargando diploma de clase:", e);
+    }
   }
 
   async function openCert() {
