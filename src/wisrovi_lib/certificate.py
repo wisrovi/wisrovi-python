@@ -9,6 +9,7 @@ import os
 import hashlib
 import tempfile
 import subprocess
+import urllib.parse
 from datetime import datetime
 from typing import Dict, Any, Optional
 
@@ -852,8 +853,6 @@ class CertificateGenerator:
         linkedin_feed_url = "https://www.linkedin.com/feed/?shareActive=true"
         linkedin_share_offsite = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
         
-        import urllib.parse
-        encoded_linkedin = urllib.parse.quote(linkedin_text)
         twitter_text = f"🎓 ¡Acabo de superar la Clase 0{class_num} de Python ({info.get('title', '')}) con William Rodríguez (@wisrovi)! https://academy_python.wisrovi.dev/ #Python #AI"
         twitter_intent_url = f"https://twitter.com/intent/tweet?text={urllib.parse.quote(twitter_text)}"
         whatsapp_intent_url = f"https://api.whatsapp.com/send?text={urllib.parse.quote(linkedin_text)}"

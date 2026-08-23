@@ -160,7 +160,14 @@ document.addEventListener("DOMContentLoaded", () => {
   async function initApp() {
     await fetchProfile();
     await fetchCurriculum();
-    await loadClass(state.currentCourse, state.currentClass);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlCourse = urlParams.get('course');
+    const urlClass = urlParams.get('class') || urlParams.get('class_num');
+    const targetCourse = urlCourse ? parseInt(urlCourse) : ((state.profile && state.profile.current_course) ? state.profile.current_course : 1);
+    const targetClass = urlClass ? parseInt(urlClass) : ((state.profile && state.profile.current_class) ? state.profile.current_class : 1);
+
+    await loadClass(targetCourse, targetClass);
     setupEvents();
   }
 
@@ -169,8 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch("/api/progress");
       const data = await res.json();
       state.profile = data;
-      state.currentCourse = data.current_course || 1;
-      state.currentClass = data.current_class || 1;
       updateProfileUI();
     } catch (e) { console.error(e); }
   }

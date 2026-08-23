@@ -2830,15 +2830,18 @@ def get_embedded_html() -> str:
                            window.location.pathname === '/tutor' || 
                            window.location.pathname === '/presenter';
                            
-        const targetCourse = parseInt(urlParams.get('course') || '1');
-        const targetClass = parseInt(urlParams.get('class') || urlParams.get('class_num') || '1');
-        
         if (isTutorUrl) {
           setTutorMode(true);
         }
 
         await fetchProfile();
         await fetchCurriculum();
+
+        const urlCourse = urlParams.get('course');
+        const urlClass = urlParams.get('class') || urlParams.get('class_num');
+        const targetCourse = urlCourse ? parseInt(urlCourse) : ((state.profile && state.profile.current_course) ? state.profile.current_course : 1);
+        const targetClass = urlClass ? parseInt(urlClass) : ((state.profile && state.profile.current_class) ? state.profile.current_class : 1);
+
         await loadClass(targetCourse, targetClass);
       }
 
@@ -2956,8 +2959,6 @@ def get_embedded_html() -> str:
           const res = await fetch("/api/progress");
           const data = await res.json();
           state.profile = data;
-          state.currentCourse = data.current_course || 1;
-          state.currentClass = data.current_class || 1;
           updateProfileUI();
         } catch (e) { console.error(e); }
       }

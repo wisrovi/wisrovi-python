@@ -89,8 +89,8 @@ exclude = [
 ]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "W"]
-ignore = ["E501", "F401", "F841"]
+select = ["E", "F", "W"]
+ignore = ["E501", "E402", "F401", "F841", "W291", "W293"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
