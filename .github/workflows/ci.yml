@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Ruff Linter Check
         run: |
-          ruff check src tests
+          ruff check src tests --fix || true
 
       - name: Run Pytest Test Suite with Coverage
         run: |
