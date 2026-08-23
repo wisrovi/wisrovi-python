@@ -2285,16 +2285,52 @@ def get_embedded_html() -> str:
           <button class="btn btn-primary" id="refresh-cert-btn" style="height:35px; align-self:flex-end;">Actualizar Vista</button>
         </div>
         <div class="cert-view" id="cert-preview-frame"></div>
+
+        <!-- CENTRO DE PUBLICACIÓN EN LINKEDIN PARA EL DIPLOMA -->
+        <div style="background: rgba(15, 23, 42, 0.95); border: 2px solid #0a66c2; border-radius: 8px; padding: 0.85rem; margin: 0.6rem 0; box-shadow: 0 0 25px rgba(10,102,194,0.35);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.45rem; flex-wrap:wrap; gap:0.4rem;">
+            <div style="display:flex; align-items:center; gap:0.45rem;">
+              <span style="font-size:1.2rem;">💼</span>
+              <strong style="color:#60a5fa; font-size:0.9rem;">Compartir Acreditación en LinkedIn:</strong>
+            </div>
+            <div style="display:flex; gap:0.4rem; align-items:center;">
+              <button class="btn" id="cert-modal-linkedin-direct-btn" style="background:#0a66c2; color:#fff; border:2px solid #38bdf8; font-weight:900; font-size:0.85rem; padding:0.35rem 0.85rem; border-radius:6px; display:inline-flex; align-items:center; gap:0.4rem; cursor:pointer; box-shadow:0 0 15px rgba(10,102,194,0.6);">
+                <span>🚀</span> Publicar en LinkedIn (Texto + Imagen)
+              </button>
+              <button class="btn btn-secondary" id="cert-modal-copy-text-btn" style="font-size:0.75rem; padding:0.3rem 0.65rem;">📋 Copiar Texto</button>
+            </div>
+          </div>
+          <textarea id="cert-modal-linkedin-text" style="width:100%; height:75px; background:#020612; border:1px solid #334155; border-radius:6px; color:#cbd5e1; font-size:0.78rem; padding:0.45rem; resize:vertical; font-family:inherit; line-height:1.35;"></textarea>
+
+          <!-- BANNER GUÍA DE PUBLICACIÓN LINKEDIN -->
+          <div id="cert-modal-linkedin-guide" class="hidden" style="margin-top:0.5rem; background:rgba(10,102,194,0.18); border:1px solid #0a66c2; border-radius:6px; padding:0.55rem 0.75rem; font-size:0.78rem; color:#bfdbfe; line-height:1.4;">
+            ✨ <strong>¡Todo listo para publicar en LinkedIn!</strong><br>
+            1. 📋 Hemos copiado el texto a tu portapapeles (pégalo con <kbd style="background:#1e293b; padding:1px 4px; border-radius:3px;">Ctrl+V</kbd> en la ventana que se abrió).<br>
+            2. 🖼️ Hemos descargado tu Diploma en formato PNG para que lo adjuntes como imagen.<br>
+            3. 👤 Etiqueta a tu mentor <a href="https://es.linkedin.com/in/wisrovi-rodriguez" target="_blank" style="color:#38bdf8; text-decoration:underline; font-weight:700;">William Rodríguez (Wisrovi)</a> en el post.
+          </div>
+
+          <!-- MENTOR ATTRIBUTION BAR -->
+          <div style="margin-top: 0.5rem; display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:#94a3b8; border-top:1px solid #1e293b; padding-top:0.45rem; flex-wrap:wrap; gap:0.4rem;">
+            <span>👨‍🏫 Mentor Oficial: <a href="https://es.linkedin.com/in/wisrovi-rodriguez" target="_blank" style="color:#38bdf8; font-weight:700; text-decoration:underline;">William Rodríguez (Wisrovi) en LinkedIn ↗</a></span>
+            <div style="display:flex; gap:0.4rem; align-items:center;">
+              <button class="btn" id="cert-modal-linkedin-share-bar-btn" style="font-size:0.78rem; padding:0.25rem 0.65rem; background:#0a66c2; color:#fff; border:none; font-weight:800; border-radius:4px; display:inline-flex; align-items:center; gap:0.35rem; cursor:pointer; box-shadow:0 0 10px rgba(10,102,194,0.4);"><span>💼</span> LinkedIn</button>
+              <button class="btn btn-secondary" id="cert-modal-share-twitter-btn" style="font-size:0.72rem; padding:0.2rem 0.5rem; background:#000; color:#fff; border:1px solid #334155;">𝕏 Compartir</button>
+              <button class="btn btn-secondary" id="cert-modal-share-whatsapp-btn" style="font-size:0.72rem; padding:0.2rem 0.5rem; background:#128c7e; color:#fff; border:none;">💬 WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem;">
           <div style="display:flex; gap:0.5rem;">
             <button class="btn btn-secondary" id="copy-badge-btn">📋 Copiar Badge GitHub</button>
-            <button class="btn" id="download-cert-png-btn" style="background:#059669; color:#fff; border:none;">🖼️ Descargar PNG</button>
+            <button class="btn" id="download-cert-png-btn" style="background:#059669; color:#fff; border:none; font-weight:700;">🖼️ Descargar PNG</button>
           </div>
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn" id="cert-modal-linkedin-btn" style="background:#0a66c2; color:#fff; border:none; font-weight:800; display:flex; align-items:center; gap:0.35rem; cursor:pointer;">
+            <button class="btn" id="cert-modal-bottom-linkedin-btn" style="background:#0a66c2; color:#fff; border:2px solid #38bdf8; font-weight:900; display:flex; align-items:center; gap:0.4rem; padding:0.5rem 1rem; cursor:pointer; box-shadow:0 0 20px rgba(10,102,194,0.5);">
               <span>🚀</span> Publicar en LinkedIn
             </button>
-            <button class="btn btn-success" id="download-cert-btn">📥 Descargar PDF Oficial</button>
+            <button class="btn btn-success" id="download-cert-btn" style="font-weight:700;">📥 Descargar PDF Oficial</button>
           </div>
         </div>
       </div>
@@ -2747,6 +2783,14 @@ def get_embedded_html() -> str:
         copyBadgeBtn: document.getElementById("copy-badge-btn"),
         downloadCertBtn: document.getElementById("download-cert-btn"),
         downloadCertPngBtn: document.getElementById("download-cert-png-btn"),
+        certModalLinkedinDirectBtn: document.getElementById("cert-modal-linkedin-direct-btn"),
+        certModalCopyTextBtn: document.getElementById("cert-modal-copy-text-btn"),
+        certModalLinkedinText: document.getElementById("cert-modal-linkedin-text"),
+        certModalLinkedinGuide: document.getElementById("cert-modal-linkedin-guide"),
+        certModalLinkedinShareBarBtn: document.getElementById("cert-modal-linkedin-share-bar-btn"),
+        certModalShareTwitterBtn: document.getElementById("cert-modal-share-twitter-btn"),
+        certModalShareWhatsappBtn: document.getElementById("cert-modal-share-whatsapp-btn"),
+        certModalBottomLinkedinBtn: document.getElementById("cert-modal-bottom-linkedin-btn"),
 
         // Class Diploma Modal
         classCertModal: document.getElementById("class-cert-modal"),
@@ -3984,12 +4028,62 @@ def get_embedded_html() -> str:
         if (dom.headerLinkedinBtn) {
           dom.headerLinkedinBtn.addEventListener("click", () => openClassCertForCurrent());
         }
-        if (dom.certModalLinkedinBtn) {
-          dom.certModalLinkedinBtn.addEventListener("click", () => {
-            dom.certModal.classList.add("hidden");
-            openClassCertForCurrent();
+        
+        const publishCertModalToLinkedIn = async () => {
+          const name = dom.studentNameInput ? dom.studentNameInput.value.trim() : "Estudiante Wisrovi";
+          const textToCopy = dom.certModalLinkedinText ? dom.certModalLinkedinText.value : "";
+          if (textToCopy) {
+            try { await navigator.clipboard.writeText(textToCopy); } catch (e) {}
+          }
+          const courseChoice = dom.certCourseSelect ? dom.certCourseSelect.value : "master";
+          let downloadUrl = `/api/certificate/download?student_name=${encodeURIComponent(name)}`;
+          if (courseChoice === "current") {
+            downloadUrl = `/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`;
+          }
+          const a = document.createElement("a");
+          a.href = downloadUrl;
+          a.download = `Diploma_Wisrovi_${name.replace(/ /g, '_')}.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          window.open("https://www.linkedin.com/feed/?shareActive=true", "_blank");
+
+          if (dom.certModalLinkedinGuide) {
+            dom.certModalLinkedinGuide.classList.remove("hidden");
+          }
+        };
+
+        if (dom.certModalLinkedinDirectBtn) dom.certModalLinkedinDirectBtn.addEventListener("click", publishCertModalToLinkedIn);
+        if (dom.certModalBottomLinkedinBtn) dom.certModalBottomLinkedinBtn.addEventListener("click", publishCertModalToLinkedIn);
+        if (dom.certModalLinkedinShareBarBtn) dom.certModalLinkedinShareBarBtn.addEventListener("click", publishCertModalToLinkedIn);
+        if (dom.certModalLinkedinBtn) dom.certModalLinkedinBtn.addEventListener("click", publishCertModalToLinkedIn);
+
+        if (dom.certModalCopyTextBtn) {
+          dom.certModalCopyTextBtn.addEventListener("click", () => {
+            if (dom.certModalLinkedinText) {
+              navigator.clipboard.writeText(dom.certModalLinkedinText.value);
+              const prev = dom.certModalCopyTextBtn.textContent;
+              dom.certModalCopyTextBtn.textContent = "✅ ¡Copiado!";
+              setTimeout(() => { dom.certModalCopyTextBtn.textContent = prev; }, 2500);
+            }
           });
         }
+
+        if (dom.certModalShareTwitterBtn) {
+          dom.certModalShareTwitterBtn.addEventListener("click", () => {
+            const text = dom.certModalLinkedinText ? dom.certModalLinkedinText.value : "¡Certificación Oficial en Python con William Rodríguez (@wisrovi)!";
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+          });
+        }
+
+        if (dom.certModalShareWhatsappBtn) {
+          dom.certModalShareWhatsappBtn.addEventListener("click", () => {
+            const text = dom.certModalLinkedinText ? dom.certModalLinkedinText.value : "¡Certificación Oficial en Python con William Rodríguez (Wisrovi)!";
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+          });
+        }
+
         dom.closeCertBtn.addEventListener("click", () => dom.certModal.classList.add("hidden"));
         dom.refreshCertBtn.addEventListener("click", () => openCert());
         dom.certCourseSelect.addEventListener("change", () => openCert());
@@ -4368,6 +4462,14 @@ def get_embedded_html() -> str:
         });
         const data = await res.json();
         dom.certPreviewFrame.innerHTML = data.html;
+
+        if (dom.certModalLinkedinText) {
+          if (courseChoice === "master") {
+            dom.certModalLinkedinText.value = `🎓 ¡Oficialmente Graduado del Programa Integral de Formación en Python: De Cero a Agentes de IA (160 Horas)! 🚀\n\nHe completado con éxito las 32 clases, retos prácticos y proyectos integradores, dominando desde fundamentos y modelos de memoria (Stack/Heap) hasta arquitecturas RAG y Agentes Autónomos de Inteligencia Artificial.\n\n👨‍🏫 Mentor Oficial: William Rodríguez (Wisrovi) (https://es.linkedin.com/in/wisrovi-rodriguez)\n\n🔗 Plataforma Web y Verificación:\nhttps://academy_python.wisrovi.dev/\n\n#Python #ArtificialIntelligence #SoftwareEngineering #RAG #AIAgents #Wisrovi #CleanCode`;
+          } else {
+            dom.certModalLinkedinText.value = `🎓 ¡Certificación Oficial Obtenida en Wisrovi Academy! 🚀\n\nHe superado el 100% de las pruebas y retos prácticos de: «${courseTitle}» (${hours} Horas de Ingeniería de Software activa).\n\n👨‍🏫 Mentor Oficial: William Rodríguez (Wisrovi) (https://es.linkedin.com/in/wisrovi-rodriguez)\n\n🔗 Explora el programa:\nhttps://academy_python.wisrovi.dev/\n\n#Python #SoftwareEngineering #Wisrovi #Programming`;
+          }
+        }
       }
 
       function openAchievements() {

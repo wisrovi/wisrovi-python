@@ -135,6 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
     copyBadgeBtn: document.getElementById("copy-badge-btn"),
     downloadCertBtn: document.getElementById("download-cert-btn"),
     downloadCertPngBtn: document.getElementById("download-cert-png-btn"),
+    certModalLinkedinDirectBtn: document.getElementById("cert-modal-linkedin-direct-btn"),
+    certModalCopyTextBtn: document.getElementById("cert-modal-copy-text-btn"),
+    certModalLinkedinText: document.getElementById("cert-modal-linkedin-text"),
+    certModalLinkedinGuide: document.getElementById("cert-modal-linkedin-guide"),
+    certModalLinkedinShareBarBtn: document.getElementById("cert-modal-linkedin-share-bar-btn"),
+    certModalShareTwitterBtn: document.getElementById("cert-modal-share-twitter-btn"),
+    certModalShareWhatsappBtn: document.getElementById("cert-modal-share-whatsapp-btn"),
+    certModalBottomLinkedinBtn: document.getElementById("cert-modal-bottom-linkedin-btn"),
 
     // Class Diploma Modal
     classCertModal: document.getElementById("class-cert-modal"),
@@ -610,12 +618,62 @@ document.addEventListener("DOMContentLoaded", () => {
     if (dom.headerLinkedinBtn) {
       dom.headerLinkedinBtn.addEventListener("click", () => openClassCertForCurrent());
     }
-    if (dom.certModalLinkedinBtn) {
-      dom.certModalLinkedinBtn.addEventListener("click", () => {
-        dom.certModal.classList.add("hidden");
-        openClassCertForCurrent();
+    
+    const publishCertModalToLinkedIn = async () => {
+      const name = dom.studentNameInput ? dom.studentNameInput.value.trim() : "Estudiante Wisrovi";
+      const textToCopy = dom.certModalLinkedinText ? dom.certModalLinkedinText.value : "";
+      if (textToCopy) {
+        try { await navigator.clipboard.writeText(textToCopy); } catch (e) {}
+      }
+      const courseChoice = dom.certCourseSelect ? dom.certCourseSelect.value : "master";
+      let downloadUrl = `/api/certificate/download?student_name=${encodeURIComponent(name)}`;
+      if (courseChoice === "current") {
+        downloadUrl = `/api/certificate/class/download?course_num=${state.currentCourse}&class_num=${state.currentClass}&student_name=${encodeURIComponent(name)}&export_format=png`;
+      }
+      const a = document.createElement("a");
+      a.href = downloadUrl;
+      a.download = `Diploma_Wisrovi_${name.replace(/\s+/g, '_')}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      window.open("https://www.linkedin.com/feed/?shareActive=true", "_blank");
+
+      if (dom.certModalLinkedinGuide) {
+        dom.certModalLinkedinGuide.classList.remove("hidden");
+      }
+    };
+
+    if (dom.certModalLinkedinDirectBtn) dom.certModalLinkedinDirectBtn.addEventListener("click", publishCertModalToLinkedIn);
+    if (dom.certModalBottomLinkedinBtn) dom.certModalBottomLinkedinBtn.addEventListener("click", publishCertModalToLinkedIn);
+    if (dom.certModalLinkedinShareBarBtn) dom.certModalLinkedinShareBarBtn.addEventListener("click", publishCertModalToLinkedIn);
+    if (dom.certModalLinkedinBtn) dom.certModalLinkedinBtn.addEventListener("click", publishCertModalToLinkedIn);
+
+    if (dom.certModalCopyTextBtn) {
+      dom.certModalCopyTextBtn.addEventListener("click", () => {
+        if (dom.certModalLinkedinText) {
+          navigator.clipboard.writeText(dom.certModalLinkedinText.value);
+          const prev = dom.certModalCopyTextBtn.textContent;
+          dom.certModalCopyTextBtn.textContent = "✅ ¡Copiado!";
+          setTimeout(() => { dom.certModalCopyTextBtn.textContent = prev; }, 2500);
+        }
       });
     }
+
+    if (dom.certModalShareTwitterBtn) {
+      dom.certModalShareTwitterBtn.addEventListener("click", () => {
+        const text = dom.certModalLinkedinText ? dom.certModalLinkedinText.value : "¡Certificación Oficial en Python con William Rodríguez (@wisrovi)!";
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+      });
+    }
+
+    if (dom.certModalShareWhatsappBtn) {
+      dom.certModalShareWhatsappBtn.addEventListener("click", () => {
+        const text = dom.certModalLinkedinText ? dom.certModalLinkedinText.value : "¡Certificación Oficial en Python con William Rodríguez (Wisrovi)!";
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+      });
+    }
+
     dom.closeCertBtn.addEventListener("click", () => dom.certModal.classList.add("hidden"));
     dom.refreshCertBtn.addEventListener("click", () => openCert());
     if (dom.certCourseSelect) dom.certCourseSelect.addEventListener("change", () => openCert());
@@ -895,6 +953,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const data = await res.json();
     dom.certPreviewFrame.innerHTML = data.html;
+
+    if (dom.certModalLinkedinText) {
+      if (courseChoice === "master") {
+        dom.certModalLinkedinText.value = `🎓 ¡Oficialmente Graduado del Programa Integral de Formación en Python: De Cero a Agentes de IA (160 Horas)! 🚀\n\nHe completado con éxito las 32 clases, retos prácticos y proyectos integradores, dominando desde fundamentos y modelos de memoria (Stack/Heap) hasta arquitecturas RAG y Agentes Autónomos de Inteligencia Artificial.\n\n👨‍🏫 Mentor Oficial: William Rodríguez (Wisrovi) (https://es.linkedin.com/in/wisrovi-rodriguez)\n\n🔗 Plataforma Web y Verificación:\nhttps://academy_python.wisrovi.dev/\n\n#Python #ArtificialIntelligence #SoftwareEngineering #RAG #AIAgents #Wisrovi #CleanCode`;
+      } else {
+        dom.certModalLinkedinText.value = `🎓 ¡Certificación Oficial Obtenida en Wisrovi Academy! 🚀\n\nHe superado el 100% de las pruebas y retos prácticos de: «${courseTitle}» (${hours} Horas de Ingeniería de Software activa).\n\n👨‍🏫 Mentor Oficial: William Rodríguez (Wisrovi) (https://es.linkedin.com/in/wisrovi-rodriguez)\n\n🔗 Explora el programa:\nhttps://academy_python.wisrovi.dev/\n\n#Python #SoftwareEngineering #Wisrovi #Programming`;
+      }
+    }
   }
 
   function openAchievements() {

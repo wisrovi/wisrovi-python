@@ -6,6 +6,16 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [2.5.1] - 2026-08-23 (Universal LinkedIn Sharing Hub & Enhanced Master Modal)
+
+### 🌟 Añadido (New Features)
+- **Centro Universal de Publicación en LinkedIn en el Modal Master (`#cert-modal`):**
+  - Incorporación del panel completo de publicación con texto enriquecido dinámico para el Master Diploma de 160h y certificados de curso individuales.
+  - Botón de 1-clic `[🚀 PUBLICAR EN LINKEDIN (Texto + Imagen)]` con descarga automática del diploma PNG y copia al portapapeles.
+  - Barra de compartición directa en redes sociales con LinkedIn destacado junto a WhatsApp y 𝕏 (Twitter).
+
+---
+
 ## [2.5.0] - 2026-08-23 (Master-Class UI Studio, Dual-Column Memory Inspector & CLI Suite)
 
 ### 🌟 Añadido (New Features)
