@@ -6,7 +6,7 @@
 <br/>
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Web Documentation](https://img.shields.io/badge/Documentación-wisrovi.github.io%2Fwisrovi--python-6366F1.svg?style=for-the-badge&logo=materialformkdocs&logoColor=white)](https://wisrovi.github.io/wisrovi-python/)
+[![Web Documentation](https://img.shields.io/badge/Documentación-academy__python.wisrovi.dev-6366F1.svg?style=for-the-badge&logo=materialformkdocs&logoColor=white)](https://academy_python.wisrovi.dev/)
 [![Open in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Abrir_en_1_Clic-22C55E.svg?style=for-the-badge&logo=github&logoColor=white)](https://codespaces.new/wisrovi/wisrovi-python)
 [![Pytest CI](https://img.shields.io/badge/CI_Tests-50_Passing_100%25-10B981.svg?style=for-the-badge&logo=pytest&logoColor=white)](tests/)
 [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-0EA5E9.svg?style=for-the-badge)](LICENSE)
@@ -17,7 +17,7 @@
 
 <br/>
 
-[🌐 Portal Web Oficial](https://wisrovi.github.io/wisrovi-python/) &bull; [🚀 Iniciar en Codespaces](https://codespaces.new/wisrovi/wisrovi-python) &bull; [📚 Plan de Estudios](#-el-currículo-maestro-4-cursos--32-semanas) &bull; [🌀 Aprendizaje en Espiral](#-metodología-pedagógica-el-modelo-de-aprendizaje-en-espiral) &bull; [👤 Sobre el Mentor](#-dirección-académica-y-mentoría)
+[🌐 Portal Web Oficial](https://academy_python.wisrovi.dev/) &bull; [🚀 Iniciar en Codespaces](https://codespaces.new/wisrovi/wisrovi-python) &bull; [📚 Plan de Estudios](#-el-currículo-maestro-4-cursos--32-semanas) &bull; [🌀 Aprendizaje en Espiral](#-metodología-pedagógica-el-modelo-de-aprendizaje-en-espiral) &bull; [👤 Sobre el Mentor](#-dirección-académica-y-mentoría)
 
 </div>
 
